@@ -271,8 +271,16 @@
 ### Técnico
 - [x] Sitemap.xml dinámico - `sitemap.ts`
 - [x] Verificar robots.txt final - configurado con noindex para /lp/
-- [ ] Configurar Google Search Console (manual)
-- [ ] Performance audit (Core Web Vitals) (manual)
+- [x] Configurar dominio en Cloudflare DNS
+- [x] Configurar Cloudflare Worker para blog proxy
+- [x] Configurar Google Search Console:
+  - [x] Agregar propiedad `aduanaspe.com` (dominio principal)
+  - [x] Verificar propiedad con DNS TXT en Cloudflare
+  - [x] Enviar sitemap principal: `https://aduanaspe.com/sitemap.xml`
+  - [x] Enviar sitemap del blog: `https://aduanaspe.com/blog/sitemap_index.xml`
+  - [ ] Verificar cobertura de indexación (esperar 2-3 días)
+  - [ ] Configurar usuarios con acceso (email equipo)
+- [ ] Performance audit (Core Web Vitals)
 
 ### Reglas SEO (según 07-SEO_RULES.md)
 - [x] Páginas SEO correctamente indexables
@@ -334,16 +342,16 @@
 ## Fase 8: Deployment 🔲
 
 ### Preparación
-- [ ] Variables de entorno producción
-- [ ] Configurar dominio aduanaspe.com
-- [ ] Certificado SSL
-- [ ] CDN configurado
+- [x] Variables de entorno producción (Vercel)
+- [x] Configurar dominio aduanaspe.com (Cloudflare + Vercel)
+- [x] Certificado SSL (Cloudflare + Vercel automático)
+- [x] CDN configurado (Cloudflare)
 
 ### Deploy
-- [ ] Build de producción sin errores
-- [ ] Deploy a Vercel/hosting
-- [ ] Verificar todas las rutas
-- [ ] Configurar redirects si necesario
+- [x] Build de producción sin errores
+- [x] Deploy a Vercel
+- [x] Verificar todas las rutas
+- [x] Configurar redirects (25 redirecciones + blog proxy)
 
 ### Post-deploy
 - [ ] Verificar analytics funcionando

@@ -6,6 +6,11 @@
 // Número de WhatsApp Business (sin el +)
 export const WHATSAPP_NUMBER = '51963461006';
 
+// Configuración del router de WhatsApp (futuro: wa.aduanaspe.com)
+// Cambiar a true cuando el subdominio esté configurado
+export const USE_WA_SUBDOMAIN = false;
+export const WA_SUBDOMAIN_URL = 'https://wa.aduanaspe.com';
+
 // Mensajes prellenados por servicio
 export const WHATSAPP_MESSAGES: Record<string, string> = {
     // Servicios principales
@@ -71,7 +76,15 @@ Me interesa recibir información sobre sus servicios de comercio exterior.
 };
 
 // Generar URL de WhatsApp
+// Cuando USE_WA_SUBDOMAIN sea true, usará wa.aduanaspe.com/[key]
+// Mientras tanto, usa wa.me con mensaje prellenado
 export function getWhatsAppUrl(messageKey: string = 'general'): string {
+    // Si el subdominio está activo, usar URLs cortas
+    if (USE_WA_SUBDOMAIN) {
+        return `${WA_SUBDOMAIN_URL}/${messageKey}`;
+    }
+
+    // Usar wa.me con mensaje prellenado
     const message = WHATSAPP_MESSAGES[messageKey] || WHATSAPP_MESSAGES.general;
     const encodedMessage = encodeURIComponent(message);
     return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
