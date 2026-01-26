@@ -14,12 +14,19 @@ export default function ServiciosPage() {
     return (
         <>
             <Hero
-                title="Nuestros Servicios"
-                subtitle="Soluciones integrales para cada etapa de tu operación de comercio exterior"
+                badge="✨ Servicios"
+                title="Soluciones que transforman tu negocio"
+                highlightedWord="transforman"
+                subtitle="Servicios integrales para cada etapa de tu operación de comercio exterior"
                 size="md"
+                showStats={false}
+                showFloatingCards={false}
             />
 
             <HubCards
+                badge="Nuestros Servicios"
+                title="¿Qué podemos hacer por ti?"
+                highlightedWord="hacer"
                 items={services}
                 basePath="/servicios"
                 columns={3}
@@ -27,10 +34,11 @@ export default function ServiciosPage() {
 
             <CTASection
                 title="¿No sabes qué servicio necesitas?"
+                highlightedWord="necesitas"
                 subtitle="Contáctanos y te asesoramos sin compromiso. Te ayudamos a identificar la mejor solución para tu operación."
             >
                 <Link href={ROUTES.contacto}>
-                    <Button size="lg" variant="secondary">
+                    <Button size="lg">
                         Recibir asesoría gratis
                     </Button>
                 </Link>

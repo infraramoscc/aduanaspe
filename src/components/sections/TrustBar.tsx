@@ -36,22 +36,31 @@ const defaultPoints: TrustPoint[] = [
 
 function TrustBar({ points = defaultPoints, title }: TrustBarProps) {
     return (
-        <section className="py-12 bg-white border-y border-gray-100">
+        <section className="py-16 bg-slate-50 border-y border-slate-100">
             <Container>
                 {title && (
-                    <h2 className="text-center text-2xl font-bold text-gray-900 mb-8">
+                    <h2 className="text-center text-2xl font-bold text-slate-900 mb-10">
                         {title}
                     </h2>
                 )}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                     {points.map((point, index) => (
-                        <div key={index} className="text-center">
+                        <div
+                            key={index}
+                            className="text-center group transition-all duration-300 hover:-translate-y-2"
+                        >
                             {point.icon && (
-                                <span className="text-4xl block mb-2">{point.icon}</span>
+                                <span className="text-4xl block mb-3 transition-transform duration-300 group-hover:scale-110">
+                                    {point.icon}
+                                </span>
                             )}
-                            <h3 className="text-lg font-semibold text-gray-900">{point.title}</h3>
+                            <h3 className="text-lg font-bold text-slate-900 mb-1">
+                                {point.title}
+                            </h3>
                             {point.description && (
-                                <p className="mt-1 text-sm text-gray-500">{point.description}</p>
+                                <p className="text-sm text-slate-500">
+                                    {point.description}
+                                </p>
                             )}
                         </div>
                     ))}

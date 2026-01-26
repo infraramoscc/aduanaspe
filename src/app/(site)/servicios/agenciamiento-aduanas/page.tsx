@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { Container } from '@/components/layout';
-import { Button, Card, CardContent } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { PrecotizacionForm } from '@/components/forms';
 import { ROUTES } from '@/lib/routes';
@@ -101,9 +101,13 @@ export default function AgenciamientoAduanasPage() {
         <>
             {/* Hero */}
             <Hero
-                title="Agenciamiento de Aduanas para Importación y Exportación"
-                subtitle="Tu agente de aduanas de confianza. Despacho aduanero con atención personalizada, seguimiento en tiempo real y respuesta en menos de 1 hora."
+                badge="✨ Agenciamiento de Aduanas"
+                title="Despacho de Importación y Exportación"
+                highlightedWord="Despacho"
+                subtitle="Tu agente de aduanas de confianza. Atención personalizada, seguimiento en tiempo real y respuesta en menos de 1 hora."
                 size="lg"
+                showStats={false}
+                showFloatingCards={false}
             >
                 <WhatsAppLink route="agenciamiento-aduanas" serviceName="agenciamiento-aduanas" variant="button">
                     Solicitar Cotización
@@ -126,48 +130,52 @@ export default function AgenciamientoAduanasPage() {
             />
 
             {/* Por qué elegirnos */}
-            <section className="py-16 bg-gray-50">
+            <section className="py-20 bg-slate-50">
                 <Container>
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900">¿Por qué elegir nuestra Agencia de Aduanas?</h2>
-                        <p className="mt-4 text-lg text-gray-600">
-                            En AduanasPE, nuestra atención personalizada nos diferencia. Estas son nuestras fortalezas.
+                    <div className="text-center mb-14">
+                        <span className="section-badge">¿Por qué elegirnos?</span>
+                        <h2 className="text-3xl font-bold text-slate-900">Nuestra atención <span className="gradient-text">personalizada</span> nos diferencia</h2>
+                        <p className="mt-4 text-lg text-slate-600">
+                            Estas son nuestras fortalezas
                         </p>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {whyChooseUs.map((item) => (
-                            <Card key={item.title} className="h-full">
-                                <CardContent className="p-6">
+                        {whyChooseUs.map((item, index) => {
+                            const colors = ['pink', 'blue', 'green', 'orange'];
+                            const colorClass = colors[index % colors.length];
+                            return (
+                                <div key={item.title} className={`service-card service-${colorClass} h-full p-6`}>
                                     <div className="flex items-start gap-4">
                                         <span className="text-3xl">{item.icon}</span>
                                         <div>
-                                            <h3 className="text-xl font-semibold text-violet-600">{item.title}</h3>
-                                            <p className="mt-2 text-gray-600">{item.description}</p>
-                                            <p className="mt-3 text-sm italic text-gray-500">{item.highlight}</p>
+                                            <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
+                                            <p className="mt-2 text-slate-600">{item.description}</p>
+                                            <p className="mt-3 text-sm italic text-slate-500 border-l-2 border-purple-300 pl-2">{item.highlight}</p>
                                         </div>
                                     </div>
-                                </CardContent>
-                            </Card>
-                        ))}
+                                </div>
+                            );
+                        })}
                     </div>
                 </Container>
             </section>
 
             {/* Qué incluye */}
-            <section className="py-16 bg-white">
+            <section className="py-20 bg-white">
                 <Container>
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900">¿Qué incluye el servicio?</h2>
-                        <p className="mt-4 text-lg text-gray-600">
+                    <div className="text-center mb-14">
+                        <span className="section-badge">Cobertura Total</span>
+                        <h2 className="text-3xl font-bold text-slate-900">¿Qué incluye el <span className="gradient-text">servicio</span>?</h2>
+                        <p className="mt-4 text-lg text-slate-600">
                             Cubrimos de manera integral todo el proceso de importación y exportación
                         </p>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {serviceIncludes.map((item) => (
-                            <div key={item.title} className="p-4 rounded-xl bg-gray-50 border border-gray-100">
+                            <div key={item.title} className="p-4 rounded-xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all hover:-translate-y-1">
                                 <span className="text-2xl">{item.icon}</span>
-                                <h4 className="mt-2 font-semibold text-gray-900">{item.title}</h4>
-                                <p className="mt-1 text-sm text-gray-600">{item.description}</p>
+                                <h4 className="mt-2 font-semibold text-slate-900">{item.title}</h4>
+                                <p className="mt-1 text-sm text-slate-600">{item.description}</p>
                             </div>
                         ))}
                     </div>
@@ -175,23 +183,28 @@ export default function AgenciamientoAduanasPage() {
             </section>
 
             {/* Proceso */}
-            <section id="proceso" className="py-16 bg-gradient-to-br from-violet-50 to-fuchsia-50">
+            <section id="proceso" className="py-20 bg-gradient-to-br from-slate-50 via-purple-50/20 to-slate-50">
                 <Container>
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900">¿Cómo trabajamos tu importación?</h2>
-                        <p className="mt-4 text-lg text-gray-600">
-                            Desde el primer contacto hasta el retiro de tu carga, así funciona el proceso
+                    <div className="text-center mb-14">
+                        <span className="section-badge">Proceso</span>
+                        <h2 className="text-3xl font-bold text-slate-900">¿Cómo trabajamos tu <span className="gradient-text">importación</span>?</h2>
+                        <p className="mt-4 text-lg text-slate-600">
+                            Desde el primer contacto hasta el retiro de tu carga
                         </p>
                     </div>
                     <div className="max-w-3xl mx-auto">
                         {processSteps.map((item, index) => (
-                            <div key={item.step} className="flex gap-4 mb-6">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-violet-600 text-white flex items-center justify-center font-bold">
+                            <div key={item.step} className="flex gap-4 mb-6 relative">
+                                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white flex items-center justify-center font-bold z-10 shadow-lg">
                                     {item.step}
                                 </div>
-                                <div className={`flex-1 pb-6 ${index < processSteps.length - 1 ? 'border-l-2 border-violet-200 pl-6 ml-5' : ''}`}>
-                                    <h4 className="font-semibold text-gray-900">{item.title}</h4>
-                                    <p className="mt-1 text-gray-600">{item.description}</p>
+                                {/* Línea conectora */}
+                                {index < processSteps.length - 1 && (
+                                    <div className="absolute left-5 top-10 bottom-[-24px] w-0.5 bg-purple-100 -z-0"></div>
+                                )}
+                                <div className="flex-1 pb-6 pt-1 pl-2">
+                                    <h4 className="font-bold text-slate-900 text-lg">{item.title}</h4>
+                                    <p className="mt-1 text-slate-600">{item.description}</p>
                                 </div>
                             </div>
                         ))}
@@ -207,11 +220,11 @@ export default function AgenciamientoAduanasPage() {
             >
                 <div className="space-y-3">
                     {problemsSolved.map((item) => (
-                        <div key={item.problem} className="flex items-start gap-3">
-                            <span className="text-red-500">{item.icon}</span>
+                        <div key={item.problem} className="flex items-start gap-3 p-3 rounded-lg hover:bg-slate-50 transition-colors">
+                            <span className="text-red-500 mt-1">{item.icon}</span>
                             <div>
-                                <span className="line-through text-gray-400">{item.problem}</span>
-                                <span className="text-violet-600 ml-2">→ {item.solution}</span>
+                                <span className="line-through text-slate-400 block text-sm">{item.problem}</span>
+                                <span className="text-purple-600 font-medium block">→ {item.solution}</span>
                             </div>
                         </div>
                     ))}
@@ -224,32 +237,33 @@ export default function AgenciamientoAduanasPage() {
                 description="Nuestro servicio de agenciamiento de aduanas está diseñado para:"
                 imageSide="left"
             >
-                <ul className="space-y-2 text-gray-600">
+                <ul className="space-y-3 text-slate-600">
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600">✓</span>
+                        <span className="text-purple-600 mt-1">✓</span>
                         <span>Importadores y exportadores con carga marítima o aérea</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600">✓</span>
+                        <span className="text-purple-600 mt-1">✓</span>
                         <span>Empresas con operaciones regulares o esporádicas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600">✓</span>
+                        <span className="text-purple-600 mt-1">✓</span>
                         <span>Negocios que buscan una agencia personalizada, no masiva</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600">✓</span>
+                        <span className="text-purple-600 mt-1">✓</span>
                         <span>Clientes que valoran respuestas claras y asesoría continua</span>
                     </li>
                 </ul>
             </SplitFeature>
 
             {/* Secuencia de Servicios */}
-            <section className="py-16 bg-white">
+            <section className="py-20 bg-white">
                 <Container>
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900">¿Cómo encaja este servicio?</h2>
-                        <p className="mt-4 text-lg text-gray-600">
+                    <div className="text-center mb-14">
+                        <span className="section-badge">Flujo de Trabajo</span>
+                        <h2 className="text-3xl font-bold text-slate-900">¿Cómo encaja este <span className="gradient-text">servicio</span>?</h2>
+                        <p className="mt-4 text-lg text-slate-600">
                             Una importación tiene 3 etapas. Estás viendo la segunda.
                         </p>
                     </div>
@@ -257,39 +271,39 @@ export default function AgenciamientoAduanasPage() {
                         {/* Etapas principales */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {/* Etapa 1 */}
-                            <Link href="/servicios/agencia-de-carga-internacional" className="group block p-6 rounded-xl bg-gray-50 border border-gray-200 hover:border-violet-300 hover:bg-violet-50 transition-all hover:shadow-lg hover:-translate-y-1">
+                            <Link href="/servicios/agencia-de-carga-internacional" className="group block p-6 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition-all hover:shadow-lg hover:-translate-y-1">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full mb-3">ETAPA 1</span>
                                     <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚢</span>
-                                    <h3 className="font-bold text-gray-900">Agenciamiento de Carga</h3>
-                                    <p className="text-sm text-gray-600 mt-2">Flete desde origen</p>
+                                    <h3 className="font-bold text-slate-900">Agenciamiento de Carga</h3>
+                                    <p className="text-sm text-slate-600 mt-2">Flete desde origen</p>
                                     <p className="text-xs text-green-600 font-medium mt-2">✓ Completada (si aplica)</p>
                                 </div>
                             </Link>
                             {/* Etapa 2 - Actual */}
-                            <div className="p-6 rounded-xl bg-violet-100 border-2 border-violet-500 shadow-lg ring-2 ring-violet-300 ring-offset-2">
+                            <div className="p-6 rounded-xl bg-purple-50 border-2 border-purple-500 shadow-lg ring-2 ring-purple-200 ring-offset-2 scale-105">
                                 <div className="text-center">
-                                    <span className="inline-block px-3 py-1 bg-violet-600 text-white text-xs font-bold rounded-full mb-3 animate-pulse">ETAPA 2</span>
+                                    <span className="inline-block px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full mb-3 animate-pulse">ETAPA 2</span>
                                     <span className="text-3xl block mb-2">📋</span>
-                                    <h3 className="font-bold text-gray-900">Agenciamiento de Aduanas</h3>
-                                    <p className="text-sm text-gray-600 mt-2">Despacho aduanero</p>
-                                    <p className="text-xs text-violet-600 font-medium mt-2">← Estás aquí</p>
+                                    <h3 className="font-bold text-slate-900">Agenciamiento de Aduanas</h3>
+                                    <p className="text-sm text-slate-600 mt-2">Despacho aduanero</p>
+                                    <p className="text-xs text-purple-600 font-medium mt-2">← Estás aquí</p>
                                 </div>
                             </div>
                             {/* Etapa 3 */}
-                            <Link href="/servicios/transporte-de-carga" className="group block p-6 rounded-xl bg-gray-50 border border-gray-200 hover:border-violet-300 hover:bg-violet-50 transition-all hover:shadow-lg hover:-translate-y-1">
+                            <Link href="/servicios/transporte-de-carga" className="group block p-6 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition-all hover:shadow-lg hover:-translate-y-1">
                                 <div className="text-center">
-                                    <span className="inline-block px-3 py-1 bg-gray-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 3</span>
+                                    <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 3</span>
                                     <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚚</span>
-                                    <h3 className="font-bold text-gray-900">Transporte de Carga</h3>
-                                    <p className="text-sm text-gray-600 mt-2">Entrega en tu almacén</p>
-                                    <p className="text-xs text-violet-600 font-medium mt-2">Ver servicio →</p>
+                                    <h3 className="font-bold text-slate-900">Transporte de Carga</h3>
+                                    <p className="text-sm text-slate-600 mt-2">Entrega en tu almacén</p>
+                                    <p className="text-xs text-blue-600 font-medium mt-2">Ver servicio →</p>
                                 </div>
                             </Link>
                         </div>
 
                         {/* Servicios Opcionales */}
-                        <div className="mt-10">
+                        <div className="mt-12">
                             <div className="text-center mb-6">
                                 <span className="inline-block px-4 py-2 bg-amber-100 text-amber-800 text-sm font-semibold rounded-full">
                                     ⚡ Servicios Opcionales - Contrátalos en cualquier etapa
@@ -297,16 +311,16 @@ export default function AgenciamientoAduanasPage() {
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Consultoría Aduanera */}
-                                <Link href="/servicios/consultoria-aduanera" className="group flex items-center gap-4 p-5 rounded-xl bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 hover:border-blue-400 hover:shadow-lg transition-all hover:-translate-y-1">
-                                    <div className="flex-shrink-0 w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <Link href="/servicios/consultoria-aduanera" className="group flex items-center gap-4 p-5 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 hover:border-cyan-400 hover:shadow-lg transition-all hover:-translate-y-1">
+                                    <div className="flex-shrink-0 w-14 h-14 rounded-full bg-cyan-100 flex items-center justify-center group-hover:scale-110 transition-transform">
                                         <span className="text-2xl">💡</span>
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">
-                                            <h4 className="font-bold text-gray-900">Consultoría Aduanera</h4>
+                                            <h4 className="font-bold text-slate-900">Consultoría Aduanera</h4>
                                             <span className="px-2 py-0.5 bg-blue-500 text-white text-[10px] font-bold rounded-full">OPCIONAL</span>
                                         </div>
-                                        <p className="text-sm text-gray-600 mt-1">Asesoría experta para optimizar tus operaciones</p>
+                                        <p className="text-sm text-slate-600 mt-1">Asesoría experta para optimizar tus operaciones</p>
                                         <p className="text-xs text-blue-600 font-medium mt-1 group-hover:underline">Ver más →</p>
                                     </div>
                                 </Link>
@@ -317,10 +331,10 @@ export default function AgenciamientoAduanasPage() {
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">
-                                            <h4 className="font-bold text-gray-900">Resguardo Aduanero</h4>
+                                            <h4 className="font-bold text-slate-900">Resguardo Aduanero</h4>
                                             <span className="px-2 py-0.5 bg-orange-500 text-white text-[10px] font-bold rounded-full">OPCIONAL</span>
                                         </div>
-                                        <p className="text-sm text-gray-600 mt-1">Custodia y seguridad para tu mercancía</p>
+                                        <p className="text-sm text-slate-600 mt-1">Custodia y seguridad para tu mercancía</p>
                                         <p className="text-xs text-orange-600 font-medium mt-1 group-hover:underline">Ver más →</p>
                                     </div>
                                 </Link>
@@ -328,10 +342,10 @@ export default function AgenciamientoAduanasPage() {
                         </div>
 
                         {/* Servicio Integral */}
-                        <div className="mt-8 p-6 rounded-xl bg-gradient-to-r from-violet-600 to-fuchsia-600 text-white text-center shadow-xl">
-                            <h3 className="text-xl font-bold">¿Prefieres un servicio integral?</h3>
-                            <p className="mt-2 text-violet-100">Contratamos las 3 etapas + opcionales por ti. Un solo punto de contacto, una sola factura.</p>
-                            <div className="mt-4">
+                        <div className="mt-8 p-8 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center shadow-xl">
+                            <h3 className="text-2xl font-bold">¿Prefieres un servicio integral?</h3>
+                            <p className="mt-2 text-blue-100 text-lg">Contratamos las 3 etapas + opcionales por ti. Un solo punto de contacto, una sola factura.</p>
+                            <div className="mt-6">
                                 <WhatsAppLink route="servicio-integral" serviceName="servicio-integral" variant="button">
                                     Cotizar servicio integral
                                 </WhatsAppLink>
@@ -340,17 +354,19 @@ export default function AgenciamientoAduanasPage() {
                     </div>
                 </Container>
             </section>
+
             {/* FAQ */}
-            <section className="py-16 bg-gray-50">
+            <section className="py-20 bg-slate-50">
                 <Container>
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900">Preguntas Frecuentes</h2>
+                    <div className="text-center mb-14">
+                        <span className="section-badge">Ayuda</span>
+                        <h2 className="text-3xl font-bold text-slate-900">Preguntas <span className="gradient-text">Frecuentes</span></h2>
                     </div>
                     <div className="max-w-3xl mx-auto space-y-6">
                         {faqs.map((faq) => (
-                            <div key={faq.question} className="bg-white rounded-xl p-6 shadow-sm">
-                                <h4 className="font-semibold text-gray-900">{faq.question}</h4>
-                                <p className="mt-2 text-gray-600">{faq.answer}</p>
+                            <div key={faq.question} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                                <h4 className="font-semibold text-slate-900 text-lg">{faq.question}</h4>
+                                <p className="mt-2 text-slate-600">{faq.answer}</p>
                             </div>
                         ))}
                     </div>
@@ -359,7 +375,7 @@ export default function AgenciamientoAduanasPage() {
 
             {/* Formulario de cotización */}
             <Container>
-                <div id="cotizacion" className="py-12">
+                <div id="cotizacion" className="py-16">
                     <PrecotizacionForm
                         title="Solicita tu cotización"
                         serviceName="agenciamiento-aduanas"
@@ -370,6 +386,7 @@ export default function AgenciamientoAduanasPage() {
             {/* CTA Final */}
             <CTASection
                 title="¿Listo para importar sin complicaciones?"
+                highlightedWord="sin complicaciones"
                 subtitle="Escríbenos y recibe una cotización personalizada en menos de 1 hora. Sin compromiso."
             >
                 <WhatsAppLink route="agenciamiento-aduanas-cta" serviceName="agenciamiento-aduanas" variant="button">

@@ -10,12 +10,13 @@ function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <header className="glass border-b border-slate-100 fixed top-0 left-0 right-0 z-50">
             <Container>
                 <div className="flex items-center justify-between h-16">
-                    {/* Logo */}
+                    {/* Logo con gradiente */}
                     <Link href="/" className="flex items-center gap-2">
-                        <span className="text-2xl font-bold bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">AduanasPE</span>
+                        <span className="text-xl font-bold gradient-text">◆</span>
+                        <span className="text-2xl font-bold text-slate-900">AduanasPE</span>
                     </Link>
 
                     {/* Desktop Navigation */}
@@ -24,17 +25,24 @@ function Header() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="text-gray-600 hover:text-violet-600 transition-colors font-medium"
+                                className="text-slate-600 hover:text-purple-600 transition-colors font-medium"
                             >
                                 {item.label}
                             </Link>
                         ))}
+                        {/* CTA en navbar con gradiente */}
+                        <Link
+                            href="/contacto"
+                            className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 text-white px-5 py-2 rounded-full font-semibold hover:shadow-pink transition-all hover:-translate-y-0.5"
+                        >
+                            Contactar
+                        </Link>
                     </nav>
 
                     {/* Mobile Menu Button */}
                     <button
                         type="button"
-                        className="md:hidden p-2 text-gray-600 hover:text-gray-900"
+                        className="md:hidden p-2 text-slate-600 hover:text-slate-900"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
@@ -75,12 +83,19 @@ function Header() {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="px-4 py-2 text-gray-600 hover:text-violet-600 hover:bg-violet-50 rounded-lg transition-colors font-medium"
+                                className="px-4 py-2 text-slate-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors font-medium"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 {item.label}
                             </Link>
                         ))}
+                        <Link
+                            href="/contacto"
+                            className="mx-4 mt-2 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 text-white px-5 py-2 rounded-full font-semibold text-center"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            Contactar
+                        </Link>
                     </nav>
                 </div>
             </Container>

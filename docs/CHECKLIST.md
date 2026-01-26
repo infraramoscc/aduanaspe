@@ -230,16 +230,17 @@
   - [x] `click_whatsapp_{servicio}`
 
 #### 4.2.4 Conversiones
-- [ ] Marcar `submit_form_*` como conversiones en GA4 (configurar en panel GA4)
-- [ ] Marcar `click_whatsapp_*` como conversiones en GA4 (configurar en panel GA4)
+- [/] Marcar `submit_form_*` como conversiones en GA4 (eventos visibles, pendiente marcar)
+- [/] Marcar `click_whatsapp_*` como conversiones en GA4 (eventos visibles, pendiente marcar)
 
 ---
 
 ### 4.3 WhatsApp Business
 
 #### 4.3.1 Configuración básica
-- [ ] Definir número de WhatsApp Business (actualizar en `src/lib/whatsapp.ts`)
+- [x] Definir número de WhatsApp Business (51963461006)
 - [x] Crear mensajes prellenados por servicio
+- [x] Preparar código para futuro wa.aduanaspe.com
 
 #### 4.3.2 Mensajes por servicio
 - [x] `aduanas` → Mensaje para Agenciamiento de Aduanas

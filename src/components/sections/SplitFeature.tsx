@@ -41,21 +41,14 @@ function SplitFeature({
                         )}
                     >
                         {image || (
-                            <div className="text-center text-gray-400">
-                                <svg
-                                    className="w-16 h-16 mx-auto mb-2"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={1}
-                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                    />
-                                </svg>
-                                <span className="text-sm">Visual placeholder</span>
+                            <div className="w-full h-full min-h-[300px] bg-slate-50 relative rounded-2xl overflow-hidden flex items-center justify-center group">
+                                <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:20px_20px]" />
+                                <div className="absolute w-64 h-64 bg-purple-100 rounded-full blur-3xl opacity-20 -top-12 -right-12 group-hover:opacity-30 transition-opacity" />
+                                <div className="absolute w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-20 -bottom-12 -left-12 group-hover:opacity-30 transition-opacity" />
+
+                                <div className="relative p-6 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/60 shadow-lg">
+                                    <span className="text-6xl drop-shadow-md">✨</span>
+                                </div>
                             </div>
                         )}
                     </div>

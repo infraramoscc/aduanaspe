@@ -39,11 +39,15 @@ const trustPoints = [
 export default function HomePage() {
     return (
         <>
-            {/* Hero Section */}
+            {/* Hero Section - Premium con stats y floating cards */}
             <Hero
+                badge="✨ Comercio Exterior"
                 title="Tu importación, nuestra prioridad"
+                highlightedWord="prioridad"
                 subtitle="No eres un número más. Cada cliente tiene un ejecutivo asignado que conoce tu negocio y te acompaña en cada operación. Atención personalizada con respuesta en menos de 1 hora."
                 size="lg"
+                showStats={true}
+                showFloatingCards={true}
             >
                 <WhatsAppLink route="home" variant="button">
                     Escríbenos por WhatsApp
@@ -64,21 +68,21 @@ export default function HomePage() {
                 description="Sabemos que importar puede ser complejo y estresante. Por eso, no te tratamos como un cliente más. Desde el primer contacto, te asignamos un ejecutivo que se encargará personalmente de tus operaciones, te mantendrá informado en cada paso y resolverá tus dudas en tiempo real."
                 imageSide="right"
             >
-                <ul className="space-y-3 text-gray-600">
+                <ul className="space-y-3 text-slate-600">
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600 mt-1">✓</span>
+                        <span className="text-purple-600 mt-1">✓</span>
                         <span><strong>Ejecutivo personal:</strong> Un solo punto de contacto que conoce tu negocio</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600 mt-1">✓</span>
+                        <span className="text-purple-600 mt-1">✓</span>
                         <span><strong>Seguimiento constante:</strong> Te informamos el estatus de tu carga sin que tengas que preguntar</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600 mt-1">✓</span>
+                        <span className="text-purple-600 mt-1">✓</span>
                         <span><strong>Facturación inmediata:</strong> Documentos listos cuando los necesitas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600 mt-1">✓</span>
+                        <span className="text-purple-600 mt-1">✓</span>
                         <span><strong>Capacitación incluida:</strong> Te enseñamos el proceso para que tomes mejores decisiones</span>
                     </li>
                 </ul>
@@ -86,7 +90,9 @@ export default function HomePage() {
 
             {/* Services Hub */}
             <HubCards
-                title="Nuestros Servicios"
+                badge="Nuestros Servicios"
+                title="Soluciones que transforman"
+                highlightedWord="transforman"
                 subtitle="Soluciones integrales para importadores que buscan un socio estratégico, no solo un proveedor"
                 items={services}
                 basePath="/servicios"
@@ -116,6 +122,7 @@ export default function HomePage() {
             {/* CTA Section */}
             <CTASection
                 title="¿Listo para importar sin complicaciones?"
+                highlightedWord="sin complicaciones"
                 subtitle="Escríbenos hoy y recibe una cotización personalizada en menos de 1 hora. Sin compromiso."
             >
                 <WhatsAppLink route="home-cta" variant="button">

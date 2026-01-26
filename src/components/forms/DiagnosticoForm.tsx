@@ -4,11 +4,14 @@ import { FormBase } from './FormBase';
 import { Input, Select, Textarea } from '@/components/ui';
 import { trackEvent, GA4_EVENTS } from '@/components/tracking';
 
+import { cn } from '@/lib/utils';
+
 interface DiagnosticoFormProps {
     title?: string;
+    className?: string;
 }
 
-function DiagnosticoForm({ title = 'Diagnóstico de Comercio Exterior' }: DiagnosticoFormProps) {
+function DiagnosticoForm({ title = 'Diagnóstico de Comercio Exterior', className }: DiagnosticoFormProps) {
     const handleSubmit = async (formData: FormData) => {
         const data = {
             nombre: formData.get('nombre') as string,
@@ -34,7 +37,7 @@ function DiagnosticoForm({ title = 'Diagnóstico de Comercio Exterior' }: Diagno
     };
 
     return (
-        <div className="py-12">
+        <div className={cn("py-12", className)}>
             <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">{title}</h2>
             <FormBase onSubmit={handleSubmit}>
                 <Input

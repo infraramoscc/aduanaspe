@@ -44,9 +44,12 @@ export default async function ServicePage({ params }: ServicePageProps) {
     return (
         <>
             <Hero
+                badge={`✨ ${service.icon || '📦'} Servicio`}
                 title={service.title}
                 subtitle={service.summary}
                 size="md"
+                showStats={false}
+                showFloatingCards={false}
             >
                 <Link href="#cotizacion">
                     <Button size="lg">Solicitar cotización</Button>
@@ -60,11 +63,26 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 title="¿Qué incluye este servicio?"
                 description={service.description}
                 imageSide="right"
-            />
+            >
+                <ul className="space-y-3 text-slate-600">
+                    <li className="flex items-start gap-2">
+                        <span className="text-purple-600 mt-1">✓</span>
+                        <span><strong>Asesoría personalizada:</strong> Te guiamos en cada paso</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                        <span className="text-purple-600 mt-1">✓</span>
+                        <span><strong>Documentación completa:</strong> Nos encargamos de todo el papeleo</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                        <span className="text-purple-600 mt-1">✓</span>
+                        <span><strong>Seguimiento en tiempo real:</strong> Sabrás el estado de tu operación</span>
+                    </li>
+                </ul>
+            </SplitFeature>
 
             <SplitFeature
                 title="¿Por qué elegirnos?"
-                description="Contamos con más de 15 años de experiencia en el mercado peruano. Nuestro equipo de profesionales certificados te acompañará en cada paso del proceso, asegurando que tu operación se realice sin contratiempos."
+                description="Contamos con más de 5 años de experiencia en el mercado peruano. Nuestro equipo de profesionales certificados te acompañará en cada paso del proceso."
                 imageSide="left"
             >
                 <Link href={ROUTES.quienesSomos}>
@@ -73,7 +91,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </SplitFeature>
 
             <Container>
-                <div id="cotizacion">
+                <div id="cotizacion" className="py-16">
                     <PrecotizacionForm
                         title={`Cotiza ${service.title}`}
                         serviceName={slug}
@@ -83,6 +101,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
             <CTASection
                 title="¿Tienes dudas?"
+                highlightedWord="dudas"
                 subtitle="Nuestro equipo está listo para resolver todas tus consultas."
             >
                 <Link href={ROUTES.contacto}>

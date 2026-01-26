@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Hero, SplitFeature, TrustBar, CTASection } from '@/components/sections';
+import { Hero, SplitFeature, TrustBar, CTASection, HubCards } from '@/components/sections';
 import { Container } from '@/components/layout';
-import { Button, Card, CardContent } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { ROUTES } from '@/lib/routes';
 
@@ -14,24 +14,28 @@ export const metadata: Metadata = {
 // Equipo
 const teamMembers = [
     {
-        role: 'Ejecutivo Comercial',
-        description: 'Tu primer contacto. Te asesora, cotiza y acompaña en cada decisión.',
+        title: 'Ejecutivo Comercial',
+        summary: 'Tu primer contacto. Te asesora, cotiza y acompaña en cada decisión.',
         icon: '💼',
+        slug: 'comercial',
     },
     {
-        role: 'Ejecutivo de Servicios',
-        description: 'Coordina tus operaciones y te envía el estatus de tu carga constantemente.',
+        title: 'Ejecutivo de Servicios',
+        summary: 'Coordina tus operaciones y te envía el estatus de tu carga constantemente.',
         icon: '📦',
+        slug: 'servicios',
     },
     {
-        role: 'Liquidador',
-        description: 'Experto en clasificación arancelaria y liquidación de impuestos.',
+        title: 'Liquidador',
+        summary: 'Experto en clasificación arancelaria y liquidación de impuestos.',
         icon: '📋',
+        slug: 'liquidador',
     },
     {
-        role: 'Facturación',
-        description: 'Tus documentos listos cuando los necesitas, sin demoras.',
+        title: 'Facturación',
+        summary: 'Tus documentos listos cuando los necesitas, sin demoras.',
         icon: '🧾',
+        slug: 'facturacion',
     },
 ];
 
@@ -63,9 +67,13 @@ export default function QuienesSomosPage() {
     return (
         <>
             <Hero
+                badge="✨ Sobre Nosotros"
                 title="Nacimos para hacer las cosas diferentes"
+                highlightedWord="diferentes"
                 subtitle="Somos dos hermanos que, después de trabajar en agencias donde la velocidad importaba más que el cliente, decidimos crear algo mejor: una agencia donde tú eres la prioridad."
                 size="md"
+                showStats={false}
+                showFloatingCards={false}
             />
 
             {/* Nuestra Historia */}
@@ -74,8 +82,8 @@ export default function QuienesSomosPage() {
                 description="Trabajamos años en agencias de aduanas grandes. Vimos cómo los clientes eran tratados como números: sin seguimiento, sin explicaciones, sin atención real. Un día nos preguntamos: ¿por qué nadie hace esto bien? Y decidimos hacerlo nosotros."
                 imageSide="right"
             >
-                <p className="text-gray-600 italic">
-                    "Lo que nos diferencia no es ser los más grandes, sino los más cercanos. Cada cliente tiene un ejecutivo asignado que conoce su negocio y está disponible cuando lo necesita."
+                <p className="text-slate-600 italic border-l-4 border-purple-500 pl-4">
+                    &ldquo;Lo que nos diferencia no es ser los más grandes, sino los más cercanos. Cada cliente tiene un ejecutivo asignado que conoce su negocio y está disponible cuando lo necesita.&rdquo;
                 </p>
             </SplitFeature>
 
@@ -85,21 +93,21 @@ export default function QuienesSomosPage() {
                 description="En las agencias grandes, un ejecutivo atiende a cientos de clientes. Aquí, cada miembro del equipo trabaja con un grupo pequeño de clientes asignados. Eso significa que conocemos tu negocio, anticipamos tus necesidades y te mantenemos informado sin que tengas que preguntar."
                 imageSide="left"
             >
-                <ul className="space-y-2 text-gray-600">
+                <ul className="space-y-2 text-slate-600">
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600">✓</span>
+                        <span className="text-purple-600">✓</span>
                         <span>Ejecutivo personal asignado a tu cuenta</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600">✓</span>
+                        <span className="text-purple-600">✓</span>
                         <span>Envío de estatus constante sin que lo pidas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600">✓</span>
+                        <span className="text-purple-600">✓</span>
                         <span>Capacitación y asesoramiento incluido</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-violet-600">✓</span>
+                        <span className="text-purple-600">✓</span>
                         <span>Facturación inmediata cuando la necesitas</span>
                     </li>
                 </ul>
@@ -112,25 +120,33 @@ export default function QuienesSomosPage() {
             />
 
             {/* Equipo */}
-            <section className="py-16 bg-gray-50">
+            <section className="py-20 bg-slate-50">
                 <Container>
-                    <div className="text-center mb-12">
-                        <h2 className="text-3xl font-bold text-gray-900">Nuestro Equipo</h2>
-                        <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                            Un equipo pequeño pero especializado. Cada uno sabe exactamente lo que hace y trabaja en coordinación para que tu operación fluya sin problemas.
+                    <div className="text-center mb-14">
+                        <span className="section-badge">Nuestro Equipo</span>
+                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+                            Un equipo que te <span className="gradient-text">respalda</span>
+                        </h2>
+                        <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
+                            Un equipo pequeño pero especializado. Cada uno sabe exactamente lo que hace.
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {teamMembers.map((member) => (
-                            <Card key={member.role} className="text-center">
-                                <CardContent className="p-6">
+                        {teamMembers.map((member, index) => {
+                            const colors = ['pink', 'blue', 'green', 'orange'];
+                            const colorClass = colors[index % colors.length];
+                            return (
+                                <div
+                                    key={member.slug}
+                                    className={`service-card service-${colorClass} text-center p-6`}
+                                >
                                     <span className="text-4xl mb-4 block">{member.icon}</span>
-                                    <h3 className="text-lg font-semibold text-gray-900">{member.role}</h3>
-                                    <p className="mt-2 text-sm text-gray-600">{member.description}</p>
-                                </CardContent>
-                            </Card>
-                        ))}
+                                    <h3 className="text-lg font-semibold text-slate-900">{member.title}</h3>
+                                    <p className="mt-2 text-sm text-slate-500">{member.summary}</p>
+                                </div>
+                            );
+                        })}
                     </div>
                 </Container>
             </section>
@@ -143,16 +159,18 @@ export default function QuienesSomosPage() {
             />
 
             {/* Ubicación */}
-            <section className="py-16 bg-white">
+            <section className="py-20 bg-white">
                 <Container>
                     <div className="text-center max-w-2xl mx-auto">
-                        <h2 className="text-3xl font-bold text-gray-900 mb-4">¿Dónde estamos?</h2>
-                        <p className="text-lg text-gray-600 mb-6">
+                        <span className="section-badge">Ubicación</span>
+                        <h2 className="text-3xl font-bold text-slate-900 mb-4">
+                            ¿Dónde <span className="gradient-text">estamos</span>?
+                        </h2>
+                        <p className="text-lg text-slate-600 mb-6">
                             Operamos desde el <strong>Callao, Perú</strong> – el corazón del comercio exterior peruano.
-                            Trabajamos de manera 100% remota, lo que nos permite atender clientes de todo el Perú,
-                            incluyendo provincias, con la misma calidad y velocidad de respuesta.
+                            Trabajamos de manera 100% remota, lo que nos permite atender clientes de todo el Perú.
                         </p>
-                        <p className="text-gray-500">
+                        <p className="text-slate-500">
                             No importa dónde estés: Lima, Arequipa, Trujillo o cualquier otra ciudad.
                             Tu ejecutivo está a un mensaje de distancia.
                         </p>
@@ -162,7 +180,8 @@ export default function QuienesSomosPage() {
 
             {/* CTA */}
             <CTASection
-                title="¿Listo para trabajar con un equipo que te pone primero?"
+                title="¿Listo para trabajar con un equipo diferente?"
+                highlightedWord="diferente"
                 subtitle="Escríbenos y descubre la diferencia de trabajar con una agencia que realmente se preocupa por ti."
             >
                 <WhatsAppLink route="quienes-somos" variant="button">

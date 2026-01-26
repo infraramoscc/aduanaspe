@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Container } from '@/components/layout';
-import { Card, CardContent } from '@/components/ui';
 import { cn } from '@/lib/utils';
 
 interface HubCardItem {
@@ -13,23 +12,50 @@ interface HubCardItem {
 
 interface HubCardsProps {
     title?: string;
+    highlightedWord?: string;
     subtitle?: string;
     items: HubCardItem[];
     basePath?: string;
     columns?: 2 | 3 | 4;
+    badge?: string;
 }
 
-function HubCards({ title, subtitle, items, basePath = '', columns = 3 }: HubCardsProps) {
+// Colores rotativos para las tarjetas
+const cardColors = ['pink', 'blue', 'green', 'orange'] as const;
+
+function HubCards({ title, highlightedWord, subtitle, items, basePath = '', columns = 3, badge }: HubCardsProps) {
+    // Renderizar título con palabra destacada
+    const renderTitle = () => {
+        if (highlightedWord && title?.includes(highlightedWord)) {
+            const parts = title.split(highlightedWord);
+            return (
+                <>
+                    {parts[0]}
+                    <span className="gradient-text">{highlightedWord}</span>
+                    {parts[1]}
+                </>
+            );
+        }
+        return title;
+    };
+
     return (
-        <section className="py-16 bg-gray-50">
+        <section className="py-20 bg-slate-50">
             <Container>
-                {(title || subtitle) && (
-                    <div className="text-center mb-12">
+                {(title || subtitle || badge) && (
+                    <div className="text-center mb-14">
+                        {badge && (
+                            <span className="section-badge">{badge}</span>
+                        )}
                         {title && (
-                            <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
+                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+                                {renderTitle()}
+                            </h2>
                         )}
                         {subtitle && (
-                            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">{subtitle}</p>
+                            <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
+                                {subtitle}
+                            </p>
                         )}
                     </div>
                 )}
@@ -44,41 +70,37 @@ function HubCards({ title, subtitle, items, basePath = '', columns = 3 }: HubCar
                         }
                     )}
                 >
-                    {items.map((item) => (
-                        <Link
-                            key={item.slug}
-                            href={`${basePath}/${item.slug}`}
-                            className="block group"
-                        >
-                            <Card hover className="h-full">
-                                <CardContent className="p-6">
-                                    {item.icon && (
-                                        <span className="text-3xl mb-4 block">{item.icon}</span>
-                                    )}
-                                    <h3 className="text-xl font-semibold text-gray-900 group-hover:text-violet-600 transition-colors">
-                                        {item.title}
-                                    </h3>
-                                    <p className="mt-2 text-gray-600">{item.summary}</p>
-                                    <span className="mt-4 inline-flex items-center text-violet-600 font-medium group-hover:gap-2 transition-all">
-                                        {item.ctaLabel || 'Ver más'}
-                                        <svg
-                                            className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                                strokeWidth={2}
-                                                d="M9 5l7 7-7 7"
-                                            />
-                                        </svg>
-                                    </span>
-                                </CardContent>
-                            </Card>
-                        </Link>
-                    ))}
+                    {items.map((item, index) => {
+                        const colorClass = cardColors[index % cardColors.length];
+
+                        return (
+                            <Link
+                                key={item.slug}
+                                href={`${basePath}/${item.slug}`}
+                                className="block group"
+                            >
+                                {/* Service Card con borde de color y glow al hover */}
+                                <div className={cn(
+                                    'service-card h-full',
+                                    `service-${colorClass}`
+                                )}>
+                                    <div className="p-6">
+                                        {item.icon && (
+                                            <span className="text-3xl mb-4 block">{item.icon}</span>
+                                        )}
+                                        <h3 className="text-xl font-semibold text-slate-900 group-hover:text-purple-600 transition-colors">
+                                            {item.title}
+                                        </h3>
+                                        <p className="mt-2 text-slate-500">{item.summary}</p>
+                                        <span className="service-link mt-4 inline-flex items-center">
+                                            {item.ctaLabel || 'Explorar'}
+                                            <span className="ml-1 transition-all group-hover:ml-2">→</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </Link>
+                        );
+                    })}
                 </div>
             </Container>
         </section>

@@ -4,14 +4,23 @@ import { cn } from '@/lib/utils';
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
     children: ReactNode;
     hover?: boolean;
+    colorAccent?: 'cyan' | 'coral' | 'teal' | 'amber' | 'default';
 }
 
-function Card({ className, children, hover = false, ...props }: CardProps) {
+function Card({ className, children, hover = false, colorAccent = 'default', ...props }: CardProps) {
+    const accentStyles = {
+        cyan: 'service-cyan',
+        coral: 'service-coral',
+        teal: 'service-teal',
+        amber: 'service-amber',
+        default: 'service-cyan',
+    };
+
     return (
         <div
             className={cn(
-                'bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden',
-                hover && 'transition-all duration-200 hover:shadow-md hover:border-gray-300',
+                'service-card',
+                hover && accentStyles[colorAccent],
                 className
             )}
             {...props}
@@ -23,7 +32,7 @@ function Card({ className, children, hover = false, ...props }: CardProps) {
 
 function CardHeader({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) {
     return (
-        <div className={cn('px-6 py-4 border-b border-gray-100', className)} {...props}>
+        <div className={cn('px-6 py-4 border-b border-slate-100', className)} {...props}>
             {children}
         </div>
     );
@@ -39,7 +48,7 @@ function CardContent({ className, children, ...props }: HTMLAttributes<HTMLDivEl
 
 function CardFooter({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) {
     return (
-        <div className={cn('px-6 py-4 border-t border-gray-100 bg-gray-50', className)} {...props}>
+        <div className={cn('px-6 py-4 border-t border-slate-100 bg-slate-50/50', className)} {...props}>
             {children}
         </div>
     );
