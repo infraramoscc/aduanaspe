@@ -3,6 +3,12 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // Redirecciones de sitemap
+      {
+        source: '/sitemap_index.xml',
+        destination: '/sitemap.xml',
+        permanent: true,
+      },
       // Redirecciones desde URLs antiguas de WordPress (páginas de servicios)
       {
         source: '/agencia-de-aduanas-peru',
