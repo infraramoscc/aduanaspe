@@ -50,9 +50,21 @@ export default function DocumentosAduanerosPage() {
                 title="Documentos de Importación"
                 highlightedWord="Documentos"
                 subtitle="La clave de un despacho exitoso es una documentación perfecta. Conoce los requisitos para evitar multas."
-                size="md"
+                size="lg"
                 showStats={false}
                 showFloatingCards={false}
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '❌', title: 'Sin Errores', description: 'Evita multas' },
+                            { icon: '⚡', title: 'Agilidad', description: 'Despacho rápido' },
+                            { icon: '🔐', title: 'Seguridad', description: 'Legal' },
+                            { icon: '💰', title: 'Ahorro', description: 'Sin sobrecostos' },
+                        ]}
+                    />
+                }
             >
                 <Link href="#lista">
                     <Button size="lg">Ver lista de documentos</Button>
@@ -62,14 +74,7 @@ export default function DocumentosAduanerosPage() {
                 </Link>
             </Hero>
 
-            <TrustBar
-                points={[
-                    { icon: '❌', title: 'Sin Errores', description: 'Evita multas' },
-                    { icon: '⚡', title: 'Agilidad', description: 'Despacho rápido' },
-                    { icon: '🔐', title: 'Seguridad', description: 'Legal' },
-                    { icon: '💰', title: 'Ahorro', description: 'Sin sobrecostos' },
-                ]}
-            />
+            {/* Trust Bar integrated into Hero */}
 
             <section id="lista" className="py-20 bg-white">
                 <Container>

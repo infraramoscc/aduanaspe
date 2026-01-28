@@ -112,7 +112,19 @@ export default function ResguardoPage() {
                 subtitle="Custodia y acompañamiento de tu mercancía durante todo el traslado. Seguridad desde el recojo hasta la entrega."
                 size="lg"
                 showStats={false}
-                showFloatingCards={false}
+                showFloatingCards={true}
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '👤', title: 'Resguardo Cabina', description: 'En la unidad' },
+                            { icon: '🚗', title: 'Resguardo Vehículo', description: 'Seguimiento' },
+                            { icon: '📍', title: 'Monitoreo', description: 'Constante' },
+                            { icon: '🛡️', title: 'Seguridad', description: 'Garantizada' },
+                        ]}
+                    />
+                }
             >
                 <WhatsAppLink route="resguardo-aduanero" serviceName="resguardo-aduanero" variant="button">
                     Cotizar resguardo
@@ -124,15 +136,7 @@ export default function ResguardoPage() {
                 </Link>
             </Hero>
 
-            {/* Trust Bar */}
-            <TrustBar
-                points={[
-                    { icon: '👤', title: 'Resguardo Cabina', description: 'En la unidad' },
-                    { icon: '🚗', title: 'Resguardo Vehículo', description: 'Seguimiento' },
-                    { icon: '📍', title: 'Monitoreo', description: 'Constante' },
-                    { icon: '🛡️', title: 'Seguridad', description: 'Garantizada' },
-                ]}
-            />
+            {/* Trust Bar integrated into Hero */}
 
             {/* Qué es */}
             <SplitFeature

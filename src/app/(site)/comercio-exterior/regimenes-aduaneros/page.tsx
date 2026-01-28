@@ -46,9 +46,21 @@ export default function RegimenesAduanerosPage() {
                 title="Regímenes Aduaneros"
                 highlightedWord="Regímenes"
                 subtitle="Elige la modalidad correcta para tu operación y optimiza tu carga tributaria legalmente."
-                size="md"
+                size="lg"
                 showStats={false}
                 showFloatingCards={false}
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '📋', title: 'Ley General', description: 'De Aduanas' },
+                            { icon: '💰', title: 'Optimización', description: 'De tributos' },
+                            { icon: '✅', title: 'Cumplimiento', description: 'Normativo' },
+                            { icon: '🔍', title: 'Destinación', description: 'Correcta' },
+                        ]}
+                    />
+                }
             >
                 <Link href="#tipos">
                     <Button size="lg">Explorar Regímenes</Button>
@@ -58,14 +70,7 @@ export default function RegimenesAduanerosPage() {
                 </Link>
             </Hero>
 
-            <TrustBar
-                points={[
-                    { icon: '📋', title: 'Ley General', description: 'De Aduanas' },
-                    { icon: '💰', title: 'Optimización', description: 'De tributos' },
-                    { icon: '✅', title: 'Cumplimiento', description: 'Normativo' },
-                    { icon: '🔍', title: 'Destinación', description: 'Correcta' },
-                ]}
-            />
+            {/* Trust Bar integrated into Hero */}
 
             <section id="tipos" className="py-20 bg-slate-50">
                 <Container>

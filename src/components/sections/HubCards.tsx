@@ -18,12 +18,13 @@ interface HubCardsProps {
     basePath?: string;
     columns?: 2 | 3 | 4;
     badge?: string;
+    id?: string;
 }
 
 // Colores rotativos para las tarjetas
 const cardColors = ['pink', 'blue', 'green', 'orange'] as const;
 
-function HubCards({ title, highlightedWord, subtitle, items, basePath = '', columns = 3, badge }: HubCardsProps) {
+function HubCards({ title, highlightedWord, subtitle, items, basePath = '', columns = 3, badge, id }: HubCardsProps) {
     // Renderizar título con palabra destacada
     const renderTitle = () => {
         if (highlightedWord && title?.includes(highlightedWord)) {
@@ -40,7 +41,7 @@ function HubCards({ title, highlightedWord, subtitle, items, basePath = '', colu
     };
 
     return (
-        <section className="py-20 bg-slate-50">
+        <section id={id} className="py-20 bg-slate-50">
             <Container>
                 {(title || subtitle || badge) && (
                     <div className="text-center mb-14">
@@ -48,7 +49,7 @@ function HubCards({ title, highlightedWord, subtitle, items, basePath = '', colu
                             <span className="section-badge">{badge}</span>
                         )}
                         {title && (
-                            <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+                            <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
                                 {renderTitle()}
                             </h2>
                         )}

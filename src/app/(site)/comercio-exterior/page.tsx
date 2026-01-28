@@ -19,16 +19,28 @@ export default function ComercioExteriorPage() {
                 title="Recursos de Comercio Exterior"
                 highlightedWord="Recursos"
                 subtitle="Todo lo que necesitas saber para importar y exportar en Perú. Guías prácticas, consejos de expertos y herramientas gratuitas."
-                size="md"
+                size="lg"
                 showStats={false}
                 showFloatingCards={true}
+                centered={true}
                 image={undefined}
                 floatingCards={[
-                    { icon: '🌎', text: 'Importación', color: 'blue', position: { top: '15%', right: '10%' }, delay: '0s' },
-                    { icon: '🚢', text: 'Exportación', color: 'green', position: { top: '45%', right: '5%' }, delay: '1s' },
-                    { icon: '⚖️', text: 'Regulaciones', color: 'pink', position: { bottom: '25%', right: '15%' }, delay: '2s' },
-                    { icon: '📄', text: 'Documentos', color: 'yellow', position: { bottom: '10%', right: '5%' }, delay: '3s' },
+                    { icon: '🌎', text: 'Importación', color: 'blue', position: { top: '10%', left: '0%' }, delay: '0s' },
+                    { icon: '🚢', text: 'Exportación', color: 'green', position: { top: '20%', right: '0%' }, delay: '1s' },
+                    { icon: '⚖️', text: 'Regulaciones', color: 'pink', position: { bottom: '20%', left: '2%' }, delay: '2s' },
+                    { icon: '📄', text: 'Documentos', color: 'yellow', position: { bottom: '15%', right: '2%' }, delay: '3s' },
                 ]}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '📚', title: 'Guías', description: 'Paso a paso' },
+                            { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
+                            { icon: '💡', title: 'Tips', description: 'De expertos' },
+                            { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
+                        ]}
+                    />
+                }
             >
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link href="/comercio-exterior/importacion">
@@ -44,14 +56,7 @@ export default function ComercioExteriorPage() {
                 </div>
             </Hero>
 
-            <TrustBar
-                points={[
-                    { icon: '📚', title: 'Guías', description: 'Paso a paso' },
-                    { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
-                    { icon: '💡', title: 'Tips', description: 'De expertos' },
-                    { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
-                ]}
-            />
+
 
             <section className="py-20 bg-slate-50">
                 <Container>

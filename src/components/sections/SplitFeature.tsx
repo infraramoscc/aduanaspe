@@ -28,7 +28,7 @@ function SplitFeature({
                 >
                     {/* Content Side */}
                     <div className={cn(imageSide === 'left' && 'lg:order-2')}>
-                        <h2 className="text-3xl font-bold text-gray-900">{title}</h2>
+                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900">{title}</h2>
                         <p className="mt-4 text-lg text-gray-600 leading-relaxed">{description}</p>
                         {children && <div className="mt-6">{children}</div>}
                     </div>

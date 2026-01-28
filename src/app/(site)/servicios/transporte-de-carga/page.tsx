@@ -111,7 +111,19 @@ export default function TransportePage() {
                 subtitle="Llevamos tu mercancía desde el puerto hasta tu almacén. Con GPS, seguimiento en tiempo real y comunicación permanente."
                 size="lg"
                 showStats={false}
-                showFloatingCards={false}
+                showFloatingCards={true}
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '📍', title: 'GPS', description: 'Monitoreo en tiempo real' },
+                            { icon: '🚚', title: 'Flota Diversa', description: 'Furgones a plataformas' },
+                            { icon: '📊', title: 'Estatus Constante', description: 'Sin preguntar' },
+                            { icon: '⚡', title: 'Cotización', description: 'En 1 hora' },
+                        ]}
+                    />
+                }
             >
                 <WhatsAppLink route="transporte-de-carga" serviceName="transporte-de-carga" variant="button">
                     Cotizar transporte
@@ -123,15 +135,7 @@ export default function TransportePage() {
                 </Link>
             </Hero>
 
-            {/* Trust Bar */}
-            <TrustBar
-                points={[
-                    { icon: '📍', title: 'GPS', description: 'Monitoreo en tiempo real' },
-                    { icon: '🚚', title: 'Flota Diversa', description: 'Furgones a plataformas' },
-                    { icon: '📊', title: 'Estatus Constante', description: 'Sin preguntar' },
-                    { icon: '⚡', title: 'Cotización', description: 'En 1 hora' },
-                ]}
-            />
+            {/* Trust Bar integrated into Hero */}
 
             {/* Secuencia de Servicios */}
             <section className="py-20 bg-white">

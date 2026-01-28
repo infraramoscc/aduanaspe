@@ -127,7 +127,19 @@ export default function ConsultoriaAduaneraPage() {
                 subtitle="Asesoría estratégica para optimizar tus operaciones. Clasificación arancelaria, TLCs, regímenes aduaneros y más."
                 size="lg"
                 showStats={false}
-                showFloatingCards={false}
+                showFloatingCards={true}
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '🎓', title: 'Especialistas', description: 'Certificados' },
+                            { icon: '📊', title: 'Optimización', description: 'De costos' },
+                            { icon: '🌍', title: 'TLCs', description: 'Perú tiene 22' },
+                            { icon: '⚡', title: 'Respuesta', description: 'En 24 horas' },
+                        ]}
+                    />
+                }
             >
                 <WhatsAppLink route="consultoria-aduanera" serviceName="consultoria-aduanera" variant="button">
                     Solicitar consulta
@@ -139,15 +151,7 @@ export default function ConsultoriaAduaneraPage() {
                 </Link>
             </Hero>
 
-            {/* Trust Bar */}
-            <TrustBar
-                points={[
-                    { icon: '🎓', title: 'Especialistas', description: 'Certificados' },
-                    { icon: '📊', title: 'Optimización', description: 'De costos' },
-                    { icon: '🌍', title: 'TLCs', description: 'Perú tiene 22' },
-                    { icon: '⚡', title: 'Respuesta', description: 'En 24 horas' },
-                ]}
-            />
+            {/* Trust Bar integrated into Hero */}
 
             {/* Qué es */}
             <SplitFeature

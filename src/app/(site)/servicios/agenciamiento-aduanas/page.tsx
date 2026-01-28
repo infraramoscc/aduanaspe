@@ -107,7 +107,19 @@ export default function AgenciamientoAduanasPage() {
                 subtitle="Tu agente de aduanas de confianza. Atención personalizada, seguimiento en tiempo real y respuesta en menos de 1 hora."
                 size="lg"
                 showStats={false}
-                showFloatingCards={false}
+                showFloatingCards={true}
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '📋', title: 'Revisión Documentaria', description: '★★★★★' },
+                            { icon: '📍', title: 'Seguimiento de Carga', description: '★★★★★' },
+                            { icon: '🏷️', title: 'Clasificación Arancelaria', description: '★★★★★' },
+                            { icon: '⚡', title: 'Respuesta en 1 hora', description: 'Garantizado' },
+                        ]}
+                    />
+                }
             >
                 <WhatsAppLink route="agenciamiento-aduanas" serviceName="agenciamiento-aduanas" variant="button">
                     Solicitar Cotización
@@ -119,15 +131,7 @@ export default function AgenciamientoAduanasPage() {
                 </Link>
             </Hero>
 
-            {/* Trust Bar - Servicios destacados */}
-            <TrustBar
-                points={[
-                    { icon: '📋', title: 'Revisión Documentaria', description: '★★★★★' },
-                    { icon: '📍', title: 'Seguimiento de Carga', description: '★★★★★' },
-                    { icon: '🏷️', title: 'Clasificación Arancelaria', description: '★★★★★' },
-                    { icon: '⚡', title: 'Respuesta en 1 hora', description: 'Garantizado' },
-                ]}
-            />
+            {/* Trust Bar integrated into Hero */}
 
             {/* Por qué elegirnos */}
             <section className="py-20 bg-slate-50">

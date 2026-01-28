@@ -48,6 +48,14 @@ export default function HomePage() {
                 size="lg"
                 showStats={true}
                 showFloatingCards={true}
+                centered={true}
+                footer={<TrustBar points={trustPoints} variant="clean" />}
+                floatingCards={[
+                    { icon: '📦', text: 'Agenciamiento', color: 'pink', position: { top: '12%', left: '2%' }, delay: '0s' },
+                    { icon: '🚛', text: 'Transporte', color: 'blue', position: { top: '15%', right: '2%' }, delay: '1s' },
+                    { icon: '📋', text: 'Consultoría', color: 'green', position: { bottom: '15%', left: '2%' }, delay: '2s' },
+                    { icon: '🔒', text: 'Resguardo', color: 'yellow', position: { bottom: '20%', right: '2%' }, delay: '3s' },
+                ]}
             >
                 <WhatsAppLink route="home" variant="button">
                     Escríbenos por WhatsApp
@@ -59,8 +67,7 @@ export default function HomePage() {
                 </Link>
             </Hero>
 
-            {/* Trust Bar con datos reales */}
-            <TrustBar points={trustPoints} />
+            {/* Trust Bar integrated into Hero */}
 
             {/* Value Proposition */}
             <SplitFeature

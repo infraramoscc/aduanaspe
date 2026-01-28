@@ -71,9 +71,11 @@ export default function QuienesSomosPage() {
                 title="Nacimos para hacer las cosas diferentes"
                 highlightedWord="diferentes"
                 subtitle="Somos dos hermanos que, después de trabajar en agencias donde la velocidad importaba más que el cliente, decidimos crear algo mejor: una agencia donde tú eres la prioridad."
-                size="md"
+                size="lg"
                 showStats={false}
-                showFloatingCards={false}
+                showFloatingCards={true}
+                centered={true}
+                footer={<TrustBar variant="clean" />}
             />
 
             {/* Nuestra Historia */}

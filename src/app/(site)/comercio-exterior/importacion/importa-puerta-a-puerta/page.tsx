@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Hero, SplitFeature, CTASection } from '@/components/sections';
+import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { PrecotizacionForm } from '@/components/forms';
 import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
@@ -17,7 +17,19 @@ export default function ImportaPuertaAPuertaPage() {
             <Hero
                 title="Importa Puerta a Puerta"
                 subtitle="El servicio más completo. Recogemos tu mercancía en origen y la entregamos en tu almacén en Perú."
-                size="md"
+                size="lg"
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '📚', title: 'Guías', description: 'Paso a paso' },
+                            { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
+                            { icon: '💡', title: 'Tips', description: 'De expertos' },
+                            { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
+                        ]}
+                    />
+                }
             />
 
             <SplitFeature

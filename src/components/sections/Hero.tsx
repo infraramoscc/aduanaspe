@@ -15,6 +15,7 @@ interface HeroProps {
     badge?: string;
     image?: string;
     floatingCards?: FloatingCardItem[];
+    footer?: ReactNode;
 }
 
 interface StatItem {
@@ -37,10 +38,10 @@ interface FloatingCardItem {
 }
 
 const defaultFloatingCards: FloatingCardItem[] = [
-    { icon: '📦', text: 'Agenciamiento', color: 'pink', position: { top: '20%', right: '5%' }, delay: '0s' },
-    { icon: '🚛', text: 'Transporte', color: 'blue', position: { top: '50%', right: '2%' }, delay: '1s' },
-    { icon: '📋', text: 'Consultoría', color: 'green', position: { bottom: '30%', right: '8%' }, delay: '2s' },
-    { icon: '🔒', text: 'Resguardo', color: 'yellow', position: { bottom: '10%', right: '3%' }, delay: '3s' },
+    { icon: '📦', text: 'Agenciamiento', color: 'pink', position: { top: '12%', left: '2%' }, delay: '0s' },
+    { icon: '🚛', text: 'Transporte', color: 'blue', position: { top: '18%', right: '2%' }, delay: '1s' },
+    { icon: '📋', text: 'Consultoría', color: 'green', position: { bottom: '18%', left: '2%' }, delay: '2s' },
+    { icon: '🔒', text: 'Resguardo', color: 'yellow', position: { bottom: '20%', right: '2%' }, delay: '3s' },
 ];
 
 function Hero({
@@ -55,6 +56,7 @@ function Hero({
     badge,
     image,
     floatingCards,
+    footer,
 }: HeroProps) {
     // Separar el título si hay una palabra destacada
     const renderTitle = () => {
@@ -74,12 +76,13 @@ function Hero({
     return (
         <section
             className={cn(
-                'relative overflow-hidden',
-                'bg-gradient-to-b from-white to-slate-50',
+                'overflow-hidden',
+                'bg-gradient-to-b from-white via-slate-50 to-white', // Subtle gradient
+                'bg-dot-slate-200', // Dot pattern background
                 {
                     'py-16': size === 'sm',
                     'py-20 md:py-28': size === 'md',
-                    'min-h-screen flex items-center py-20': size === 'lg',
+                    'min-h-screen flex flex-col': size === 'lg',
                 }
             )}
         >
@@ -135,92 +138,108 @@ function Hero({
                 )
             }
 
-            <Container>
-                <div className={cn(
-                    'relative z-10',
-                    centered ? 'text-center max-w-4xl mx-auto' : 'max-w-3xl'
-                )}>
-                    {/* Badge */}
-                    {badge && (
-                        <span
-                            className="section-badge animate-fade-in-up"
-                            style={{ animationDelay: '0s' }}
-                        >
-                            {badge}
-                        </span>
-                    )}
+            <div className={cn(
+                "relative z-10 w-full",
+                // Remove flex-grow to stop pushing footer to bottom edge.
+                // Using flex-col and justify-center to center the content in the available space
+                size === 'lg' ? "flex flex-col items-center justify-center py-24 min-h-[85vh]" : ""
+            )}>
+                <Container className="relative w-full">
+                    <div className={cn(
+                        'relative z-10',
+                        // Increased max-width from 2xl to 4xl to allow title to spread
+                        centered ? 'text-center max-w-4xl mx-auto' : 'max-w-3xl'
+                    )}>
+                        {/* Badge */}
+                        {badge && (
+                            <span
+                                className="section-badge animate-fade-in-up"
+                                style={{ animationDelay: '0s' }}
+                            >
+                                {badge}
+                            </span>
+                        )}
 
-                    {/* Título */}
-                    <h1
-                        className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-slate-900 mb-6 animate-fade-in-up"
-                        style={{ animationDelay: '0.1s' }}
-                    >
-                        {renderTitle()}
-                    </h1>
-
-                    {/* Subtítulo */}
-                    {subtitle && (
-                        <p
-                            className="text-lg md:text-xl text-slate-600 max-w-2xl mb-8 animate-fade-in-up"
-                            style={{ animationDelay: '0.2s', ...(centered ? { margin: '0 auto 2rem' } : {}) }}
+                        {/* Título */}
+                        <h1
+                            className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-slate-900 mb-8 animate-fade-in-up tracking-tight"
+                            style={{ animationDelay: '0.1s' }}
                         >
-                            {subtitle}
-                        </p>
-                    )}
+                            {renderTitle()}
+                        </h1>
 
-                    {/* CTAs */}
-                    {children && (
-                        <div
-                            className={cn(
-                                'flex flex-wrap gap-4 mb-12 animate-fade-in-up',
-                                centered && 'justify-center'
-                            )}
-                            style={{ animationDelay: '0.3s' }}
-                        >
-                            {children}
-                        </div>
-                    )}
+                        {/* Subtítulo */}
+                        {subtitle && (
+                            <p
+                                className="text-xl md:text-2xl text-slate-600 max-w-3xl mb-10 animate-fade-in-up font-light"
+                                style={{ animationDelay: '0.2s', ...(centered ? { margin: '0 auto 2.5rem' } : {}) }}
+                            >
+                                {subtitle}
+                            </p>
+                        )}
 
-                    {/* Stats */}
-                    {showStats && (
-                        <div
-                            className={cn(
-                                'flex gap-12 animate-fade-in-up',
-                                centered && 'justify-center'
-                            )}
-                            style={{ animationDelay: '0.4s' }}
-                        >
-                            {defaultStats.map((stat, index) => (
-                                <div key={index} className="text-center">
-                                    <span className="stat-number">{stat.number}</span>
-                                    <span className="stat-label">{stat.label}</span>
+                        {/* CTAs */}
+                        {children && (
+                            <div
+                                className={cn(
+                                    'flex flex-wrap gap-4 mb-12 animate-fade-in-up',
+                                    centered && 'justify-center'
+                                )}
+                                style={{ animationDelay: '0.3s' }}
+                            >
+                                {children}
+                            </div>
+                        )}
+
+                        {/* Stats */}
+                        {showStats && (
+                            <div
+                                className={cn(
+                                    'flex gap-12 animate-fade-in-up',
+                                    centered && 'justify-center'
+                                )}
+                                style={{ animationDelay: '0.4s' }}
+                            >
+                                {defaultStats.map((stat, index) => (
+                                    <div key={index} className="text-center">
+                                        <span className="stat-number">{stat.number}</span>
+                                        <span className="stat-label">{stat.label}</span>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Floating Cards - Solo en pantalleas muy grandes */}
+                    {showFloatingCards && (
+                        <div className="hidden 2xl:block">
+                            {(floatingCards || defaultFloatingCards).map((card, index) => (
+                                <div
+                                    key={index}
+                                    className="floating-card"
+                                    style={{
+                                        ...card.position,
+                                        animationDelay: card.delay,
+                                    }}
+                                >
+                                    <div className={`card-icon card-icon-${card.color}`}>
+                                        {card.icon}
+                                    </div>
+                                    <span>{card.text}</span>
                                 </div>
                             ))}
                         </div>
                     )}
-                </div>
+                </Container>
+            </div>
 
-                {/* Floating Cards - Solo en desktop */}
-                {showFloatingCards && (
-                    <div className="hidden lg:block">
-                        {(floatingCards || defaultFloatingCards).map((card, index) => (
-                            <div
-                                key={index}
-                                className="floating-card"
-                                style={{
-                                    ...card.position,
-                                    animationDelay: card.delay,
-                                }}
-                            >
-                                <div className={`card-icon card-icon-${card.color}`}>
-                                    {card.icon}
-                                </div>
-                                <span>{card.text}</span>
-                            </div>
-                        ))}
+            {footer && (
+                <div className="relative z-10 w-full mt-16 pb-12 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                    <div className="max-w-5xl mx-auto bg-white/60 backdrop-blur-md rounded-2xl border border-slate-200/50 shadow-sm">
+                        {footer}
                     </div>
-                )}
-            </Container>
+                </div>
+            )}
         </section >
     );
 }

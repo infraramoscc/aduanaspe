@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Hero, SplitFeature, CTASection } from '@/components/sections';
+import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { PrecotizacionForm } from '@/components/forms';
 import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
@@ -47,9 +47,21 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 badge={`✨ ${service.icon || '📦'} Servicio`}
                 title={service.title}
                 subtitle={service.summary}
-                size="md"
+                size="lg"
                 showStats={false}
                 showFloatingCards={false}
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '⭐', title: 'Experiencia', description: 'Garantizada' },
+                            { icon: '⚡', title: 'Rapidez', description: 'En gestión' },
+                            { icon: '🔒', title: 'Seguridad', description: 'Total' },
+                            { icon: '📞', title: 'Soporte', description: '24/7' },
+                        ]}
+                    />
+                }
             >
                 <Link href="#cotizacion">
                     <Button size="lg">Solicitar cotización</Button>

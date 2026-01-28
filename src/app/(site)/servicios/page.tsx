@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Hero, HubCards, CTASection } from '@/components/sections';
+import { Hero, HubCards, CTASection, TrustBar } from '@/components/sections';
 import { Button } from '@/components/ui';
+import { WhatsAppLink } from '@/components/tracking';
 import { services } from '@/content/services';
 import { ROUTES } from '@/lib/routes';
 
@@ -18,12 +19,24 @@ export default function ServiciosPage() {
                 title="Soluciones que transforman tu negocio"
                 highlightedWord="transforman"
                 subtitle="Servicios integrales para cada etapa de tu operación de comercio exterior"
-                size="md"
+                size="lg"
                 showStats={false}
-                showFloatingCards={false}
-            />
+                showFloatingCards={true}
+                centered={true}
+                footer={<TrustBar variant="clean" />}
+            >
+                <WhatsAppLink messageKey="general" variant="button">
+                    Contratar servicio integral
+                </WhatsAppLink>
+                <Link href="#servicios-disponibles">
+                    <Button variant="secondary" size="lg">
+                        Mostrar servicios disponibles
+                    </Button>
+                </Link>
+            </Hero>
 
             <HubCards
+                id="servicios-disponibles"
                 badge="Nuestros Servicios"
                 title="¿Qué podemos hacer por ti?"
                 highlightedWord="hacer"

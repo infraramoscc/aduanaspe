@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Hero, SplitFeature, CTASection } from '@/components/sections';
+import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { DiagnosticoForm } from '@/components/forms';
 import { Container } from '@/components/layout';
 import Link from 'next/link';
@@ -17,7 +17,19 @@ export default function ExportacionPage() {
             <Hero
                 title="Exportación desde Perú"
                 subtitle="Expande tu negocio al mundo. Te guiamos en todo el proceso de exportación."
-                size="md"
+                size="lg"
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '📚', title: 'Guías', description: 'Paso a paso' },
+                            { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
+                            { icon: '💡', title: 'Tips', description: 'De expertos' },
+                            { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
+                        ]}
+                    />
+                }
             />
 
             <SplitFeature

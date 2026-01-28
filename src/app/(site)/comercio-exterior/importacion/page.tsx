@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Hero, HubCards } from '@/components/sections';
+import { Hero, HubCards, TrustBar } from '@/components/sections';
 import { DiagnosticoForm } from '@/components/forms';
 import { Container } from '@/components/layout';
 import { importacionSubLandings } from '@/content/comercioExterior';
@@ -16,7 +16,19 @@ export default function ImportacionPage() {
             <Hero
                 title="Importación a Perú"
                 subtitle="Todo lo que necesitas saber para importar productos. Desde encontrar proveedores hasta recibir la mercancía en tu almacén."
-                size="md"
+                size="lg"
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '📚', title: 'Guías', description: 'Paso a paso' },
+                            { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
+                            { icon: '💡', title: 'Tips', description: 'De expertos' },
+                            { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
+                        ]}
+                    />
+                }
             />
 
             <HubCards

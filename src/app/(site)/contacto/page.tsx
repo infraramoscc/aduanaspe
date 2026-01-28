@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Container } from '@/components/layout';
-import { Hero } from '@/components/sections';
+import { Hero, TrustBar } from '@/components/sections';
 import { ContactoForm } from '@/components/forms';
 import { WhatsAppLink } from '@/components/tracking';
-import { Card, CardContent } from '@/components/ui';
+import { Card, CardContent, Button } from '@/components/ui';
 
 export const metadata: Metadata = {
     title: 'Contacto - Escríbenos | AduanasPE',
@@ -46,12 +47,20 @@ export default function ContactoPage() {
                 title="Hablemos de tu próxima importación"
                 highlightedWord="importación"
                 subtitle="Escríbenos por WhatsApp y recibe respuesta en menos de 1 hora. Sin compromiso, sin formularios eternos."
-                size="sm"
+                size="lg"
                 showStats={false}
-                showFloatingCards={false}
-            />
+                showFloatingCards={true}
+                centered={true}
+                footer={<TrustBar variant="clean" />}
+            >
+                <Link href="#contacto-info">
+                    <Button variant="secondary" size="lg">
+                        Ver datos de contacto
+                    </Button>
+                </Link>
+            </Hero>
 
-            <Container>
+            <Container id="contacto-info">
                 <div className="py-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {/* Contact Options - Left Side */}
                     <div className="space-y-8">

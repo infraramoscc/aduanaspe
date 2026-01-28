@@ -111,7 +111,19 @@ export default function AgenciamientoCargaPage() {
                 subtitle="Coordinamos tu carga desde origen hasta destino. Flete marítimo y aéreo con seguimiento en tiempo real y costeo transparente."
                 size="lg"
                 showStats={false}
-                showFloatingCards={false}
+                showFloatingCards={true}
+                centered={true}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '🚢', title: 'Flete Marítimo', description: 'FCL y LCL' },
+                            { icon: '✈️', title: 'Flete Aéreo', description: 'Todos los destinos' },
+                            { icon: '📍', title: 'Seguimiento', description: 'En tiempo real' },
+                            { icon: '⚡', title: 'Cotización', description: 'En 1 hora' },
+                        ]}
+                    />
+                }
             >
                 <WhatsAppLink route="agencia-de-carga-internacional" serviceName="agencia-de-carga-internacional" variant="button">
                     Cotizar mi carga
@@ -123,15 +135,7 @@ export default function AgenciamientoCargaPage() {
                 </Link>
             </Hero>
 
-            {/* Trust Bar */}
-            <TrustBar
-                points={[
-                    { icon: '🚢', title: 'Flete Marítimo', description: 'FCL y LCL' },
-                    { icon: '✈️', title: 'Flete Aéreo', description: 'Todos los destinos' },
-                    { icon: '📍', title: 'Seguimiento', description: 'En tiempo real' },
-                    { icon: '⚡', title: 'Cotización', description: 'En 1 hora' },
-                ]}
-            />
+            {/* Trust Bar integrated into Hero */}
 
             {/* Qué es este servicio */}
             <SplitFeature
