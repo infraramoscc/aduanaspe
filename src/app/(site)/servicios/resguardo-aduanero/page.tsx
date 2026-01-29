@@ -10,6 +10,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Resguardo de Carga | Custodia y Seguridad',
     description: 'Servicio de resguardo para tu carga. Modalidades cabina y vehículo. Custodia desde recojo hasta entrega. Contratación junto con transporte o independiente.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/servicios/resguardo-aduanero',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 // Modalidades de resguardo

@@ -8,6 +8,13 @@ import { importacionSubLandings } from '@/content/comercioExterior';
 export const metadata: Metadata = {
     title: 'Importación',
     description: 'Guía completa para importar productos a Perú. Aprende sobre proveedores, costos, documentos y más.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/comercio-exterior/importacion',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function ImportacionPage() {

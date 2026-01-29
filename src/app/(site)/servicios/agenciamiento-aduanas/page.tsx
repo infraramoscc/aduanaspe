@@ -10,6 +10,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Agenciamiento de Aduanas | Despacho de Importación y Exportación',
     description: 'Servicio de agenciamiento aduanero con atención personalizada. Clasificación arancelaria, numeración DAM, seguimiento en tiempo real. Cotización en 1 hora.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/servicios/agenciamiento-aduanas',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 // Qué incluye el servicio

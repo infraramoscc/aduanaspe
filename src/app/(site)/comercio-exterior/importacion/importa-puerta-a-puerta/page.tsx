@@ -9,6 +9,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Importa Puerta a Puerta',
     description: 'Servicio integral de importación puerta a puerta. Nos encargamos de todo para que recibas tu mercancía en tu almacén.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/comercio-exterior/importacion/importa-puerta-a-puerta',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function ImportaPuertaAPuertaPage() {

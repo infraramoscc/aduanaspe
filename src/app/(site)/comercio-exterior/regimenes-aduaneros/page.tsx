@@ -9,6 +9,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Regímenes Aduaneros en Perú | Guía Completa 2026',
     description: 'Conoce los regímenes de importación, exportación y perfeccionamiento. Elige el correcto para optimizar costos tributarios.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/comercio-exterior/regimenes-aduaneros',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 const regimenes = [

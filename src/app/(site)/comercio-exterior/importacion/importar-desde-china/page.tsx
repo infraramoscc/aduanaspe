@@ -9,6 +9,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Importar desde China',
     description: 'Guía paso a paso para importar productos desde China a Perú. Proveedores, costos, envío y trámites aduaneros.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/comercio-exterior/importacion/importar-desde-china',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function ImportarDesdeChinaPage() {

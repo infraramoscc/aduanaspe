@@ -9,6 +9,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Servicios',
     description: 'Servicios de agenciamiento de aduanas, logística internacional, transporte y asesoría aduanera en Perú. Soluciones completas para tu comercio exterior.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/servicios',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function ServiciosPage() {

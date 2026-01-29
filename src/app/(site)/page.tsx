@@ -10,6 +10,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'AduanasPE - Tu Socio en Comercio Exterior | Atención Personalizada',
     description: 'Agenciamiento de aduanas con atención 100% personalizada. Ejecutivo asignado, seguimiento en tiempo real y respuesta en menos de 1 hora. +5 años de experiencia.',
+    alternates: {
+        canonical: 'https://aduanaspe.com',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 // Trust points con datos reales

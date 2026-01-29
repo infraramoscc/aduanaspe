@@ -9,6 +9,13 @@ import { Container } from '@/components/layout';
 export const metadata: Metadata = {
     title: 'Recursos de Comercio Exterior | Guías y Herramientas',
     description: 'Domina la importación y exportación en Perú. Guías gratuitas, herramientas de cálculo y recursos sobre regímenes aduaneros y documentación.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/comercio-exterior',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function ComercioExteriorPage() {

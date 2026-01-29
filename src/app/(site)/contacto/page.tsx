@@ -9,6 +9,13 @@ import { Card, CardContent, Button } from '@/components/ui';
 export const metadata: Metadata = {
     title: 'Contacto - Escríbenos | AduanasPE',
     description: 'Contáctanos por WhatsApp al 963461006 o email info@aduanaspe.com. Cotizaciones en menos de 1 hora. Atención de Lunes a Sábado.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/contacto',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 // Información de contacto

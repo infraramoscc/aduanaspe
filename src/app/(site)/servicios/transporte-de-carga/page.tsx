@@ -10,6 +10,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Transporte de Carga | Entrega Segura desde Puerto',
     description: 'Transporte de carga desde puerto/aeropuerto hasta tu almacén. GPS, seguimiento constante. Callao, Lima y provincias. Resguardo opcional.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/servicios/transporte-de-carga',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 // Qué incluye el servicio

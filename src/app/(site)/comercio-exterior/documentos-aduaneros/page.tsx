@@ -9,6 +9,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Documentos Aduaneros | Guía de Requisitos para Importar',
     description: 'Guía de documentos para comercio exterior: Factura Comercial, Packing List, Bill of Lading, DAM y Certificados de Origen. Aprende a gestionarlos.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/comercio-exterior/documentos-aduaneros',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 const documentos = [

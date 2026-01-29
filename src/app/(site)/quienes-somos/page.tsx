@@ -9,6 +9,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Quiénes Somos - Conoce a AduanasPE',
     description: 'Somos dos hermanos con experiencia en comercio exterior. Nacimos para ofrecer atención personalizada que las grandes agencias no dan. Callao, Perú.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/quienes-somos',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 // Equipo

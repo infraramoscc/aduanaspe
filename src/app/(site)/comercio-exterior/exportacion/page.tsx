@@ -9,6 +9,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Exportación',
     description: 'Guía para exportar desde Perú. Aprende sobre mercados, beneficios tributarios y cómo expandir tu negocio internacionalmente.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/comercio-exterior/exportacion',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function ExportacionPage() {

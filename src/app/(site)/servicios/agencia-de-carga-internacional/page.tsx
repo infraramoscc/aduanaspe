@@ -10,6 +10,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Agenciamiento de Carga | Flete Marítimo y Aéreo',
     description: 'Coordinamos tu carga desde origen hasta destino. Flete marítimo y aéreo, booking, seguimiento en tiempo real. Cotización por contenedor, peso o volumen.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/servicios/agencia-de-carga-internacional',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 // Qué incluye el servicio

@@ -10,6 +10,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Consultoría Aduanera | Asesoría Experta en Comercio Exterior',
     description: 'Consultoría aduanera especializada: clasificación arancelaria, tratados de libre comercio, regímenes aduaneros y optimización de costos. Ideal para empresas.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/servicios/consultoria-aduanera',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 // Servicios de consultoría

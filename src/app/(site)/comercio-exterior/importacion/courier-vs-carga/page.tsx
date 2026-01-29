@@ -9,6 +9,13 @@ import { ROUTES } from '@/lib/routes';
 export const metadata: Metadata = {
     title: 'Courier vs Carga',
     description: 'Comparativa entre importar por courier y carga formal. Descubre qué opción te conviene más según tu mercancía.',
+    alternates: {
+        canonical: 'https://aduanaspe.com/comercio-exterior/importacion/courier-vs-carga',
+    },
+    robots: {
+        index: true,
+        follow: true,
+    },
 };
 
 export default function CourierVsCargaPage() {
