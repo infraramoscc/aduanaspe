@@ -42,4 +42,10 @@ export const GA4_EVENTS = {
     // Navigation Events
     PAGE_VIEW: 'page_view',
     NAV_CLICK: 'nav_click',
+
+    // Blog Events
+    BLOG_POST_VIEW: 'blog_post_view',
+    BLOG_CTA_CLICK: 'blog_cta_click',
+    BLOG_SHARE: 'blog_share',
+    BLOG_LEAD_SUBMIT: 'generate_lead',
 } as const;

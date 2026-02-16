@@ -1,8 +1,9 @@
 import type { MetadataRoute } from 'next';
+import { getAllPosts } from '@/lib/blog';
 
 const BASE_URL = 'https://aduanaspe.com';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const currentDate = new Date().toISOString();
 
     // Páginas principales
@@ -75,6 +76,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
     ];
 
+    // Blog index
+    const blogIndex: MetadataRoute.Sitemap = [
+        {
+            url: `${BASE_URL}/blog`,
+            lastModified: currentDate,
+            changeFrequency: 'daily',
+            priority: 0.8,
+        },
+    ];
+
+    // Blog posts (dynamic from MDX + Sanity)
+    let blogPosts: MetadataRoute.Sitemap = [];
+    try {
+        const posts = await getAllPosts();
+        blogPosts = posts.map((post) => ({
+            url: `${BASE_URL}/blog/${post.slug}`,
+            lastModified: post.updatedAt ?? post.date,
+            changeFrequency: 'weekly' as const,
+            priority: post.featured ? 0.8 : 0.7,
+        }));
+    } catch (error) {
+        console.error('[Sitemap] Error fetching blog posts:', error);
+    }
+
     // Páginas legales
     const legalPages: MetadataRoute.Sitemap = [
         {
@@ -91,5 +116,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
     ];
 
-    return [...mainPages, ...servicePages, ...comercioPages, ...legalPages];
+    return [...mainPages, ...servicePages, ...comercioPages, ...blogIndex, ...blogPosts, ...legalPages];
 }

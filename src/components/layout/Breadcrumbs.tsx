@@ -34,6 +34,7 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
         'importar-desde-china': 'Importar desde China',
         'importa-puerta-a-puerta': 'Importa Puerta a Puerta',
         'courier-vs-carga': 'Courier vs Carga',
+        'blog': 'Blog',
     };
 
     segments.forEach((segment) => {

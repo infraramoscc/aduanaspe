@@ -20,7 +20,8 @@ export const ROUTES = {
         courierVsCarga: '/comercio-exterior/importacion/courier-vs-carga',
     },
     contacto: '/contacto',
-    blog: 'https://aduanaspe.com/blog/',
+    blog: '/blog',
+    blogPost: (slug: string) => `/blog/${slug}`,
     tools: 'https://tools.aduanaspe.com',
     lp: (slug: string) => `/lp/${slug}`,
 } as const;
