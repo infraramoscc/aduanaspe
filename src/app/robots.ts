@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
             {
                 userAgent: '*',
                 allow: '/',
-                disallow: '/lp/',
+                disallow: ['/lp/', '/_next/', '/api/'],
             },
         ],
         sitemap: 'https://aduanaspe.com/sitemap.xml',

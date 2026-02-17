@@ -113,7 +113,7 @@ export default function AgenciamientoCargaPage() {
             {/* Hero */}
             <Hero
                 badge="✨ Agenciamiento de Carga"
-                title="Agenciamiento de Carga Internacional"
+                title="Agencia de Carga Internacional (Freight Forwarder)"
                 highlightedWord="Internacional"
                 subtitle="Coordinamos tu carga desde origen hasta destino. Flete marítimo y aéreo con seguimiento en tiempo real y costeo transparente."
                 size="lg"
@@ -135,11 +135,16 @@ export default function AgenciamientoCargaPage() {
                 <WhatsAppLink route="agencia-de-carga-internacional" serviceName="agencia-de-carga-internacional" variant="button">
                     Cotizar mi carga
                 </WhatsAppLink>
-                <Link href="#proceso">
-                    <Button variant="secondary" size="lg">
-                        ¿Cómo funciona?
-                    </Button>
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <Link href="#proceso">
+                        <Button variant="secondary" size="lg">
+                            ¿Cómo funciona?
+                        </Button>
+                    </Link>
+                    <Link href="/blog/como-crear-una-agencia-de-carga" className="text-sm text-slate-300 hover:text-white underline decoration-dotted underline-offset-4 hover:decoration-solid transition-all">
+                        Guía para emprendedores
+                    </Link>
+                </div>
             </Hero>
 
             {/* Trust Bar integrated into Hero */}

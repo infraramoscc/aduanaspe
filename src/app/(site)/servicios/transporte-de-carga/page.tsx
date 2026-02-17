@@ -113,8 +113,8 @@ export default function TransportePage() {
             {/* Hero */}
             <Hero
                 badge="✨ Transporte de Carga"
-                title="Transporte de Carga Local"
-                highlightedWord="Local"
+                title="Transporte de Carga Local y Nacional desde Puerto"
+                highlightedWord="Puerto"
                 subtitle="Llevamos tu mercancía desde el puerto hasta tu almacén. Con GPS, seguimiento en tiempo real y comunicación permanente."
                 size="lg"
                 showStats={false}

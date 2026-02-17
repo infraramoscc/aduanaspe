@@ -9,67 +9,76 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Páginas principales
     const mainPages: MetadataRoute.Sitemap = [
         {
-            url: BASE_URL,
+            url: `${BASE_URL}/`,
             lastModified: currentDate,
             changeFrequency: 'weekly',
             priority: 1,
         },
         {
-            url: `${BASE_URL}/quienes-somos`,
+            url: `${BASE_URL}/quienes-somos/`,
             lastModified: currentDate,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
-            url: `${BASE_URL}/servicios`,
+            url: `${BASE_URL}/servicios/`,
             lastModified: currentDate,
             changeFrequency: 'weekly',
             priority: 0.9,
         },
         {
-            url: `${BASE_URL}/contacto`,
+            url: `${BASE_URL}/contacto/`,
             lastModified: currentDate,
             changeFrequency: 'monthly',
             priority: 0.7,
         },
     ];
 
-    // Páginas de servicios
-    const servicePages: MetadataRoute.Sitemap = [
+    // Páginas de servicios Pillar (Prioridad Alta)
+    const pillarServices = [
         'agenciamiento-aduanas',
         'agencia-de-carga-internacional',
         'transporte-de-carga',
-        'resguardo-aduanero',
-        'consultoria-aduanera',
     ].map((slug) => ({
-        url: `${BASE_URL}/servicios/${slug}`,
+        url: `${BASE_URL}/servicios/${slug}/`,
         lastModified: currentDate,
         changeFrequency: 'weekly' as const,
         priority: 0.9,
     }));
 
+    // Páginas de servicios Soporte (Prioridad Media-Alta)
+    const supportServices = [
+        'resguardo-aduanero',
+        'consultoria-aduanera',
+    ].map((slug) => ({
+        url: `${BASE_URL}/servicios/${slug}/`,
+        lastModified: currentDate,
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+    }));
+
     // Páginas de comercio exterior
     const comercioPages: MetadataRoute.Sitemap = [
         {
-            url: `${BASE_URL}/comercio-exterior/importacion`,
+            url: `${BASE_URL}/comercio-exterior/importacion/`,
             lastModified: currentDate,
             changeFrequency: 'weekly',
             priority: 0.8,
         },
         {
-            url: `${BASE_URL}/comercio-exterior/exportacion`,
+            url: `${BASE_URL}/comercio-exterior/exportacion/`,
             lastModified: currentDate,
             changeFrequency: 'weekly',
             priority: 0.8,
         },
         {
-            url: `${BASE_URL}/comercio-exterior/regimenes-aduaneros`,
+            url: `${BASE_URL}/comercio-exterior/regimenes-aduaneros/`,
             lastModified: currentDate,
             changeFrequency: 'monthly',
             priority: 0.7,
         },
         {
-            url: `${BASE_URL}/comercio-exterior/documentos-aduaneros`,
+            url: `${BASE_URL}/comercio-exterior/documentos-aduaneros/`,
             lastModified: currentDate,
             changeFrequency: 'monthly',
             priority: 0.7,
@@ -79,7 +88,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Blog index
     const blogIndex: MetadataRoute.Sitemap = [
         {
-            url: `${BASE_URL}/blog`,
+            url: `${BASE_URL}/blog/`,
             lastModified: currentDate,
             changeFrequency: 'daily',
             priority: 0.8,
@@ -91,7 +100,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     try {
         const posts = await getAllPosts();
         blogPosts = posts.map((post) => ({
-            url: `${BASE_URL}/blog/${post.slug}`,
+            url: `${BASE_URL}/blog/${post.slug}/`,
             lastModified: post.updatedAt ?? post.date,
             changeFrequency: 'weekly' as const,
             priority: post.featured ? 0.8 : 0.7,
@@ -103,18 +112,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Páginas legales
     const legalPages: MetadataRoute.Sitemap = [
         {
-            url: `${BASE_URL}/privacidad`,
+            url: `${BASE_URL}/privacidad/`,
             lastModified: currentDate,
             changeFrequency: 'yearly',
             priority: 0.3,
         },
         {
-            url: `${BASE_URL}/terminos`,
+            url: `${BASE_URL}/terminos/`,
             lastModified: currentDate,
             changeFrequency: 'yearly',
             priority: 0.3,
         },
     ];
 
-    return [...mainPages, ...servicePages, ...comercioPages, ...blogIndex, ...blogPosts, ...legalPages];
+    return [...mainPages, ...pillarServices, ...supportServices, ...comercioPages, ...blogIndex, ...blogPosts, ...legalPages];
 }

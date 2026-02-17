@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  trailingSlash: true,
   async redirects() {
     return [
       // Redirecciones de sitemap
@@ -12,22 +13,22 @@ const nextConfig: NextConfig = {
       // Redirecciones desde URLs antiguas de WordPress (páginas de servicios)
       {
         source: '/agencia-de-aduanas-peru',
-        destination: '/servicios/agenciamiento-aduanas',
+        destination: '/servicios/agenciamiento-aduanas/',
         permanent: true,
       },
       {
         source: '/agencia-de-carga',
-        destination: '/servicios/agencia-de-carga-internacional',
+        destination: '/servicios/agencia-de-carga-internacional/',
         permanent: true,
       },
       {
         source: '/servicios-operador-logistico',
-        destination: '/servicios',
+        destination: '/servicios/',
         permanent: true,
       },
       {
         source: '/transporte-de-carga-lima',
-        destination: '/servicios/transporte-de-carga',
+        destination: '/servicios/transporte-de-carga/',
         permanent: true,
       },
 

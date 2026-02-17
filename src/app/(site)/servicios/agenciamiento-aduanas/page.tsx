@@ -109,8 +109,8 @@ export default function AgenciamientoAduanasPage() {
             {/* Hero */}
             <Hero
                 badge="✨ Agenciamiento de Aduanas"
-                title="Despacho de Importación y Exportación"
-                highlightedWord="Despacho"
+                title="Agenciamiento de Aduanas en Perú: Despacho Ágil"
+                highlightedWord="Ágil"
                 subtitle="Tu agente de aduanas de confianza. Atención personalizada, seguimiento en tiempo real y respuesta en menos de 1 hora."
                 size="lg"
                 showStats={false}
@@ -131,11 +131,16 @@ export default function AgenciamientoAduanasPage() {
                 <WhatsAppLink route="agenciamiento-aduanas" serviceName="agenciamiento-aduanas" variant="button">
                     Solicitar Cotización
                 </WhatsAppLink>
-                <Link href="#proceso">
-                    <Button variant="secondary" size="lg">
-                        ¿Cómo funciona?
-                    </Button>
-                </Link>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <Link href="#proceso">
+                        <Button variant="secondary" size="lg">
+                            ¿Cómo funciona?
+                        </Button>
+                    </Link>
+                    <Link href="/blog/todo-sobre-agencias-de-aduanas" className="text-sm text-slate-300 hover:text-white underline decoration-dotted underline-offset-4 hover:decoration-solid transition-all">
+                        ¿Qué hace un agente de aduanas?
+                    </Link>
+                </div>
             </Hero>
 
             {/* Trust Bar integrated into Hero */}

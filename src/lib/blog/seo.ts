@@ -14,7 +14,7 @@ const SITE_URL = 'https://aduanaspe.com';
  * -------------------------------------------------- */
 
 export function generateBlogPostMetadata(post: BlogPostCard): Metadata {
-    const url = `${SITE_URL}/blog/${post.slug}`;
+    const url = `${SITE_URL}/blog/${post.slug}/`;
 
     return {
         title: `${post.title} | Blog ${SITE_NAME}`,
@@ -80,13 +80,13 @@ export function generateBlogIndexMetadata(page?: number): Metadata {
         description,
         alternates: {
             canonical: page && page > 1
-                ? `${SITE_URL}/blog?page=${page}`
-                : `${SITE_URL}/blog`,
+                ? `${SITE_URL}/blog/?page=${page}`
+                : `${SITE_URL}/blog/`,
         },
         openGraph: {
             title,
             description,
-            url: `${SITE_URL}/blog`,
+            url: `${SITE_URL}/blog/`,
             siteName: SITE_NAME,
             locale: 'es_PE',
             type: 'website',
@@ -125,9 +125,9 @@ export function generateBlogPostJsonLd(post: BlogPostCard) {
         },
         mainEntityOfPage: {
             '@type': 'WebPage',
-            '@id': `${SITE_URL}/blog/${post.slug}`,
+            '@id': `${SITE_URL}/blog/${post.slug}/`,
         },
-        url: `${SITE_URL}/blog/${post.slug}`,
+        url: `${SITE_URL}/blog/${post.slug}/`,
         ...(post.image && { image: post.image }),
         articleSection: post.category,
         keywords: post.tags.join(', '),
@@ -148,19 +148,19 @@ export function generateBlogBreadcrumbJsonLd(post: BlogPostCard) {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Inicio',
-                item: SITE_URL,
+                item: `${SITE_URL}/`,
             },
             {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Blog',
-                item: `${SITE_URL}/blog`,
+                item: `${SITE_URL}/blog/`,
             },
             {
                 '@type': 'ListItem',
                 position: 3,
                 name: post.title,
-                item: `${SITE_URL}/blog/${post.slug}`,
+                item: `${SITE_URL}/blog/${post.slug}/`,
             },
         ],
     };
@@ -176,7 +176,7 @@ export function generateBlogIndexJsonLd() {
         '@type': 'CollectionPage',
         name: `Blog - ${SITE_NAME}`,
         description: 'Artículos sobre comercio exterior, aduanas, importaciones y exportaciones en Perú.',
-        url: `${SITE_URL}/blog`,
+        url: `${SITE_URL}/blog/`,
         isPartOf: {
             '@type': 'WebSite',
             name: SITE_NAME,
