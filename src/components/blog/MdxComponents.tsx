@@ -258,6 +258,7 @@ export {
     Highlight,
     TopicIcon,
 } from './MdxEnhanced';
+import { FaqGroup } from './FaqGroup';
 
 import {
     DataCard,
@@ -309,5 +310,6 @@ export const mdxComponents = {
     ComparisonTable,
     ComparisonRow,
     Highlight,
+    FaqGroup,
 };
 

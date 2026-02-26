@@ -4,6 +4,7 @@ import { Container } from '@/components/layout';
 import { Hero, TrustBar } from '@/components/sections';
 import { ContactoForm } from '@/components/forms';
 import { WhatsAppLink } from '@/components/tracking';
+import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
 import { Card, CardContent, Button } from '@/components/ui';
 
 export const metadata: Metadata = {
@@ -46,9 +47,17 @@ const schedules = [
     },
 ];
 
+const faqs = [
+    { question: '¿Cuánto demoran en responder?', answer: 'Por WhatsApp respondemos en menos de 1 hora durante horario de atención. Por email, máximo 24 hours.' },
+    { question: '¿Atienden los fines de semana?', answer: 'Sábados de 8am a 12pm para cotizaciones. Domingos no laboramos.' },
+    { question: '¿Atienden a clientes de provincia?', answer: 'Sí, atendemos clientes de todo el Perú. Trabajamos 100% remoto.' },
+    { question: '¿Las cotizaciones tienen costo?', answer: 'No, las cotizaciones son completamente gratuitas y sin compromiso.' },
+];
+
 export default function ContactoPage() {
     return (
         <>
+            <FaqJsonLd faqs={faqs} />
             <Hero
                 badge="✨ Contacto"
                 title="Hablemos de tu próxima importación"

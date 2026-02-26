@@ -5,6 +5,7 @@ import { Container } from '@/components/layout';
 import { Button, Card, CardContent } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { PrecotizacionForm } from '@/components/forms';
+import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
@@ -111,6 +112,7 @@ const faqs = [
 export default function ResguardoPage() {
     return (
         <>
+            <FaqJsonLd faqs={faqs} />
             {/* Hero */}
             <Hero
                 badge="✨ Resguardo de Carga"
