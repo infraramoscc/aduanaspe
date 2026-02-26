@@ -246,7 +246,7 @@ export function SmartLink({ to, slug, children }: SmartLinkProps) {
  * Re-export enhanced components
  * -------------------------------------------------- */
 
-export {
+import {
     DataCard,
     StatGrid,
     Step,
@@ -258,9 +258,10 @@ export {
     Highlight,
     TopicIcon,
 } from './MdxEnhanced';
+
 import { FaqGroup } from './FaqGroup';
 
-import {
+export {
     DataCard,
     StatGrid,
     Step,
@@ -270,11 +271,12 @@ import {
     ComparisonTable,
     ComparisonRow,
     Highlight,
-} from './MdxEnhanced';
+    TopicIcon,
+    FaqGroup
+};
 
 /* --------------------------------------------------
- * Export mapping for MDX Provider
- * -------------------------------------------------- */
+    * -------------------------------------------------- */
 
 export const mdxComponents = {
     h1: H1,

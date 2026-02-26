@@ -1,0 +1,54 @@
+[
+    {
+        "date": "2026-02-26",
+        "url": "/blog/registrar-mandato-electronico-sunat/",
+        "metric_before": {
+            "impressions_weekly": 581,
+            "clicks_weekly": 9,
+            "avg_position": 5.51,
+            "ctr": "1.55%"
+        },
+        "change_applied": "Reescritura total: Título SEO optimizado a 'Cómo Hacer y Generar un Mandato Electrónico en SUNAT'. Inclusión de 6 capturas de pantalla de la Clave SOL. Inclusión de componente FAQSchema para 'como hacer un mandato electronico' y 'generar mandato'.",
+        "target_queries": [
+            "como hacer un mandato electronico sunat",
+            "mandato electronico importacion",
+            "generar mandato electronico sunat"
+        ],
+        "status": "watching"
+    },
+    {
+        "date": "2026-02-26",
+        "url": "/blog/guia-inspeccion-no-intrusiva-puertos-2024/",
+        "metric_before": {
+            "impressions_weekly": 269,
+            "clicks_weekly": 4,
+            "avg_position": 2.86,
+            "ctr": "1.49%"
+        },
+        "change_applied": "Reescritura de Intención: Título SEO a '¿Qué es la Inspección SINI en Aduanas?'. Contenido reenfocado a explicar multas, costos extra de puerto y el significado de 'SINI', con FAQSchema para apoderarnos del puesto #1 absoluto.",
+        "target_queries": [
+            "que sini",
+            "sini",
+            "inspeccion no intrusiva aduanas",
+            "sistemas de inspeccion no intrusiva"
+        ],
+        "status": "watching"
+    },
+    {
+        "date": "2026-02-26",
+        "url": "/blog/clasificacion-arancelaria-galaxy-buds3/",
+        "metric_before": {
+            "impressions_weekly": 169,
+            "clicks_weekly": 0,
+            "avg_position": 8.71,
+            "ctr": "0.00%"
+        },
+        "change_applied": "Reescritura de Intención: El título pasó de ser muy específico ('Galaxy Buds3') a enfocarse en la keyword genérica de alto volumen 'Partida Arancelaria de Audífonos Inalámbricos'. Inserción de FAQSchema para atrapar PAA (People Also Ask) de 'paga arancel' y 'estuche'.",
+        "target_queries": [
+            "partida arancelaria de audifonos inalambricos",
+            "partida arancelaria audifonos bluetooth",
+            "audifonos inalambricos partida arancelaria peru"
+        ],
+        "status": "watching"
+    }
+]
