@@ -152,7 +152,7 @@ export default async function BlogPostPage({
                                     <MDXRemote
                                         source={rawContent}
                                         components={mdxComponents}
-                                        options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
+                                        options={{ parseFrontmatter: false, mdxOptions: { format: 'mdx', remarkPlugins: [remarkGfm] } }}
                                     />
                                 ) : (
                                     <p className="text-[var(--text-muted)] text-sm italic">
