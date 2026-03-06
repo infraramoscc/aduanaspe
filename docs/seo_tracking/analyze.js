@@ -4,7 +4,7 @@ const readline = require('readline');
 
 const baseDir = __dirname;
 const seoLogPath = path.join(baseDir, 'seo_log.json');
-const EXCLUSION_PERIOD_DAYS = 21;
+const EXCLUSION_PERIOD_DAYS = 15;
 
 // Get pages currently in quarantine (modified within the last 21 days)
 function getQuarantinedPages() {
@@ -71,7 +71,10 @@ async function parseCSV(filePath) {
 function isQuarantined(gscUrl, quarantinedSet) {
     try {
         const urlObj = new URL(gscUrl);
-        const relativePath = urlObj.pathname;
+        let relativePath = urlObj.pathname;
+        if (urlObj.hostname === 'blog.aduanaspe.com') {
+            relativePath = '/blog' + relativePath;
+        }
         return quarantinedSet.has(relativePath) || quarantinedSet.has(relativePath.replace(/\/$/, ""));
     } catch (e) {
         // If it's not a valid absolute URL (like a search query), just return false

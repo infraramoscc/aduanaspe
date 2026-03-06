@@ -73,21 +73,28 @@ Me interesa recibir información sobre sus servicios de comercio exterior.
     contacto: `Hola, me contacto desde su sitio web *AduanasPE*.
 
 ¿Podrían ayudarme con una consulta?`,
+
+    // Mensaje para Campañas Ads
+    ads_primera_importacion: `Hola, vengo de su anuncio. 🚀
+
+Quiero que me asesoren para mi *primera importación*. 
+¿Me pueden ayudar con los costos y el proceso?`,
 };
 
 // Generar URL de WhatsApp
 // Cuando USE_WA_SUBDOMAIN sea true, usará wa.aduanaspe.com/[key]
 // Mientras tanto, usa wa.me con mensaje prellenado
-export function getWhatsAppUrl(messageKey: string = 'general'): string {
-    // Si el subdominio está activo, usar URLs cortas
-    if (USE_WA_SUBDOMAIN) {
+export function getWhatsAppUrl(messageKey: string = 'general', customNumber?: string): string {
+    // Si el subdominio está activo y no hay número personalizado, usar URLs cortas
+    if (USE_WA_SUBDOMAIN && !customNumber) {
         return `${WA_SUBDOMAIN_URL}/${messageKey}`;
     }
 
     // Usar wa.me con mensaje prellenado
     const message = WHATSAPP_MESSAGES[messageKey] || WHATSAPP_MESSAGES.general;
     const encodedMessage = encodeURIComponent(message);
-    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    const targetNumber = customNumber || WHATSAPP_NUMBER;
+    return `https://wa.me/${targetNumber}?text=${encodedMessage}`;
 }
 
 // Mapeo de slugs de servicios a keys de mensajes

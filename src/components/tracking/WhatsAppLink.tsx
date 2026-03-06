@@ -8,6 +8,8 @@ import { cn } from '@/lib/utils';
 interface WhatsAppLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
     /** Key del mensaje: 'aduanas', 'carga', 'transporte', 'resguardo', 'consultoria', 'general', 'contacto' */
     messageKey?: string;
+    /** Número de WhatsApp personalizado (formato internacional sin +) */
+    customNumber?: string;
     /** Slug del servicio - se convierte automáticamente a messageKey */
     serviceSlug?: string;
     /** @deprecated Use messageKey instead */
@@ -19,6 +21,7 @@ interface WhatsAppLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>
 
 function WhatsAppLink({
     messageKey,
+    customNumber,
     serviceSlug,
     route,       // deprecated but still supported
     serviceName, // deprecated but still supported
@@ -33,7 +36,7 @@ function WhatsAppLink({
     const effectiveKey = messageKey ||
         (effectiveServiceSlug ? SERVICE_TO_MESSAGE_KEY[effectiveServiceSlug] : null) ||
         'general';
-    const href = getWhatsAppUrl(effectiveKey);
+    const href = getWhatsAppUrl(effectiveKey, customNumber);
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         const eventName = effectiveKey !== 'general'
