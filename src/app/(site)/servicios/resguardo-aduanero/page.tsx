@@ -2,15 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { Container } from '@/components/layout';
-import { Button, Card, CardContent } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { PrecotizacionForm } from '@/components/forms';
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Resguardo de Carga | Custodia y Seguridad',
-    description: 'Servicio de resguardo para tu carga. Modalidades cabina y vehículo. Custodia desde recojo hasta entrega. Contratación junto con transporte o independiente.',
+    title: 'Resguardo de Carga | AduanasPE',
+    description: 'Servicio de resguardo para traslados de carga con modalidades en cabina o vehículo y coordinación junto con transporte o de forma independiente.',
     alternates: {
         canonical: 'https://aduanaspe.com/servicios/resguardo-aduanero',
     },
@@ -121,7 +121,7 @@ export default function ResguardoPage() {
                 subtitle="Custodia y acompañamiento de tu mercancía durante todo el traslado. Seguridad desde el recojo hasta la entrega."
                 size="lg"
                 showStats={false}
-                showFloatingCards={true}
+                showFloatingCards={false}
                 centered={true}
                 footer={
                     <TrustBar

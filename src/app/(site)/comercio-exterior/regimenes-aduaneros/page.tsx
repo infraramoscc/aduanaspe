@@ -7,8 +7,8 @@ import { Button } from '@/components/ui';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Regímenes Aduaneros en Perú | Guía Completa 2026',
-    description: 'Conoce los regímenes de importación, exportación y perfeccionamiento. Elige el correcto para optimizar costos tributarios.',
+    title: 'Regímenes Aduaneros en Perú | AduanasPE',
+    description: 'Conoce los principales regímenes aduaneros en Perú y cómo elegir la destinación correcta según el objetivo de tu operación.',
     alternates: {
         canonical: 'https://aduanaspe.com/comercio-exterior/regimenes-aduaneros',
     },
@@ -20,39 +20,39 @@ export const metadata: Metadata = {
 
 const regimenes = [
     {
-        title: 'Importación para el Consumo',
-        desc: 'El régimen más utilizado. Permite el ingreso de mercancías al territorio aduanero para su uso o consumo definitivo, luego del pago de tributos (Ad Valorem, IGV, IPM).',
+        title: 'Importación para el consumo',
+        desc: 'Es el régimen más común para nacionalizar mercadería destinada al uso o venta definitiva en el país.',
         code: 'Código 10',
-        icon: '📦'
+        icon: '01',
     },
     {
-        title: 'Admisión Temporal',
-        desc: 'Permite recibir mercancías con suspensión de tributos para un fin específico (ej. exhibición, equipo para obras) con la condición de ser reexportadas en un plazo.',
+        title: 'Admisión temporal',
+        desc: 'Permite el ingreso temporal de mercancías con suspensión de tributos para un fin específico.',
         code: 'Código 20',
-        icon: '⏱️'
+        icon: '02',
     },
     {
-        title: 'Exportación Definitiva',
-        desc: 'Permite la salida legal de mercancías nacionales o nacionalizadas para su uso o consumo definitivo en el exterior. No está afecta a tributos.',
+        title: 'Exportación definitiva',
+        desc: 'Aplica a la salida legal de mercancías nacionales o nacionalizadas hacia mercados del exterior.',
         code: 'Código 40',
-        icon: '✈️'
+        icon: '03',
     },
     {
-        title: 'Depósito Aduanero',
-        desc: 'Permite almacenar mercancías bajo control aduanero hasta por 12 meses sin pagar tributos, pudiendo realizar despachos parciales según necesidad.',
+        title: 'Depósito aduanero',
+        desc: 'Permite almacenar mercancías bajo control aduanero sin pagar tributos hasta definir su destinación final.',
         code: 'Código 70',
-        icon: '🏭'
-    }
+        icon: '04',
+    },
 ];
 
 export default function RegimenesAduanerosPage() {
     return (
         <>
             <Hero
-                badge="⚖️ Normativa Aduanera"
-                title="Regímenes Aduaneros"
-                highlightedWord="Regímenes"
-                subtitle="Elige la modalidad correcta para tu operación y optimiza tu carga tributaria legalmente."
+                badge="Regímenes aduaneros"
+                title="Elige la destinación correcta antes de mover tu operación"
+                highlightedWord="destinación correcta"
+                subtitle="Entender el régimen aplicable ayuda a evitar errores, ordenar costos y tomar mejores decisiones tributarias."
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
@@ -61,114 +61,87 @@ export default function RegimenesAduanerosPage() {
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '📋', title: 'Ley General', description: 'De Aduanas' },
-                            { icon: '💰', title: 'Optimización', description: 'De tributos' },
-                            { icon: '✅', title: 'Cumplimiento', description: 'Normativo' },
-                            { icon: '🔍', title: 'Destinación', description: 'Correcta' },
+                            { icon: '01', title: 'Objetivo de la carga', description: 'Define el régimen' },
+                            { icon: '02', title: 'Tributos', description: 'Cambian según la destinación' },
+                            { icon: '03', title: 'Riesgos', description: 'Si se elige mal' },
+                            { icon: '04', title: 'Asesoría', description: 'Para casos específicos' },
                         ]}
                     />
                 }
             >
                 <Link href="#tipos">
-                    <Button size="lg">Explorar Regímenes</Button>
+                    <Button size="lg">Explorar regímenes</Button>
                 </Link>
                 <Link href={ROUTES.contacto}>
-                    <Button size="lg" variant="secondary">Consultar con experto</Button>
+                    <Button size="lg" variant="secondary">Consultar con un experto</Button>
                 </Link>
             </Hero>
 
-            {/* Trust Bar integrated into Hero */}
-
-            <section id="tipos" className="py-20 bg-slate-50">
+            <section id="tipos" className="bg-slate-50 py-20">
                 <Container>
-                    <div className="text-center mb-16">
+                    <div className="mb-16 text-center">
                         <span className="section-badge">Clasificación</span>
-                        <h2 className="text-3xl font-bold text-slate-900">Principales <span className="gradient-text">Regímenes</span></h2>
-                        <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-                            Existen diversos regímenes según la finalidad de tu mercancía. Aquí te explicamos los más comunes.
+                        <h2 className="text-3xl font-bold text-slate-900">
+                            Regímenes <span className="gradient-text">más consultados</span>
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+                            Estos son algunos de los regímenes más relevantes para operaciones frecuentes de comercio exterior.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {regimenes.map((reg, index) => (
-                            <div key={reg.code} className="group relative bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity text-6xl select-none pointer-events-none">
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                        {regimenes.map((reg) => (
+                            <div key={reg.code} className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+                                <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
                                     {reg.icon}
-                                </div>
-                                <span className="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full mb-4 group-hover:bg-purple-100 group-hover:text-purple-700 transition-colors">
+                                </span>
+                                <span className="mb-4 inline-block rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-500">
                                     {reg.code}
                                 </span>
-                                <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-purple-600 transition-colors">{reg.title}</h3>
-                                <p className="text-slate-600 leading-relaxed mb-6">
-                                    {reg.desc}
-                                </p>
-                                <div className="pt-6 border-t border-slate-50 flex justify-between items-center">
-                                    <span className="text-sm text-slate-400 font-medium">Más detalles</span>
-                                    <span className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-all">
-                                        →
-                                    </span>
-                                </div>
+                                <h3 className="text-xl font-bold text-slate-900">{reg.title}</h3>
+                                <p className="mt-3 text-slate-600">{reg.desc}</p>
                             </div>
                         ))}
-
-                        {/* Card "Ver todos" */}
-                        <div className="flex flex-col justify-center items-center p-8 rounded-2xl border-2 border-dashed border-slate-200 hover:border-purple-300 hover:bg-purple-50/50 transition-all cursor-pointer group">
-                            <span className="text-4xl mb-4 text-slate-300 group-hover:scale-110 transition-transform">📚</span>
-                            <h3 className="text-lg font-bold text-slate-500 group-hover:text-purple-700">¿Buscas otro régimen?</h3>
-                            <p className="text-center text-sm text-slate-400 mt-2">Hay más de 15 regímenes aduaneros diferentes.</p>
-                            <Link href={ROUTES.contacto}>
-                                <Button variant="ghost" size="sm" className="mt-4 text-purple-600">Consultar lista completa</Button>
-                            </Link>
-                        </div>
                     </div>
                 </Container>
             </section>
 
             <SplitFeature
-                title="¿Por qué es importante elegir bien?"
-                description="Una destinación aduanera incorrecta puede generar multas severas, demoras en el despacho o el pago innecesario de impuestos que no podrás recuperar."
+                title="Elegir mal el régimen también tiene costo"
+                description="Una destinación incorrecta puede generar contingencias, retrasos o pagos que no correspondían. Por eso conviene revisar el objetivo real de la operación antes de declarar."
                 imageSide="right"
             >
                 <div className="space-y-4">
-                    <div className="flex gap-4 p-4 rounded-lg bg-red-50 border border-red-100">
-                        <span className="text-2xl">🚫</span>
-                        <div>
-                            <h4 className="font-bold text-red-800">Riesgo de Multas</h4>
-                            <p className="text-sm text-red-600">Sanciones por declaración incorrecta ante SUNAT.</p>
-                        </div>
+                    <div className="rounded-2xl border border-red-200 bg-red-50 p-4">
+                        <h4 className="font-bold text-red-800">Riesgo operativo</h4>
+                        <p className="mt-1 text-sm text-red-700">Observaciones, demoras y costos adicionales por una mala destinación.</p>
                     </div>
-                    <div className="flex gap-4 p-4 rounded-lg bg-green-50 border border-green-100">
-                        <span className="text-2xl">💰</span>
-                        <div>
-                            <h4 className="font-bold text-green-800">Oportunidad de Ahorro</h4>
-                            <p className="text-sm text-green-600">Regímenes suspensivos permiten diferir el pago de impuestos.</p>
-                        </div>
+                    <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+                        <h4 className="font-bold text-emerald-800">Oportunidad de orden</h4>
+                        <p className="mt-1 text-sm text-emerald-700">Con el régimen correcto, la operación se planifica mejor desde el inicio.</p>
                     </div>
                 </div>
             </SplitFeature>
 
             <Container>
                 <div className="py-20">
-                    <div className="max-w-3xl mx-auto bg-slate-900 rounded-3xl p-8 md:p-12 text-center text-white relative overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 z-0"></div>
-                        <div className="relative z-10">
-                            <h2 className="text-3xl font-bold mb-6">¿No sabes cuál régimen aplicar?</h2>
-                            <p className="text-slate-300 mb-8 text-lg">
-                                Cuéntanos sobre tu operación y te diremos exactamente qué régimen aduanero te conviene para optimizar costos y tiempos.
-                            </p>
-                            <DiagnosticoForm title="" className="bg-white/10 backdrop-blur-md border border-white/20 p-6 rounded-xl" />
-                        </div>
+                    <div className="mx-auto max-w-3xl rounded-3xl bg-slate-900 p-8 text-center text-white md:p-12">
+                        <h2 className="text-3xl font-bold">¿No sabes qué régimen aplicar?</h2>
+                        <p className="mt-4 text-lg text-slate-300">
+                            Cuéntanos qué tipo de mercancía manejas y cuál es el objetivo de la operación para orientarte mejor.
+                        </p>
+                        <DiagnosticoForm title="" className="mt-8 rounded-2xl border border-white/15 bg-white/10 p-6" />
                     </div>
                 </div>
             </Container>
 
             <CTASection
-                title="Asesoría experta en aduanas"
-                subtitle="Más de 10 años ayudando a empresas a importar y exportar bajo el régimen correcto."
+                title="Asesoría para decisiones aduaneras"
+                subtitle="Si tienes una operación más compleja, conviene revisar el régimen antes de seguir avanzando."
             >
                 <Link href={ROUTES.servicios.consultoriaAduanera}>
                     <Button size="lg" variant="secondary">
-                        Ver servicio de Consultoría
+                        Ver servicio de consultoría
                     </Button>
                 </Link>
             </CTASection>

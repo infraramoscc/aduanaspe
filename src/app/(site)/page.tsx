@@ -1,15 +1,13 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Hero, HubCards, TrustBar, CTASection, SplitFeature } from '@/components/sections';
-import { Button } from '@/components/ui';
-import { WhatsAppLink } from '@/components/tracking';
+import { TrackedLink, WhatsAppLink, GA4_EVENTS } from '@/components/tracking';
 import { services } from '@/content/services';
 import { comercioExteriorCategories } from '@/content/comercioExterior';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'AduanasPE - Tu Socio en Comercio Exterior | Atención Personalizada',
-    description: 'Agenciamiento de aduanas con atención 100% personalizada. Ejecutivo asignado, seguimiento en tiempo real y respuesta en menos de 1 hora. +5 años de experiencia.',
+    title: 'Agencia de Aduanas y Carga Internacional en Perú | AduanasPE',
+    description: 'Agenciamiento de aduanas, carga internacional y asesoría en comercio exterior con atención personalizada, seguimiento claro y respuesta rápida.',
     alternates: {
         canonical: 'https://aduanaspe.com',
     },
@@ -29,17 +27,17 @@ const trustPoints = [
     {
         icon: '⚡',
         title: 'Respuesta en 1 hora',
-        description: 'Máximo 24 horas',
+        description: 'En horario de atención',
     },
     {
-        icon: '🤝',
-        title: '+50 Clientes',
-        description: 'Confían en nosotros',
+        icon: '📍',
+        title: 'Operación desde Callao',
+        description: 'Cobertura nacional',
     },
     {
-        icon: '📊',
+        icon: '🧾',
         title: '+5 Años',
-        description: 'De experiencia',
+        description: 'Despachos y asesoría',
     },
 ];
 
@@ -48,30 +46,27 @@ export default function HomePage() {
         <>
             {/* Hero Section - Premium con stats y floating cards */}
             <Hero
-                badge="✨ Comercio Exterior"
-                title="Tu importación, nuestra prioridad"
-                highlightedWord="prioridad"
-                subtitle="No eres un número más. Cada cliente tiene un ejecutivo asignado que conoce tu negocio y te acompaña en cada operación. Atención personalizada con respuesta en menos de 1 hora."
+                badge="Comercio exterior para importadores"
+                title="Despacha tu carga con un equipo que sí te responde"
+                highlightedWord="sí te responde"
+                subtitle="Agenciamiento de aduanas, carga internacional y asesoría con seguimiento claro, respuesta rápida y un ejecutivo asignado para tu operación."
                 size="lg"
-                showStats={true}
-                showFloatingCards={true}
+                showStats={false}
+                showFloatingCards={false}
                 centered={true}
                 footer={<TrustBar points={trustPoints} variant="clean" />}
-                floatingCards={[
-                    { icon: '📦', text: 'Agenciamiento', color: 'pink', position: { top: '12%', left: '2%' }, delay: '0s' },
-                    { icon: '🚛', text: 'Transporte', color: 'blue', position: { top: '15%', right: '2%' }, delay: '1s' },
-                    { icon: '📋', text: 'Consultoría', color: 'green', position: { bottom: '15%', left: '2%' }, delay: '2s' },
-                    { icon: '🔒', text: 'Resguardo', color: 'yellow', position: { bottom: '20%', right: '2%' }, delay: '3s' },
-                ]}
             >
                 <WhatsAppLink route="home" variant="button">
                     Escríbenos por WhatsApp
                 </WhatsAppLink>
-                <Link href={ROUTES.contacto}>
-                    <Button variant="secondary" size="lg">
-                        Solicitar cotización
-                    </Button>
-                </Link>
+                <TrackedLink
+                    href={ROUTES.contacto}
+                    eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
+                    eventParams={{ location: 'home_hero' }}
+                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-purple-400 hover:bg-purple-50 hover:text-purple-600"
+                >
+                    Solicitar cotización
+                </TrackedLink>
             </Hero>
 
             {/* Trust Bar integrated into Hero */}
@@ -119,9 +114,14 @@ export default function HomePage() {
                 description="No te preocupes, estás en el lugar correcto. Más del 60% de nuestros clientes empezaron sin experiencia en importaciones. Te guiamos paso a paso, te explicamos cada documento y te acompañamos hasta que tu mercancía llegue a tu almacén."
                 imageSide="left"
             >
-                <Link href={ROUTES.comercioExterior.importacion}>
-                    <Button>Ver guías de importación</Button>
-                </Link>
+                <TrackedLink
+                    href={ROUTES.comercioExterior.importacion}
+                    eventName={GA4_EVENTS.CLICK_CTA_TO_COMERCIO}
+                    eventParams={{ location: 'home_first_import' }}
+                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-pink"
+                >
+                    Ver guías de importación
+                </TrackedLink>
             </SplitFeature>
 
             {/* Comercio Exterior Hub */}
@@ -142,11 +142,14 @@ export default function HomePage() {
                 <WhatsAppLink route="home-cta" variant="button">
                     Contactar por WhatsApp
                 </WhatsAppLink>
-                <Link href={ROUTES.contacto}>
-                    <Button size="lg" variant="secondary">
-                        Solicitar cotización
-                    </Button>
-                </Link>
+                <TrackedLink
+                    href={ROUTES.contacto}
+                    eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
+                    eventParams={{ location: 'home_final_cta' }}
+                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-purple-400 hover:bg-purple-50 hover:text-purple-600"
+                >
+                    Solicitar cotización
+                </TrackedLink>
             </CTASection>
         </>
     );

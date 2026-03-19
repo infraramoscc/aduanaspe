@@ -9,8 +9,8 @@ import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Agenciamiento de Aduanas | Despacho de Importación y Exportación',
-    description: 'Servicio de agenciamiento aduanero con atención personalizada. Clasificación arancelaria, numeración DAM, seguimiento en tiempo real. Cotización en 1 hora.',
+    title: 'Agenciamiento de Aduanas en Perú | AduanasPE',
+    description: 'Despacho aduanero para importación y exportación con revisión documentaria, clasificación arancelaria y seguimiento claro de la operación.',
     alternates: {
         canonical: 'https://aduanaspe.com/servicios/agenciamiento-aduanas',
     },
@@ -116,7 +116,7 @@ export default function AgenciamientoAduanasPage() {
                 subtitle="Tu agente de aduanas de confianza. Atención personalizada, seguimiento en tiempo real y respuesta en menos de 1 hora."
                 size="lg"
                 showStats={false}
-                showFloatingCards={true}
+                showFloatingCards={false}
                 centered={true}
                 footer={
                     <TrustBar
@@ -131,12 +131,12 @@ export default function AgenciamientoAduanasPage() {
                 }
             >
                 <WhatsAppLink route="agenciamiento-aduanas" serviceName="agenciamiento-aduanas" variant="button">
-                    Solicitar Cotización
+                    Solicitar cotización
                 </WhatsAppLink>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <Link href="#proceso">
                         <Button variant="secondary" size="lg">
-                            ¿Cómo funciona?
+                            Ver proceso
                         </Button>
                     </Link>
                     <Link href="/blog/todo-sobre-agencias-de-aduanas" className="text-sm text-slate-300 hover:text-white underline decoration-dotted underline-offset-4 hover:decoration-solid transition-all">
@@ -201,7 +201,7 @@ export default function AgenciamientoAduanasPage() {
             </section>
 
             {/* Proceso */}
-            <section id="proceso" className="py-20 bg-gradient-to-br from-slate-50 via-purple-50/20 to-slate-50">
+            <section id="proceso" className="py-20 bg-slate-50">
                 <Container>
                     <div className="text-center mb-14">
                         <span className="section-badge">Proceso</span>

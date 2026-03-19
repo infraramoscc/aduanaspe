@@ -9,8 +9,8 @@ import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Transporte de Carga | Entrega Segura desde Puerto',
-    description: 'Transporte de carga desde puerto/aeropuerto hasta tu almacén. GPS, seguimiento constante. Callao, Lima y provincias. Resguardo opcional.',
+    title: 'Transporte de Carga desde Puerto y Aeropuerto | AduanasPE',
+    description: 'Transporte terrestre de carga desde puerto o aeropuerto hasta tu almacén, con monitoreo, coordinación operativa y cobertura en Lima y provincias.',
     alternates: {
         canonical: 'https://aduanaspe.com/servicios/transporte-de-carga',
     },
@@ -120,7 +120,7 @@ export default function TransportePage() {
                 subtitle="Llevamos tu mercancía desde el puerto hasta tu almacén. Con GPS, seguimiento en tiempo real y comunicación permanente."
                 size="lg"
                 showStats={false}
-                showFloatingCards={true}
+                showFloatingCards={false}
                 centered={true}
                 footer={
                     <TrustBar

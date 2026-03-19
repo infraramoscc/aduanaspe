@@ -7,8 +7,8 @@ import { Button } from '@/components/ui';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Exportación',
-    description: 'Guía para exportar desde Perú. Aprende sobre mercados, beneficios tributarios y cómo expandir tu negocio internacionalmente.',
+    title: 'Guía de Exportación desde Perú | AduanasPE',
+    description: 'Aprende cómo exportar desde Perú, revisar beneficios tributarios y entender los pasos clave para abrir mercados internacionales.',
     alternates: {
         canonical: 'https://aduanaspe.com/comercio-exterior/exportacion',
     },
@@ -22,26 +22,30 @@ export default function ExportacionPage() {
     return (
         <>
             <Hero
-                title="Exportación desde Perú"
-                subtitle="Expande tu negocio al mundo. Te guiamos en todo el proceso de exportación."
+                badge="Exportación"
+                title="Guía para exportar desde Perú con más claridad"
+                highlightedWord="más claridad"
+                subtitle="Revisa beneficios, requisitos y pasos operativos para empezar a exportar con una base más sólida."
                 size="lg"
+                showStats={false}
+                showFloatingCards={false}
                 centered={true}
                 footer={
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '📚', title: 'Guías', description: 'Paso a paso' },
-                            { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
-                            { icon: '💡', title: 'Tips', description: 'De expertos' },
-                            { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
+                            { icon: '01', title: 'Mercados objetivo', description: 'Evaluación inicial' },
+                            { icon: '02', title: 'Documentación', description: 'Base para exportar' },
+                            { icon: '03', title: 'Beneficios', description: 'Tributarios y operativos' },
+                            { icon: '04', title: 'Ruta exportadora', description: 'Paso a paso' },
                         ]}
                     />
                 }
             />
 
             <SplitFeature
-                title="Beneficios de exportar"
-                description="Exportar te permite acceder a nuevos mercados, diversificar tus ingresos y aprovechar beneficios tributarios como el drawback y la devolución del IGV."
+                title="Qué debes revisar antes de exportar"
+                description="Exportar no consiste solo en vender afuera. También implica validar mercado, preparar documentos, revisar costos logísticos y entender el régimen aplicable para tu producto."
                 imageSide="right"
             />
 
@@ -51,7 +55,7 @@ export default function ExportacionPage() {
 
             <CTASection
                 title="Inicia tu proyecto de exportación"
-                subtitle="Te asesoramos sobre los mejores mercados para tus productos."
+                subtitle="Te ayudamos a ordenar la parte operativa antes de dar el siguiente paso."
             >
                 <Link href={ROUTES.contacto}>
                     <Button size="lg" variant="secondary">

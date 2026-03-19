@@ -7,8 +7,8 @@ import { services } from '@/content/services';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Servicios',
-    description: 'Servicios de agenciamiento de aduanas, logística internacional, transporte y asesoría aduanera en Perú. Soluciones completas para tu comercio exterior.',
+    title: 'Servicios de Aduanas y Logística | AduanasPE',
+    description: 'Servicios de agenciamiento de aduanas, carga internacional, transporte, resguardo y consultoría para operaciones de comercio exterior en Perú.',
     alternates: {
         canonical: 'https://aduanaspe.com/servicios',
     },
@@ -22,44 +22,54 @@ export default function ServiciosPage() {
     return (
         <>
             <Hero
-                badge="✨ Servicios"
-                title="Soluciones que transforman tu negocio"
-                highlightedWord="transforman"
-                subtitle="Servicios integrales para cada etapa de tu operación de comercio exterior"
+                badge="Servicios"
+                title="Servicios para mover tu operación sin fricciones"
+                highlightedWord="sin fricciones"
+                subtitle="Desde el flete internacional hasta el despacho y la entrega local. Resolvemos cada etapa con un solo equipo."
                 size="lg"
                 showStats={false}
-                showFloatingCards={true}
+                showFloatingCards={false}
                 centered={true}
-                footer={<TrustBar variant="clean" />}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { icon: '01', title: 'Flete internacional', description: 'Marítimo y aéreo' },
+                            { icon: '02', title: 'Despacho aduanero', description: 'Con seguimiento claro' },
+                            { icon: '03', title: 'Entrega local', description: 'Coordinación final' },
+                            { icon: '04', title: 'Asesoría continua', description: 'Antes y después de operar' },
+                        ]}
+                    />
+                }
             >
                 <WhatsAppLink messageKey="general" variant="button">
-                    Contratar servicio integral
+                    Hablar con un asesor
                 </WhatsAppLink>
                 <Link href="#servicios-disponibles">
                     <Button variant="secondary" size="lg">
-                        Mostrar servicios disponibles
+                        Ver servicios disponibles
                     </Button>
                 </Link>
             </Hero>
 
             <HubCards
                 id="servicios-disponibles"
-                badge="Nuestros Servicios"
-                title="¿Qué podemos hacer por ti?"
-                highlightedWord="hacer"
+                badge="Mapa de servicios"
+                title="Elige la etapa donde necesitas apoyo"
+                highlightedWord="necesitas apoyo"
                 items={services}
                 basePath="/servicios"
                 columns={3}
             />
 
             <CTASection
-                title="¿No sabes qué servicio necesitas?"
-                highlightedWord="necesitas"
-                subtitle="Contáctanos y te asesoramos sin compromiso. Te ayudamos a identificar la mejor solución para tu operación."
+                title="Si aún no tienes claro qué contratar"
+                highlightedWord="qué contratar"
+                subtitle="Cuéntanos tu carga, origen y objetivo comercial. Te indicamos el servicio correcto sin hacerte pasar por varias áreas."
             >
                 <Link href={ROUTES.contacto}>
                     <Button size="lg">
-                        Recibir asesoría gratis
+                        Recibir asesoría
                     </Button>
                 </Link>
             </CTASection>

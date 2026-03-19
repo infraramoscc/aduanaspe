@@ -33,7 +33,7 @@ function ContactoForm({ title = 'Envíanos un mensaje' }: ContactoFormProps) {
 
     return (
         <div className="py-12">
-            <h2 className="text-2xl font-bold text-gray-900 text-center mb-6">{title}</h2>
+            {title ? <h2 className="mb-6 text-center text-2xl font-bold text-gray-900">{title}</h2> : null}
             <FormBase onSubmit={handleSubmit}>
                 <Input
                     id="nombre"

@@ -6,15 +6,10 @@ import { getWhatsAppUrl, SERVICE_TO_MESSAGE_KEY } from '@/lib/whatsapp';
 import { cn } from '@/lib/utils';
 
 interface WhatsAppLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
-    /** Key del mensaje: 'aduanas', 'carga', 'transporte', 'resguardo', 'consultoria', 'general', 'contacto' */
     messageKey?: string;
-    /** Número de WhatsApp personalizado (formato internacional sin +) */
     customNumber?: string;
-    /** Slug del servicio - se convierte automáticamente a messageKey */
     serviceSlug?: string;
-    /** @deprecated Use messageKey instead */
     route?: string;
-    /** @deprecated Use serviceSlug instead */
     serviceName?: string;
     variant?: 'button' | 'link' | 'icon';
 }
@@ -23,15 +18,16 @@ function WhatsAppLink({
     messageKey,
     customNumber,
     serviceSlug,
-    route,       // deprecated but still supported
-    serviceName, // deprecated but still supported
+    route,
+    serviceName,
     variant = 'button',
     onClick,
     children,
     className,
     ...props
 }: WhatsAppLinkProps) {
-    // Support for deprecated props - map serviceName/route to new API
+    void route;
+
     const effectiveServiceSlug = serviceSlug || serviceName;
     const effectiveKey = messageKey ||
         (effectiveServiceSlug ? SERVICE_TO_MESSAGE_KEY[effectiveServiceSlug] : null) ||
@@ -48,9 +44,9 @@ function WhatsAppLink({
     };
 
     const baseStyles = {
-        button: 'inline-flex items-center gap-2 px-6 py-3 bg-green-500 text-white font-medium rounded-lg hover:bg-green-600 transition-colors shadow-md hover:shadow-lg',
-        link: 'inline-flex items-center gap-1 text-green-600 hover:text-green-700 font-medium transition-colors',
-        icon: 'inline-flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors',
+        button: 'inline-flex items-center gap-2 rounded-full bg-[#0f9f6e] px-6 py-3.5 font-semibold text-white shadow-[0_12px_30px_rgba(15,159,110,0.22)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#0c8c61] hover:shadow-[0_16px_34px_rgba(15,159,110,0.28)]',
+        link: 'inline-flex items-center gap-1 font-semibold text-[#0f9f6e] transition-colors hover:text-[#0c8c61]',
+        icon: 'inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#0f9f6e] text-white transition-colors hover:bg-[#0c8c61]',
     };
 
     return (
@@ -63,7 +59,7 @@ function WhatsAppLink({
             {...props}
         >
             <svg
-                className={cn(variant === 'icon' ? 'w-5 h-5' : 'w-5 h-5')}
+                className="h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"
             >

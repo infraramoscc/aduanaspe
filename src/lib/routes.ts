@@ -31,7 +31,5 @@ export const NAV_ITEMS = [
     { label: 'Quiénes somos', href: ROUTES.quienesSomos },
     { label: 'Servicios', href: ROUTES.servicios.index },
     { label: 'Comercio Exterior', href: ROUTES.comercioExterior.index },
-    { label: 'Blog', href: ROUTES.blog },
-    { label: 'Herramientas', href: ROUTES.tools },
     { label: 'Contacto', href: ROUTES.contacto },
 ] as const;

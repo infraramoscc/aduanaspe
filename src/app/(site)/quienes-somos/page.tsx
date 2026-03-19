@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Hero, SplitFeature, TrustBar, CTASection, HubCards } from '@/components/sections';
+import { Hero, SplitFeature, TrustBar, CTASection } from '@/components/sections';
 import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Quiénes Somos - Conoce a AduanasPE',
-    description: 'Somos dos hermanos con experiencia en comercio exterior. Nacimos para ofrecer atención personalizada que las grandes agencias no dan. Callao, Perú.',
+    title: 'Quiénes Somos | AduanasPE',
+    description: 'Conoce al equipo detrás de AduanasPE y nuestra forma de trabajar: atención cercana, seguimiento claro y foco operativo en comercio exterior.',
     alternates: {
         canonical: 'https://aduanaspe.com/quienes-somos',
     },
@@ -80,7 +80,7 @@ export default function QuienesSomosPage() {
                 subtitle="Somos dos hermanos que, después de trabajar en agencias donde la velocidad importaba más que el cliente, decidimos crear algo mejor: una agencia donde tú eres la prioridad."
                 size="lg"
                 showStats={false}
-                showFloatingCards={true}
+                showFloatingCards={false}
                 centered={true}
                 footer={<TrustBar variant="clean" />}
             />

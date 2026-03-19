@@ -7,8 +7,8 @@ import { Button } from '@/components/ui';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Importa Puerta a Puerta',
-    description: 'Servicio integral de importación puerta a puerta. Nos encargamos de todo para que recibas tu mercancía en tu almacén.',
+    title: 'Importación Puerta a Puerta en Perú | AduanasPE',
+    description: 'Conoce cómo funciona una importación puerta a puerta y cuándo conviene frente a otras modalidades de compra e internamiento.',
     alternates: {
         canonical: 'https://aduanaspe.com/comercio-exterior/importacion/importa-puerta-a-puerta',
     },
@@ -22,32 +22,36 @@ export default function ImportaPuertaAPuertaPage() {
     return (
         <>
             <Hero
-                title="Importa Puerta a Puerta"
-                subtitle="El servicio más completo. Recogemos tu mercancía en origen y la entregamos en tu almacén en Perú."
+                badge="Puerta a puerta"
+                title="Importación integral desde origen hasta tu almacén"
+                highlightedWord="desde origen hasta tu almacén"
+                subtitle="Entiende cómo funciona esta modalidad y cuándo conviene delegar toda la cadena operativa en un solo equipo."
                 size="lg"
+                showStats={false}
+                showFloatingCards={false}
                 centered={true}
                 footer={
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '📚', title: 'Guías', description: 'Paso a paso' },
-                            { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
-                            { icon: '💡', title: 'Tips', description: 'De expertos' },
-                            { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
+                            { icon: '01', title: 'Recojo en origen', description: 'Desde proveedor o fábrica' },
+                            { icon: '02', title: 'Tránsito internacional', description: 'Con coordinación central' },
+                            { icon: '03', title: 'Despacho aduanero', description: 'Dentro del flujo' },
+                            { icon: '04', title: 'Entrega final', description: 'Hasta tu almacén' },
                         ]}
                     />
                 }
             />
 
             <SplitFeature
-                title="¿Qué incluye el servicio?"
-                description="Nos encargamos de todo: recojo en fábrica del proveedor, consolidación, transporte internacional, trámites aduaneros y entrega en tu almacén. Tú solo elige el producto, nosotros hacemos el resto."
+                title="Qué incluye esta modalidad"
+                description="Una importación puerta a puerta integra recojo, consolidación, transporte internacional, despacho aduanero y entrega local dentro de una sola coordinación operativa."
                 imageSide="right"
             />
 
             <SplitFeature
-                title="Ventajas del servicio"
-                description="Un solo interlocutor para toda la operación, precios todo incluido sin sorpresas, seguimiento en tiempo real, y la tranquilidad de saber que expertos manejan tu carga."
+                title="Cuándo suele convenir"
+                description="Suele ser una buena alternativa cuando quieres reducir fricción operativa, evitar coordinar varios proveedores y tener una sola línea de seguimiento durante la importación."
                 imageSide="left"
             >
                 <Link href={ROUTES.servicios.agenciaCargaInternacional}>
@@ -56,12 +60,12 @@ export default function ImportaPuertaAPuertaPage() {
             </SplitFeature>
 
             <Container>
-                <PrecotizacionForm title="Cotiza tu importación Puerta a Puerta" serviceName="puerta-a-puerta" />
+                <PrecotizacionForm title="Cotiza tu importación puerta a puerta" serviceName="puerta-a-puerta" />
             </Container>
 
             <CTASection
-                title="Importación sin complicaciones"
-                subtitle="Déjanos el trabajo pesado. Enfócate en tu negocio."
+                title="Importación más ordenada, menos fricción"
+                subtitle="Cuéntanos tu carga y te decimos si esta modalidad encaja con tu operación."
             >
                 <Link href={ROUTES.contacto}>
                     <Button size="lg" variant="secondary">

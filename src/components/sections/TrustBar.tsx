@@ -10,37 +10,32 @@ interface TrustPoint {
 interface TrustBarProps {
     points?: TrustPoint[];
     title?: string;
+    variant?: 'default' | 'clean';
+    className?: string;
 }
 
 const defaultPoints: TrustPoint[] = [
     {
-        icon: '🏆',
+        icon: '01',
         title: '+15 años de experiencia',
-        description: 'En comercio exterior',
+        description: 'Comercio exterior en Perú',
     },
     {
-        icon: '📦',
-        title: '+10,000 operaciones',
-        description: 'Exitosas anualmente',
+        icon: '02',
+        title: 'Operación clara',
+        description: 'Seguimiento y respuesta oportuna',
     },
     {
-        icon: '🤝',
-        title: '+500 clientes',
-        description: 'Confían en nosotros',
+        icon: '03',
+        title: 'Cobertura nacional',
+        description: 'Clientes en Lima y provincias',
     },
     {
-        icon: '⭐',
-        title: '100% satisfacción',
-        description: 'Garantizada',
+        icon: '04',
+        title: 'Atención cercana',
+        description: 'Equipo pequeño, trato directo',
     },
 ];
-
-interface TrustBarProps {
-    points?: TrustPoint[];
-    title?: string;
-    variant?: 'default' | 'clean';
-    className?: string;
-}
 
 function TrustBar({ points = defaultPoints, title, variant = 'default', className }: TrustBarProps) {
     const isClean = variant === 'clean';
@@ -49,33 +44,33 @@ function TrustBar({ points = defaultPoints, title, variant = 'default', classNam
     return (
         <Component
             className={cn(
-                !isClean && "py-16 bg-slate-50 border-y border-slate-100",
-                isClean && "p-6 md:p-8", // Add padding for clean variant to breathe in the glass card
+                !isClean && 'border-y border-slate-200/80 bg-slate-50/70 py-16',
+                isClean && 'p-6 md:p-8',
                 className
             )}
         >
             <Container>
                 {title && (
-                    <h2 className="text-center text-2xl font-bold text-slate-900 mb-10">
+                    <h2 className="mb-10 text-center text-2xl font-bold tracking-tight text-slate-950">
                         {title}
                     </h2>
                 )}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-slate-200/50">
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                     {points.map((point, index) => (
                         <div
                             key={index}
-                            className="text-center group transition-all duration-300 hover:-translate-y-1 px-4"
+                            className="rounded-3xl border border-slate-200/80 bg-white/88 px-5 py-6 shadow-sm transition-transform duration-200 hover:-translate-y-0.5"
                         >
                             {point.icon && (
-                                <span className="text-4xl md:text-5xl block mb-4 transition-transform duration-300 group-hover:scale-110 filter drop-shadow-sm">
+                                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
                                     {point.icon}
                                 </span>
                             )}
-                            <h3 className="text-lg font-bold text-slate-900 mb-1">
+                            <h3 className="text-lg font-bold text-slate-900">
                                 {point.title}
                             </h3>
                             {point.description && (
-                                <p className="text-sm text-slate-500">
+                                <p className="mt-2 text-sm leading-6 text-slate-600">
                                     {point.description}
                                 </p>
                             )}

@@ -49,31 +49,17 @@ export const businessData: LocalBusinessSchema = {
     ],
 };
 
-// Generar JSON-LD para LocalBusiness
-export function generateLocalBusinessSchema(): string {
+// Use Organization until physical address/social profiles are complete.
+export function generateOrganizationSchema(): string {
     const schema = {
         '@context': 'https://schema.org',
-        '@type': 'LocalBusiness',
+        '@type': 'Organization',
         '@id': businessData.url,
         name: businessData.name,
         description: businessData.description,
         url: businessData.url,
         telephone: businessData.telephone,
         email: businessData.email,
-        address: {
-            '@type': 'PostalAddress',
-            streetAddress: businessData.address.streetAddress,
-            addressLocality: businessData.address.addressLocality,
-            addressRegion: businessData.address.addressRegion,
-            postalCode: businessData.address.postalCode,
-            addressCountry: businessData.address.addressCountry,
-        },
-        openingHoursSpecification: businessData.openingHours?.map((hours) => ({
-            '@type': 'OpeningHoursSpecification',
-            dayOfWeek: hours.split(' ')[0],
-            opens: hours.split(' ')[1]?.split('-')[0],
-            closes: hours.split(' ')[1]?.split('-')[1],
-        })),
         priceRange: businessData.priceRange,
         sameAs: businessData.sameAs,
     };

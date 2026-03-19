@@ -24,11 +24,11 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
     const service = getServiceBySlug(slug);
 
     if (!service) {
-        return { title: 'Servicio no encontrado' };
+        return { title: 'Servicio no encontrado | AduanasPE' };
     }
 
     return {
-        title: service.title,
+        title: `${service.title} | AduanasPE`,
         description: service.summary,
     };
 }
@@ -44,7 +44,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
     return (
         <>
             <Hero
-                badge={`✨ ${service.icon || '📦'} Servicio`}
+                badge="Servicio"
                 title={service.title}
                 subtitle={service.summary}
                 size="lg"
@@ -55,10 +55,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '⭐', title: 'Experiencia', description: 'Garantizada' },
-                            { icon: '⚡', title: 'Rapidez', description: 'En gestión' },
-                            { icon: '🔒', title: 'Seguridad', description: 'Total' },
-                            { icon: '📞', title: 'Soporte', description: '24/7' },
+                            { icon: '01', title: 'Atención directa', description: 'Sin desvíos innecesarios' },
+                            { icon: '02', title: 'Seguimiento claro', description: 'Durante la operación' },
+                            { icon: '03', title: 'Soporte operativo', description: 'Según tu carga' },
+                            { icon: '04', title: 'Respuesta rápida', description: 'En horario de atención' },
                         ]}
                     />
                 }
@@ -72,29 +72,29 @@ export default async function ServicePage({ params }: ServicePageProps) {
             </Hero>
 
             <SplitFeature
-                title="¿Qué incluye este servicio?"
+                title="Qué incluye este servicio"
                 description={service.description}
                 imageSide="right"
             >
                 <ul className="space-y-3 text-slate-600">
                     <li className="flex items-start gap-2">
-                        <span className="text-purple-600 mt-1">✓</span>
-                        <span><strong>Asesoría personalizada:</strong> Te guiamos en cada paso</span>
+                        <span className="mt-1 text-purple-600">✓</span>
+                        <span><strong>Asesoría personalizada:</strong> revisamos tu necesidad real antes de proponer el servicio.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-purple-600 mt-1">✓</span>
-                        <span><strong>Documentación completa:</strong> Nos encargamos de todo el papeleo</span>
+                        <span className="mt-1 text-purple-600">✓</span>
+                        <span><strong>Coordinación operativa:</strong> te ayudamos a ordenar documentos, tiempos y siguientes pasos.</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-purple-600 mt-1">✓</span>
-                        <span><strong>Seguimiento en tiempo real:</strong> Sabrás el estado de tu operación</span>
+                        <span className="mt-1 text-purple-600">✓</span>
+                        <span><strong>Seguimiento:</strong> mantenemos visibilidad sobre el estado de tu operación.</span>
                     </li>
                 </ul>
             </SplitFeature>
 
             <SplitFeature
-                title="¿Por qué elegirnos?"
-                description="Contamos con más de 5 años de experiencia en el mercado peruano. Nuestro equipo de profesionales certificados te acompañará en cada paso del proceso."
+                title="Por qué trabajar este servicio con nosotros"
+                description="Priorizamos una operación clara, con menos fricción comercial y un solo punto de contacto para que el proceso avance con mayor orden."
                 imageSide="left"
             >
                 <Link href={ROUTES.quienesSomos}>
@@ -104,17 +104,14 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
             <Container>
                 <div id="cotizacion" className="py-16">
-                    <PrecotizacionForm
-                        title={`Cotiza ${service.title}`}
-                        serviceName={slug}
-                    />
+                    <PrecotizacionForm title={`Cotiza ${service.title}`} serviceName={slug} />
                 </div>
             </Container>
 
             <CTASection
-                title="¿Tienes dudas?"
+                title="¿Tienes dudas sobre este servicio?"
                 highlightedWord="dudas"
-                subtitle="Nuestro equipo está listo para resolver todas tus consultas."
+                subtitle="Cuéntanos tu carga, tu operación o el punto en el que estás y te orientamos."
             >
                 <Link href={ROUTES.contacto}>
                     <Button size="lg" variant="secondary">

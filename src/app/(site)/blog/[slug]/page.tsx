@@ -4,10 +4,12 @@
  */
 
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import remarkGfm from 'remark-gfm';
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from '@/lib/blog';
 import { getMdxRawContent } from '@/lib/blog/mdx';
-import { getSanityPostBody } from '@/lib/blog/sanity';
 import {
     generateBlogPostMetadata,
     generateBlogPostJsonLd,
@@ -16,29 +18,63 @@ import {
 import { getTopicMapping } from '@/lib/blog/topics';
 import { Container } from '@/components/layout/Container';
 import { PostCard, ServiceCTA, RelatedServices, InlineLeadForm } from '@/components/blog';
-import { mdxComponents } from '@/components/blog/MdxComponents';
+import { mdxComponents, slugifyHeading } from '@/components/blog/MdxComponents';
 import { TopicIcon } from '@/components/blog/MdxEnhanced';
 import { formatDate } from '@/lib/utils';
-import Link from 'next/link';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import remarkGfm from 'remark-gfm';
 
-/* --------------------------------------------------
- * ISR: Revalidate every 60 seconds (for Sanity updates)
- * -------------------------------------------------- */
+interface ArticleHeading {
+    id: string;
+    label: string;
+    level: 2 | 3;
+}
+
+function cleanHeadingText(value: string) {
+    return value
+        .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+        .replace(/[`*_~]/g, '')
+        .replace(/<[^>]+>/g, '')
+        .trim();
+}
+
+function extractHeadings(rawContent: string | null): ArticleHeading[] {
+    if (!rawContent) return [];
+
+    const headings: ArticleHeading[] = [];
+    let inCodeBlock = false;
+
+    for (const line of rawContent.split('\n')) {
+        const trimmed = line.trim();
+
+        if (trimmed.startsWith('```')) {
+            inCodeBlock = !inCodeBlock;
+            continue;
+        }
+
+        if (inCodeBlock) continue;
+
+        const match = /^(##|###)\s+(.+)$/.exec(trimmed);
+        if (!match) continue;
+
+        const label = cleanHeadingText(match[2]);
+        if (!label) continue;
+
+        headings.push({
+            id: slugifyHeading(label) || 'seccion',
+            label,
+            level: match[1] === '##' ? 2 : 3,
+        });
+    }
+
+    return headings;
+}
+
 export const revalidate = 60;
 
-/* --------------------------------------------------
- * Generate Static Params (all slugs)
- * -------------------------------------------------- */
 export async function generateStaticParams() {
     const slugs = await getAllSlugs();
     return slugs.map((slug) => ({ slug }));
 }
 
-/* --------------------------------------------------
- * Generate Metadata
- * -------------------------------------------------- */
 export async function generateMetadata({
     params,
 }: {
@@ -50,9 +86,6 @@ export async function generateMetadata({
     return generateBlogPostMetadata(post);
 }
 
-/* --------------------------------------------------
- * Page Component
- * -------------------------------------------------- */
 export default async function BlogPostPage({
     params,
 }: {
@@ -65,17 +98,15 @@ export default async function BlogPostPage({
 
     const topicMapping = getTopicMapping(post.topic);
     const relatedPosts = await getRelatedPosts(slug, post.topic);
-
-    // Get MDX raw content for rendering
     const rawContent = post.source === 'mdx' ? getMdxRawContent(slug) : null;
+    const articleHeadings = extractHeadings(rawContent);
 
-    // JSON-LD
     const articleJsonLd = generateBlogPostJsonLd(post);
     const breadcrumbJsonLd = generateBlogBreadcrumbJsonLd(post);
+    const articleUrl = `https://aduanaspe.com/blog/${post.slug}/`;
 
     return (
         <>
-            {/* JSON-LD */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -86,42 +117,48 @@ export default async function BlogPostPage({
             />
 
             <article className="py-12 md:py-16">
-                <Container>
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
-                        {/* Main Content */}
-                        <div className="lg:col-span-8">
-                            {/* Post Header */}
-                            <header className="mb-10">
-                                {/* Category & reading time */}
-                                <div className="flex items-center gap-3 mb-4">
+                <Container size="xl">
+                    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14">
+                        <div className="min-w-0">
+                            <div className="mb-6">
+                                <Link
+                                    href="/blog"
+                                    className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 transition-colors hover:text-slate-900 focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
+                                >
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                                    </svg>
+                                    Volver al blog
+                                </Link>
+                            </div>
+
+                            <header className="mb-10 max-w-[78ch] rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] p-7 shadow-sm md:p-9">
+                                <div className="mb-5 flex flex-wrap items-center gap-3">
                                     <span className="section-badge text-xs">
                                         {post.category}
                                     </span>
-                                    <span className="text-sm text-[var(--text-muted)]">
-                                        ⏱ {post.readingTime}
+                                    <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
+                                        {post.readingTime}
                                     </span>
                                 </div>
 
-                                {/* Title */}
-                                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--text-heading)] leading-tight mb-4">
+                                <h1 className="text-balance text-3xl font-bold leading-tight text-slate-950 md:text-4xl lg:text-5xl">
                                     {post.title}
                                 </h1>
 
-                                {/* Description */}
-                                <p className="text-lg text-[var(--text-body)] mb-6">
+                                <p className="mt-4 text-pretty text-lg leading-8 text-slate-600">
                                     {post.description}
                                 </p>
 
-                                {/* Author & date */}
-                                <div className="flex items-center gap-4 text-sm text-[var(--text-muted)] pb-6 border-b border-gray-100">
-                                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-purple-500 flex items-center justify-center text-white font-bold text-sm">
+                                <div className="mt-8 grid gap-5 border-t border-slate-200 pt-6 md:grid-cols-[auto,1fr] md:items-center">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-sm font-bold text-white">
                                         {post.author.charAt(0)}
                                     </div>
                                     <div>
-                                        <p className="font-medium text-[var(--text-heading)]">
+                                        <p className="font-medium text-slate-950">
                                             {post.author}
                                         </p>
-                                        <time dateTime={post.date}>
+                                        <time dateTime={post.date} className="text-sm text-slate-500">
                                             {formatDate(new Date(post.date))}
                                             {post.updatedAt && (
                                                 <span className="ml-2">
@@ -133,56 +170,51 @@ export default async function BlogPostPage({
                                 </div>
                             </header>
 
-                            {/* Topic Icon (replaces hero image) */}
-                            <div className="mb-10 flex items-center gap-4">
-                                <TopicIcon topic={post.topic} />
+                            <div className="mb-10 flex max-w-[78ch] items-start gap-4 rounded-[28px] border border-slate-200 bg-slate-50 p-5">
+                                <div className="shrink-0 rounded-2xl border border-slate-200 bg-white p-1">
+                                    <TopicIcon topic={post.topic} />
+                                </div>
                                 <div>
-                                    <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--purple)' }}>
-                                        {post.category}
-                                    </span>
-                                    <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
-                                        {post.tags.slice(0, 3).join(' · ')}
+                                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                                        Contexto del artículo
+                                    </p>
+                                    <p className="mt-2 text-sm leading-7 text-slate-600">
+                                        Lectura orientada a <span className="font-semibold text-slate-900">{post.category}</span>
+                                        {post.tags.length > 0 && ` · ${post.tags.slice(0, 3).join(' · ')}`}
                                     </p>
                                 </div>
                             </div>
 
-                            {/* Post Body */}
-                            <div className="prose prose-lg max-w-none" id="post-content">
+                            <div className="prose prose-lg max-w-[78ch]" id="post-content">
                                 {rawContent ? (
                                     <MDXRemote
                                         source={rawContent}
                                         components={mdxComponents}
-                                        options={{ parseFrontmatter: false, mdxOptions: { format: 'mdx', remarkPlugins: [remarkGfm] } }}
+                                        options={{
+                                            parseFrontmatter: false,
+                                            mdxOptions: {
+                                                format: 'mdx',
+                                                remarkPlugins: [remarkGfm],
+                                            },
+                                        }}
                                     />
                                 ) : (
-                                    <p className="text-[var(--text-muted)] text-sm italic">
-                                        Contenido pendiente de configuración.
+                                    <p className="text-sm italic text-slate-500">
+                                        El contenido de este artículo aún no está disponible en el render del blog.
                                     </p>
                                 )}
                             </div>
 
-                            {/* Mid-article CTA */}
-                            <ServiceCTA topic={post.topic} position="inline" />
-
-                            {/* Inline Form (for hot leads) */}
-                            {topicMapping?.temperature === 'caliente' && (
-                                <InlineLeadForm
-                                    service={topicMapping.primaryService}
-                                    topic={post.topic}
-                                />
-                            )}
-
-                            {/* Tags */}
                             {post.tags.length > 0 && (
-                                <div className="mt-10 pt-6 border-t border-gray-100">
-                                    <h3 className="text-sm font-semibold text-[var(--text-muted)] mb-3">
+                                <div className="mt-10 max-w-[78ch] border-t border-slate-200 pt-6">
+                                    <h3 className="mb-3 text-sm font-semibold text-slate-500">
                                         Etiquetas:
                                     </h3>
                                     <div className="flex flex-wrap gap-2">
                                         {post.tags.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="px-3 py-1 text-xs rounded-full bg-gray-100 text-[var(--text-body)] font-medium"
+                                                className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-700"
                                             >
                                                 #{tag}
                                             </span>
@@ -191,73 +223,98 @@ export default async function BlogPostPage({
                                 </div>
                             )}
 
-                            {/* Share buttons */}
-                            <div className="mt-8 pt-6 border-t border-gray-100">
-                                <h3 className="text-sm font-semibold text-[var(--text-muted)] mb-3">
+                            <div className="mt-8 max-w-[78ch] border-t border-slate-200 pt-6">
+                                <h3 className="mb-3 text-sm font-semibold text-slate-500">
                                     Compartir:
                                 </h3>
-                                <div className="flex gap-3">
+                                <div className="flex flex-wrap gap-3">
                                     <a
-                                        href={`https://www.linkedin.com/sharing/share-offsite/?url=https://aduanaspe.com/blog/${post.slug}`}
+                                        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-4 py-2 rounded-full bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-colors"
+                                        className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-[border-color,background-color,color] hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                                     >
                                         LinkedIn
                                     </a>
                                     <a
-                                        href={`https://twitter.com/intent/tweet?url=https://aduanaspe.com/blog/${post.slug}&text=${encodeURIComponent(post.title)}`}
+                                        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(post.title)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-4 py-2 rounded-full bg-slate-900 text-white text-sm font-medium hover:bg-slate-700 transition-colors"
+                                        className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-[border-color,background-color,color] hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                                     >
-                                        X (Twitter)
+                                        X
                                     </a>
                                     <a
-                                        href={`https://wa.me/?text=${encodeURIComponent(post.title + ' https://aduanaspe.com/blog/' + post.slug)}`}
+                                        href={`https://wa.me/?text=${encodeURIComponent(`${post.title} ${articleUrl}`)}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="px-4 py-2 rounded-full bg-green-500 text-white text-sm font-medium hover:bg-green-600 transition-colors"
+                                        className="inline-flex items-center justify-center rounded-full bg-[#0f9f6e] px-4 py-2 text-sm font-medium text-white transition-[background-color,box-shadow] hover:bg-[#0c8c61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4"
                                     >
                                         WhatsApp
                                     </a>
                                 </div>
                             </div>
+
+                            <div className="mt-10 max-w-[78ch]">
+                                <ServiceCTA topic={post.topic} position="inline" />
+                            </div>
+
+                            {topicMapping?.temperature === 'caliente' && (
+                                <div className="max-w-[78ch]">
+                                    <InlineLeadForm
+                                        service={topicMapping.primaryService}
+                                        topic={post.topic}
+                                    />
+                                </div>
+                            )}
                         </div>
 
-                        {/* Sidebar */}
-                        <aside className="lg:col-span-4">
-                            <div className="sticky top-24 space-y-8">
-                                {/* Related Services */}
-                                <RelatedServices topic={post.topic} />
+                        <aside className="min-w-0">
+                            <div className="sticky top-28 space-y-6">
+                                {articleHeadings.length > 1 && (
+                                    <nav className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm" aria-label="En este artículo">
+                                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                                            En este artículo
+                                        </p>
+                                        <div className="mt-4 space-y-2">
+                                            {articleHeadings.map((heading) => (
+                                                <a
+                                                    key={`${heading.id}-${heading.label}`}
+                                                    href={`#${heading.id}`}
+                                                    className={`block rounded-2xl px-3 py-2 text-sm transition-[background-color,color,padding] hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 ${heading.level === 3 ? 'pl-6 text-slate-500' : 'font-medium text-slate-700'}`}
+                                                >
+                                                    {heading.label}
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </nav>
+                                )}
 
-                                {/* Sidebar CTA */}
+                                <RelatedServices topic={post.topic} />
                                 <ServiceCTA topic={post.topic} position="sidebar" />
                             </div>
                         </aside>
                     </div>
 
-                    {/* Related Posts */}
                     {relatedPosts.length > 0 && (
-                        <section className="mt-16 pt-12 border-t border-gray-100">
-                            <h2 className="text-2xl font-bold text-[var(--text-heading)] mb-8">
-                                Artículos Relacionados
+                        <section className="mt-16 border-t border-slate-200 pt-12">
+                            <h2 className="mb-8 text-2xl font-bold text-slate-950">
+                                Artículos relacionados
                             </h2>
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                {relatedPosts.map((rp) => (
-                                    <PostCard key={rp.slug} post={rp} />
+                            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                                {relatedPosts.map((relatedPost) => (
+                                    <PostCard key={relatedPost.slug} post={relatedPost} />
                                 ))}
                             </div>
                         </section>
                     )}
 
-                    {/* Back to blog */}
-                    <div className="text-center mt-12">
+                    <div className="mt-12 text-center">
                         <Link
                             href="/blog"
-                            className="inline-flex items-center gap-2 text-[var(--purple)] font-semibold hover:gap-3 transition-all"
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-[gap,color] hover:gap-3 hover:text-slate-950 focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                         >
-                            ← Volver al Blog
+                            ← Volver al blog
                         </Link>
                     </div>
                 </Container>

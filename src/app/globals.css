@@ -35,30 +35,30 @@
   --orange-light: #FFF0DC;
 
   /* Fondos (Modo Claro Premium) */
-  --background: #FFFFFF;
-  --bg-secondary: #FAFBFC;
-  --bg-tertiary: #F4F6F8;
+  --background: #FCFCFA;
+  --bg-secondary: #F5F6F2;
+  --bg-tertiary: #ECEEE8;
 
   /* Textos */
-  --text-heading: #1A202C;
-  --text-body: #4A5568;
-  --text-muted: #8896A6;
+  --text-heading: #172033;
+  --text-body: #4A5565;
+  --text-muted: #6F7B8C;
 
   /* Gradientes Premium */
-  --gradient-primary: linear-gradient(135deg, #FF6B9D 0%, #9B5DE5 50%, #00D4FF 100%);
-  --gradient-secondary: linear-gradient(135deg, #00F5A0 0%, #00D4FF 100%);
-  --gradient-warm: linear-gradient(135deg, #FFE66D 0%, #FF9F1C 50%, #FF6B6B 100%);
-  --gradient-soft: linear-gradient(180deg, #FFFFFF 0%, #FAFBFC 100%);
+  --gradient-primary: linear-gradient(135deg, #E8658F 0%, #875FD6 56%, #2FB3D8 100%);
+  --gradient-secondary: linear-gradient(135deg, #0F9F6E 0%, #1299C2 100%);
+  --gradient-warm: linear-gradient(135deg, #F3D46B 0%, #E69A33 56%, #E46969 100%);
+  --gradient-soft: linear-gradient(180deg, #FCFCFA 0%, #F5F6F2 100%);
 
   /* Sombras con color */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.1);
-  --shadow-pink: 0 10px 40px rgba(255, 107, 157, 0.25);
-  --shadow-blue: 0 10px 40px rgba(0, 212, 255, 0.25);
-  --shadow-purple: 0 10px 40px rgba(155, 93, 229, 0.25);
-  --shadow-green: 0 10px 40px rgba(0, 245, 160, 0.25);
-  --shadow-card: 0 10px 40px rgba(155, 93, 229, 0.12);
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 12px 30px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
+  --shadow-pink: 0 16px 36px rgba(232, 101, 143, 0.16);
+  --shadow-blue: 0 16px 36px rgba(47, 179, 216, 0.14);
+  --shadow-purple: 0 16px 36px rgba(135, 95, 214, 0.16);
+  --shadow-green: 0 16px 36px rgba(15, 159, 110, 0.14);
+  --shadow-card: 0 16px 40px rgba(15, 23, 42, 0.08);
 
   /* Tipografía */
   --font-family: 'Outfit', sans-serif;
@@ -93,6 +93,7 @@ body {
   color: var(--text-body);
   line-height: 1.6;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 /* ===== GRADIENT TEXT ===== */
@@ -113,15 +114,16 @@ body {
 /* ===== SECTION BADGE ===== */
 .section-badge {
   display: inline-block;
-  background: var(--purple-light);
-  color: var(--purple);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text-heading);
+  border: 1px solid rgba(23, 32, 51, 0.08);
   padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--radius-full);
-  font-size: 0.85rem;
+  font-size: 0.78rem;
   font-weight: 600;
   margin-bottom: var(--spacing-sm);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.08em;
 }
 
 /* ===== ORBES FLOTANTES ===== */
@@ -141,7 +143,7 @@ body {
   position: absolute;
   border-radius: 50%;
   filter: blur(100px);
-  opacity: 0.4;
+  opacity: 0.22;
   animation: float 8s ease-in-out infinite;
 }
 
@@ -192,16 +194,16 @@ body {
 
 /* ===== GLASSMORPHISM ===== */
 .glass {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(252, 252, 250, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 /* ===== FLOATING CARDS ===== */
 .floating-card {
   position: absolute;
   background: var(--background);
-  border: 1px solid rgba(155, 93, 229, 0.1);
+  border: 1px solid rgba(23, 32, 51, 0.08);
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--radius-lg);
   display: flex;
@@ -260,8 +262,9 @@ body {
   background: var(--background);
   border-radius: var(--radius-lg);
   padding: var(--spacing-xl);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.4s ease;
+  border: 1px solid rgba(23, 32, 51, 0.08);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   position: relative;
   overflow: hidden;
 }
@@ -294,8 +297,8 @@ body {
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
-  border-color: transparent;
+  transform: translateY(-4px);
+  border-color: rgba(23, 32, 51, 0.04);
 }
 
 .service-card:hover::before {
@@ -354,7 +357,7 @@ body {
 
 /* ===== SERVICE LINK ===== */
 .service-link {
-  color: var(--purple);
+  color: var(--text-heading);
   font-weight: 600;
   display: inline-flex;
   align-items: center;
@@ -364,7 +367,7 @@ body {
 
 .service-link:hover {
   gap: var(--spacing-sm);
-  color: var(--pink);
+  color: var(--purple);
 }
 
 /* ===== SOMBRAS UTILITARIAS ===== */
@@ -390,7 +393,7 @@ body {
 }
 
 .hover-elevate:hover {
-  transform: translateY(-10px);
+  transform: translateY(-4px);
 }
 
 /* ===== TESTIMONIAL RATING ===== */

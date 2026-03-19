@@ -51,8 +51,9 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
 function Breadcrumbs() {
     const pathname = usePathname();
     const breadcrumbs = generateBreadcrumbs(pathname);
+    const shouldShow = pathname.startsWith('/servicios/') || pathname.startsWith('/comercio-exterior/') || pathname.startsWith('/blog/');
 
-    if (pathname === '/') return null;
+    if (pathname === '/' || !shouldShow) return null;
 
     return (
         <nav aria-label="Breadcrumb" className="bg-gray-50 border-b border-gray-200">

@@ -6,7 +6,9 @@
 'use client';
 
 import { useState } from 'react';
-import { trackEvent, GA4_EVENTS } from '@/components/tracking/ga4';
+import { trackEvent } from '@/components/tracking/ga4';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
 
 interface InlineLeadFormProps {
     service: string;
@@ -61,70 +63,78 @@ export function InlineLeadForm({
 
     if (status === 'success') {
         return (
-            <div className="border-2 border-[var(--green)] bg-[var(--green-light)] rounded-2xl p-8 text-center my-8">
-                <div className="text-5xl mb-4">✅</div>
-                <h3 className="text-xl font-bold text-[var(--text-heading)] mb-2">
-                    ¡Gracias! Te contactaremos pronto
+            <div className="my-8 rounded-[28px] border border-emerald-200 bg-emerald-50 p-8 text-center" aria-live="polite">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-600 text-white">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-slate-950">
+                    Gracias. Te contactaremos pronto
                 </h3>
-                <p className="text-[var(--text-body)]">
-                    Un especialista revisará tu solicitud y se comunicará contigo en las
-                    próximas 24 horas.
+                <p className="mt-2 text-sm leading-7 text-slate-700">
+                    Un especialista revisará tu solicitud y se comunicará contigo dentro de las próximas 24 horas.
                 </p>
             </div>
         );
     }
 
     return (
-        <div className="service-card service-pink my-8">
-            <div className="text-center mb-6">
-                <span className="section-badge">💬 Consulta Gratuita</span>
-                <h3 className="text-2xl font-bold text-[var(--text-heading)] mt-4">
+        <div className="my-8 rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] p-6 shadow-sm md:p-8">
+            <div className="mb-6 text-center">
+                <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
+                    Consulta inicial
+                </span>
+                <h3 className="mt-4 text-2xl font-bold text-slate-950">
                     {headline}
                 </h3>
-                <p className="text-[var(--text-body)] mt-2">
-                    Déjanos tus datos y un especialista te contactará en menos de 24 horas
+                <p className="mt-2 text-sm leading-7 text-slate-600">
+                    Déjanos tus datos y te responderemos con una orientación inicial según tu operación.
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
-                <input
+            <form onSubmit={handleSubmit} className="mx-auto max-w-xl space-y-4">
+                <Input
+                    id="blog-inline-name"
                     type="text"
                     name="name"
-                    placeholder="Nombre completo"
+                    label="Nombre completo"
+                    placeholder="Ingresa tu nombre…"
+                    autoComplete="name"
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--purple)] focus:ring-2 focus:ring-[var(--purple-light)] outline-none transition-all"
                 />
-                <input
+                <Input
+                    id="blog-inline-email"
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    label="Correo electrónico"
+                    placeholder="tu@email.com…"
+                    autoComplete="email"
+                    spellCheck={false}
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--purple)] focus:ring-2 focus:ring-[var(--purple-light)] outline-none transition-all"
                 />
-                <input
+                <Input
+                    id="blog-inline-phone"
                     type="tel"
                     name="phone"
-                    placeholder="Teléfono (opcional)"
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-[var(--purple)] focus:ring-2 focus:ring-[var(--purple-light)] outline-none transition-all"
+                    label="Teléfono"
+                    placeholder="Opcional…"
+                    autoComplete="tel"
                 />
 
-                <button
-                    type="submit"
-                    disabled={status === 'loading'}
-                    className="w-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                    {status === 'loading' ? 'Enviando...' : 'Solicitar Consulta Gratuita →'}
-                </button>
+                <Button type="submit" disabled={status === 'loading'} className="w-full" showArrow>
+                    {status === 'loading' ? 'Enviando...' : 'Solicitar orientación'}
+                </Button>
 
                 {status === 'error' && (
-                    <p className="text-sm text-[var(--coral)] text-center">
+                    <p className="text-center text-sm text-red-600" aria-live="polite">
                         Hubo un error. Intenta nuevamente.
                     </p>
                 )}
             </form>
 
-            <p className="text-xs text-[var(--text-muted)] text-center mt-4">
-                🔒 Tus datos están protegidos. No compartimos información con terceros.
+            <p className="mt-4 text-center text-xs text-slate-500">
+                Tus datos se usan solo para responder tu consulta. No compartimos información con terceros.
             </p>
         </div>
     );

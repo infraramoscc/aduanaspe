@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Hero, HubCards, TrustBar } from '@/components/sections';
 import { DiagnosticoForm } from '@/components/forms';
 import { Container } from '@/components/layout';
 import { importacionSubLandings } from '@/content/comercioExterior';
 
 export const metadata: Metadata = {
-    title: 'Importación',
-    description: 'Guía completa para importar productos a Perú. Aprende sobre proveedores, costos, documentos y más.',
+    title: 'Guía de Importación a Perú | AduanasPE',
+    description: 'Guía para importar a Perú con información sobre proveedores, costos, documentos, modalidades de compra y decisiones logísticas clave.',
     alternates: {
         canonical: 'https://aduanaspe.com/comercio-exterior/importacion',
     },
@@ -21,26 +20,30 @@ export default function ImportacionPage() {
     return (
         <>
             <Hero
-                title="Importación a Perú"
-                subtitle="Todo lo que necesitas saber para importar productos. Desde encontrar proveedores hasta recibir la mercancía en tu almacén."
+                badge="Importación"
+                title="Todo lo básico para importar a Perú con mejor criterio"
+                highlightedWord="mejor criterio"
+                subtitle="Desde proveedores y costos hasta documentos y modalidades de ingreso: aquí tienes el mapa inicial para ordenar tu operación."
                 size="lg"
+                showStats={false}
+                showFloatingCards={false}
                 centered={true}
                 footer={
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '📚', title: 'Guías', description: 'Paso a paso' },
-                            { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
-                            { icon: '💡', title: 'Tips', description: 'De expertos' },
-                            { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
+                            { icon: '01', title: 'Proveedores', description: 'Evaluación inicial' },
+                            { icon: '02', title: 'Costos', description: 'Antes de comprar' },
+                            { icon: '03', title: 'Documentos', description: 'Para importar bien' },
+                            { icon: '04', title: 'Modalidades', description: 'Según tu carga' },
                         ]}
                     />
                 }
             />
 
             <HubCards
-                title="Guías de Importación"
-                subtitle="Recursos detallados para cada tipo de operación"
+                title="Rutas de importación"
+                subtitle="Elige la guía o modalidad que mejor encaje con tu tipo de operación."
                 items={importacionSubLandings}
                 basePath="/comercio-exterior/importacion"
                 columns={3}

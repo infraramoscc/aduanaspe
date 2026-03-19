@@ -32,7 +32,7 @@ function Card({ className, children, hover = false, colorAccent = 'default', ...
 
 function CardHeader({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) {
     return (
-        <div className={cn('px-6 py-4 border-b border-slate-100', className)} {...props}>
+        <div className={cn('border-b border-slate-200/80 px-6 py-4', className)} {...props}>
             {children}
         </div>
     );
@@ -48,7 +48,7 @@ function CardContent({ className, children, ...props }: HTMLAttributes<HTMLDivEl
 
 function CardFooter({ className, children, ...props }: HTMLAttributes<HTMLDivElement>) {
     return (
-        <div className={cn('px-6 py-4 border-t border-slate-100 bg-slate-50/50', className)} {...props}>
+        <div className={cn('border-t border-slate-200/80 bg-slate-50/80 px-6 py-4', className)} {...props}>
             {children}
         </div>
     );

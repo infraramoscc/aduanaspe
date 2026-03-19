@@ -4,8 +4,35 @@
  * These components are automatically mapped to HTML elements in MDX
  */
 
+/* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
-import type { ReactNode } from 'react';
+import { isValidElement, type ReactNode } from 'react';
+
+function extractText(children: ReactNode): string {
+    if (typeof children === 'string' || typeof children === 'number') {
+        return String(children);
+    }
+
+    if (Array.isArray(children)) {
+        return children.map(extractText).join('');
+    }
+
+    if (isValidElement(children)) {
+        return extractText(children.props.children);
+    }
+
+    return '';
+}
+
+export function slugifyHeading(value: string) {
+    return value
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9\s-]/g, '')
+        .trim()
+        .replace(/\s+/g, '-');
+}
 
 /* --------------------------------------------------
  * Typography Components
@@ -13,23 +40,27 @@ import type { ReactNode } from 'react';
 
 function H1({ children }: { children: ReactNode }) {
     return (
-        <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-heading)] leading-tight mb-6">
+        <h1 className="mb-6 text-4xl font-bold leading-tight text-[var(--text-heading)] text-balance md:text-5xl">
             {children}
         </h1>
     );
 }
 
 function H2({ children }: { children: ReactNode }) {
+    const id = slugifyHeading(extractText(children));
+
     return (
-        <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-heading)] mt-12 mb-4 scroll-mt-24">
+        <h2 id={id} className="mt-16 mb-5 scroll-mt-28 text-2xl font-bold leading-tight tracking-tight text-[var(--text-heading)] text-balance md:mt-20 md:text-3xl">
             {children}
         </h2>
     );
 }
 
 function H3({ children }: { children: ReactNode }) {
+    const id = slugifyHeading(extractText(children));
+
     return (
-        <h3 className="text-xl md:text-2xl font-semibold text-[var(--text-heading)] mt-8 mb-3 scroll-mt-24">
+        <h3 id={id} className="mt-10 mb-4 scroll-mt-28 text-xl font-semibold leading-tight text-[var(--text-heading)] text-balance md:text-2xl">
             {children}
         </h3>
     );
@@ -45,7 +76,7 @@ function H4({ children }: { children: ReactNode }) {
 
 function P({ children }: { children: ReactNode }) {
     return (
-        <p className="text-[var(--text-body)] leading-relaxed mb-4 text-base md:text-lg">
+        <p className="mb-5 text-[1.04rem] leading-8 text-[var(--text-body)] md:text-[1.08rem]">
             {children}
         </p>
     );
@@ -60,7 +91,7 @@ function A({ href, children }: { href?: string; children: ReactNode }) {
 
     if (isInternal && href) {
         return (
-            <Link href={href} className="service-link">
+            <Link href={href} className="service-link focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300">
                 {children}
             </Link>
         );
@@ -71,7 +102,7 @@ function A({ href, children }: { href?: string; children: ReactNode }) {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-[var(--purple)] font-medium underline decoration-purple-200 underline-offset-2 hover:decoration-[var(--purple)] transition-colors"
+            className="font-medium text-slate-900 underline decoration-slate-300 decoration-2 underline-offset-4 transition-[color,text-decoration-color] hover:decoration-slate-900 focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
         >
             {children}
         </a>
@@ -88,7 +119,7 @@ function Strong({ children }: { children: ReactNode }) {
 
 function Blockquote({ children }: { children: ReactNode }) {
     return (
-        <blockquote className="border-l-4 border-[var(--purple)] bg-[var(--purple-light)] pl-6 pr-4 py-4 my-6 rounded-r-xl text-[var(--text-body)] italic">
+        <blockquote className="my-8 rounded-[24px] border border-slate-200 bg-slate-50 px-6 py-5 text-[var(--text-body)] italic">
             {children}
         </blockquote>
     );
@@ -96,7 +127,7 @@ function Blockquote({ children }: { children: ReactNode }) {
 
 function UL({ children }: { children: ReactNode }) {
     return (
-        <ul className="list-disc list-inside space-y-2 mb-6 text-[var(--text-body)] ml-4">
+        <ul className="mb-7 ml-5 list-disc space-y-3 text-[var(--text-body)] marker:text-slate-400">
             {children}
         </ul>
     );
@@ -104,18 +135,18 @@ function UL({ children }: { children: ReactNode }) {
 
 function OL({ children }: { children: ReactNode }) {
     return (
-        <ol className="list-decimal list-inside space-y-2 mb-6 text-[var(--text-body)] ml-4">
+        <ol className="mb-7 ml-5 list-decimal space-y-3 text-[var(--text-body)] marker:text-slate-400">
             {children}
         </ol>
     );
 }
 
 function LI({ children }: { children: ReactNode }) {
-    return <li className="leading-relaxed">{children}</li>;
+    return <li className="pl-1 leading-8">{children}</li>;
 }
 
 function HR() {
-    return <hr className="my-8 border-0 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />;
+    return <hr className="my-10 h-px border-0 bg-slate-200" />;
 }
 
 /* --------------------------------------------------
@@ -236,7 +267,7 @@ export function SmartLink({ to, slug, children }: SmartLinkProps) {
     };
 
     return (
-        <Link href={paths[to]} className="service-link">
+        <Link href={paths[to]} className="service-link focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300">
             {children}
         </Link>
     );

@@ -39,7 +39,7 @@ function CTASection({ title, highlightedWord, subtitle, children, variant = 'pri
             {variant === 'primary' && (
                 <>
                     <div
-                        className="gradient-orb orb-cyan"
+                        className="gradient-orb orb-blue"
                         style={{
                             width: '400px',
                             height: '400px',
@@ -49,7 +49,7 @@ function CTASection({ title, highlightedWord, subtitle, children, variant = 'pri
                         }}
                     />
                     <div
-                        className="gradient-orb orb-coral"
+                        className="gradient-orb orb-pink"
                         style={{
                             width: '300px',
                             height: '300px',

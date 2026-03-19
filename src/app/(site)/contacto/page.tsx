@@ -1,15 +1,13 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Container } from '@/components/layout';
 import { Hero, TrustBar } from '@/components/sections';
 import { ContactoForm } from '@/components/forms';
-import { WhatsAppLink } from '@/components/tracking';
+import { TrackedLink, WhatsAppLink, GA4_EVENTS } from '@/components/tracking';
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
-import { Card, CardContent, Button } from '@/components/ui';
 
 export const metadata: Metadata = {
-    title: 'Contacto - Escríbenos | AduanasPE',
-    description: 'Contáctanos por WhatsApp al 963461006 o email info@aduanaspe.com. Cotizaciones en menos de 1 hora. Atención de Lunes a Sábado.',
+    title: 'Contacto y Cotizaciones | AduanasPE',
+    description: 'Escríbenos por WhatsApp o déjanos tus datos para cotizar servicios de aduanas, carga internacional y comercio exterior en Perú.',
     alternates: {
         canonical: 'https://aduanaspe.com/contacto',
     },
@@ -59,21 +57,37 @@ export default function ContactoPage() {
         <>
             <FaqJsonLd faqs={faqs} />
             <Hero
-                badge="✨ Contacto"
+                badge="Contacto"
                 title="Hablemos de tu próxima importación"
                 highlightedWord="importación"
-                subtitle="Escríbenos por WhatsApp y recibe respuesta en menos de 1 hora. Sin compromiso, sin formularios eternos."
+                subtitle="Si necesitas una respuesta rápida, WhatsApp es el canal principal. Si prefieres que te llamemos, deja tus datos y te contactamos."
                 size="lg"
                 showStats={false}
-                showFloatingCards={true}
+                showFloatingCards={false}
                 centered={true}
-                footer={<TrustBar variant="clean" />}
+                footer={
+                    <TrustBar
+                        variant="clean"
+                        points={[
+                            { title: 'WhatsApp prioritario', description: 'Respuesta en horario de atención' },
+                            { title: 'Atención remota', description: 'Clientes de todo el Perú' },
+                            { title: 'Cotización sin costo', description: 'Sin compromiso' },
+                            { title: 'Callao, Perú', description: 'Base operativa' },
+                        ]}
+                    />
+                }
             >
-                <Link href="#contacto-info">
-                    <Button variant="secondary" size="lg">
-                        Ver datos de contacto
-                    </Button>
-                </Link>
+                <WhatsAppLink route="contacto" variant="button">
+                    Escribir por WhatsApp
+                </WhatsAppLink>
+                <TrackedLink
+                    href="#contacto-form"
+                    eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
+                    eventParams={{ location: 'contact_hero' }}
+                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-purple-400 hover:bg-purple-50 hover:text-purple-600"
+                >
+                    Prefiero que me contacten
+                </TrackedLink>
             </Hero>
 
             <Container id="contacto-info">
@@ -156,7 +170,7 @@ export default function ContactoPage() {
                     </div>
 
                     {/* Form - Right Side */}
-                    <div>
+                    <div id="contacto-form">
                         <div className="mb-6">
                             <h2 className="text-2xl font-bold text-slate-900 mb-2">
                                 ¿Prefieres que te <span className="gradient-text">contactemos</span>?

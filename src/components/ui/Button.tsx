@@ -13,24 +13,20 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             <button
                 ref={ref}
                 className={cn(
-                    'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-full',
+                    'group inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
                     {
-                        // Primary: Gradiente Rosa → Púrpura → Azul con glow
-                        'bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 text-white shadow-lg hover:shadow-pink hover:-translate-y-1':
+                        'bg-gradient-to-r from-slate-950 via-slate-900 to-slate-800 text-white shadow-[0_12px_30px_rgba(15,23,42,0.18)] hover:-translate-y-0.5 hover:shadow-[0_18px_36px_rgba(15,23,42,0.22)] focus-visible:ring-slate-300':
                             variant === 'primary',
-                        // Secondary: Blanco con borde
-                        'bg-white text-slate-900 border-2 border-slate-200 hover:border-purple-400 hover:text-purple-600 hover:bg-purple-50':
+                        'border border-slate-300 bg-white text-slate-900 shadow-sm hover:border-slate-400 hover:bg-slate-50 focus-visible:ring-slate-300':
                             variant === 'secondary',
-                        // Ghost: Sin fondo
-                        'text-purple-600 hover:bg-purple-50 focus-visible:ring-purple-500':
+                        'text-slate-700 hover:bg-slate-100 focus-visible:ring-slate-300':
                             variant === 'ghost',
-                        // Accent: Verde neón para CTAs secundarios
-                        'bg-gradient-to-r from-emerald-400 to-cyan-400 text-white shadow-lg hover:shadow-green hover:-translate-y-1':
+                        'bg-[#0f9f6e] text-white shadow-[0_12px_30px_rgba(15,159,110,0.22)] hover:-translate-y-0.5 hover:bg-[#0c8c61] hover:shadow-[0_16px_34px_rgba(15,159,110,0.28)] focus-visible:ring-emerald-200':
                             variant === 'accent',
                     },
                     {
-                        'px-4 py-2 text-sm': size === 'sm',
-                        'px-6 py-3 text-base': size === 'md',
+                        'px-4 py-2.5 text-sm': size === 'sm',
+                        'px-6 py-3.5 text-base': size === 'md',
                         'px-8 py-4 text-lg': size === 'lg',
                     },
                     className

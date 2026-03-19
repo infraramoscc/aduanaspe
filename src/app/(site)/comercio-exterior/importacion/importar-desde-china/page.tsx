@@ -7,8 +7,8 @@ import { Button } from '@/components/ui';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Importar desde China',
-    description: 'Guía paso a paso para importar productos desde China a Perú. Proveedores, costos, envío y trámites aduaneros.',
+    title: 'Importar desde China a Perú | AduanasPE',
+    description: 'Guía para importar desde China a Perú con foco en proveedores, costos, tiempos, envío y trámites aduaneros.',
     alternates: {
         canonical: 'https://aduanaspe.com/comercio-exterior/importacion/importar-desde-china',
     },
@@ -22,32 +22,36 @@ export default function ImportarDesdeChinaPage() {
     return (
         <>
             <Hero
-                title="Importar desde China"
-                subtitle="Guía completa para importar productos desde China a Perú. Todo lo que necesitas saber para tu primera importación."
+                badge="China"
+                title="Lo esencial para importar desde China a Perú"
+                highlightedWord="importar desde China a Perú"
+                subtitle="Revisa proveedores, costos, tiempos y decisiones operativas antes de iniciar tu primera compra internacional."
                 size="lg"
+                showStats={false}
+                showFloatingCards={false}
                 centered={true}
                 footer={
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '📚', title: 'Guías', description: 'Paso a paso' },
-                            { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
-                            { icon: '💡', title: 'Tips', description: 'De expertos' },
-                            { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
+                            { icon: '01', title: 'Proveedor', description: 'Validación inicial' },
+                            { icon: '02', title: 'Costos', description: 'Antes de comprar' },
+                            { icon: '03', title: 'Envío', description: 'Según tipo de carga' },
+                            { icon: '04', title: 'Aduanas', description: 'Paso siguiente' },
                         ]}
                     />
                 }
             />
 
             <SplitFeature
-                title="¿Por qué importar desde China?"
-                description="China es el principal origen de importaciones a Perú, ofreciendo una amplia variedad de productos a precios competitivos. Con la estrategia correcta, puedes encontrar proveedores confiables y optimizar tus costos de importación."
+                title="Por qué muchos importadores empiezan en China"
+                description="China concentra una gran oferta de productos y proveedores, pero eso no elimina los riesgos. Elegir bien al proveedor y entender el costo total sigue siendo clave."
                 imageSide="right"
             />
 
             <SplitFeature
-                title="Pasos para importar"
-                description="El proceso de importación incluye: 1) Encontrar un proveedor confiable, 2) Negociar precios y condiciones, 3) Elegir el método de envío, 4) Gestionar los trámites aduaneros, 5) Recibir la mercancía en tu almacén. Te guiamos en cada paso."
+                title="Qué debes ordenar antes de comprar"
+                description="Antes de cerrar la compra conviene revisar documentación del proveedor, forma de pago, modalidad de envío, permisos aplicables y estructura de costos para evitar sorpresas posteriores."
                 imageSide="left"
             >
                 <Link href={ROUTES.servicios.agenciamientoAduanas}>
@@ -60,8 +64,8 @@ export default function ImportarDesdeChinaPage() {
             </Container>
 
             <CTASection
-                title="¿Listo para empezar?"
-                subtitle="Te ayudamos a importar tu primer contenedor desde China. Cotización sin compromiso."
+                title="Empieza con una base más clara"
+                subtitle="Te ayudamos a revisar tu operación antes de comprometer compra, envío y despacho."
             >
                 <Link href={ROUTES.contacto}>
                     <Button size="lg" variant="secondary">

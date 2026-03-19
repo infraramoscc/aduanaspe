@@ -20,16 +20,18 @@ export type BlogTopic =
 
 export type LeadTemperature = 'frio' | 'tibio' | 'caliente';
 
-export type BlogCategory =
-    | 'Aduanas'
-    | 'Carga Internacional'
-    | 'Transporte'
-    | 'Consultoría'
-    | 'Importación'
-    | 'Exportación'
-    | 'Comercio Exterior';
+export const BLOG_CATEGORIES = [
+    'Aduanas',
+    'Carga Internacional',
+    'Transporte',
+    'Consultoría',
+    'Importación',
+    'Exportación',
+    'Comercio Exterior',
+] as const;
 
-/** Frontmatter fields in MDX files */
+export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
+
 export interface BlogFrontmatter {
     title: string;
     description: string;
@@ -45,7 +47,6 @@ export interface BlogFrontmatter {
     draft?: boolean;
 }
 
-/** Unified blog post type used across the system */
 export interface BlogPost {
     slug: string;
     source: BlogSource;
@@ -61,9 +62,7 @@ export interface BlogPost {
     imageAlt?: string;
     featured: boolean;
     readingTime: string;
-    /** Only present for MDX posts when content is loaded */
     content?: React.ReactElement;
 }
 
-/** Post card data (lighter, for listing pages) */
 export type BlogPostCard = Omit<BlogPost, 'content'>;

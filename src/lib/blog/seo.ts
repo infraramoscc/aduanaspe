@@ -9,22 +9,19 @@ import type { BlogPostCard } from './types';
 const SITE_NAME = 'AduanasPE';
 const SITE_URL = 'https://aduanaspe.com';
 
-/* --------------------------------------------------
- * Generate full metadata for a blog post page
- * -------------------------------------------------- */
-
 export function generateBlogPostMetadata(post: BlogPostCard): Metadata {
     const url = `${SITE_URL}/blog/${post.slug}/`;
+    const title = `${post.title} | AduanasPE`;
 
     return {
-        title: `${post.title} | Blog ${SITE_NAME}`,
+        title,
         description: post.description,
         authors: [{ name: post.author }],
         alternates: {
             canonical: url,
         },
         openGraph: {
-            title: post.title,
+            title,
             description: post.description,
             url,
             siteName: SITE_NAME,
@@ -46,7 +43,7 @@ export function generateBlogPostMetadata(post: BlogPostCard): Metadata {
         },
         twitter: {
             card: 'summary_large_image',
-            title: post.title,
+            title,
             description: post.description,
             ...(post.image && { images: [post.image] }),
         },
@@ -64,32 +61,39 @@ export function generateBlogPostMetadata(post: BlogPostCard): Metadata {
     };
 }
 
-/* --------------------------------------------------
- * Generate metadata for the blog index page
- * -------------------------------------------------- */
+export function generateBlogIndexMetadata(page?: number, category?: string): Metadata {
+    const hasCategory = Boolean(category);
+    const titleBase = hasCategory
+        ? `${category} - Blog de Comercio Exterior`
+        : 'Blog de Comercio Exterior';
+    const title = page && page > 1 ? `${titleBase} - Página ${page} | ${SITE_NAME}` : `${titleBase} | ${SITE_NAME}`;
+    const description = hasCategory
+        ? `Artículos y guías sobre ${category?.toLowerCase()} para operaciones de comercio exterior en Perú.`
+        : 'Artículos, guías y recursos sobre comercio exterior, aduanas, importaciones y exportaciones en Perú.';
 
-export function generateBlogIndexMetadata(page?: number): Metadata {
-    const title = page && page > 1
-        ? `Blog - Página ${page} | ${SITE_NAME}`
-        : `Blog | ${SITE_NAME}`;
-
-    const description = 'Artículos, guías y recursos sobre comercio exterior, aduanas, importaciones y exportaciones en Perú.';
+    const query = new URLSearchParams();
+    if (category) query.set('category', category);
+    if (page && page > 1) query.set('page', String(page));
+    const suffix = query.size > 0 ? `?${query.toString()}` : '';
 
     return {
         title,
         description,
         alternates: {
-            canonical: page && page > 1
-                ? `${SITE_URL}/blog/?page=${page}`
-                : `${SITE_URL}/blog/`,
+            canonical: `${SITE_URL}/blog/${suffix}`,
         },
         openGraph: {
             title,
             description,
-            url: `${SITE_URL}/blog/`,
+            url: `${SITE_URL}/blog/${suffix}`,
             siteName: SITE_NAME,
             locale: 'es_PE',
             type: 'website',
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title,
+            description,
         },
         robots: {
             index: true,
@@ -97,10 +101,6 @@ export function generateBlogIndexMetadata(page?: number): Metadata {
         },
     };
 }
-
-/* --------------------------------------------------
- * JSON-LD Structured Data for a blog post
- * -------------------------------------------------- */
 
 export function generateBlogPostJsonLd(post: BlogPostCard) {
     return {
@@ -135,10 +135,6 @@ export function generateBlogPostJsonLd(post: BlogPostCard) {
     };
 }
 
-/* --------------------------------------------------
- * JSON-LD BreadcrumbList for a blog post
- * -------------------------------------------------- */
-
 export function generateBlogBreadcrumbJsonLd(post: BlogPostCard) {
     return {
         '@context': 'https://schema.org',
@@ -166,16 +162,14 @@ export function generateBlogBreadcrumbJsonLd(post: BlogPostCard) {
     };
 }
 
-/* --------------------------------------------------
- * JSON-LD for Blog index (CollectionPage)
- * -------------------------------------------------- */
-
-export function generateBlogIndexJsonLd() {
+export function generateBlogIndexJsonLd(category?: string) {
     return {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
-        name: `Blog - ${SITE_NAME}`,
-        description: 'Artículos sobre comercio exterior, aduanas, importaciones y exportaciones en Perú.',
+        name: category ? `${category} - Blog de Comercio Exterior` : `Blog de Comercio Exterior - ${SITE_NAME}`,
+        description: category
+            ? `Artículos sobre ${category.toLowerCase()} y comercio exterior en Perú.`
+            : 'Artículos sobre comercio exterior, aduanas, importaciones y exportaciones en Perú.',
         url: `${SITE_URL}/blog/`,
         isPartOf: {
             '@type': 'WebSite',

@@ -4,6 +4,7 @@
  */
 
 import Link from 'next/link';
+import { WhatsAppLink } from '@/components/tracking/WhatsAppLink';
 import { getServiceBySlug } from '@/content/services';
 import { getTopicMapping } from '@/lib/blog/topics';
 import type { BlogTopic } from '@/lib/blog/types';
@@ -15,22 +16,22 @@ interface ServiceCTAProps {
 
 const ctaConfigMap = {
     frio: {
-        title: '¿Quieres entender mejor este tema?',
-        description: 'Explora nuestra guía completa sobre',
-        buttonText: 'Ver guía completa',
-        variant: 'service-blue' as const,
+        eyebrow: 'Siguiente paso recomendado',
+        title: 'Lleva este tema a una decisión mejor informada',
+        description: 'Revisa cómo encaja este servicio en tu operación y qué parte del proceso puede simplificar.',
+        buttonText: 'Ver servicio relacionado',
     },
     tibio: {
-        title: '¿Necesitas ayuda con esto?',
-        description: 'Conoce nuestro servicio de',
+        eyebrow: 'Apoyo especializado',
+        title: 'Convierte la lectura en un plan de acción',
+        description: 'Conoce el servicio más cercano al problema que estás evaluando y cuándo conviene activarlo.',
         buttonText: 'Conocer servicio',
-        variant: 'service-pink' as const,
     },
     caliente: {
-        title: '¿Necesitas solucionar esto ahora?',
-        description: 'Habla con un especialista en',
-        buttonText: 'Hablar con especialista',
-        variant: 'service-pink' as const,
+        eyebrow: 'Atención prioritaria',
+        title: 'Si necesitas resolverlo ahora, habla con un especialista',
+        description: 'Este servicio suele ser el siguiente paso cuando ya hay una operación en curso o una urgencia que destrabar.',
+        buttonText: 'Revisar servicio',
     },
 } as const;
 
@@ -45,65 +46,73 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
 
     return (
         <div
-            className={`service-card ${ctaConfig.variant} my-8 ${position === 'sidebar' ? 'sticky top-24' : ''
-                }`}
+            className={`rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] p-6 shadow-sm ${position === 'sidebar' ? 'lg:p-7' : 'my-8 md:p-8'}`}
         >
-            {/* Badge */}
-            <span className="section-badge text-xs">
-                {primaryService.icon} Servicio Relacionado
+            <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
+                {ctaConfig.eyebrow}
             </span>
 
-            {/* Title */}
-            <h3 className="text-xl font-bold text-[var(--text-heading)] mt-4 mb-2">
+            <h3 className="mt-4 text-2xl font-bold leading-tight text-slate-950">
                 {ctaConfig.title}
             </h3>
 
-            {/* Description */}
-            <p className="text-[var(--text-body)] mb-4">
-                <span className="text-[var(--text-muted)]">{ctaConfig.description}</span>{' '}
-                <span className="font-semibold gradient-text">{primaryService.title}</span>
+            <p className="mt-3 text-sm leading-7 text-slate-600">
+                {ctaConfig.description}
             </p>
 
-            {/* Summary */}
-            <p className="text-sm text-[var(--text-muted)] mb-6">
-                {primaryService.summary}
-            </p>
+            <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                    Servicio vinculado
+                </p>
+                <p className="mt-2 text-lg font-semibold text-slate-950">
+                    {primaryService.title}
+                </p>
+                <p className="mt-2 text-sm leading-7 text-slate-600">
+                    {primaryService.summary}
+                </p>
+            </div>
 
-            {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <Link
                     href={`/servicios/${primaryService.slug}`}
-                    className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 text-white px-6 py-3 rounded-full font-semibold text-center hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                    className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white transition-[transform,background-color,box-shadow] hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                 >
-                    {ctaConfig.buttonText} →
+                    {ctaConfig.buttonText}
                 </Link>
 
-                {mapping.temperature === 'caliente' && (
+                {mapping.temperature === 'caliente' ? (
+                    <WhatsAppLink
+                        serviceSlug={primaryService.slug}
+                        className="justify-center px-6 py-3.5 text-sm"
+                    >
+                        Hablar por WhatsApp
+                    </WhatsAppLink>
+                ) : (
                     <Link
                         href="/contacto"
-                        className="bg-white text-slate-900 border-2 border-slate-200 hover:border-purple-400 hover:text-purple-600 px-6 py-3 rounded-full font-semibold text-center transition-all"
+                        className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 transition-[border-color,background-color,color] hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                     >
-                        Contactar ahora
+                        Solicitar orientación
                     </Link>
                 )}
             </div>
 
-            {/* Secondary services */}
             {mapping.secondaryServices.length > 0 && (
-                <div className="mt-6 pt-6 border-t border-gray-100">
-                    <p className="text-xs text-[var(--text-muted)] mb-3">
-                        También te puede interesar:
+                <div className="mt-6 border-t border-slate-200 pt-5">
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        También puede ayudarte
                     </p>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="mt-3 flex flex-wrap gap-2">
                         {mapping.secondaryServices.map((slug) => {
                             const service = getServiceBySlug(slug);
+
                             return service ? (
                                 <Link
                                     key={slug}
                                     href={`/servicios/${slug}`}
-                                    className="text-xs px-3 py-1.5 rounded-full bg-[var(--purple-light)] text-[var(--purple)] hover:bg-[var(--purple)] hover:text-white transition-all font-medium"
+                                    className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 transition-[border-color,background-color,color] hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2"
                                 >
-                                    {service.icon} {service.title}
+                                    {service.title}
                                 </Link>
                             ) : null;
                         })}

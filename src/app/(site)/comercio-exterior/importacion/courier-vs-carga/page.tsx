@@ -7,8 +7,8 @@ import { Button } from '@/components/ui';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Courier vs Carga',
-    description: 'Comparativa entre importar por courier y carga formal. Descubre qué opción te conviene más según tu mercancía.',
+    title: 'Courier vs Carga Formal en Perú | AduanasPE',
+    description: 'Comparativa entre courier y carga formal para importar a Perú según peso, valor, urgencia y tipo de mercancía.',
     alternates: {
         canonical: 'https://aduanaspe.com/comercio-exterior/importacion/courier-vs-carga',
     },
@@ -22,32 +22,36 @@ export default function CourierVsCargaPage() {
     return (
         <>
             <Hero
-                title="Courier vs Carga Formal"
-                subtitle="¿No sabes qué te conviene más? Te explicamos las diferencias para que tomes la mejor decisión."
+                badge="Comparativa"
+                title="Courier o carga formal: cuál conviene según tu operación"
+                highlightedWord="cuál conviene"
+                subtitle="Compara ambas alternativas según valor, peso, urgencia y objetivo comercial antes de importar."
                 size="lg"
+                showStats={false}
+                showFloatingCards={false}
                 centered={true}
                 footer={
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '📚', title: 'Guías', description: 'Paso a paso' },
-                            { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
-                            { icon: '💡', title: 'Tips', description: 'De expertos' },
-                            { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
+                            { icon: '01', title: 'Peso y volumen', description: 'Definen la ruta' },
+                            { icon: '02', title: 'Valor de la carga', description: 'Impacta el esquema' },
+                            { icon: '03', title: 'Urgencia', description: 'Cambia la decisión' },
+                            { icon: '04', title: 'Formalidad', description: 'Según tu operación' },
                         ]}
                     />
                 }
             />
 
             <SplitFeature
-                title="¿Cuándo usar Courier?"
-                description="El courier es ideal para envíos pequeños (menos de 200 USD o 20 kg). Es rápido, sencillo y no requiere agente de aduanas. Perfecto para muestras, compras personales o negocios que están iniciando."
+                title="Cuándo usar courier"
+                description="El courier suele ser útil para envíos pequeños, de bajo valor o con necesidad de rapidez. Es una vía más simple, pero no siempre conviene cuando el volumen empieza a crecer."
                 imageSide="right"
             />
 
             <SplitFeature
-                title="¿Cuándo usar Carga Formal?"
-                description="La carga formal (marítima o aérea) es más económica para volúmenes grandes. Requiere agente de aduanas pero te permite importar sin límites de valor. Ideal para negocios establecidos o importaciones regulares."
+                title="Cuándo usar carga formal"
+                description="La carga formal suele tener más sentido cuando manejas mayor volumen, necesitas importar de forma recurrente o quieres operar con una estructura más escalable y controlada."
                 imageSide="left"
             >
                 <Link href={ROUTES.servicios.agenciamientoAduanas}>
@@ -60,12 +64,12 @@ export default function CourierVsCargaPage() {
             </Container>
 
             <CTASection
-                title="Te asesoramos sin compromiso"
-                subtitle="Analizamos tu caso y te recomendamos la mejor opción para tu importación."
+                title="Te orientamos sin compromiso"
+                subtitle="Analizamos tu caso y te decimos qué alternativa tiene más sentido para tu mercadería."
             >
                 <Link href={ROUTES.contacto}>
                     <Button size="lg" variant="secondary">
-                        Recibir asesoría gratis
+                        Recibir asesoría
                     </Button>
                 </Link>
             </CTASection>

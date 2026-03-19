@@ -23,12 +23,6 @@ interface StatItem {
     label: string;
 }
 
-const defaultStats: StatItem[] = [
-    { number: '+50', label: 'Clientes' },
-    { number: '98%', label: 'Satisfacción' },
-    { number: '+5', label: 'Años' },
-];
-
 interface FloatingCardItem {
     icon: string;
     text: string;
@@ -37,11 +31,17 @@ interface FloatingCardItem {
     delay: string;
 }
 
+const defaultStats: StatItem[] = [
+    { number: '+50', label: 'Clientes atendidos' },
+    { number: '1h', label: 'Tiempo de respuesta' },
+    { number: '+5', label: 'Años de experiencia' },
+];
+
 const defaultFloatingCards: FloatingCardItem[] = [
-    { icon: '📦', text: 'Agenciamiento', color: 'pink', position: { top: '12%', left: '2%' }, delay: '0s' },
-    { icon: '🚛', text: 'Transporte', color: 'blue', position: { top: '18%', right: '2%' }, delay: '1s' },
-    { icon: '📋', text: 'Consultoría', color: 'green', position: { bottom: '18%', left: '2%' }, delay: '2s' },
-    { icon: '🔒', text: 'Resguardo', color: 'yellow', position: { bottom: '20%', right: '2%' }, delay: '3s' },
+    { icon: '01', text: 'Operación clara', color: 'pink', position: { top: '14%', left: '2%' }, delay: '0s' },
+    { icon: '02', text: 'Seguimiento real', color: 'blue', position: { top: '18%', right: '2%' }, delay: '1s' },
+    { icon: '03', text: 'Respuesta rápida', color: 'green', position: { bottom: '18%', left: '2%' }, delay: '2s' },
+    { icon: '04', text: 'Equipo asignado', color: 'yellow', position: { bottom: '20%', right: '2%' }, delay: '3s' },
 ];
 
 function Hero({
@@ -58,7 +58,6 @@ function Hero({
     floatingCards,
     footer,
 }: HeroProps) {
-    // Separar el título si hay una palabra destacada
     const renderTitle = () => {
         if (highlightedWord && title.includes(highlightedWord)) {
             const parts = title.split(highlightedWord);
@@ -76,132 +75,76 @@ function Hero({
     return (
         <section
             className={cn(
-                'overflow-hidden',
-                'bg-gradient-to-b from-white via-slate-50 to-white', // Subtle gradient
-                'bg-dot-slate-200', // Dot pattern background
+                'relative overflow-hidden border-b border-slate-200/80 bg-[radial-gradient(circle_at_top_right,rgba(232,101,143,0.08),transparent_28%),radial-gradient(circle_at_left,rgba(15,159,110,0.08),transparent_22%)]',
                 {
                     'py-16': size === 'sm',
-                    'py-20 md:py-28': size === 'md',
-                    'min-h-screen flex flex-col': size === 'lg',
+                    'py-20 md:py-24': size === 'md',
+                    'min-h-[88vh] py-24 md:py-32': size === 'lg',
                 }
             )}
         >
-            {/* Orbes decorativos */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div
-                    className="gradient-orb orb-purple"
-                    style={{
-                        width: '600px',
-                        height: '600px',
-                        top: '-200px',
-                        right: '-100px',
-                        animationDelay: '0s'
-                    }}
-                />
-                <div
-                    className="gradient-orb orb-pink"
-                    style={{
-                        width: '400px',
-                        height: '400px',
-                        bottom: '-100px',
-                        left: '-100px',
-                        animationDelay: '2s'
-                    }}
-                />
-                <div
-                    className="gradient-orb orb-blue"
-                    style={{
-                        width: '300px',
-                        height: '300px',
-                        top: '50%',
-                        left: '30%',
-                        animationDelay: '4s'
-                    }}
-                />
-            </div>
+            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.84),rgba(252,252,250,0.96))]" />
 
+            {image && (
+                <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none">
+                    <NextImage
+                        src={image}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        priority
+                    />
+                </div>
+            )}
 
-
-            {/* Imagen de fondo opcional */}
-            {
-                image && (
-                    <div className="absolute inset-0 z-0 opacity-5 md:opacity-10 pointer-events-none">
-                        <NextImage
-                            src={image}
-                            alt=""
-                            fill
-                            className="object-cover"
-                            priority
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white"></div>
-                    </div>
-                )
-            }
-
-            <div className={cn(
-                "relative z-10 w-full",
-                // Remove flex-grow to stop pushing footer to bottom edge.
-                // Using flex-col and justify-center to center the content in the available space
-                size === 'lg' ? "flex flex-col items-center justify-center py-24 min-h-[85vh]" : ""
-            )}>
-                <Container className="relative w-full">
-                    <div className={cn(
-                        'relative z-10',
-                        // Increased max-width from 2xl to 4xl to allow title to spread
-                        centered ? 'text-center max-w-4xl mx-auto' : 'max-w-3xl'
-                    )}>
-                        {/* Badge */}
-                        {badge && (
-                            <span
-                                className="section-badge animate-fade-in-up"
-                                style={{ animationDelay: '0s' }}
-                            >
-                                {badge}
-                            </span>
+            <div className="relative z-10">
+                <Container className="relative">
+                    <div
+                        className={cn(
+                            'relative',
+                            centered ? 'mx-auto max-w-4xl text-center' : 'max-w-3xl'
                         )}
+                    >
+                        {badge && <span className="section-badge animate-fade-in-up">{badge}</span>}
 
-                        {/* Título */}
-                        <h1
-                            className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-slate-900 mb-8 animate-fade-in-up tracking-tight"
-                            style={{ animationDelay: '0.1s' }}
-                        >
+                        <h1 className="animate-fade-in-up text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-950 md:text-6xl lg:text-7xl">
                             {renderTitle()}
                         </h1>
 
-                        {/* Subtítulo */}
                         {subtitle && (
                             <p
-                                className="text-xl md:text-2xl text-slate-600 max-w-3xl mb-10 animate-fade-in-up font-light"
-                                style={{ animationDelay: '0.2s', ...(centered ? { margin: '0 auto 2.5rem' } : {}) }}
+                                className={cn(
+                                    'mt-6 animate-fade-in-up text-lg leading-8 text-slate-600 md:text-xl',
+                                    centered && 'mx-auto max-w-3xl'
+                                )}
                             >
                                 {subtitle}
                             </p>
                         )}
 
-                        {/* CTAs */}
                         {children && (
                             <div
                                 className={cn(
-                                    'flex flex-wrap gap-4 mb-12 animate-fade-in-up',
+                                    'mt-8 flex flex-wrap gap-4 animate-fade-in-up',
                                     centered && 'justify-center'
                                 )}
-                                style={{ animationDelay: '0.3s' }}
                             >
                                 {children}
                             </div>
                         )}
 
-                        {/* Stats */}
                         {showStats && (
                             <div
                                 className={cn(
-                                    'flex gap-12 animate-fade-in-up',
-                                    centered && 'justify-center'
+                                    'mt-10 grid gap-4 animate-fade-in-up sm:grid-cols-3',
+                                    centered && 'mx-auto max-w-3xl'
                                 )}
-                                style={{ animationDelay: '0.4s' }}
                             >
-                                {defaultStats.map((stat, index) => (
-                                    <div key={index} className="text-center">
+                                {defaultStats.map((stat) => (
+                                    <div
+                                        key={stat.label}
+                                        className="rounded-3xl border border-slate-200/80 bg-white/80 px-6 py-5 shadow-sm backdrop-blur-sm"
+                                    >
                                         <span className="stat-number">{stat.number}</span>
                                         <span className="stat-label">{stat.label}</span>
                                     </div>
@@ -210,7 +153,6 @@ function Hero({
                         )}
                     </div>
 
-                    {/* Floating Cards - Solo en pantalleas muy grandes */}
                     {showFloatingCards && (
                         <div className="hidden 2xl:block">
                             {(floatingCards || defaultFloatingCards).map((card, index) => (
@@ -234,13 +176,13 @@ function Hero({
             </div>
 
             {footer && (
-                <div className="relative z-10 w-full mt-16 pb-12 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-                    <div className="max-w-5xl mx-auto bg-white/60 backdrop-blur-md rounded-2xl border border-slate-200/50 shadow-sm">
+                <div className="relative z-10 mt-14">
+                    <div className="mx-auto max-w-5xl rounded-[28px] border border-slate-200/80 bg-white/88 shadow-sm backdrop-blur-md">
                         {footer}
                     </div>
                 </div>
             )}
-        </section >
+        </section>
     );
 }
 

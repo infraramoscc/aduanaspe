@@ -2,15 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { Container } from '@/components/layout';
-import { Button, Card, CardContent } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { PrecotizacionForm } from '@/components/forms';
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Agenciamiento de Carga | Flete Marítimo y Aéreo',
-    description: 'Coordinamos tu carga desde origen hasta destino. Flete marítimo y aéreo, booking, seguimiento en tiempo real. Cotización por contenedor, peso o volumen.',
+    title: 'Agencia de Carga Internacional | AduanasPE',
+    description: 'Coordinamos carga marítima y aérea desde origen con booking, costeo claro y seguimiento durante el tránsito internacional.',
     alternates: {
         canonical: 'https://aduanaspe.com/servicios/agencia-de-carga-internacional',
     },
@@ -120,7 +120,7 @@ export default function AgenciamientoCargaPage() {
                 subtitle="Coordinamos tu carga desde origen hasta destino. Flete marítimo y aéreo con seguimiento en tiempo real y costeo transparente."
                 size="lg"
                 showStats={false}
-                showFloatingCards={true}
+                showFloatingCards={false}
                 centered={true}
                 footer={
                     <TrustBar
@@ -140,7 +140,7 @@ export default function AgenciamientoCargaPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <Link href="#proceso">
                         <Button variant="secondary" size="lg">
-                            ¿Cómo funciona?
+                            Ver proceso
                         </Button>
                     </Link>
                     <Link href="/blog/como-crear-una-agencia-de-carga" className="text-sm text-slate-300 hover:text-white underline decoration-dotted underline-offset-4 hover:decoration-solid transition-all">
@@ -157,8 +157,8 @@ export default function AgenciamientoCargaPage() {
                 description="Es la coordinación del transporte de tu mercancía desde el país de origen hasta Perú (o viceversa). Nos encargamos de: cotizar el flete, reservar espacio con navieras o aerolíneas, coordinar la recolección en origen, hacer seguimiento durante el tránsito y notificarte la llegada."
                 imageSide="right"
             >
-                <div className="p-4 bg-purple-50 rounded-xl border border-purple-100">
-                    <p className="text-sm text-purple-800">
+                <div className="p-5 bg-slate-50 rounded-2xl border border-slate-200">
+                    <p className="text-sm text-slate-700">
                         <strong>Etapa 1 de 3:</strong> Este es el primer paso de una importación. Después viene el agenciamiento de aduanas (etapa 2) y el transporte local (etapa 3). Puedes contratar cada servicio por separado o solicitar un <strong>servicio integral</strong>.
                     </p>
                 </div>
@@ -249,7 +249,7 @@ export default function AgenciamientoCargaPage() {
             </section>
 
             {/* Proceso */}
-            <section id="proceso" className="py-20 bg-gradient-to-br from-slate-50 via-blue-50/20 to-slate-50">
+            <section id="proceso" className="py-20 bg-slate-50">
                 <Container>
                     <div className="text-center mb-14">
                         <span className="section-badge">Proceso</span>

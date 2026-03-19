@@ -4,14 +4,36 @@
  */
 
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
+import Link from 'next/link';
+import { BLOG_CATEGORIES, type BlogCategory } from '@/lib/blog/types';
 import { getPaginatedPosts, getCategoriesWithCount } from '@/lib/blog';
 import { generateBlogIndexMetadata, generateBlogIndexJsonLd } from '@/lib/blog/seo';
 import { Container } from '@/components/layout/Container';
 import { PostCard } from '@/components/blog';
-import Link from 'next/link';
 
-export const metadata: Metadata = generateBlogIndexMetadata();
+function getCategoryFromParams(value?: string): BlogCategory | undefined {
+    if (!value) return undefined;
+    return BLOG_CATEGORIES.find((category) => category === value);
+}
+
+function buildBlogHref(page?: number, category?: string) {
+    const params = new URLSearchParams();
+    if (category) params.set('category', category);
+    if (page && page > 1) params.set('page', String(page));
+    const query = params.toString();
+    return query ? `/blog?${query}` : '/blog';
+}
+
+export async function generateMetadata({
+    searchParams,
+}: {
+    searchParams: Promise<{ page?: string; category?: string }>;
+}): Promise<Metadata> {
+    const params = await searchParams;
+    const page = Number(params.page) || 1;
+    const category = getCategoryFromParams(params.category);
+    return generateBlogIndexMetadata(page, category);
+}
 
 export default async function BlogPage({
     searchParams,
@@ -20,53 +42,56 @@ export default async function BlogPage({
 }) {
     const params = await searchParams;
     const page = Number(params.page) || 1;
+    const activeCategory = getCategoryFromParams(params.category);
 
-    const [{ posts, totalPages, hasNext, hasPrev }, categories] = await Promise.all([
-        getPaginatedPosts(page),
+    const [{ posts, total, totalPages, hasNext, hasPrev, page: safePage }, categories] = await Promise.all([
+        getPaginatedPosts(page, activeCategory),
         getCategoriesWithCount(),
     ]);
 
-    const jsonLd = generateBlogIndexJsonLd();
+    const jsonLd = generateBlogIndexJsonLd(activeCategory);
+    const featuredPost = safePage === 1 && !activeCategory ? posts[0] : null;
+    const remainingPosts = featuredPost ? posts.slice(1) : posts;
 
     return (
         <>
-            {/* JSON-LD */}
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
-            {/* Hero */}
-            <section className="relative py-20 overflow-hidden">
-                {/* Background orbs */}
-                <div className="gradient-orb orb-purple w-96 h-96 -top-48 -right-48 opacity-20" />
-                <div className="gradient-orb orb-pink w-72 h-72 -bottom-36 -left-36 opacity-20" />
-
+            <section className="relative overflow-hidden border-b border-slate-200 bg-[linear-gradient(to_bottom,rgba(255,255,255,0.94),rgba(252,252,250,0.98))] py-20">
                 <Container>
-                    <div className="text-center max-w-3xl mx-auto">
-                        <span className="section-badge">📝 Blog</span>
-                        <h1 className="text-4xl md:text-5xl font-bold text-[var(--text-heading)] mt-4 mb-4">
-                            Artículos sobre{' '}
-                            <span className="gradient-text">Comercio Exterior</span>
+                    <div className="mx-auto max-w-4xl text-center">
+                        <span className="section-badge">Blog</span>
+                        <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
+                            Artículos sobre <span className="gradient-text">comercio exterior</span>
                         </h1>
-                        <p className="text-lg text-[var(--text-body)]">
-                            Guías, tutoriales y recursos actualizados sobre aduanas,
-                            importaciones, exportaciones y logística internacional en Perú.
+                        <p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">
+                            Guías, explicaciones y recursos para entender mejor aduanas, importaciones, exportaciones y logística internacional.
                         </p>
+
+                        <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm text-slate-500">
+                            <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
+                                {total} artículos {activeCategory ? `en ${activeCategory}` : 'publicados'}
+                            </span>
+                            <span className="rounded-full border border-slate-200 bg-white px-4 py-2">
+                                {categories.length} categorías
+                            </span>
+                        </div>
                     </div>
                 </Container>
             </section>
 
-            {/* Categories filter */}
             {categories.length > 0 && (
-                <section className="border-b border-gray-100">
+                <section className="border-b border-slate-200 bg-white">
                     <Container>
-                        <div className="flex items-center gap-3 py-4 overflow-x-auto scrollbar-hide">
+                        <div className="flex items-center gap-3 overflow-x-auto py-4">
                             <Link
-                                href="/blog"
-                                className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${!params.category
-                                        ? 'bg-[var(--purple)] text-white shadow-md'
-                                        : 'bg-gray-100 text-[var(--text-body)] hover:bg-[var(--purple-light)] hover:text-[var(--purple)]'
+                                href={buildBlogHref()}
+                                className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all ${!activeCategory
+                                    ? 'bg-slate-950 text-white shadow-sm'
+                                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                                     }`}
                             >
                                 Todos
@@ -74,10 +99,10 @@ export default async function BlogPage({
                             {categories.map(({ category, count }) => (
                                 <Link
                                     key={category}
-                                    href={`/blog?category=${encodeURIComponent(category)}`}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${params.category === category
-                                            ? 'bg-[var(--purple)] text-white shadow-md'
-                                            : 'bg-gray-100 text-[var(--text-body)] hover:bg-[var(--purple-light)] hover:text-[var(--purple)]'
+                                    href={buildBlogHref(1, category)}
+                                    className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all ${activeCategory === category
+                                        ? 'bg-slate-950 text-white shadow-sm'
+                                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                                         }`}
                                 >
                                     {category} ({count})
@@ -88,56 +113,81 @@ export default async function BlogPage({
                 </section>
             )}
 
-            {/* Posts Grid */}
             <section className="py-16">
                 <Container>
-                    {posts.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {posts.map((post, idx) => (
-                                <PostCard
-                                    key={post.slug}
-                                    post={post}
-                                    featured={idx === 0 && page === 1}
-                                />
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="text-center py-20">
-                            <div className="text-6xl mb-4">📭</div>
-                            <h2 className="text-2xl font-bold text-[var(--text-heading)] mb-2">
-                                No hay artículos todavía
-                            </h2>
-                            <p className="text-[var(--text-muted)]">
-                                Pronto publicaremos contenido. ¡Vuelve pronto!
-                            </p>
+                    {activeCategory && (
+                        <div className="mb-8 flex flex-wrap items-center justify-between gap-4 rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-5">
+                            <div>
+                                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                                    Filtro activo
+                                </p>
+                                <p className="mt-2 text-lg font-semibold text-slate-950">
+                                    {activeCategory}
+                                </p>
+                            </div>
+                            <Link
+                                href="/blog"
+                                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition-all hover:border-slate-400 hover:bg-slate-100"
+                            >
+                                Limpiar filtro
+                            </Link>
                         </div>
                     )}
 
-                    {/* Pagination */}
+                    {posts.length > 0 ? (
+                        <>
+                            {featuredPost && (
+                                <div className="mb-8">
+                                    <PostCard post={featuredPost} featured />
+                                </div>
+                            )}
+
+                            {remainingPosts.length > 0 && (
+                                <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                                    {remainingPosts.map((post) => (
+                                        <PostCard key={post.slug} post={post} />
+                                    ))}
+                                </div>
+                            )}
+                        </>
+                    ) : (
+                        <div className="rounded-3xl border border-slate-200 bg-slate-50 px-6 py-16 text-center">
+                            <h2 className="text-2xl font-bold text-slate-900">
+                                No encontramos artículos para esta categoría
+                            </h2>
+                            <p className="mt-3 text-slate-600">
+                                Prueba con otra categoría o vuelve al listado general del blog.
+                            </p>
+                            <Link
+                                href="/blog"
+                                className="mt-6 inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition-all hover:bg-slate-100"
+                            >
+                                Ver todos los artículos
+                            </Link>
+                        </div>
+                    )}
+
                     {totalPages > 1 && (
-                        <nav
-                            className="flex items-center justify-center gap-4 mt-12"
-                            aria-label="Paginación"
-                        >
+                        <nav className="mt-12 flex items-center justify-center gap-4" aria-label="Paginación">
                             {hasPrev && (
                                 <Link
-                                    href={`/blog?page=${page - 1}`}
-                                    className="px-6 py-3 rounded-full bg-white border-2 border-gray-200 text-[var(--text-body)] font-semibold hover:border-[var(--purple)] hover:text-[var(--purple)] transition-all"
+                                    href={buildBlogHref(safePage - 1, activeCategory)}
+                                    className="rounded-full border border-slate-200 bg-white px-6 py-3 font-semibold text-slate-700 transition-all hover:bg-slate-100"
                                 >
-                                    ← Anterior
+                                    Anterior
                                 </Link>
                             )}
 
-                            <span className="text-sm text-[var(--text-muted)]">
-                                Página {page} de {totalPages}
+                            <span className="text-sm text-slate-500">
+                                Página {safePage} de {totalPages}
                             </span>
 
                             {hasNext && (
                                 <Link
-                                    href={`/blog?page=${page + 1}`}
-                                    className="px-6 py-3 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 text-white font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                                    href={buildBlogHref(safePage + 1, activeCategory)}
+                                    className="rounded-full bg-slate-950 px-6 py-3 font-semibold text-white transition-all hover:bg-slate-800"
                                 >
-                                    Siguiente →
+                                    Siguiente
                                 </Link>
                             )}
                         </nav>

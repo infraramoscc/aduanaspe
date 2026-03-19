@@ -7,8 +7,8 @@ import { Button } from '@/components/ui';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Documentos Aduaneros | Guía de Requisitos para Importar',
-    description: 'Guía de documentos para comercio exterior: Factura Comercial, Packing List, Bill of Lading, DAM y Certificados de Origen. Aprende a gestionarlos.',
+    title: 'Documentos Aduaneros para Importar y Exportar | AduanasPE',
+    description: 'Guía de documentos aduaneros para comercio exterior: factura comercial, packing list, BL, DAM y certificados clave para tu operación.',
     alternates: {
         canonical: 'https://aduanaspe.com/comercio-exterior/documentos-aduaneros',
     },
@@ -20,43 +20,43 @@ export const metadata: Metadata = {
 
 const documentos = [
     {
-        title: 'Factura Comercial',
+        title: 'Factura comercial',
         importance: 'Crítico',
-        desc: 'Documento base de la transacción. Debe detallar precios, Incoterm, descripción de mercancía y datos de comprador/vendedor.',
-        icon: '🧾',
-        tips: ['Debe ser legible', 'Sin borrones', 'Coincidir con orden de compra']
+        desc: 'Documento base de la operación. Debe reflejar precios, incoterm, descripción del producto y datos correctos de comprador y vendedor.',
+        icon: '01',
+        tips: ['Debe ser legible', 'Sin diferencias con la compra', 'Con descripción precisa'],
     },
     {
-        title: 'Bill of Lading (BL)',
+        title: 'Bill of Lading o AWB',
         importance: 'Crítico',
-        desc: 'Contrato de transporte marítimo y título de propiedad de la carga. Sin el BL original (o release) no puedes retirar la carga.',
-        icon: '🚢',
-        tips: ['Verificar pesos y bultos', 'Consignatario correcto', 'Fecha de embarque']
+        desc: 'Documento de transporte que acredita el embarque y permite continuar con el proceso logístico y aduanero.',
+        icon: '02',
+        tips: ['Verificar pesos y bultos', 'Consignatario correcto', 'Fechas consistentes'],
     },
     {
-        title: 'Packing List',
+        title: 'Packing list',
         importance: 'Alto',
-        desc: 'Lista de empaque detallada. Indica contenido de cada caja, pesos brutos/netos y dimensiones. Vital para aforos físicos.',
-        icon: '📦',
-        tips: ['Detalle por bulto', 'Marcas y números', 'Coincidir con factura']
+        desc: 'Lista detallada del contenido, pesos y dimensiones. Es clave para aforos, revisión física y control operativo.',
+        icon: '03',
+        tips: ['Detalle por bulto', 'Marcas claras', 'Coincidir con la factura'],
     },
     {
-        title: 'Certificado de Origen',
-        importance: 'Opcional (TLC)',
-        desc: 'Documento que acredita el país de fabricación. Indispensable para acogerse a beneficios arancelarios (TLC) y pagar menos impuestos.',
-        icon: '📜',
-        tips: ['Formato oficial vigente', 'Firmas autorizadas', 'Criterio de origen']
-    }
+        title: 'Certificados y soportes',
+        importance: 'Variable',
+        desc: 'Dependiendo del producto, pueden requerirse certificados de origen, permisos o documentos técnicos complementarios.',
+        icon: '04',
+        tips: ['Validar antes del embarque', 'Revisar vigencia', 'Confirmar formato requerido'],
+    },
 ];
 
 export default function DocumentosAduanerosPage() {
     return (
         <>
             <Hero
-                badge="📂 Documentación"
-                title="Documentos de Importación"
-                highlightedWord="Documentos"
-                subtitle="La clave de un despacho exitoso es una documentación perfecta. Conoce los requisitos para evitar multas."
+                badge="Documentación"
+                title="Los documentos correctos evitan gran parte de los problemas"
+                highlightedWord="evitan gran parte de los problemas"
+                subtitle="Revisa qué documentos son básicos, cuáles cambian según el producto y por qué conviene validarlos antes del embarque."
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
@@ -65,83 +65,76 @@ export default function DocumentosAduanerosPage() {
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '❌', title: 'Sin Errores', description: 'Evita multas' },
-                            { icon: '⚡', title: 'Agilidad', description: 'Despacho rápido' },
-                            { icon: '🔐', title: 'Seguridad', description: 'Legal' },
-                            { icon: '💰', title: 'Ahorro', description: 'Sin sobrecostos' },
+                            { icon: '01', title: 'Menos observaciones', description: 'En el despacho' },
+                            { icon: '02', title: 'Más orden', description: 'En la documentación' },
+                            { icon: '03', title: 'Menos sobrecostos', description: 'Por errores evitables' },
+                            { icon: '04', title: 'Más control', description: 'Antes del arribo' },
                         ]}
                     />
                 }
             >
                 <Link href="#lista">
-                    <Button size="lg">Ver lista de documentos</Button>
+                    <Button size="lg">Ver documentos clave</Button>
                 </Link>
                 <Link href={ROUTES.contacto}>
-                    <Button size="lg" variant="secondary">Revisión documentaria</Button>
+                    <Button size="lg" variant="secondary">Revisar mi documentación</Button>
                 </Link>
             </Hero>
 
-            {/* Trust Bar integrated into Hero */}
-
-            <section id="lista" className="py-20 bg-white">
+            <section id="lista" className="bg-white py-20">
                 <Container>
-                    <div className="text-center mb-16">
+                    <div className="mb-16 text-center">
                         <span className="section-badge">Requisitos</span>
-                        <h2 className="text-3xl font-bold text-slate-900">Documentos <span className="gradient-text">Esenciales</span></h2>
-                        <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-                            Toda importación formal requiere este set de documentos. Asegúrate de tenerlos antes de la llegada de la carga.
+                        <h2 className="text-3xl font-bold text-slate-900">
+                            Documentos <span className="gradient-text">esenciales</span>
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+                            Antes de la llegada de la carga, conviene tener este set documental claro y validado.
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {documentos.map((doc, index) => {
-                            const colorClass = ['service-blue', 'service-purple', 'service-green', 'service-orange'][index % 4];
-                            return (
-                                <div key={doc.title} className={`service-card ${colorClass} p-8 h-full flex flex-col`}>
-                                    <div className="flex justify-between items-start mb-6">
-                                        <span className="text-5xl filter drop-shadow-sm">{doc.icon}</span>
-                                        <span className={`text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider ${doc.importance === 'Crítico' ? 'bg-red-100 text-red-700' :
-                                            doc.importance === 'Alto' ? 'bg-orange-100 text-orange-700' :
-                                                'bg-blue-100 text-blue-700'
-                                            }`}>
-                                            {doc.importance}
-                                        </span>
-                                    </div>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-3">{doc.title}</h3>
-                                    <p className="text-slate-600 mb-6 flex-grow">{doc.desc}</p>
-
-                                    <div className="bg-white/60 rounded-xl p-4 border border-white/50">
-                                        <h4 className="text-sm font-bold text-slate-700 mb-2 flex items-center gap-2">
-                                            <span className="text-yellow-500">💡</span> Tips de experto:
-                                        </h4>
-                                        <ul className="space-y-1">
-                                            {doc.tips.map(tip => (
-                                                <li key={tip} className="text-xs text-slate-500 flex items-center gap-2">
-                                                    <span className="w-1 h-1 rounded-full bg-slate-400"></span>
-                                                    {tip}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+                        {documentos.map((doc) => (
+                            <div key={doc.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+                                <div className="mb-6 flex items-start justify-between">
+                                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-sm font-bold text-slate-700">
+                                        {doc.icon}
+                                    </span>
+                                    <span className="rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-500">
+                                        {doc.importance}
+                                    </span>
                                 </div>
-                            );
-                        })}
+                                <h3 className="text-2xl font-bold text-slate-900">{doc.title}</h3>
+                                <p className="mt-3 text-slate-600">{doc.desc}</p>
+                                <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-4">
+                                    <h4 className="text-sm font-bold text-slate-700">Checklist rápido</h4>
+                                    <ul className="mt-3 space-y-2">
+                                        {doc.tips.map((tip) => (
+                                            <li key={tip} className="flex items-center gap-2 text-sm text-slate-600">
+                                                <span className="h-1.5 w-1.5 rounded-full bg-slate-400" />
+                                                {tip}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </Container>
             </section>
 
             <SplitFeature
-                title="¿Errores en tus documentos?"
-                description="Un error de una letra en el BL o una descripción vaga en la factura puede costarte miles de dólares en multas y almacenaje."
+                title="Un error documental puede detener toda la operación"
+                description="Una descripción ambigua, un dato mal consignado o un documento faltante puede generar observaciones, retrasos y costos adicionales que se pudieron evitar antes del embarque."
                 imageSide="left"
             >
-                <div className="bg-orange-50 p-6 rounded-xl border border-orange-100">
-                    <h4 className="font-bold text-orange-900 mb-2">Servicio de Revisión Previa</h4>
-                    <p className="text-sm text-orange-800 mb-4">
-                        En AduanasPE revisamos tus borradores antes de que tu proveedor emita los originales. Detectamos errores y te decimos cómo corregirlos.
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+                    <h4 className="font-bold text-amber-900">Revisión previa</h4>
+                    <p className="mt-2 text-sm text-amber-800">
+                        Si revisas los documentos antes de la emisión final, reduces mucho más el riesgo de correcciones tardías.
                     </p>
                     <Link href={ROUTES.servicios.agenciamientoAduanas}>
-                        <Button variant="secondary" size="sm" className="border-orange-200 text-orange-700 hover:bg-orange-100">
+                        <Button variant="secondary" size="sm" className="mt-4">
                             Ver servicio de agenciamiento
                         </Button>
                     </Link>
@@ -150,19 +143,19 @@ export default function DocumentosAduanerosPage() {
 
             <Container>
                 <div className="py-20">
-                    <div className="max-w-3xl mx-auto bg-slate-50 rounded-3xl p-8 md:p-12 text-center border border-slate-200">
-                        <h2 className="text-2xl font-bold text-slate-900 mb-4">Descarga checklist gratuito</h2>
-                        <p className="text-slate-600 mb-8">
-                            ¿Quieres estar seguro de no olvidar nada? Déjanos tu correo y te asesoramos.
+                    <div className="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-slate-50 p-8 text-center md:p-12">
+                        <h2 className="text-2xl font-bold text-slate-900">Consulta sobre documentos</h2>
+                        <p className="mt-4 text-slate-600">
+                            Si tienes dudas sobre requisitos o soportes, cuéntanos tu operación y revisamos qué hace falta.
                         </p>
-                        <DiagnosticoForm title="Consulta sobre documentos" className="bg-white p-6 rounded-xl shadow-sm border border-slate-100" />
+                        <DiagnosticoForm title="" className="mt-8 border border-slate-200 bg-white p-6 rounded-2xl" />
                     </div>
                 </div>
             </Container>
 
             <CTASection
-                title="Gestión documental integral"
-                subtitle="Deja el papeleo en nuestras manos. Nos encargamos de validar, numerar y archivar."
+                title="Gestión documental más ordenada"
+                subtitle="Te ayudamos a validar documentos y a reducir observaciones antes del despacho."
             >
                 <Link href={ROUTES.servicios.agenciamientoAduanas}>
                     <Button size="lg" variant="secondary">

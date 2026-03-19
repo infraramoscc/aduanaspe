@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
@@ -76,7 +77,7 @@ function isQuarantined(gscUrl, quarantinedSet) {
             relativePath = '/blog' + relativePath;
         }
         return quarantinedSet.has(relativePath) || quarantinedSet.has(relativePath.replace(/\/$/, ""));
-    } catch (e) {
+    } catch {
         // If it's not a valid absolute URL (like a search query), just return false
         return false;
     }

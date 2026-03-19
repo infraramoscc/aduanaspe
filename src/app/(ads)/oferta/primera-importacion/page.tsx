@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@/components/layout';
@@ -5,8 +6,8 @@ import { WhatsAppHero } from '@/components/sections/WhatsAppHero';
 import { WhatsAppLink } from '@/components/tracking';
 
 export const metadata: Metadata = {
-    title: 'Tu Primera Importación Sin Complicaciones | AduanasPE',
-    description: 'Gestión aduanera rápida y segura para nuevos importadores. Cotiza tu importación por WhatsApp en minutos.',
+    title: 'Primera Importación desde China | AduanasPE',
+    description: 'Landing para nuevos importadores que buscan apoyo por WhatsApp para traer carga desde China con guía operativa y despacho aduanero.',
     robots: {
         index: false,
         follow: false,

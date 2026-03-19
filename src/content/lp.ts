@@ -11,9 +11,9 @@ export interface LandingPage {
 export const landingPages: LandingPage[] = [
     {
         slug: 'importar-china-2024',
-        title: 'Importa desde China en 2024',
-        subtitle: 'Guía actualizada + cotización gratis para tu primera importación',
-        ctaLabel: 'Obtener cotización gratis',
+        title: 'Importa desde China con apoyo experto',
+        subtitle: 'Guía inicial y cotización para tu primera importación con acompañamiento por WhatsApp.',
+        ctaLabel: 'Obtener cotización',
         ctaLink: '#form',
         showForm: true,
         formType: 'precotizacion',
@@ -21,7 +21,7 @@ export const landingPages: LandingPage[] = [
     {
         slug: 'agente-aduanas-lima',
         title: 'Agente de Aduanas en Lima',
-        subtitle: 'Más de 15 años de experiencia. Cotización en 24 horas.',
+        subtitle: 'Despacho aduanero con atención personalizada y seguimiento claro de la operación.',
         ctaLabel: 'Solicitar cotización',
         ctaLink: '#form',
         showForm: true,
@@ -30,7 +30,7 @@ export const landingPages: LandingPage[] = [
     {
         slug: 'asesoria-comercio-exterior',
         title: 'Asesoría en Comercio Exterior',
-        subtitle: 'Primera consulta gratis. Resolvemos todas tus dudas.',
+        subtitle: 'Resolvemos dudas operativas, documentarias y estratégicas para importadores y exportadores.',
         ctaLabel: 'Agendar consulta',
         ctaLink: '#form',
         showForm: true,

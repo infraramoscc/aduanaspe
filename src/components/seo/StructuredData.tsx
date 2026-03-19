@@ -1,11 +1,11 @@
-import { generateLocalBusinessSchema } from '@/lib/schema';
+import { generateOrganizationSchema } from '@/lib/schema';
 
 export function StructuredData() {
     return (
         <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
-                __html: generateLocalBusinessSchema(),
+                __html: generateOrganizationSchema(),
             }}
         />
     );

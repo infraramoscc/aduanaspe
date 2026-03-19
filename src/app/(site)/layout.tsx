@@ -4,10 +4,10 @@ import { StructuredData } from '@/components/seo/StructuredData';
 
 export const metadata: Metadata = {
     title: {
-        template: '%s | AduanasPE',
-        default: 'AduanasPE - Agenciamiento de Aduanas en Perú',
+        template: '%s',
+        default: 'AduanasPE | Agencia de Aduanas y Carga Internacional en Perú',
     },
-    description: 'Soluciones integrales en comercio exterior, agenciamiento de aduanas y logística internacional. Más de 15 años de experiencia en Perú.',
+    description: 'Agenciamiento de aduanas, carga internacional y asesoría en comercio exterior para importadores y exportadores en Perú.',
 };
 
 export default function SiteLayout({

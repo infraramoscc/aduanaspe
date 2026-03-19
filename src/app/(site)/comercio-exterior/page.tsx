@@ -7,8 +7,8 @@ import { ROUTES } from '@/lib/routes';
 import { Container } from '@/components/layout';
 
 export const metadata: Metadata = {
-    title: 'Recursos de Comercio Exterior | Guías y Herramientas',
-    description: 'Domina la importación y exportación en Perú. Guías gratuitas, herramientas de cálculo y recursos sobre regímenes aduaneros y documentación.',
+    title: 'Recursos de Comercio Exterior | AduanasPE',
+    description: 'Domina la importación y exportación en Perú con guías prácticas, herramientas y recursos sobre regímenes aduaneros y documentación.',
     alternates: {
         canonical: 'https://aduanaspe.com/comercio-exterior',
     },
@@ -18,108 +18,117 @@ export const metadata: Metadata = {
     },
 };
 
+const quickTools = [
+    {
+        title: 'Calculadora de impuestos',
+        description: 'Estimación referencial de Ad Valorem, IGV e IPM para importaciones.',
+        status: 'Próximamente',
+    },
+    {
+        title: 'Buscador de partidas',
+        description: 'Apoyo inicial para ubicar la subpartida nacional correcta de tu producto.',
+        status: 'Próximamente',
+    },
+    {
+        title: 'Tracking de carga',
+        description: 'Consulta rápida del estado de un embarque o carga aérea.',
+        status: 'Próximamente',
+    },
+];
+
 export default function ComercioExteriorPage() {
     return (
         <>
             <Hero
-                badge="📚 Centro de Conocimiento"
-                title="Recursos de Comercio Exterior"
-                highlightedWord="Recursos"
-                subtitle="Todo lo que necesitas saber para importar y exportar en Perú. Guías prácticas, consejos de expertos y herramientas gratuitas."
+                badge="Comercio Exterior"
+                title="Recursos para importar y exportar con más criterio"
+                highlightedWord="más criterio"
+                subtitle="Guías prácticas, conceptos clave y herramientas para entender tu operación antes de tomar decisiones."
                 size="lg"
                 showStats={false}
-                showFloatingCards={true}
+                showFloatingCards={false}
                 centered={true}
-                image={undefined}
-                floatingCards={[
-                    { icon: '🌎', text: 'Importación', color: 'blue', position: { top: '10%', left: '0%' }, delay: '0s' },
-                    { icon: '🚢', text: 'Exportación', color: 'green', position: { top: '20%', right: '0%' }, delay: '1s' },
-                    { icon: '⚖️', text: 'Regulaciones', color: 'pink', position: { bottom: '20%', left: '2%' }, delay: '2s' },
-                    { icon: '📄', text: 'Documentos', color: 'yellow', position: { bottom: '15%', right: '2%' }, delay: '3s' },
-                ]}
                 footer={
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '📚', title: 'Guías', description: 'Paso a paso' },
-                            { icon: '⚖️', title: 'Normativa', description: 'Actualizada 2026' },
-                            { icon: '💡', title: 'Tips', description: 'De expertos' },
-                            { icon: '🛠️', title: 'Herramientas', description: 'Gratuitas' },
+                            { icon: '01', title: 'Guías prácticas', description: 'Paso a paso' },
+                            { icon: '02', title: 'Normativa base', description: 'Para entender tu operación' },
+                            { icon: '03', title: 'Consejos útiles', description: 'Antes de cotizar o importar' },
+                            { icon: '04', title: 'Herramientas', description: 'De apoyo comercial' },
                         ]}
                     />
                 }
             >
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col justify-center gap-4 sm:flex-row">
                     <Link href="/comercio-exterior/importacion">
                         <Button size="lg" className="w-full sm:w-auto">
-                            Empezar a Importar
+                            Ver guías de importación
                         </Button>
                     </Link>
                     <Link href="/comercio-exterior/exportacion">
                         <Button size="lg" variant="secondary" className="w-full sm:w-auto">
-                            Guías de Exportación
+                            Ver guías de exportación
                         </Button>
                     </Link>
                 </div>
             </Hero>
 
-
-
-            <section className="py-20 bg-slate-50">
+            <section className="bg-slate-50 py-20">
                 <Container>
-                    <div className="text-center mb-16">
+                    <div className="mb-16 text-center">
                         <span className="section-badge">Explora</span>
-                        <h2 className="text-3xl font-bold text-slate-900">Categorías de <span className="gradient-text">Recursos</span></h2>
-                        <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
-                            Navega por nuestras secciones especializadas para encontrar la información exacta que necesitas para tu operación.
+                        <h2 className="text-3xl font-bold text-slate-900">
+                            Categorías de <span className="gradient-text">recursos</span>
+                        </h2>
+                        <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+                            Navega por las áreas clave del comercio exterior para encontrar la información que necesitas.
                         </p>
                     </div>
 
                     <HubCards
                         items={comercioExteriorCategories}
                         basePath="/comercio-exterior"
-                        columns={2} // 2 columnas para que se vean más grandes e importantes
+                        columns={2}
                     />
                 </Container>
             </section>
 
-            {/* Sección de Herramientas Rápidas (Nuevo) */}
-            <section className="py-20 bg-white">
+            <section className="bg-white py-20">
                 <Container>
-                    <div className="text-center mb-14">
+                    <div className="mb-14 text-center">
                         <span className="section-badge">Utilidades</span>
-                        <h2 className="text-3xl font-bold text-slate-900">Herramientas <span className="gradient-text">Rápidas</span></h2>
+                        <h2 className="text-3xl font-bold text-slate-900">
+                            Herramientas <span className="gradient-text">rápidas</span>
+                        </h2>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="p-6 rounded-2xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 hover:shadow-lg transition-all group cursor-pointer">
-                            <span className="text-4xl mb-4 block group-hover:scale-110 transition-transform">🔢</span>
-                            <h3 className="text-xl font-bold text-slate-900">Calculadora de Impuestos</h3>
-                            <p className="mt-2 text-slate-600 text-sm">Estima los tributos aduaneros (Ad Valorem, IGV, IPM) de tu importación.</p>
-                            <span className="mt-4 inline-block text-blue-600 text-sm font-semibold group-hover:underline">Próximamente →</span>
-                        </div>
-                        <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-50 to-fuchsia-50 border border-purple-100 hover:shadow-lg transition-all group cursor-pointer">
-                            <span className="text-4xl mb-4 block group-hover:scale-110 transition-transform">🔍</span>
-                            <h3 className="text-xl font-bold text-slate-900">Buscador de Partidas</h3>
-                            <p className="mt-2 text-slate-600 text-sm">Encuentra la subpartida nacional correcta para tu producto.</p>
-                            <span className="mt-4 inline-block text-purple-600 text-sm font-semibold group-hover:underline">Próximamente →</span>
-                        </div>
-                        <div className="p-6 rounded-2xl bg-gradient-to-br from-green-50 to-emerald-50 border border-green-100 hover:shadow-lg transition-all group cursor-pointer">
-                            <span className="text-4xl mb-4 block group-hover:scale-110 transition-transform">📅</span>
-                            <h3 className="text-xl font-bold text-slate-900">Tracking de Carga</h3>
-                            <p className="mt-2 text-slate-600 text-sm">Rastrea el estado de tu contenedor o carga aérea en tiempo real.</p>
-                            <span className="mt-4 inline-block text-green-600 text-sm font-semibold group-hover:underline">Próximamente →</span>
-                        </div>
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                        {quickTools.map((tool, index) => (
+                            <div
+                                key={tool.title}
+                                className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                            >
+                                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-sm font-bold text-slate-700">
+                                    {`0${index + 1}`}
+                                </span>
+                                <h3 className="text-xl font-bold text-slate-900">{tool.title}</h3>
+                                <p className="mt-2 text-sm leading-6 text-slate-600">{tool.description}</p>
+                                <span className="mt-4 inline-block text-sm font-semibold text-slate-500">
+                                    {tool.status}
+                                </span>
+                            </div>
+                        ))}
                     </div>
                 </Container>
             </section>
 
             <CTASection
                 title="¿Necesitas ayuda personalizada?"
-                subtitle="La teoría es buena, pero la experiencia es mejor. Solicita un diagnóstico gratuito de tu operación."
+                subtitle="La teoría ayuda, pero revisar tu caso concreto acelera mucho más. Solicita un diagnóstico inicial de tu operación."
             >
                 <Link href={ROUTES.contacto}>
-                    <Button size="lg" variant="secondary" className="shadow-xl hover:shadow-2xl transition-all hover:-translate-y-1">
-                        Solicitar diagnóstico gratis
+                    <Button size="lg" variant="secondary">
+                        Solicitar diagnóstico
                     </Button>
                 </Link>
             </CTASection>

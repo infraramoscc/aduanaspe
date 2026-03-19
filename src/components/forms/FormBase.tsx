@@ -1,7 +1,7 @@
 'use client';
 
 import { type FormEvent, type ReactNode, useState } from 'react';
-import { Card, CardContent } from '@/components/ui';
+import { Button, Card, CardContent } from '@/components/ui';
 import { cn } from '@/lib/utils';
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
@@ -40,9 +40,9 @@ function FormBase({
         return (
             <Card className={cn('max-w-xl mx-auto', className)}>
                 <CardContent className="p-8 text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100">
                         <svg
-                            className="w-8 h-8 text-green-600"
+                            className="h-8 w-8 text-emerald-600"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -55,8 +55,8 @@ function FormBase({
                             />
                         </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">¡Enviado!</h3>
-                    <p className="text-gray-600">{successMessage}</p>
+                    <h3 className="mb-2 text-xl font-semibold text-slate-900">¡Enviado!</h3>
+                    <p className="text-slate-600">{successMessage}</p>
                 </CardContent>
             </Card>
         );
@@ -64,30 +64,26 @@ function FormBase({
 
     return (
         <Card className={cn('max-w-xl mx-auto', className)}>
-            <CardContent className="p-6">
-                <form onSubmit={handleSubmit} className="space-y-4">
+            <CardContent className="p-6 md:p-8">
+                <form onSubmit={handleSubmit} className="space-y-5">
                     {children}
 
                     {status === 'error' && (
-                        <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                        <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
                             {errorMessage}
                         </div>
                     )}
 
-                    <button
+                    <Button
                         type="submit"
                         disabled={status === 'loading'}
-                        className={cn(
-                            'w-full py-3 px-6 rounded-xl font-medium text-white transition-all duration-200',
-                            'bg-gradient-to-r from-violet-600 to-fuchsia-600 hover:from-violet-700 hover:to-fuchsia-700',
-                            'disabled:from-violet-400 disabled:to-fuchsia-400 disabled:cursor-not-allowed',
-                            'focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2',
-                            'shadow-md hover:shadow-lg hover:shadow-violet-500/25'
-                        )}
+                        variant="primary"
+                        size="lg"
+                        className="w-full"
                     >
                         {status === 'loading' ? (
                             <span className="inline-flex items-center gap-2">
-                                <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                                <svg className="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
                                     <circle
                                         className="opacity-25"
                                         cx="12"
@@ -105,9 +101,9 @@ function FormBase({
                                 Enviando...
                             </span>
                         ) : (
-                            'Enviar'
+                            'Enviar solicitud'
                         )}
-                    </button>
+                    </Button>
                 </form>
             </CardContent>
         </Card>

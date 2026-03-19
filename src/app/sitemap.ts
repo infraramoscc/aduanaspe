@@ -109,21 +109,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         console.error('[Sitemap] Error fetching blog posts:', error);
     }
 
-    // Páginas legales
-    const legalPages: MetadataRoute.Sitemap = [
-        {
-            url: `${BASE_URL}/privacidad/`,
-            lastModified: currentDate,
-            changeFrequency: 'yearly',
-            priority: 0.3,
-        },
-        {
-            url: `${BASE_URL}/terminos/`,
-            lastModified: currentDate,
-            changeFrequency: 'yearly',
-            priority: 0.3,
-        },
-    ];
-
-    return [...mainPages, ...pillarServices, ...supportServices, ...comercioPages, ...blogIndex, ...blogPosts, ...legalPages];
+    return [...mainPages, ...pillarServices, ...supportServices, ...comercioPages, ...blogIndex, ...blogPosts];
 }

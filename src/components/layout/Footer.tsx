@@ -1,7 +1,19 @@
-import Link from 'next/link';
 import { Container } from './Container';
-import { NAV_ITEMS } from '@/lib/routes';
-import { WhatsAppLink } from '@/components/tracking';
+import { ROUTES } from '@/lib/routes';
+import { services } from '@/content/services';
+import { WhatsAppLink, TrackedLink, GA4_EVENTS } from '@/components/tracking';
+
+const resourceLinks = [
+    { label: 'Blog', href: ROUTES.blog },
+    { label: 'Importación', href: ROUTES.comercioExterior.importacion },
+    { label: 'Documentos aduaneros', href: ROUTES.comercioExterior.documentosAduaneros },
+];
+
+const companyLinks = [
+    { label: 'Quiénes somos', href: ROUTES.quienesSomos },
+    { label: 'Contacto', href: ROUTES.contacto },
+    { label: 'Herramientas', href: ROUTES.tools, external: true },
+];
 
 function Footer() {
     const currentYear = new Date().getFullYear();
@@ -11,55 +23,75 @@ function Footer() {
             <Container>
                 <div className="py-16 grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand Column */}
-                    <div className="md:col-span-2">
-                        <Link href="/" className="flex items-center gap-2">
+                    <div>
+                        <TrackedLink
+                            href="/"
+                            eventName={GA4_EVENTS.NAV_CLICK}
+                            eventParams={{ location: 'footer', label: 'logo' }}
+                            className="flex items-center gap-2"
+                        >
                             <span className="text-xl font-bold gradient-text">◆</span>
                             <span className="text-2xl font-bold text-white">AduanasPE</span>
-                        </Link>
+                        </TrackedLink>
                         <p className="mt-4 text-slate-400 max-w-md">
-                            Soluciones integrales en comercio exterior, agenciamiento de aduanas y logística internacional para tu negocio.
+                            Agencia de aduanas y logística internacional para importadores que necesitan claridad, seguimiento y respuesta rápida.
                         </p>
-                        {/* Social Links */}
-                        <div className="mt-6 flex gap-4">
-                            <a
-                                href="#"
-                                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-purple-600 hover:text-white transition-all"
-                                aria-label="LinkedIn"
-                            >
-                                in
-                            </a>
-                            <a
-                                href="#"
-                                className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all"
-                                aria-label="Instagram"
-                            >
-                                📷
-                            </a>
-                        </div>
                     </div>
 
-                    {/* Quick Links */}
+                    {/* Services */}
                     <div>
                         <h3 className="text-white font-semibold mb-4">Servicios</h3>
                         <ul className="space-y-3">
-                            {NAV_ITEMS.map((item) => (
-                                <li key={item.href}>
-                                    <Link
-                                        href={item.href}
+                            {services.map((service) => (
+                                <li key={service.slug}>
+                                    <TrackedLink
+                                        href={`/servicios/${service.slug}`}
+                                        eventName={GA4_EVENTS.NAV_CLICK}
+                                        eventParams={{ location: 'footer', label: service.slug }}
                                         className="text-slate-400 hover:text-purple-400 transition-colors"
                                     >
-                                        {item.label}
-                                    </Link>
+                                        {service.title}
+                                    </TrackedLink>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
-                    {/* Contact Column */}
                     <div>
-                        <h3 className="text-white font-semibold mb-4">Contacto</h3>
+                        <h3 className="text-white font-semibold mb-4">Recursos</h3>
+                        <ul className="space-y-3">
+                            {resourceLinks.map((item) => (
+                                <li key={item.href}>
+                                    <TrackedLink
+                                        href={item.href}
+                                        eventName={GA4_EVENTS.NAV_CLICK}
+                                        eventParams={{ location: 'footer', label: item.label }}
+                                        className="text-slate-400 hover:text-purple-400 transition-colors"
+                                    >
+                                        {item.label}
+                                    </TrackedLink>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 className="text-white font-semibold mb-4">Empresa</h3>
                         <ul className="space-y-3 text-slate-400">
-                            <li>Lima, Perú</li>
+                            {companyLinks.map((item) => (
+                                <li key={item.href}>
+                                    <TrackedLink
+                                        href={item.href}
+                                        external={item.external}
+                                        eventName={GA4_EVENTS.NAV_CLICK}
+                                        eventParams={{ location: 'footer', label: item.label }}
+                                        className="hover:text-purple-400 transition-colors"
+                                    >
+                                        {item.label}
+                                    </TrackedLink>
+                                </li>
+                            ))}
+                            <li>Callao, Perú</li>
                             <li>
                                 <a
                                     href="mailto:info@aduanaspe.com"
@@ -83,7 +115,7 @@ function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="border-t border-slate-800 py-6 text-center text-sm text-slate-500">
-                    <p>© {currentYear} AduanasPE. Todos los derechos reservados.</p>
+                    <p>© {currentYear} AduanasPE. Comercio exterior con atención personalizada.</p>
                 </div>
             </Container>
         </footer>

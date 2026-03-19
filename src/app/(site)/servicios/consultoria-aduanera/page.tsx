@@ -2,15 +2,15 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { Container } from '@/components/layout';
-import { Button, Card, CardContent } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { PrecotizacionForm } from '@/components/forms';
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Consultoría Aduanera | Asesoría Experta en Comercio Exterior',
-    description: 'Consultoría aduanera especializada: clasificación arancelaria, tratados de libre comercio, regímenes aduaneros y optimización de costos. Ideal para empresas.',
+    title: 'Consultoría Aduanera | AduanasPE',
+    description: 'Asesoría aduanera para clasificación arancelaria, TLC, regímenes y decisiones operativas que ayuden a reducir riesgos y optimizar costos.',
     alternates: {
         canonical: 'https://aduanaspe.com/servicios/consultoria-aduanera',
     },
@@ -136,7 +136,7 @@ export default function ConsultoriaAduaneraPage() {
                 subtitle="Asesoría estratégica para optimizar tus operaciones. Clasificación arancelaria, TLCs, regímenes aduaneros y más."
                 size="lg"
                 showStats={false}
-                showFloatingCards={true}
+                showFloatingCards={false}
                 centered={true}
                 footer={
                     <TrustBar

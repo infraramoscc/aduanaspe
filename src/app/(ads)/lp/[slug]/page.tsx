@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { Hero, CTASection } from '@/components/sections';
+import { CTASection } from '@/components/sections';
 import { DiagnosticoForm, PrecotizacionForm, ContactoForm } from '@/components/forms';
 import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
@@ -53,57 +53,52 @@ export default async function LPPage({ params }: LPPageProps) {
 
     return (
         <>
-            {/* Hero sin navegación, enfocado en conversión */}
-            <div className="bg-gradient-to-br from-indigo-950 via-violet-800 to-fuchsia-700 text-white py-16 md:py-24 relative overflow-hidden">
+            <div className="relative overflow-hidden border-b border-slate-200 bg-[linear-gradient(135deg,#172033_0%,#22314a_100%)] py-16 text-white md:py-24">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_26%),radial-gradient(circle_at_left,rgba(15,159,110,0.12),transparent_22%)]" />
                 <Container>
-                    <div className="text-center max-w-3xl mx-auto">
-                        {/* Logo simple */}
-                        <Link href="/" className="inline-block mb-8">
+                    <div className="relative mx-auto max-w-3xl text-center">
+                        <Link href="/" className="mb-8 inline-block">
                             <span className="text-2xl font-bold text-white">AduanasPE</span>
                         </Link>
 
-                        <h1 className="text-3xl md:text-5xl font-bold leading-tight">
+                        <h1 className="text-3xl font-bold leading-tight md:text-5xl">
                             {lp.title}
                         </h1>
-                        <p className="mt-6 text-xl text-violet-100">
-                            {lp.subtitle}
-                        </p>
+                        <p className="mt-6 text-xl text-slate-200">{lp.subtitle}</p>
 
-                        <div className="mt-8 flex flex-wrap gap-4 justify-center">
+                        <div className="mt-8 flex flex-wrap justify-center gap-4">
                             <a href={lp.ctaLink}>
                                 <Button size="lg" variant="secondary">
                                     {lp.ctaLabel}
                                 </Button>
                             </a>
                             <WhatsAppLink messageKey="general" variant="button">
-                                WhatsApp
+                                Escribir por WhatsApp
                             </WhatsAppLink>
                         </div>
                     </div>
                 </Container>
             </div>
 
-            {/* Trust points rápidos */}
-            <div className="py-8 bg-gray-50 border-b border-gray-200">
+            <div className="border-b border-slate-200 bg-slate-50 py-8">
                 <Container>
                     <div className="flex flex-wrap justify-center gap-8 text-center">
                         <div>
-                            <span className="text-2xl font-bold text-violet-600">+15</span>
-                            <p className="text-sm text-gray-600">Años de experiencia</p>
+                            <span className="text-2xl font-bold text-slate-900">Atención directa</span>
+                            <p className="text-sm text-slate-600">Sin desvíos innecesarios</p>
                         </div>
                         <div>
-                            <span className="text-2xl font-bold text-fuchsia-600">+500</span>
-                            <p className="text-sm text-gray-600">Clientes satisfechos</p>
+                            <span className="text-2xl font-bold text-slate-900">Seguimiento claro</span>
+                            <p className="text-sm text-slate-600">Durante el proceso</p>
                         </div>
                         <div>
-                            <span className="text-2xl font-bold text-cyan-600">24h</span>
-                            <p className="text-sm text-gray-600">Respuesta garantizada</p>
+                            <span className="text-2xl font-bold text-slate-900">Respuesta rápida</span>
+                            <p className="text-sm text-slate-600">En horario de atención</p>
                         </div>
                     </div>
                 </Container>
             </div>
 
-            {/* Form Section */}
             {lp.showForm && lp.formType && (
                 <Container>
                     <div id="form">
@@ -112,10 +107,9 @@ export default async function LPPage({ params }: LPPageProps) {
                 </Container>
             )}
 
-            {/* Final CTA */}
             <CTASection
                 title="¿Prefieres que te llamemos?"
-                subtitle="Déjanos tu número y te contactamos en minutos."
+                subtitle="Déjanos tus datos o escríbenos por WhatsApp y revisamos tu caso."
             >
                 <WhatsAppLink messageKey="general" variant="button">
                     Contactar por WhatsApp
