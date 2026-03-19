@@ -4,7 +4,7 @@
  */
 
 // Número de WhatsApp Business (sin el +)
-export const WHATSAPP_NUMBER = '51963461006';
+export const WHATSAPP_NUMBER = '51944785974';
 
 // Configuración del router de WhatsApp (futuro: wa.aduanaspe.com)
 // Cambiar a true cuando el subdominio esté configurado
