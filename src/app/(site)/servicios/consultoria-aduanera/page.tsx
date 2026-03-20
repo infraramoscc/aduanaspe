@@ -103,6 +103,10 @@ const problemsSolved = [
 // FAQ
 const faqs = [
     {
+        question: '¿Cuándo necesito una consultoría pagada?',
+        answer: 'La consultoría pagada aplica cuando tu caso requiere análisis técnico, revisión documentaria profunda, estrategia tributaria o acompañamiento especializado. Si tu caso puede resolverse con asesoría sin costo, te orientamos directamente.',
+    },
+    {
         question: '¿Cuánto cuesta la consultoría?',
         answer: 'El costo depende del alcance del proyecto. Ofrecemos desde consultas puntuales hasta proyectos de optimización integral. Te presentamos una propuesta después de entender tu situación.',
     },
@@ -133,7 +137,7 @@ export default function ConsultoriaAduaneraPage() {
                 badge="✨ Consultoría Aduanera"
                 title="Asesoría Experta en Comercio Exterior"
                 highlightedWord="Experta"
-                subtitle="Asesoría estratégica para optimizar tus operaciones. Clasificación arancelaria, TLCs, regímenes aduaneros y más."
+                subtitle="Empieza con asesoría sin costo. Si tu caso es complejo o requiere análisis técnico, entonces te proponemos una consultoría pagada a medida."
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
@@ -144,14 +148,14 @@ export default function ConsultoriaAduaneraPage() {
                         points={[
                             { icon: '🎓', title: 'Especialistas', description: 'Certificados' },
                             { icon: '📊', title: 'Optimización', description: 'De costos' },
-                            { icon: '🌍', title: 'TLCs', description: 'Perú tiene 22' },
+                            { icon: '💬', title: 'Asesoría', description: 'Sin costo' },
                             { icon: '⚡', title: 'Respuesta', description: 'En 24 horas' },
                         ]}
                     />
                 }
             >
-                <WhatsAppLink route="consultoria-aduanera" serviceName="consultoria-aduanera" variant="button">
-                    Solicitar consulta
+                <WhatsAppLink route="consultoria-aduanera" messageKey="asesoria_gratis" variant="button">
+                    Resolver mis dudas primero
                 </WhatsAppLink>
                 <Link href="#servicios">
                     <Button variant="secondary" size="lg">
@@ -403,7 +407,7 @@ export default function ConsultoriaAduaneraPage() {
             <Container>
                 <div id="cotizacion" className="py-16">
                     <PrecotizacionForm
-                        title="Solicita una consulta"
+                        title="Solicita asesoría sin costo"
                         serviceName="consultoria-aduanera"
                     />
                 </div>
@@ -413,10 +417,10 @@ export default function ConsultoriaAduaneraPage() {
             <CTASection
                 title="¿Quieres optimizar tu operación?"
                 highlightedWord="optimizar"
-                subtitle="Escríbenos y cuéntanos tu situación. Te responderemos en menos de 24 horas."
+                subtitle="Escríbenos y cuéntanos tu situación. Primero resolvemos tus dudas sin costo y, si el caso lo exige, pasamos a una consultoría especializada."
             >
-                <WhatsAppLink route="consultoria-aduanera-cta" serviceName="consultoria-aduanera" variant="button">
-                    Agendar consulta
+                <WhatsAppLink route="consultoria-aduanera-cta" messageKey="asesoria_gratis" variant="button">
+                    Resolver mis dudas primero
                 </WhatsAppLink>
                 <Link href={ROUTES.contacto}>
                     <Button size="lg" variant="secondary">

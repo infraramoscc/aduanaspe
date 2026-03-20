@@ -49,7 +49,7 @@ const faqs = [
     { question: '¿Cuánto demoran en responder?', answer: 'Por WhatsApp respondemos en menos de 1 hora durante horario de atención. Por email, máximo 24 hours.' },
     { question: '¿Atienden los fines de semana?', answer: 'Sábados de 8am a 12pm para cotizaciones. Domingos no laboramos.' },
     { question: '¿Atienden a clientes de provincia?', answer: 'Sí, atendemos clientes de todo el Perú. Trabajamos 100% remoto.' },
-    { question: '¿Las cotizaciones tienen costo?', answer: 'No, las cotizaciones son completamente gratuitas y sin compromiso.' },
+    { question: '¿La asesoría tiene costo?', answer: 'No, la asesoría sin costo no tiene compromiso. Si luego tu caso requiere gestión especializada o un análisis más complejo, te presentamos la opción adecuada.' },
 ];
 
 export default function ContactoPage() {
@@ -58,9 +58,9 @@ export default function ContactoPage() {
             <FaqJsonLd faqs={faqs} />
             <Hero
                 badge="Contacto"
-                title="Hablemos de tu próxima importación"
-                highlightedWord="importación"
-                subtitle="Si necesitas una respuesta rápida, WhatsApp es el canal principal. Si prefieres que te llamemos, deja tus datos y te contactamos."
+                title="Resuelve tus dudas antes de pagar por un servicio"
+                highlightedWord="antes de pagar"
+                subtitle="Si no sabes cuánto cuesta importar, qué documentos necesitas o si tu caso requiere ayuda completa, escríbenos. Te brindamos asesoría sin costo y sin compromiso."
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
@@ -71,14 +71,14 @@ export default function ContactoPage() {
                         points={[
                             { title: 'WhatsApp prioritario', description: 'Respuesta en horario de atención' },
                             { title: 'Atención remota', description: 'Clientes de todo el Perú' },
-                            { title: 'Cotización sin costo', description: 'Sin compromiso' },
+                            { title: 'Asesoría sin costo', description: 'Sin compromiso' },
                             { title: 'Callao, Perú', description: 'Base operativa' },
                         ]}
                     />
                 }
             >
-                <WhatsAppLink route="contacto" variant="button">
-                    Escribir por WhatsApp
+                <WhatsAppLink route="contacto" messageKey="asesoria_gratis" variant="button">
+                    Resolver mis dudas por WhatsApp
                 </WhatsAppLink>
                 <TrackedLink
                     href="#contacto-form"
@@ -103,13 +103,13 @@ export default function ContactoPage() {
                                         WhatsApp (Recomendado)
                                     </h3>
                                     <p className="text-slate-600 mb-4">
-                                        La forma más rápida de contactarnos. Respuesta en menos de 1 hora durante horario de atención.
+                                        La forma más rápida de contactarnos si aún tienes dudas. Primero te orientamos gratis y luego vemos si necesitas un servicio adicional.
                                     </p>
                                     <p className="text-2xl font-bold text-slate-900 mb-4">
                                         {contactInfo.whatsapp}
                                     </p>
-                                    <WhatsAppLink route="contacto" variant="button">
-                                        Escribir por WhatsApp
+                                    <WhatsAppLink route="contacto" messageKey="asesoria_gratis" variant="button">
+                                        Resolver mis dudas por WhatsApp
                                     </WhatsAppLink>
                                 </div>
                             </div>
@@ -176,13 +176,26 @@ export default function ContactoPage() {
                                 ¿Prefieres que te <span className="gradient-text">contactemos</span>?
                             </h2>
                             <p className="text-slate-600">
-                                Déjanos tus datos y un ejecutivo se comunicará contigo a la brevedad.
+                                Déjanos tus datos y un ejecutivo se comunicará contigo para resolver tus dudas sin costo.
                             </p>
                         </div>
                         <ContactoForm title="" />
                     </div>
                 </div>
             </Container>
+
+            <section className="bg-white py-6">
+                <Container>
+                    <div className="rounded-[28px] border border-emerald-200 bg-[linear-gradient(135deg,rgba(15,159,110,0.08),rgba(47,179,216,0.08))] px-6 py-6 shadow-sm">
+                        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                            Antes de cotizar
+                        </p>
+                        <p className="mt-2 max-w-4xl text-lg leading-8 text-slate-700">
+                            No todas las consultas requieren una asesoría pagada. Si tu caso puede resolverse con asesoría sin costo, te lo diremos con claridad. Solo cotizamos aparte cuando se necesita análisis técnico o gestión especializada.
+                        </p>
+                    </div>
+                </Container>
+            </section>
 
             {/* FAQ rápido */}
             <section className="py-16 bg-slate-50">
@@ -204,8 +217,8 @@ export default function ContactoPage() {
                             <p className="text-slate-600">Sí, atendemos clientes de todo el Perú. Trabajamos 100% remoto.</p>
                         </div>
                         <div className="service-card service-orange p-6">
-                            <h4 className="font-semibold text-slate-900 mb-2">¿Las cotizaciones tienen costo?</h4>
-                            <p className="text-slate-600">No, las cotizaciones son completamente gratuitas y sin compromiso.</p>
+                            <h4 className="font-semibold text-slate-900 mb-2">¿La asesoría tiene costo?</h4>
+                            <p className="text-slate-600">No, la asesoría sin costo no tiene compromiso. Si tu caso requiere una gestión más amplia o especializada, te guiamos con la mejor opción.</p>
                         </div>
                     </div>
                 </Container>

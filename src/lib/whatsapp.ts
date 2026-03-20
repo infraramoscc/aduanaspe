@@ -74,6 +74,17 @@ Me interesa recibir información sobre sus servicios de comercio exterior.
 
 ¿Podrían ayudarme con una consulta?`,
 
+    asesoria_gratis: `Hola, vengo de su sitio web *AduanasPE*.
+
+Quiero solicitar *asesoría aduanera sin costo*.
+
+Me gustaría orientación sobre:
+• Requisitos
+• Costos aproximados
+• Documentos necesarios
+
+¿Podemos verlo por WhatsApp?`,
+
     // Mensaje para Campañas Ads
     ads_primera_importacion: `Hola, vengo de su anuncio. 🚀
 

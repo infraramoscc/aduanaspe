@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Hero, HubCards, TrustBar, CTASection, SplitFeature } from '@/components/sections';
+import { Container } from '@/components/layout';
 import { TrackedLink, WhatsAppLink, GA4_EVENTS } from '@/components/tracking';
 import { services } from '@/content/services';
 import { comercioExteriorCategories } from '@/content/comercioExterior';
@@ -67,9 +68,59 @@ export default function HomePage() {
                 >
                     Solicitar cotización
                 </TrackedLink>
+                <p className="basis-full text-sm text-slate-500 md:text-base">
+                    Asesoría sin costo por WhatsApp. Te ayudamos con requisitos, costos y documentación antes de proponerte cualquier servicio.
+                </p>
             </Hero>
 
             {/* Trust Bar integrated into Hero */}
+
+            <section className="border-b border-slate-200/70 bg-white">
+                <Container>
+                    <div className="grid gap-6 py-12 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+                        <div>
+                            <span className="section-badge">Sin Riesgo</span>
+                            <h2 className="text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+                                Primero resolvemos tus dudas. Luego te cotizamos solo si realmente lo necesitas.
+                            </h2>
+                            <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
+                                Muchas empresas no escriben por miedo al costo o porque no saben si su caso requiere un servicio completo. Por eso, ofrecemos asesoría sin costo: conversamos, revisamos tu operación y te orientamos sin compromiso.
+                            </p>
+                            <div className="mt-8 flex flex-wrap gap-4">
+                                <WhatsAppLink messageKey="asesoria_gratis" variant="button">
+                                    Quiero resolver mis dudas
+                                </WhatsAppLink>
+                                <TrackedLink
+                                    href={ROUTES.contacto}
+                                    eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
+                                    eventParams={{ location: 'home_risk_free' }}
+                                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:border-purple-400 hover:bg-purple-50 hover:text-purple-600"
+                                >
+                                    Prefiero que me contacten
+                                </TrackedLink>
+                            </div>
+                        </div>
+
+                        <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+                            <div className="service-card service-green p-5">
+                                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">01</p>
+                                <h3 className="mt-2 text-xl font-bold text-slate-900">Asesoría sin costo</h3>
+                                <p className="mt-2 text-sm leading-6 text-slate-600">Te escuchamos y resolvemos tus dudas sin cobrar por esa asesoría.</p>
+                            </div>
+                            <div className="service-card service-blue p-5">
+                                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-cyan-700">02</p>
+                                <h3 className="mt-2 text-xl font-bold text-slate-900">Sin compromiso</h3>
+                                <p className="mt-2 text-sm leading-6 text-slate-600">Si tu caso es simple, te orientamos. Si requiere más, recién te proponemos el servicio adecuado.</p>
+                            </div>
+                            <div className="service-card service-pink p-5">
+                                <p className="text-sm font-semibold uppercase tracking-[0.16em] text-fuchsia-700">03</p>
+                                <h3 className="mt-2 text-xl font-bold text-slate-900">Te damos claridad</h3>
+                                <p className="mt-2 text-sm leading-6 text-slate-600">Resolvemos dudas sobre requisitos, costos, documentos y próximos pasos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </Container>
+            </section>
 
             {/* Value Proposition */}
             <SplitFeature
@@ -135,12 +186,12 @@ export default function HomePage() {
 
             {/* CTA Section */}
             <CTASection
-                title="¿Listo para importar sin complicaciones?"
-                highlightedWord="sin complicaciones"
-                subtitle="Escríbenos hoy y recibe una cotización personalizada en menos de 1 hora. Sin compromiso."
+                title="¿Tienes dudas antes de importar?"
+                highlightedWord="dudas"
+                subtitle="Escríbenos hoy y recibe asesoría sin costo. Primero resolvemos tu caso; si hace falta, luego cotizamos el servicio correcto."
             >
-                <WhatsAppLink route="home-cta" variant="button">
-                    Contactar por WhatsApp
+                <WhatsAppLink route="home-cta" messageKey="asesoria_gratis" variant="button">
+                    Resolver mis dudas por WhatsApp
                 </WhatsAppLink>
                 <TrackedLink
                     href={ROUTES.contacto}

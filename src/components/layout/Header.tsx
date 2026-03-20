@@ -4,15 +4,33 @@ import { useState } from 'react';
 import { NAV_ITEMS } from '@/lib/routes';
 import { Container } from './Container';
 import { cn } from '@/lib/utils';
-import { TrackedLink, GA4_EVENTS } from '@/components/tracking';
+import { TrackedLink, WhatsAppLink, GA4_EVENTS } from '@/components/tracking';
 
 function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     return (
-        <header className="glass border-b border-slate-100 fixed top-0 left-0 right-0 z-50">
+        <header className="glass fixed top-0 left-0 right-0 z-50 border-b border-slate-100">
+            <div className="border-b border-white/10 bg-slate-950 text-white">
+                <Container>
+                    <div className="flex min-h-11 flex-col items-center justify-center gap-2 py-2 text-center md:flex-row md:justify-between md:text-left">
+                        <p className="text-sm font-medium text-slate-100">
+                            ¿Tienes dudas sobre comercio exterior? Recibe una asesoría sin costo.
+                            <span className="hidden text-slate-300 sm:inline"> Sin compromiso y antes de cotizar cualquier servicio.</span>
+                        </p>
+                        <WhatsAppLink
+                            messageKey="asesoria_gratis"
+                            variant="link"
+                            className="text-sm font-semibold text-emerald-300 hover:text-emerald-200"
+                        >
+                            Resolver mis dudas
+                        </WhatsAppLink>
+                    </div>
+                </Container>
+            </div>
+
             <Container>
-                <div className="flex items-center justify-between h-16">
+                <div className="flex h-16 items-center justify-between">
                     {/* Logo con gradiente */}
                     <TrackedLink
                         href="/"

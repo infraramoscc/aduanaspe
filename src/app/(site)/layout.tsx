@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Header, Footer, Breadcrumbs } from '@/components/layout';
+import { Header, Footer, Breadcrumbs, ContactNudge } from '@/components/layout';
 import { StructuredData } from '@/components/seo/StructuredData';
 
 export const metadata: Metadata = {
@@ -19,9 +19,12 @@ export default function SiteLayout({
         <>
             <StructuredData />
             <Header />
-            <Breadcrumbs />
-            <main className="min-h-screen">{children}</main>
+            <div className="pt-[120px] md:pt-[108px]">
+                <Breadcrumbs />
+                <main className="min-h-screen">{children}</main>
+            </div>
             <Footer />
+            <ContactNudge />
         </>
     );
 }
