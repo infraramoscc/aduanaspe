@@ -14,26 +14,42 @@ interface ServiceCTAProps {
     position?: 'inline' | 'sidebar' | 'footer';
 }
 
-const ctaConfigMap = {
+type CtaConfig = {
+    eyebrow: string;
+    title: string;
+    description: string;
+    buttonText: string;
+};
+
+const topicCtaOverrides: Partial<Record<BlogTopic, Partial<CtaConfig>>> = {
+    importacion: {
+        eyebrow: 'Antes de cerrar la compra',
+        title: 'Valida costos, tributos y requisitos antes de pagar al proveedor',
+        description: 'Si ya tienes producto, proveedor o una cotizacion preliminar, te orientamos con asesoria sin costo para revisar la viabilidad de la operacion y el siguiente paso mas conveniente.',
+        buttonText: 'Revisar servicio de importacion',
+    },
+};
+
+const ctaConfigMap: Record<'frio' | 'tibio' | 'caliente', CtaConfig> = {
     frio: {
         eyebrow: 'Siguiente paso recomendado',
-        title: 'Lleva este tema a una decisión mejor informada',
-        description: 'Revisa cómo encaja este servicio en tu operación y qué parte del proceso puede simplificar.',
+        title: 'Lleva este tema a una decision mejor informada',
+        description: 'Revisa como encaja este servicio en tu operacion y que parte del proceso puede simplificar.',
         buttonText: 'Ver servicio relacionado',
     },
     tibio: {
         eyebrow: 'Apoyo especializado',
-        title: 'Convierte la lectura en un plan de acción',
-        description: 'Conoce el servicio más cercano al problema que estás evaluando y cuándo conviene activarlo.',
+        title: 'Convierte la lectura en un plan de accion',
+        description: 'Conoce el servicio mas cercano al problema que estas evaluando y cuando conviene activarlo.',
         buttonText: 'Conocer servicio',
     },
     caliente: {
-        eyebrow: 'Atención prioritaria',
+        eyebrow: 'Atencion prioritaria',
         title: 'Si necesitas resolverlo ahora, habla con un especialista',
-        description: 'Este servicio suele ser el siguiente paso cuando ya hay una operación en curso o una urgencia que destrabar.',
+        description: 'Este servicio suele ser el siguiente paso cuando ya hay una operacion en curso o una urgencia que destrabar.',
         buttonText: 'Revisar servicio',
     },
-} as const;
+};
 
 export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
     const mapping = getTopicMapping(topic);
@@ -42,7 +58,12 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
     const primaryService = getServiceBySlug(mapping.primaryService);
     if (!primaryService) return null;
 
-    const ctaConfig = ctaConfigMap[mapping.temperature];
+    const ctaConfig = {
+        ...ctaConfigMap[mapping.temperature],
+        ...topicCtaOverrides[topic],
+    };
+
+    const showWhatsApp = mapping.temperature === 'caliente' || topic === 'importacion';
 
     return (
         <div
@@ -80,19 +101,20 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
                     {ctaConfig.buttonText}
                 </Link>
 
-                {mapping.temperature === 'caliente' ? (
+                {showWhatsApp ? (
                     <WhatsAppLink
+                        messageKey={topic === 'importacion' ? 'asesoria_gratis' : undefined}
                         serviceSlug={primaryService.slug}
                         className="justify-center px-6 py-3.5 text-sm"
                     >
-                        Hablar por WhatsApp
+                        {topic === 'importacion' ? 'Pedir asesoria sin costo' : 'Hablar por WhatsApp'}
                     </WhatsAppLink>
                 ) : (
                     <Link
                         href="/contacto"
                         className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 transition-[border-color,background-color,color] hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                     >
-                        Solicitar orientación
+                        Solicitar asesoria sin costo
                     </Link>
                 )}
             </div>
@@ -100,7 +122,7 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
             {mapping.secondaryServices.length > 0 && (
                 <div className="mt-6 border-t border-slate-200 pt-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                        También puede ayudarte
+                        Tambien puede ayudarte
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                         {mapping.secondaryServices.map((slug) => {

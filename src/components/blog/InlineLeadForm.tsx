@@ -21,7 +21,7 @@ type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 export function InlineLeadForm({
     service,
     topic,
-    headline = '¿Necesitas ayuda con este tema?',
+    headline = 'Quieres asesoria sin costo sobre este tema?',
 }: InlineLeadFormProps) {
     const [status, setStatus] = useState<FormStatus>('idle');
 
@@ -73,7 +73,7 @@ export function InlineLeadForm({
                     Gracias. Te contactaremos pronto
                 </h3>
                 <p className="mt-2 text-sm leading-7 text-slate-700">
-                    Un especialista revisará tu solicitud y se comunicará contigo dentro de las próximas 24 horas.
+                    Un especialista revisara tu solicitud y se comunicara contigo dentro de las proximas 24 horas para darte una orientacion inicial sin costo.
                 </p>
             </div>
         );
@@ -83,13 +83,13 @@ export function InlineLeadForm({
         <div className="my-8 rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] p-6 shadow-sm md:p-8">
             <div className="mb-6 text-center">
                 <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
-                    Consulta inicial
+                    Asesoria sin costo
                 </span>
                 <h3 className="mt-4 text-2xl font-bold text-slate-950">
                     {headline}
                 </h3>
                 <p className="mt-2 text-sm leading-7 text-slate-600">
-                    Déjanos tus datos y te responderemos con una orientación inicial según tu operación.
+                    Dejanos tus datos y te responderemos con una orientacion inicial sin costo y sin compromiso segun tu operacion.
                 </p>
             </div>
 
@@ -99,7 +99,7 @@ export function InlineLeadForm({
                     type="text"
                     name="name"
                     label="Nombre completo"
-                    placeholder="Ingresa tu nombre…"
+                    placeholder="Ingresa tu nombre..."
                     autoComplete="name"
                     required
                 />
@@ -107,8 +107,8 @@ export function InlineLeadForm({
                     id="blog-inline-email"
                     type="email"
                     name="email"
-                    label="Correo electrónico"
-                    placeholder="tu@email.com…"
+                    label="Correo electronico"
+                    placeholder="tu@email.com..."
                     autoComplete="email"
                     spellCheck={false}
                     required
@@ -117,13 +117,13 @@ export function InlineLeadForm({
                     id="blog-inline-phone"
                     type="tel"
                     name="phone"
-                    label="Teléfono"
-                    placeholder="Opcional…"
+                    label="Telefono"
+                    placeholder="Opcional..."
                     autoComplete="tel"
                 />
 
                 <Button type="submit" disabled={status === 'loading'} className="w-full" showArrow>
-                    {status === 'loading' ? 'Enviando...' : 'Solicitar orientación'}
+                    {status === 'loading' ? 'Enviando...' : 'Solicitar asesoria sin costo'}
                 </Button>
 
                 {status === 'error' && (
@@ -134,7 +134,7 @@ export function InlineLeadForm({
             </form>
 
             <p className="mt-4 text-center text-xs text-slate-500">
-                Tus datos se usan solo para responder tu consulta. No compartimos información con terceros.
+                Tus datos se usan solo para responder tu consulta. No compartimos informacion con terceros.
             </p>
         </div>
     );

@@ -7,10 +7,10 @@ import { Button } from '@/components/ui';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
-    title: 'Importar desde China a Perú | AduanasPE',
-    description: 'Guía para importar desde China a Perú con foco en proveedores, costos, tiempos, envío y trámites aduaneros.',
+    title: 'Asesoría para importar desde China a Perú | AduanasPE',
+    description: 'Te ayudamos a validar proveedor, costos, flete y trámites aduaneros antes de tu compra en China.',
     alternates: {
-        canonical: 'https://aduanaspe.com/comercio-exterior/importacion/importar-desde-china',
+        canonical: 'https://aduanaspe.com/comercio-exterior/importacion/importar-desde-china/',
     },
     robots: {
         index: true,

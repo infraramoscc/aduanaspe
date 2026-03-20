@@ -12,6 +12,7 @@ export interface TopicServiceMapping {
     secondaryServices: string[];
     temperature: LeadTemperature;
     ctaStrategy: 'soft' | 'medium' | 'aggressive';
+    showInlineForm?: boolean;
     keywords: string[];
 }
 
@@ -99,8 +100,9 @@ export const topicMappings: TopicServiceMapping[] = [
         label: 'Importación',
         primaryService: 'agenciamiento-aduanas',
         secondaryServices: ['agencia-de-carga-internacional', 'consultoria-aduanera'],
-        temperature: 'frio',
-        ctaStrategy: 'soft',
+        temperature: 'tibio',
+        ctaStrategy: 'medium',
+        showInlineForm: true,
         keywords: [
             'importar', 'importación', 'compra internacional',
             'china', 'usa', 'europa', 'proveedor extranjero',

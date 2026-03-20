@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Blog Post Page (Dynamic)
  * Renders individual blog posts from MDX or Sanity
  */
@@ -16,6 +16,7 @@ import {
     generateBlogBreadcrumbJsonLd,
 } from '@/lib/blog/seo';
 import { getTopicMapping } from '@/lib/blog/topics';
+import type { BlogTopic } from '@/lib/blog/types';
 import { Container } from '@/components/layout/Container';
 import { PostCard, ServiceCTA, RelatedServices, InlineLeadForm } from '@/components/blog';
 import { mdxComponents, slugifyHeading } from '@/components/blog/MdxComponents';
@@ -104,6 +105,15 @@ export default async function BlogPostPage({
     const articleJsonLd = generateBlogPostJsonLd(post);
     const breadcrumbJsonLd = generateBlogBreadcrumbJsonLd(post);
     const articleUrl = `https://aduanaspe.com/blog/${post.slug}/`;
+    const showInlineLeadForm = Boolean(topicMapping?.showInlineForm || topicMapping?.temperature === 'caliente');
+    const inlineLeadHeadlineByTopic: Partial<Record<BlogTopic, string>> = {
+        importacion: 'Cuentanos que producto quieres importar y te damos asesoria sin costo antes de pagar al proveedor',
+        consultoria: 'ExplÃ­canos tu caso y te ayudamos a destrabar la operaciÃ³n',
+        'clasificacion-arancelaria': 'EnvÃ­anos tu producto y revisamos la partida arancelaria contigo',
+        fiscalizacion: 'CuÃ©ntanos la observaciÃ³n o incidencia y te ayudamos a evaluar el siguiente paso',
+    };
+    const inlineLeadHeadline = inlineLeadHeadlineByTopic[post.topic];
+    const inlineLeadService = topicMapping?.primaryService ?? 'agenciamiento-aduanas';
 
     return (
         <>
@@ -176,11 +186,11 @@ export default async function BlogPostPage({
                                 </div>
                                 <div>
                                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                                        Contexto del artículo
+                                        Contexto del artÃ­culo
                                     </p>
                                     <p className="mt-2 text-sm leading-7 text-slate-600">
                                         Lectura orientada a <span className="font-semibold text-slate-900">{post.category}</span>
-                                        {post.tags.length > 0 && ` · ${post.tags.slice(0, 3).join(' · ')}`}
+                                        {post.tags.length > 0 && ` Â· ${post.tags.slice(0, 3).join(' Â· ')}`}
                                     </p>
                                 </div>
                             </div>
@@ -200,7 +210,7 @@ export default async function BlogPostPage({
                                     />
                                 ) : (
                                     <p className="text-sm italic text-slate-500">
-                                        El contenido de este artículo aún no está disponible en el render del blog.
+                                        El contenido de este artÃ­culo aÃºn no estÃ¡ disponible en el render del blog.
                                     </p>
                                 )}
                             </div>
@@ -259,11 +269,12 @@ export default async function BlogPostPage({
                                 <ServiceCTA topic={post.topic} position="inline" />
                             </div>
 
-                            {topicMapping?.temperature === 'caliente' && (
+                            {showInlineLeadForm && (
                                 <div className="max-w-[78ch]">
                                     <InlineLeadForm
-                                        service={topicMapping.primaryService}
+                                        service={inlineLeadService}
                                         topic={post.topic}
+                                        headline={inlineLeadHeadline}
                                     />
                                 </div>
                             )}
@@ -272,9 +283,9 @@ export default async function BlogPostPage({
                         <aside className="min-w-0">
                             <div className="sticky top-28 space-y-6">
                                 {articleHeadings.length > 1 && (
-                                    <nav className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm" aria-label="En este artículo">
+                                    <nav className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm" aria-label="En este artÃ­culo">
                                         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                                            En este artículo
+                                            En este artÃ­culo
                                         </p>
                                         <div className="mt-4 space-y-2">
                                             {articleHeadings.map((heading) => (
@@ -299,7 +310,7 @@ export default async function BlogPostPage({
                     {relatedPosts.length > 0 && (
                         <section className="mt-16 border-t border-slate-200 pt-12">
                             <h2 className="mb-8 text-2xl font-bold text-slate-950">
-                                Artículos relacionados
+                                ArtÃ­culos relacionados
                             </h2>
                             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                                 {relatedPosts.map((relatedPost) => (
@@ -314,7 +325,7 @@ export default async function BlogPostPage({
                             href="/blog"
                             className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-[gap,color] hover:gap-3 hover:text-slate-950 focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                         >
-                            ← Volver al blog
+                            â† Volver al blog
                         </Link>
                     </div>
                 </Container>
@@ -322,3 +333,4 @@ export default async function BlogPostPage({
         </>
     );
 }
+
