@@ -9,7 +9,7 @@ interface RecommendedReadingProps {
 
 export async function RecommendedReading({
     title = 'Lecturas recomendadas',
-    subtitle = 'Articulos que ayudan a tomar una mejor decision antes de avanzar con la operacion.',
+    subtitle = 'Artículos que ayudan a tomar una mejor decisión antes de avanzar con la operación.',
     slugs,
 }: RecommendedReadingProps) {
     const posts = (await Promise.all(slugs.map((slug) => getPostBySlug(slug))))
@@ -48,7 +48,7 @@ export async function RecommendedReading({
                                 {post!.description}
                             </p>
                             <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 transition-transform group-hover:translate-x-1">
-                                Leer articulo
+                                Leer artículo
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M5 12h14M12 5l7 7-7 7" />
                                 </svg>
