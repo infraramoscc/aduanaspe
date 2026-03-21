@@ -6,13 +6,15 @@ import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { PrecotizacionForm } from '@/components/forms';
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { ROUTES } from '@/lib/routes';
+import { generateBreadcrumbSchema, generateServiceSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
     title: 'Resguardo de Carga | AduanasPE',
     description: 'Servicio de resguardo para traslados de carga con modalidades en cabina o vehículo y coordinación junto con transporte o de forma independiente.',
     alternates: {
-        canonical: 'https://aduanaspe.com/servicios/resguardo-aduanero',
+        canonical: 'https://aduanaspe.com/servicios/resguardo-aduanero/',
     },
     robots: {
         index: true,
@@ -110,8 +112,21 @@ const faqs = [
 ];
 
 export default function ResguardoPage() {
+    const serviceJsonLd = generateServiceSchema({
+        name: 'Resguardo de Carga',
+        description: 'Servicio de resguardo para traslados de carga con modalidades en cabina o vehiculo y coordinacion junto con transporte o de forma independiente.',
+        url: 'https://aduanaspe.com/servicios/resguardo-aduanero/',
+    });
+    const breadcrumbJsonLd = generateBreadcrumbSchema([
+        { name: 'Inicio', url: 'https://aduanaspe.com/' },
+        { name: 'Servicios', url: 'https://aduanaspe.com/servicios/' },
+        { name: 'Resguardo Aduanero', url: 'https://aduanaspe.com/servicios/resguardo-aduanero/' },
+    ]);
+
     return (
         <>
+            <JsonLd json={serviceJsonLd} />
+            <JsonLd json={breadcrumbJsonLd} />
             <FaqJsonLd faqs={faqs} />
             {/* Hero */}
             <Hero

@@ -1,6 +1,5 @@
 /**
- * Schema.org Structured Data
- * For SEO and rich search results
+ * Schema.org structured data helpers
  */
 
 export interface LocalBusinessSchema {
@@ -26,30 +25,25 @@ export interface LocalBusinessSchema {
     sameAs?: string[];
 }
 
-// Datos de la empresa
 export const businessData: LocalBusinessSchema = {
     name: 'AduanasPE',
-    description: 'Agencia de Aduanas y Comercio Exterior en Perú. Servicios de agenciamiento aduanero, carga internacional, transporte y consultoría.',
+    description: 'Agencia de Aduanas y Comercio Exterior en Peru. Servicios de agenciamiento aduanero, carga internacional, transporte y consultoria.',
     url: 'https://aduanaspe.com',
     telephone: '+51963461006',
-    email: 'contacto@aduanaspe.com',
+    email: 'info@aduanaspe.com',
     address: {
-        streetAddress: '', // TODO: Agregar dirección real
-        addressLocality: 'Lima',
-        addressRegion: 'Lima',
+        streetAddress: '',
+        addressLocality: 'Callao',
+        addressRegion: 'Callao',
         postalCode: '',
         addressCountry: 'PE',
     },
     openingHours: ['Mo-Fr 09:00-18:00'],
     priceRange: '$$',
-    sameAs: [
-        // TODO: Agregar redes sociales
-        // 'https://www.facebook.com/aduanaspe',
-        // 'https://www.linkedin.com/company/aduanaspe',
-    ],
+    sameAs: [],
 };
 
-// Use Organization until physical address/social profiles are complete.
+// Keep Organization until exact street address, postal code, and social profiles are available.
 export function generateOrganizationSchema(): string {
     const schema = {
         '@context': 'https://schema.org',
@@ -60,14 +54,44 @@ export function generateOrganizationSchema(): string {
         url: businessData.url,
         telephone: businessData.telephone,
         email: businessData.email,
+        logo: `${businessData.url}/logo.png`,
         priceRange: businessData.priceRange,
+        areaServed: {
+            '@type': 'Country',
+            name: 'Peru',
+        },
+        contactPoint: [
+            {
+                '@type': 'ContactPoint',
+                telephone: businessData.telephone,
+                email: businessData.email,
+                contactType: 'customer support',
+                areaServed: 'PE',
+                availableLanguage: ['es'],
+            },
+        ],
         sameAs: businessData.sameAs,
     };
 
     return JSON.stringify(schema);
 }
 
-// Generar JSON-LD para servicio específico
+export function generateWebSiteSchema(): string {
+    const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': `${businessData.url}/#website`,
+        url: `${businessData.url}/`,
+        name: businessData.name,
+        inLanguage: 'es-PE',
+        publisher: {
+            '@id': businessData.url,
+        },
+    };
+
+    return JSON.stringify(schema);
+}
+
 export function generateServiceSchema(service: {
     name: string;
     description: string;
@@ -80,7 +104,7 @@ export function generateServiceSchema(service: {
         description: service.description,
         url: service.url,
         provider: {
-            '@type': 'LocalBusiness',
+            '@type': 'Organization',
             name: businessData.name,
             url: businessData.url,
         },
@@ -93,7 +117,6 @@ export function generateServiceSchema(service: {
     return JSON.stringify(schema);
 }
 
-// Generar JSON-LD para BreadcrumbList
 export function generateBreadcrumbSchema(
     items: { name: string; url: string }[]
 ): string {

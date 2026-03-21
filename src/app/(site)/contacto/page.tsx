@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: 'Contacto y Cotizaciones | AduanasPE',
     description: 'Escríbenos por WhatsApp o déjanos tus datos para cotizar servicios de aduanas, carga internacional y comercio exterior en Perú.',
     alternates: {
-        canonical: 'https://aduanaspe.com/contacto',
+        canonical: 'https://aduanaspe.com/contacto/',
     },
     robots: {
         index: true,

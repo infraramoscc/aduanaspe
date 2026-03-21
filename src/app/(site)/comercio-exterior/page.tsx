@@ -1,16 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Hero, HubCards, CTASection, TrustBar } from '@/components/sections';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Button } from '@/components/ui';
 import { comercioExteriorCategories } from '@/content/comercioExterior';
 import { ROUTES } from '@/lib/routes';
 import { Container } from '@/components/layout';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
     title: 'Recursos de Comercio Exterior | AduanasPE',
     description: 'Domina la importación y exportación en Perú con guías prácticas, herramientas y recursos sobre regímenes aduaneros y documentación.',
     alternates: {
-        canonical: 'https://aduanaspe.com/comercio-exterior',
+        canonical: 'https://aduanaspe.com/comercio-exterior/',
     },
     robots: {
         index: true,
@@ -37,8 +39,14 @@ const quickTools = [
 ];
 
 export default function ComercioExteriorPage() {
+    const breadcrumbJsonLd = generateBreadcrumbSchema([
+        { name: 'Inicio', url: 'https://aduanaspe.com/' },
+        { name: 'Comercio Exterior', url: 'https://aduanaspe.com/comercio-exterior/' },
+    ]);
+
     return (
         <>
+            <JsonLd json={breadcrumbJsonLd} />
             <Hero
                 badge="Comercio Exterior"
                 title="Recursos para importar y exportar con más criterio"

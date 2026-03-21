@@ -2,15 +2,17 @@ import type { Metadata } from 'next';
 import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { DiagnosticoForm } from '@/components/forms';
 import { Container } from '@/components/layout';
+import { JsonLd } from '@/components/seo/JsonLd';
 import Link from 'next/link';
 import { Button } from '@/components/ui';
 import { ROUTES } from '@/lib/routes';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
     title: 'Documentos Aduaneros para Importar y Exportar | AduanasPE',
     description: 'Guía de documentos aduaneros para comercio exterior: factura comercial, packing list, BL, DAM y certificados clave para tu operación.',
     alternates: {
-        canonical: 'https://aduanaspe.com/comercio-exterior/documentos-aduaneros',
+        canonical: 'https://aduanaspe.com/comercio-exterior/documentos-aduaneros/',
     },
     robots: {
         index: true,
@@ -50,8 +52,15 @@ const documentos = [
 ];
 
 export default function DocumentosAduanerosPage() {
+    const breadcrumbJsonLd = generateBreadcrumbSchema([
+        { name: 'Inicio', url: 'https://aduanaspe.com/' },
+        { name: 'Comercio Exterior', url: 'https://aduanaspe.com/comercio-exterior/' },
+        { name: 'Documentos Aduaneros', url: 'https://aduanaspe.com/comercio-exterior/documentos-aduaneros/' },
+    ]);
+
     return (
         <>
+            <JsonLd json={breadcrumbJsonLd} />
             <Hero
                 badge="Documentación"
                 title="Los documentos correctos evitan gran parte de los problemas"

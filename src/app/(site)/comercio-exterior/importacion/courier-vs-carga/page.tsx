@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Courier vs Carga Formal en Perú | AduanasPE',
     description: 'Comparativa entre courier y carga formal para importar a Perú según peso, valor, urgencia y tipo de mercancía.',
     alternates: {
-        canonical: 'https://aduanaspe.com/comercio-exterior/importacion/courier-vs-carga',
+        canonical: 'https://aduanaspe.com/comercio-exterior/importacion/courier-vs-carga/',
     },
     robots: {
         index: true,

@@ -1,18 +1,21 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { RecommendedReading } from '@/components/blog';
 import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { PrecotizacionForm } from '@/components/forms';
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { ROUTES } from '@/lib/routes';
+import { generateBreadcrumbSchema, generateServiceSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
     title: 'Agenciamiento de Aduanas en Perú | AduanasPE',
     description: 'Despacho aduanero para importación y exportación con revisión documentaria, clasificación arancelaria y seguimiento claro de la operación.',
     alternates: {
-        canonical: 'https://aduanaspe.com/servicios/agenciamiento-aduanas',
+        canonical: 'https://aduanaspe.com/servicios/agenciamiento-aduanas/',
     },
     robots: {
         index: true,
@@ -105,8 +108,21 @@ const faqs = [
 ];
 
 export default function AgenciamientoAduanasPage() {
+    const serviceJsonLd = generateServiceSchema({
+        name: 'Agenciamiento de Aduanas en Peru',
+        description: 'Despacho aduanero para importacion y exportacion con revision documentaria, clasificacion arancelaria y seguimiento claro de la operacion.',
+        url: 'https://aduanaspe.com/servicios/agenciamiento-aduanas/',
+    });
+    const breadcrumbJsonLd = generateBreadcrumbSchema([
+        { name: 'Inicio', url: 'https://aduanaspe.com/' },
+        { name: 'Servicios', url: 'https://aduanaspe.com/servicios/' },
+        { name: 'Agenciamiento de Aduanas', url: 'https://aduanaspe.com/servicios/agenciamiento-aduanas/' },
+    ]);
+
     return (
         <>
+            <JsonLd json={serviceJsonLd} />
+            <JsonLd json={breadcrumbJsonLd} />
             <FaqJsonLd faqs={faqs} />
             {/* Hero */}
             <Hero
@@ -400,6 +416,16 @@ export default function AgenciamientoAduanasPage() {
                     />
                 </div>
             </Container>
+
+            <RecommendedReading
+                title="Guias para llegar mejor preparado al despacho"
+                subtitle="Si todavia estas validando costos, permisos o el rol de cada operador, empieza por estas lecturas."
+                slugs={[
+                    'como-importar-por-primera-vez-en-peru',
+                    'agente-de-aduanas-vs-agencia-de-carga',
+                    'como-saber-si-tu-producto-necesita-permisos-para-importar-en-peru',
+                ]}
+            />
 
             {/* CTA Final */}
             <CTASection

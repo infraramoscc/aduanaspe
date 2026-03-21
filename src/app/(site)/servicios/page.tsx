@@ -1,16 +1,18 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Hero, HubCards, CTASection, TrustBar } from '@/components/sections';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { services } from '@/content/services';
 import { ROUTES } from '@/lib/routes';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
     title: 'Servicios de Aduanas y Logística | AduanasPE',
     description: 'Servicios de agenciamiento de aduanas, carga internacional, transporte, resguardo y consultoría para operaciones de comercio exterior en Perú.',
     alternates: {
-        canonical: 'https://aduanaspe.com/servicios',
+        canonical: 'https://aduanaspe.com/servicios/',
     },
     robots: {
         index: true,
@@ -19,8 +21,14 @@ export const metadata: Metadata = {
 };
 
 export default function ServiciosPage() {
+    const breadcrumbJsonLd = generateBreadcrumbSchema([
+        { name: 'Inicio', url: 'https://aduanaspe.com/' },
+        { name: 'Servicios', url: 'https://aduanaspe.com/servicios/' },
+    ]);
+
     return (
         <>
+            <JsonLd json={breadcrumbJsonLd} />
             <Hero
                 badge="Servicios"
                 title="Servicios para mover tu operación sin fricciones"

@@ -2,15 +2,17 @@ import type { Metadata } from 'next';
 import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { DiagnosticoForm } from '@/components/forms';
 import { Container } from '@/components/layout';
+import { JsonLd } from '@/components/seo/JsonLd';
 import Link from 'next/link';
 import { Button } from '@/components/ui';
 import { ROUTES } from '@/lib/routes';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
     title: 'Guía de Exportación desde Perú | AduanasPE',
     description: 'Aprende cómo exportar desde Perú, revisar beneficios tributarios y entender los pasos clave para abrir mercados internacionales.',
     alternates: {
-        canonical: 'https://aduanaspe.com/comercio-exterior/exportacion',
+        canonical: 'https://aduanaspe.com/comercio-exterior/exportacion/',
     },
     robots: {
         index: true,
@@ -19,8 +21,15 @@ export const metadata: Metadata = {
 };
 
 export default function ExportacionPage() {
+    const breadcrumbJsonLd = generateBreadcrumbSchema([
+        { name: 'Inicio', url: 'https://aduanaspe.com/' },
+        { name: 'Comercio Exterior', url: 'https://aduanaspe.com/comercio-exterior/' },
+        { name: 'Exportacion', url: 'https://aduanaspe.com/comercio-exterior/exportacion/' },
+    ]);
+
     return (
         <>
+            <JsonLd json={breadcrumbJsonLd} />
             <Hero
                 badge="Exportación"
                 title="Guía para exportar desde Perú con más claridad"

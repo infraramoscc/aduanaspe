@@ -110,7 +110,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/funcion-de-una-agencia-de-carga/:path*',
-        destination: '/blog/funcion-de-una-agencia-de-carga/',
+        destination: '/blog/que-es-una-agencia-de-carga-internacional/',
         permanent: true,
       },
       {
@@ -143,5 +143,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
-
 

@@ -6,13 +6,15 @@ import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { PrecotizacionForm } from '@/components/forms';
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { ROUTES } from '@/lib/routes';
+import { generateBreadcrumbSchema, generateServiceSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
     title: 'Transporte de Carga desde Puerto y Aeropuerto | AduanasPE',
     description: 'Transporte terrestre de carga desde puerto o aeropuerto hasta tu almacén, con monitoreo, coordinación operativa y cobertura en Lima y provincias.',
     alternates: {
-        canonical: 'https://aduanaspe.com/servicios/transporte-de-carga',
+        canonical: 'https://aduanaspe.com/servicios/transporte-de-carga/',
     },
     robots: {
         index: true,
@@ -109,8 +111,21 @@ const faqs = [
 ];
 
 export default function TransportePage() {
+    const serviceJsonLd = generateServiceSchema({
+        name: 'Transporte de Carga desde Puerto y Aeropuerto',
+        description: 'Transporte terrestre de carga desde puerto o aeropuerto hasta tu almacen, con monitoreo, coordinacion operativa y cobertura en Lima y provincias.',
+        url: 'https://aduanaspe.com/servicios/transporte-de-carga/',
+    });
+    const breadcrumbJsonLd = generateBreadcrumbSchema([
+        { name: 'Inicio', url: 'https://aduanaspe.com/' },
+        { name: 'Servicios', url: 'https://aduanaspe.com/servicios/' },
+        { name: 'Transporte de Carga', url: 'https://aduanaspe.com/servicios/transporte-de-carga/' },
+    ]);
+
     return (
         <>
+            <JsonLd json={serviceJsonLd} />
+            <JsonLd json={breadcrumbJsonLd} />
             <FaqJsonLd faqs={faqs} />
             {/* Hero */}
             <Hero

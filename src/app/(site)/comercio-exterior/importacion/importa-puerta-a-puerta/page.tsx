@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Importación Puerta a Puerta en Perú | AduanasPE',
     description: 'Conoce cómo funciona una importación puerta a puerta y cuándo conviene frente a otras modalidades de compra e internamiento.',
     alternates: {
-        canonical: 'https://aduanaspe.com/comercio-exterior/importacion/importa-puerta-a-puerta',
+        canonical: 'https://aduanaspe.com/comercio-exterior/importacion/importa-puerta-a-puerta/',
     },
     robots: {
         index: true,

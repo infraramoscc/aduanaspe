@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Quiénes Somos | AduanasPE',
     description: 'Conoce al equipo detrás de AduanasPE y nuestra forma de trabajar: atención cercana, seguimiento claro y foco operativo en comercio exterior.',
     alternates: {
-        canonical: 'https://aduanaspe.com/quienes-somos',
+        canonical: 'https://aduanaspe.com/quienes-somos/',
     },
     robots: {
         index: true,

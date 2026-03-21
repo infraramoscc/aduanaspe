@@ -1,18 +1,21 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { RecommendedReading } from '@/components/blog';
 import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { PrecotizacionForm } from '@/components/forms';
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { ROUTES } from '@/lib/routes';
+import { generateBreadcrumbSchema, generateServiceSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
     title: 'Agencia de Carga Internacional | AduanasPE',
     description: 'Coordinamos carga marítima y aérea desde origen con booking, costeo claro y seguimiento durante el tránsito internacional.',
     alternates: {
-        canonical: 'https://aduanaspe.com/servicios/agencia-de-carga-internacional',
+        canonical: 'https://aduanaspe.com/servicios/agencia-de-carga-internacional/',
     },
     robots: {
         index: true,
@@ -109,8 +112,21 @@ const faqs = [
 ];
 
 export default function AgenciamientoCargaPage() {
+    const serviceJsonLd = generateServiceSchema({
+        name: 'Agencia de Carga Internacional',
+        description: 'Coordinamos carga maritima y aerea desde origen con booking, costeo claro y seguimiento durante el transito internacional.',
+        url: 'https://aduanaspe.com/servicios/agencia-de-carga-internacional/',
+    });
+    const breadcrumbJsonLd = generateBreadcrumbSchema([
+        { name: 'Inicio', url: 'https://aduanaspe.com/' },
+        { name: 'Servicios', url: 'https://aduanaspe.com/servicios/' },
+        { name: 'Agencia de Carga Internacional', url: 'https://aduanaspe.com/servicios/agencia-de-carga-internacional/' },
+    ]);
+
     return (
         <>
+            <JsonLd json={serviceJsonLd} />
+            <JsonLd json={breadcrumbJsonLd} />
             <FaqJsonLd faqs={faqs} />
             {/* Hero */}
             <Hero
@@ -403,6 +419,16 @@ export default function AgenciamientoCargaPage() {
                     />
                 </div>
             </Container>
+
+            <RecommendedReading
+                title="Lecturas para definir mejor tu operacion antes del embarque"
+                subtitle="Estas guias ayudan a resolver modalidad, costos y coordinacion antes de cerrar con proveedor o forwarder."
+                slugs={[
+                    'como-importar-por-primera-vez-en-peru',
+                    'como-calcular-costos-de-importacion-en-peru',
+                    'agente-de-aduanas-vs-agencia-de-carga',
+                ]}
+            />
 
             {/* CTA Final */}
             <CTASection

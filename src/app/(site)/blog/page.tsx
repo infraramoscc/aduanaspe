@@ -49,7 +49,7 @@ export default async function BlogPage({
         getCategoriesWithCount(),
     ]);
 
-    const jsonLd = generateBlogIndexJsonLd(activeCategory);
+    const jsonLd = generateBlogIndexJsonLd(safePage, activeCategory);
     const featuredPost = safePage === 1 && !activeCategory ? posts[0] : null;
     const remainingPosts = featuredPost ? posts.slice(1) : posts;
 

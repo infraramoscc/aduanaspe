@@ -1,18 +1,21 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { RecommendedReading } from '@/components/blog';
 import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { PrecotizacionForm } from '@/components/forms';
 import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { ROUTES } from '@/lib/routes';
+import { generateBreadcrumbSchema, generateServiceSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
     title: 'Consultoría Aduanera | AduanasPE',
     description: 'Asesoría aduanera para clasificación arancelaria, TLC, regímenes y decisiones operativas que ayuden a reducir riesgos y optimizar costos.',
     alternates: {
-        canonical: 'https://aduanaspe.com/servicios/consultoria-aduanera',
+        canonical: 'https://aduanaspe.com/servicios/consultoria-aduanera/',
     },
     robots: {
         index: true,
@@ -129,8 +132,21 @@ const faqs = [
 ];
 
 export default function ConsultoriaAduaneraPage() {
+    const serviceJsonLd = generateServiceSchema({
+        name: 'Consultoria Aduanera',
+        description: 'Asesoria aduanera para clasificacion arancelaria, TLC, regimenes y decisiones operativas que ayuden a reducir riesgos y optimizar costos.',
+        url: 'https://aduanaspe.com/servicios/consultoria-aduanera/',
+    });
+    const breadcrumbJsonLd = generateBreadcrumbSchema([
+        { name: 'Inicio', url: 'https://aduanaspe.com/' },
+        { name: 'Servicios', url: 'https://aduanaspe.com/servicios/' },
+        { name: 'Consultoria Aduanera', url: 'https://aduanaspe.com/servicios/consultoria-aduanera/' },
+    ]);
+
     return (
         <>
+            <JsonLd json={serviceJsonLd} />
+            <JsonLd json={breadcrumbJsonLd} />
             <FaqJsonLd faqs={faqs} />
             {/* Hero */}
             <Hero
@@ -412,6 +428,16 @@ export default function ConsultoriaAduaneraPage() {
                     />
                 </div>
             </Container>
+
+            <RecommendedReading
+                title="Guias que suelen activar una revision tecnica previa"
+                subtitle="Si tu duda esta en viabilidad, requisitos o sobrecostos, estos contenidos te dan el contexto antes de una consultoria."
+                slugs={[
+                    'como-saber-si-tu-producto-necesita-permisos-para-importar-en-peru',
+                    'importar-electronicos-a-peru-requisitos-y-permisos',
+                    'como-calcular-costos-de-importacion-en-peru',
+                ]}
+            />
 
             {/* CTA Final */}
             <CTASection

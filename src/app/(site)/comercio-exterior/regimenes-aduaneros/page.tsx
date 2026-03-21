@@ -2,15 +2,17 @@ import type { Metadata } from 'next';
 import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
 import { DiagnosticoForm } from '@/components/forms';
 import { Container } from '@/components/layout';
+import { JsonLd } from '@/components/seo/JsonLd';
 import Link from 'next/link';
 import { Button } from '@/components/ui';
 import { ROUTES } from '@/lib/routes';
+import { generateBreadcrumbSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
     title: 'Regímenes Aduaneros en Perú | AduanasPE',
     description: 'Conoce los principales regímenes aduaneros en Perú y cómo elegir la destinación correcta según el objetivo de tu operación.',
     alternates: {
-        canonical: 'https://aduanaspe.com/comercio-exterior/regimenes-aduaneros',
+        canonical: 'https://aduanaspe.com/comercio-exterior/regimenes-aduaneros/',
     },
     robots: {
         index: true,
@@ -46,8 +48,15 @@ const regimenes = [
 ];
 
 export default function RegimenesAduanerosPage() {
+    const breadcrumbJsonLd = generateBreadcrumbSchema([
+        { name: 'Inicio', url: 'https://aduanaspe.com/' },
+        { name: 'Comercio Exterior', url: 'https://aduanaspe.com/comercio-exterior/' },
+        { name: 'Regimenes Aduaneros', url: 'https://aduanaspe.com/comercio-exterior/regimenes-aduaneros/' },
+    ]);
+
     return (
         <>
+            <JsonLd json={breadcrumbJsonLd} />
             <Hero
                 badge="Regímenes aduaneros"
                 title="Elige la destinación correcta antes de mover tu operación"

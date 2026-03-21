@@ -1,12 +1,11 @@
-import { generateOrganizationSchema } from '@/lib/schema';
+import { JsonLd } from './JsonLd';
+import { generateOrganizationSchema, generateWebSiteSchema } from '@/lib/schema';
 
 export function StructuredData() {
     return (
-        <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-                __html: generateOrganizationSchema(),
-            }}
-        />
+        <>
+            <JsonLd json={generateOrganizationSchema()} />
+            <JsonLd json={generateWebSiteSchema()} />
+        </>
     );
 }

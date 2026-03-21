@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: 'Agencia de Aduanas y Carga Internacional en Perú | AduanasPE',
     description: 'Agenciamiento de aduanas, carga internacional y asesoría en comercio exterior con atención personalizada, seguimiento claro y respuesta rápida.',
     alternates: {
-        canonical: 'https://aduanaspe.com',
+        canonical: 'https://aduanaspe.com/',
     },
     robots: {
         index: true,
