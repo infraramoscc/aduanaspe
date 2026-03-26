@@ -64,16 +64,17 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
     };
 
     const showWhatsApp = mapping.temperature === 'caliente' || topic === 'importacion';
+    const isSidebar = position === 'sidebar';
 
     return (
         <div
-            className={`rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] p-6 shadow-sm ${position === 'sidebar' ? 'lg:p-7' : 'my-8 md:p-8'}`}
+            className={`rounded-[28px] border border-slate-200 bg-white shadow-sm ${isSidebar ? 'p-6' : 'my-8 p-6 md:p-8'}`}
         >
-            <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
+            <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
                 {ctaConfig.eyebrow}
             </span>
 
-            <h3 className="mt-4 text-2xl font-bold leading-tight text-slate-950">
+            <h3 className={`mt-4 font-bold leading-tight text-slate-950 ${isSidebar ? 'text-xl' : 'text-2xl'}`}>
                 {ctaConfig.title}
             </h3>
 
@@ -81,7 +82,7 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
                 {ctaConfig.description}
             </p>
 
-            <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4">
+            <div className="mt-5 rounded-[22px] border border-slate-200 bg-slate-50 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                     Servicio vinculado
                 </p>
@@ -93,10 +94,10 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
                 </p>
             </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3">
                 <Link
                     href={`/servicios/${primaryService.slug}`}
-                    className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white transition-[transform,background-color,box-shadow] hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
+                    className="inline-flex items-center justify-center rounded-full bg-slate-950 px-6 py-3.5 text-sm font-semibold text-white transition-[transform,background-color] hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                 >
                     {ctaConfig.buttonText}
                 </Link>
@@ -105,7 +106,7 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
                     <WhatsAppLink
                         messageKey={topic === 'importacion' ? 'asesoria_gratis' : undefined}
                         serviceSlug={primaryService.slug}
-                        className="justify-center px-6 py-3.5 text-sm"
+                        className="justify-center border border-slate-300 bg-white px-6 py-3.5 text-sm text-slate-900 hover:border-slate-400 hover:bg-slate-50"
                     >
                         {topic === 'importacion' ? 'Pedir asesoria sin costo' : 'Hablar por WhatsApp'}
                     </WhatsAppLink>

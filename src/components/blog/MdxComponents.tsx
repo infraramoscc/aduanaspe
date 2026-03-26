@@ -207,6 +207,8 @@ function Img({ src, alt }: { src?: string; alt?: string }) {
             <img
                 src={src}
                 alt={alt ?? ''}
+                width="1600"
+                height="900"
                 className="w-full rounded-xl shadow-md"
                 loading="lazy"
             />

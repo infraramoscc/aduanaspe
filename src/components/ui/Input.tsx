@@ -8,6 +8,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
     ({ className, label, error, id, ...props }, ref) => {
+        const errorId = id ? `${id}-error` : undefined;
+
         return (
             <div className="w-full">
                 {label && (
@@ -21,6 +23,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 <input
                     ref={ref}
                     id={id}
+                    aria-invalid={error ? true : undefined}
+                    aria-describedby={error ? errorId : undefined}
                     className={cn(
                         'w-full rounded-2xl border bg-white px-4 py-3 text-slate-900 shadow-sm placeholder:text-slate-400',
                         'transition duration-200',
@@ -34,7 +38,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                     {...props}
                 />
                 {error && (
-                    <p className="mt-1 text-sm text-red-600">{error}</p>
+                    <p id={errorId} className="mt-1 text-sm text-red-600">
+                        {error}
+                    </p>
                 )}
             </div>
         );

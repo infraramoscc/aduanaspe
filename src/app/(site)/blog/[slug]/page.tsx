@@ -18,7 +18,14 @@ import {
 import { getTopicMapping } from '@/lib/blog/topics';
 import type { BlogTopic } from '@/lib/blog/types';
 import { Container } from '@/components/layout/Container';
-import { PostCard, ServiceCTA, RelatedServices, InlineLeadForm } from '@/components/blog';
+import {
+    ArticleShareActions,
+    ArticleToc,
+    InlineLeadForm,
+    PostCard,
+    RelatedServices,
+    ServiceCTA,
+} from '@/components/blog';
 import { mdxComponents, slugifyHeading } from '@/components/blog/MdxComponents';
 import { TopicIcon } from '@/components/blog/MdxEnhanced';
 import { formatDate } from '@/lib/utils';
@@ -108,12 +115,13 @@ export default async function BlogPostPage({
     const showInlineLeadForm = Boolean(topicMapping?.showInlineForm || topicMapping?.temperature === 'caliente');
     const inlineLeadHeadlineByTopic: Partial<Record<BlogTopic, string>> = {
         importacion: 'Cuentanos que producto quieres importar y te damos asesoria sin costo antes de pagar al proveedor',
-        consultoria: 'Explícanos tu caso y te ayudamos a destrabar la operación',
-        'clasificacion-arancelaria': 'Envíanos tu producto y revisamos la partida arancelaria contigo',
-        fiscalizacion: 'Cuéntanos la observación o incidencia y te ayudamos a evaluar el siguiente paso',
+        consultoria: 'Explicanos tu caso y te ayudamos a destrabar la operacion',
+        'clasificacion-arancelaria': 'Envianos tu producto y revisamos la partida arancelaria contigo',
+        fiscalizacion: 'Cuentanos la observacion o incidencia y te ayudamos a evaluar el siguiente paso',
     };
     const inlineLeadHeadline = inlineLeadHeadlineByTopic[post.topic];
     const inlineLeadService = topicMapping?.primaryService ?? 'agenciamiento-aduanas';
+    const contextTags = post.tags.slice(0, 3).join(' · ');
 
     return (
         <>
@@ -142,12 +150,12 @@ export default async function BlogPostPage({
                                 </Link>
                             </div>
 
-                            <header className="mb-10 max-w-[78ch] rounded-[32px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] p-7 shadow-sm md:p-9">
+                            <header className="mb-10 max-w-[74ch] border-b border-slate-200 pb-10">
                                 <div className="mb-5 flex flex-wrap items-center gap-3">
                                     <span className="section-badge text-xs">
                                         {post.category}
                                     </span>
-                                    <span className="rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-600">
+                                    <span className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
                                         {post.readingTime}
                                     </span>
                                 </div>
@@ -156,11 +164,11 @@ export default async function BlogPostPage({
                                     {post.title}
                                 </h1>
 
-                                <p className="mt-4 text-pretty text-lg leading-8 text-slate-600">
+                                <p className="mt-4 max-w-[62ch] text-pretty text-lg leading-8 text-slate-600">
                                     {post.description}
                                 </p>
 
-                                <div className="mt-8 grid gap-5 border-t border-slate-200 pt-6 md:grid-cols-[auto,1fr] md:items-center">
+                                <div className="mt-8 grid gap-5 md:grid-cols-[auto,1fr] md:items-center">
                                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-sm font-bold text-white">
                                         {post.author.charAt(0)}
                                     </div>
@@ -180,22 +188,11 @@ export default async function BlogPostPage({
                                 </div>
                             </header>
 
-                            <div className="mb-10 flex max-w-[78ch] items-start gap-4 rounded-[28px] border border-slate-200 bg-slate-50 p-5">
-                                <div className="shrink-0 rounded-2xl border border-slate-200 bg-white p-1">
-                                    <TopicIcon topic={post.topic} />
-                                </div>
-                                <div>
-                                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                                        Contexto del artículo
-                                    </p>
-                                    <p className="mt-2 text-sm leading-7 text-slate-600">
-                                        Lectura orientada a <span className="font-semibold text-slate-900">{post.category}</span>
-                                        {post.tags.length > 0 && ` · ${post.tags.slice(0, 3).join(' · ')}`}
-                                    </p>
-                                </div>
+                            <div className="mb-8 max-w-[74ch]">
+                                <ArticleToc headings={articleHeadings} compact />
                             </div>
 
-                            <div className="prose prose-lg max-w-[78ch]" id="post-content">
+                            <div className="prose prose-lg max-w-[74ch]" id="post-content">
                                 {rawContent ? (
                                     <MDXRemote
                                         source={rawContent}
@@ -210,13 +207,13 @@ export default async function BlogPostPage({
                                     />
                                 ) : (
                                     <p className="text-sm italic text-slate-500">
-                                        El contenido de este artículo aún no está disponible en el render del blog.
+                                        El contenido de este articulo aun no esta disponible en el render del blog.
                                     </p>
                                 )}
                             </div>
 
                             {post.tags.length > 0 && (
-                                <div className="mt-10 max-w-[78ch] border-t border-slate-200 pt-6">
+                                <div className="mt-10 max-w-[74ch] border-t border-slate-200 pt-6">
                                     <h3 className="mb-3 text-sm font-semibold text-slate-500">
                                         Etiquetas:
                                     </h3>
@@ -233,44 +230,16 @@ export default async function BlogPostPage({
                                 </div>
                             )}
 
-                            <div className="mt-8 max-w-[78ch] border-t border-slate-200 pt-6">
-                                <h3 className="mb-3 text-sm font-semibold text-slate-500">
-                                    Compartir:
-                                </h3>
-                                <div className="flex flex-wrap gap-3">
-                                    <a
-                                        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(articleUrl)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-[border-color,background-color,color] hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
-                                    >
-                                        LinkedIn
-                                    </a>
-                                    <a
-                                        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(articleUrl)}&text=${encodeURIComponent(post.title)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition-[border-color,background-color,color] hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
-                                    >
-                                        X
-                                    </a>
-                                    <a
-                                        href={`https://wa.me/?text=${encodeURIComponent(`${post.title} ${articleUrl}`)}`}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center justify-center rounded-full bg-[#0f9f6e] px-4 py-2 text-sm font-medium text-white transition-[background-color,box-shadow] hover:bg-[#0c8c61] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 focus-visible:ring-offset-4"
-                                    >
-                                        WhatsApp
-                                    </a>
-                                </div>
+                            <div className="mt-8 max-w-[74ch] border-t border-slate-200 pt-6">
+                                <ArticleShareActions articleUrl={articleUrl} title={post.title} />
                             </div>
 
-                            <div className="mt-10 max-w-[78ch]">
+                            <div className="mt-10 max-w-[74ch]">
                                 <ServiceCTA topic={post.topic} position="inline" />
                             </div>
 
                             {showInlineLeadForm && (
-                                <div className="max-w-[78ch]">
+                                <div className="max-w-[74ch]">
                                     <InlineLeadForm
                                         service={inlineLeadService}
                                         topic={post.topic}
@@ -282,24 +251,26 @@ export default async function BlogPostPage({
 
                         <aside className="min-w-0">
                             <div className="sticky top-28 space-y-6">
-                                {articleHeadings.length > 1 && (
-                                    <nav className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm" aria-label="En este artículo">
-                                        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                                            En este artículo
-                                        </p>
-                                        <div className="mt-4 space-y-2">
-                                            {articleHeadings.map((heading) => (
-                                                <a
-                                                    key={`${heading.id}-${heading.label}`}
-                                                    href={`#${heading.id}`}
-                                                    className={`block rounded-2xl px-3 py-2 text-sm transition-[background-color,color,padding] hover:bg-slate-100 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 ${heading.level === 3 ? 'pl-6 text-slate-500' : 'font-medium text-slate-700'}`}
-                                                >
-                                                    {heading.label}
-                                                </a>
-                                            ))}
+                                <div className="rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] p-5 shadow-sm">
+                                    <div className="flex items-start gap-4">
+                                        <div className="shrink-0 rounded-2xl border border-slate-200 bg-white p-1">
+                                            <TopicIcon topic={post.topic} />
                                         </div>
-                                    </nav>
-                                )}
+                                        <div className="min-w-0">
+                                            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                                                Contexto de lectura
+                                            </p>
+                                            <p className="mt-2 text-sm leading-6 text-slate-600">
+                                                Lectura orientada a <span className="font-semibold text-slate-900">{post.category}</span>
+                                                {contextTags ? ` · ${contextTags}` : ''}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="hidden lg:block">
+                                    <ArticleToc headings={articleHeadings} />
+                                </div>
 
                                 <RelatedServices topic={post.topic} />
                                 <ServiceCTA topic={post.topic} position="sidebar" />
@@ -310,7 +281,7 @@ export default async function BlogPostPage({
                     {relatedPosts.length > 0 && (
                         <section className="mt-16 border-t border-slate-200 pt-12">
                             <h2 className="mb-8 text-2xl font-bold text-slate-950">
-                                Artículos relacionados
+                                Articulos relacionados
                             </h2>
                             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
                                 {relatedPosts.map((relatedPost) => (
@@ -320,12 +291,18 @@ export default async function BlogPostPage({
                         </section>
                     )}
 
-                    <div className="mt-12 text-center">
+                    <div className="mt-12 flex flex-col items-center justify-center gap-3 border-t border-slate-200 pt-8 text-center sm:flex-row">
+                        <a
+                            href="#post-content"
+                            className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition-[border-color,background-color,color] hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
+                        >
+                            Volver arriba
+                        </a>
                         <Link
                             href="/blog"
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-700 transition-[gap,color] hover:gap-3 hover:text-slate-950 focus-visible:rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
+                            className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                         >
-                            ← Volver al blog
+                            Ver mas articulos
                         </Link>
                     </div>
                 </Container>

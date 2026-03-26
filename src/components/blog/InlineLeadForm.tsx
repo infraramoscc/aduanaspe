@@ -5,7 +5,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { trackEvent } from '@/components/tracking/ga4';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -18,22 +18,74 @@ interface InlineLeadFormProps {
 
 type FormStatus = 'idle' | 'loading' | 'success' | 'error';
 
+type FormErrors = {
+    name?: string;
+    email?: string;
+    phone?: string;
+};
+
+function isValidEmail(value: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
 export function InlineLeadForm({
     service,
     topic,
     headline = 'Quieres asesoria sin costo sobre este tema?',
 }: InlineLeadFormProps) {
     const [status, setStatus] = useState<FormStatus>('idle');
+    const [errors, setErrors] = useState<FormErrors>({});
+    const nameRef = useRef<HTMLInputElement>(null);
+    const emailRef = useRef<HTMLInputElement>(null);
+    const phoneRef = useRef<HTMLInputElement>(null);
+
+    function focusFirstError(nextErrors: FormErrors) {
+        if (nextErrors.name) {
+            nameRef.current?.focus();
+            return;
+        }
+
+        if (nextErrors.email) {
+            emailRef.current?.focus();
+            return;
+        }
+
+        if (nextErrors.phone) {
+            phoneRef.current?.focus();
+        }
+    }
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        setStatus('loading');
 
         const formData = new FormData(e.currentTarget);
+        const name = String(formData.get('name') ?? '').trim();
+        const email = String(formData.get('email') ?? '').trim();
+        const phone = String(formData.get('phone') ?? '').trim();
+
+        const nextErrors: FormErrors = {};
+
+        if (!name) nextErrors.name = 'Ingresa tu nombre completo.';
+        if (!email) {
+            nextErrors.email = 'Ingresa tu correo electronico.';
+        } else if (!isValidEmail(email)) {
+            nextErrors.email = 'Usa un correo valido.';
+        }
+
+        if (Object.keys(nextErrors).length > 0) {
+            setErrors(nextErrors);
+            setStatus('error');
+            focusFirstError(nextErrors);
+            return;
+        }
+
+        setErrors({});
+        setStatus('loading');
+
         const data = {
-            name: formData.get('name') as string,
-            email: formData.get('email') as string,
-            phone: (formData.get('phone') as string) || '',
+            name,
+            email,
+            phone,
             service,
             topic,
             source: 'blog_inline_form',
@@ -80,30 +132,33 @@ export function InlineLeadForm({
     }
 
     return (
-        <div className="my-8 rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] p-6 shadow-sm md:p-8">
-            <div className="mb-6 text-center">
-                <span className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
+        <div className="my-8 rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+            <div className="mb-6 max-w-2xl">
+                <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
                     Asesoria sin costo
                 </span>
                 <h3 className="mt-4 text-2xl font-bold text-slate-950">
                     {headline}
                 </h3>
                 <p className="mt-2 text-sm leading-7 text-slate-600">
-                    Dejanos tus datos y te responderemos con una orientacion inicial sin costo y sin compromiso segun tu operacion.
+                    Dejanos tus datos y te responderemos con una orientacion inicial sin costo y sin compromiso, segun tu operacion.
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="mx-auto max-w-xl space-y-4">
+            <form onSubmit={handleSubmit} className="mx-auto max-w-xl space-y-4" noValidate>
                 <Input
+                    ref={nameRef}
                     id="blog-inline-name"
                     type="text"
                     name="name"
                     label="Nombre completo"
                     placeholder="Ingresa tu nombre..."
                     autoComplete="name"
+                    error={errors.name}
                     required
                 />
                 <Input
+                    ref={emailRef}
                     id="blog-inline-email"
                     type="email"
                     name="email"
@@ -111,29 +166,32 @@ export function InlineLeadForm({
                     placeholder="tu@email.com..."
                     autoComplete="email"
                     spellCheck={false}
+                    error={errors.email}
                     required
                 />
                 <Input
+                    ref={phoneRef}
                     id="blog-inline-phone"
                     type="tel"
                     name="phone"
                     label="Telefono"
                     placeholder="Opcional..."
                     autoComplete="tel"
+                    error={errors.phone}
                 />
 
-                <Button type="submit" disabled={status === 'loading'} className="w-full" showArrow>
+                <Button type="submit" disabled={status === 'loading'} className="w-full md:w-auto" showArrow>
                     {status === 'loading' ? 'Enviando...' : 'Solicitar asesoria sin costo'}
                 </Button>
 
-                {status === 'error' && (
-                    <p className="text-center text-sm text-red-600" aria-live="polite">
-                        Hubo un error. Intenta nuevamente.
+                {status === 'error' && !errors.name && !errors.email && !errors.phone && (
+                    <p className="text-sm text-red-600" aria-live="polite">
+                        Hubo un error al enviar tus datos. Intenta nuevamente en unos minutos o escribenos por WhatsApp.
                     </p>
                 )}
             </form>
 
-            <p className="mt-4 text-center text-xs text-slate-500">
+            <p className="mt-4 text-xs text-slate-500">
                 Tus datos se usan solo para responder tu consulta. No compartimos informacion con terceros.
             </p>
         </div>

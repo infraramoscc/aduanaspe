@@ -106,6 +106,7 @@ export function TopicIcon({ topic }: { topic: string }) {
     const config = topicIcons[topic] || topicIcons.default;
     return (
         <div
+            aria-hidden="true"
             className="w-20 h-20 rounded-2xl flex items-center justify-center"
             style={{ background: config.bg, color: config.color }}
         >
