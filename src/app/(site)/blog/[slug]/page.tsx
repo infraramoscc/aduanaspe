@@ -134,10 +134,16 @@ export default async function BlogPostPage({
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
 
-            <article className="py-12 md:py-16">
+            <article className="bg-[linear-gradient(90deg,rgba(248,250,252,0.96)_0%,rgba(255,255,255,1)_18%,rgba(255,255,255,1)_82%,rgba(248,250,252,0.96)_100%)] py-12 md:py-16">
                 <Container size="xl">
-                    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14">
-                        <div className="min-w-0">
+                    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)_280px] lg:gap-10 xl:grid-cols-[240px_minmax(0,1fr)_320px] xl:gap-14">
+                        <aside className="hidden min-w-0 lg:block">
+                            <div className="sticky top-32">
+                                <ArticleToc headings={articleHeadings} />
+                            </div>
+                        </aside>
+
+                        <div className="min-w-0 lg:rounded-[36px] lg:bg-white lg:px-10 lg:py-8 lg:shadow-[0_24px_80px_-48px_rgba(15,23,42,0.28)] xl:px-12 xl:py-10">
                             <div className="mb-6">
                                 <Link
                                     href="/blog"
@@ -250,8 +256,8 @@ export default async function BlogPostPage({
                         </div>
 
                         <aside className="min-w-0">
-                            <div className="sticky top-28 space-y-6">
-                                <div className="rounded-[28px] border border-slate-200 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.98))] p-5 shadow-sm">
+                            <div className="space-y-6 lg:sticky lg:top-32">
+                                <div className="rounded-[28px] border border-slate-200/80 bg-[linear-gradient(180deg,rgba(248,250,252,0.96),rgba(241,245,249,0.96))] p-5 shadow-none backdrop-blur-[2px]">
                                     <div className="flex items-start gap-4">
                                         <div className="shrink-0 rounded-2xl border border-slate-200 bg-white p-1">
                                             <TopicIcon topic={post.topic} />
@@ -266,10 +272,6 @@ export default async function BlogPostPage({
                                             </p>
                                         </div>
                                     </div>
-                                </div>
-
-                                <div className="hidden lg:block">
-                                    <ArticleToc headings={articleHeadings} />
                                 </div>
 
                                 <RelatedServices topic={post.topic} />

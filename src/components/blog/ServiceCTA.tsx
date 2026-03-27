@@ -68,7 +68,7 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
 
     return (
         <div
-            className={`rounded-[28px] border border-slate-200 bg-white shadow-sm ${isSidebar ? 'p-6' : 'my-8 p-6 md:p-8'}`}
+            className={`rounded-[28px] border ${isSidebar ? 'border-slate-200/80 bg-slate-50/90 shadow-none backdrop-blur-[2px] p-6' : 'border-slate-200 bg-white shadow-sm my-8 p-6 md:p-8'}`}
         >
             <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
                 {ctaConfig.eyebrow}
@@ -82,7 +82,7 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
                 {ctaConfig.description}
             </p>
 
-            <div className="mt-5 rounded-[22px] border border-slate-200 bg-slate-50 p-4">
+            <div className={`mt-5 rounded-[22px] border p-4 ${isSidebar ? 'border-slate-200/80 bg-white' : 'border-slate-200 bg-slate-50'}`}>
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                     Servicio vinculado
                 </p>
@@ -133,7 +133,7 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
                                 <Link
                                     key={slug}
                                     href={`/servicios/${slug}`}
-                                    className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 transition-[border-color,background-color,color] hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2"
+                                    className={`rounded-full border px-3 py-2 text-xs font-medium text-slate-700 transition-[border-color,background-color,color] hover:border-slate-300 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-2 ${isSidebar ? 'border-slate-200/80 bg-white hover:bg-slate-50' : 'border-slate-200 bg-white hover:bg-slate-50'}`}
                                 >
                                     {service.title}
                                 </Link>

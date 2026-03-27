@@ -11,11 +11,12 @@ interface FaqGroupProps {
 
 export function FaqGroup({ faqs, json }: FaqGroupProps) {
     let parsedFaqs = faqs;
+
     if (json) {
         try {
             parsedFaqs = JSON.parse(json);
         } catch (e) {
-            console.error("Error parsing FaqGroup json prop:", e);
+            console.error('Error parsing FaqGroup json prop:', e);
         }
     }
 
@@ -24,24 +25,31 @@ export function FaqGroup({ faqs, json }: FaqGroupProps) {
     }
 
     return (
-        <div className="my-10">
-            {/* 1. SEO Schema Oculto */}
+        <section className="my-10" aria-label="Preguntas frecuentes">
             <FaqJsonLd faqs={parsedFaqs} />
 
-            {/* 2. Visual UI para las notas del Blog */}
-            <div className="bg-slate-50 rounded-2xl p-6 border border-slate-100 shadow-sm mt-8">
-                <h3 className="text-2xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                    <span className="text-purple-600">❓</span> Preguntas Frecuentes
-                </h3>
-                <div className="space-y-4">
+            <div className="mt-8 rounded-[26px] border border-slate-200 bg-slate-50/90 p-4 shadow-sm md:p-6">
+                <div className="space-y-3">
                     {parsedFaqs.map((faq, index) => (
-                        <div key={index} className="bg-white rounded-xl p-5 shadow-[0_2px_8px_rgb(0,0,0,0.04)] border border-slate-50">
-                            <h4 className="font-bold text-slate-800 text-lg mb-2">{faq.question}</h4>
-                            <p className="text-slate-600 leading-relaxed">{faq.answer}</p>
-                        </div>
+                        <details
+                            key={index}
+                            className="group rounded-[22px] border border-slate-200 bg-white px-5 py-4 shadow-[0_2px_8px_rgb(0,0,0,0.04)]"
+                        >
+                            <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-left">
+                                <span className="text-base font-bold leading-7 text-slate-900">
+                                    {faq.question}
+                                </span>
+                                <span className="mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 transition-transform group-open:rotate-45">
+                                    +
+                                </span>
+                            </summary>
+                            <p className="pt-4 text-sm leading-7 text-slate-600">
+                                {faq.answer}
+                            </p>
+                        </details>
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     );
 }

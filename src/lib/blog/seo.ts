@@ -8,9 +8,15 @@ import type { BlogPostCard } from './types';
 const SITE_NAME = 'AduanasPE';
 const SITE_URL = 'https://aduanaspe.com';
 
+function resolveImageUrl(image?: string) {
+    if (!image) return undefined;
+    return image.startsWith('http') ? image : `${SITE_URL}${image}`;
+}
+
 export function generateBlogPostMetadata(post: BlogPostCard): Metadata {
     const url = `${SITE_URL}/blog/${post.slug}/`;
     const title = `${post.title} | AduanasPE`;
+    const imageUrl = resolveImageUrl(post.image);
 
     return {
         title,
@@ -31,9 +37,9 @@ export function generateBlogPostMetadata(post: BlogPostCard): Metadata {
             authors: [post.author],
             section: post.category,
             tags: post.tags,
-            ...(post.image && {
+            ...(imageUrl && {
                 images: [{
-                    url: post.image,
+                    url: imageUrl,
                     width: 1200,
                     height: 630,
                     alt: post.imageAlt ?? post.title,
@@ -44,7 +50,7 @@ export function generateBlogPostMetadata(post: BlogPostCard): Metadata {
             card: 'summary_large_image',
             title,
             description: post.description,
-            ...(post.image && { images: [post.image] }),
+            ...(imageUrl && { images: [imageUrl] }),
         },
         robots: {
             index: true,
@@ -104,6 +110,8 @@ export function generateBlogIndexMetadata(page?: number, category?: string): Met
 }
 
 export function generateBlogPostJsonLd(post: BlogPostCard) {
+    const imageUrl = resolveImageUrl(post.image);
+
     return {
         '@context': 'https://schema.org',
         '@type': 'BlogPosting',
@@ -129,7 +137,7 @@ export function generateBlogPostJsonLd(post: BlogPostCard) {
             '@id': `${SITE_URL}/blog/${post.slug}/`,
         },
         url: `${SITE_URL}/blog/${post.slug}/`,
-        ...(post.image && { image: post.image }),
+        ...(imageUrl && { image: imageUrl }),
         articleSection: post.category,
         keywords: post.tags.join(', '),
         inLanguage: 'es',

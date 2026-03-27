@@ -1,0 +1,15 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#FAF4F2"/>
+  <rect x="48" y="48" width="1104" height="534" rx="28" fill="#FFFDFC" stroke="#E7D9D2" stroke-width="2"/>
+  <rect x="96" y="96" width="206" height="40" rx="20" fill="#F3DED6"/>
+  <text x="126" y="121" fill="#8A4F3C" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700">Importacion</text>
+  <text x="96" y="230" fill="#0F172A" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700">Ropa y textiles</text>
+  <text x="96" y="300" fill="#0F172A" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700">de China a Peru</text>
+  <text x="96" y="368" fill="#475569" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="28">Aranceles y antidumping</text>
+  <rect x="96" y="438" width="330" height="16" rx="8" fill="#0F172A" opacity="0.12"/>
+  <rect x="96" y="470" width="268" height="16" rx="8" fill="#0F172A" opacity="0.08"/>
+  <rect x="786" y="134" width="250" height="292" rx="28" fill="#F3DED6"/>
+  <path d="M862 178L912 146L962 178L1004 216V260H952V382H872V260H820V216L862 178Z" fill="#FFFDFC" stroke="#B87055" stroke-width="3"/>
+  <path d="M895 236H929" stroke="#B87055" stroke-width="10" stroke-linecap="round"/>
+  <path d="M912 219V253" stroke="#B87055" stroke-width="10" stroke-linecap="round"/>
+</svg>

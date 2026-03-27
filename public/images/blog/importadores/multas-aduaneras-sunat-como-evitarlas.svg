@@ -1,0 +1,15 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#FBF4F2"/>
+  <rect x="48" y="48" width="1104" height="534" rx="28" fill="#FFFDFC" stroke="#E8D8D4" stroke-width="2"/>
+  <rect x="96" y="96" width="192" height="40" rx="20" fill="#F7E0DA"/>
+  <text x="126" y="121" fill="#9A4330" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700">Riesgo</text>
+  <text x="96" y="230" fill="#0F172A" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700">Multas aduaneras</text>
+  <text x="96" y="300" fill="#0F172A" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700">SUNAT</text>
+  <text x="96" y="368" fill="#475569" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="28">Errores comunes y como evitarlas</text>
+  <rect x="96" y="438" width="342" height="16" rx="8" fill="#0F172A" opacity="0.12"/>
+  <rect x="96" y="470" width="286" height="16" rx="8" fill="#0F172A" opacity="0.08"/>
+  <circle cx="906" cy="286" r="126" fill="#F7E0DA"/>
+  <path d="M906 202L988 346H824L906 202Z" fill="#FFFDFC" stroke="#C25B44" stroke-width="4"/>
+  <path d="M906 248V296" stroke="#C25B44" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="906" cy="326" r="8" fill="#C25B44"/>
+</svg>

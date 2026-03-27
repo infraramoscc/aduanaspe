@@ -20,7 +20,7 @@ export function RelatedServices({ topic }: { topic: BlogTopic }) {
     if (allServices.length === 0) return null;
 
     return (
-        <aside className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+        <aside className="rounded-[28px] border border-slate-200/80 bg-slate-50/90 p-6 shadow-none backdrop-blur-[2px]">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 Servicios relacionados
             </p>
@@ -37,8 +37,8 @@ export function RelatedServices({ topic }: { topic: BlogTopic }) {
                         key={service!.slug}
                         href={`/servicios/${service!.slug}`}
                         className={`block rounded-[22px] border p-4 transition-[transform,box-shadow,border-color,background-color,color] duration-200 hover:-translate-y-0.5 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4 ${idx === 0
-                            ? 'border-slate-300 bg-slate-50'
-                            : 'border-slate-200 bg-white hover:border-slate-300'
+                            ? 'border-slate-300 bg-white'
+                            : 'border-slate-200/80 bg-slate-50 hover:border-slate-300 hover:bg-white'
                             }`}
                     >
                         <div className="flex items-start gap-3">

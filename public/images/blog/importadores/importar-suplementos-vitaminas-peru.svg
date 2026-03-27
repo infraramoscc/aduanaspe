@@ -1,0 +1,16 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#F3F8F1"/>
+  <rect x="48" y="48" width="1104" height="534" rx="28" fill="#FCFFFB" stroke="#D5E4D0" stroke-width="2"/>
+  <rect x="96" y="96" width="214" height="40" rx="20" fill="#DDEED7"/>
+  <text x="126" y="121" fill="#2F6A35" font-family="Georgia, 'Times New Roman', serif" font-size="20" font-weight="700">Requisitos</text>
+  <text x="96" y="230" fill="#0F172A" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700">Importar suplementos</text>
+  <text x="96" y="300" fill="#0F172A" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700">y vitaminas a Peru</text>
+  <text x="96" y="368" fill="#475569" font-family="'Trebuchet MS', Verdana, sans-serif" font-size="28">DIGEMID, DIGESA y riesgos</text>
+  <rect x="96" y="438" width="340" height="16" rx="8" fill="#0F172A" opacity="0.12"/>
+  <rect x="96" y="470" width="252" height="16" rx="8" fill="#0F172A" opacity="0.08"/>
+  <rect x="784" y="134" width="244" height="292" rx="30" fill="#DDEED7"/>
+  <rect x="850" y="176" width="108" height="182" rx="24" fill="#FCFFFB" stroke="#75A676" stroke-width="3"/>
+  <rect x="878" y="142" width="52" height="48" rx="16" fill="#FCFFFB" stroke="#75A676" stroke-width="3"/>
+  <path d="M904 218V314" stroke="#75A676" stroke-width="12" stroke-linecap="round"/>
+  <path d="M856 266H952" stroke="#75A676" stroke-width="12" stroke-linecap="round"/>
+</svg>

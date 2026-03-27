@@ -9,7 +9,7 @@ import { BLOG_CATEGORIES, type BlogCategory } from '@/lib/blog/types';
 import { getPaginatedPosts, getCategoriesWithCount } from '@/lib/blog';
 import { generateBlogIndexMetadata, generateBlogIndexJsonLd } from '@/lib/blog/seo';
 import { Container } from '@/components/layout/Container';
-import { BlogFilterBar, PostCard } from '@/components/blog';
+import { BlogFilterBar, BlogSearch } from '@/components/blog';
 
 function getCategoryFromParams(value?: string): BlogCategory | undefined {
     if (!value) return undefined;
@@ -50,8 +50,6 @@ export default async function BlogPage({
     ]);
 
     const jsonLd = generateBlogIndexJsonLd(safePage, activeCategory);
-    const featuredPost = safePage === 1 && !activeCategory ? posts[0] : null;
-    const remainingPosts = featuredPost ? posts.slice(1) : posts;
     const visibleCount = posts.length;
 
     return (
@@ -127,47 +125,8 @@ export default async function BlogPage({
 
             <section className="pb-16">
                 <Container>
-                    <div className="mb-8 flex flex-col gap-4 border-b border-slate-200 pb-6 md:flex-row md:items-end md:justify-between">
-                        <div>
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                                {activeCategory ? 'Categoria activa' : 'Vista general'}
-                            </p>
-                            <h2 className="mt-2 text-2xl font-bold text-slate-950">
-                                {activeCategory ?? 'Todos los articulos'}
-                            </h2>
-                            <p className="mt-2 text-sm leading-7 text-slate-600">
-                                {activeCategory
-                                    ? `Mostrando ${visibleCount} articulos en esta categoria.`
-                                    : `Mostrando ${visibleCount} articulos para explorar desde el blog.`}
-                            </p>
-                        </div>
-
-                        {activeCategory && (
-                            <Link
-                                href="/blog"
-                                className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition-[border-color,background-color,color] hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
-                            >
-                                Volver al listado completo
-                            </Link>
-                        )}
-                    </div>
-
                     {posts.length > 0 ? (
-                        <>
-                            {featuredPost && (
-                                <div className="mb-8">
-                                    <PostCard post={featuredPost} featured />
-                                </div>
-                            )}
-
-                            {remainingPosts.length > 0 && (
-                                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
-                                    {remainingPosts.map((post) => (
-                                        <PostCard key={post.slug} post={post} />
-                                    ))}
-                                </div>
-                            )}
-                        </>
+                        <BlogSearch posts={posts} activeCategory={activeCategory} />
                     ) : (
                         <div className="rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-16 text-center">
                             <h2 className="text-2xl font-bold text-slate-900">
