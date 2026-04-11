@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { WhatsAppLink } from '@/components/tracking';
+import { CONTACT_NUDGE_DELAY_MS } from './contactNudgeRules';
 
 const STORAGE_KEY = 'aduanaspe-contact-nudge-dismissed';
 
@@ -16,7 +17,7 @@ function ContactNudge() {
 
         const timer = window.setTimeout(() => {
             setIsVisible(true);
-        }, 1800);
+        }, CONTACT_NUDGE_DELAY_MS);
 
         return () => window.clearTimeout(timer);
     }, []);
