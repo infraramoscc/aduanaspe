@@ -24,17 +24,17 @@ const quickTools = [
     {
         title: 'Calculadora de impuestos',
         description: 'Estimación referencial de Ad Valorem, IGV e IPM para importaciones.',
-        status: 'Próximamente',
+        status: 'Proximamente',
     },
     {
         title: 'Buscador de partidas',
         description: 'Apoyo inicial para ubicar la subpartida nacional correcta de tu producto.',
-        status: 'Próximamente',
+        status: 'Proximamente',
     },
     {
         title: 'Tracking de carga',
         description: 'Consulta rápida del estado de un embarque o carga aérea.',
-        status: 'Próximamente',
+        status: 'Proximamente',
     },
 ];
 
@@ -109,6 +109,9 @@ export default function ComercioExteriorPage() {
                         <h2 className="text-3xl font-bold text-slate-900">
                             Herramientas <span className="gradient-text">rápidas</span>
                         </h2>
+                        <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-600">
+                            El nuevo centro de herramientas reunirá calculadoras, cotizadores y validadores para consultas operativas frecuentes.
+                        </p>
                     </div>
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
                         {quickTools.map((tool, index) => (

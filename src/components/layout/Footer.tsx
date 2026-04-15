@@ -5,14 +5,13 @@ import { WhatsAppLink, TrackedLink, GA4_EVENTS } from '@/components/tracking';
 
 const resourceLinks = [
     { label: 'Blog', href: ROUTES.blog },
-    { label: 'Importación', href: ROUTES.comercioExterior.importacion },
+    { label: 'Importacion', href: ROUTES.comercioExterior.importacion },
     { label: 'Documentos aduaneros', href: ROUTES.comercioExterior.documentosAduaneros },
 ];
 
-const companyLinks = [
-    { label: 'Quiénes somos', href: ROUTES.quienesSomos },
+const companyLinks: Array<{ label: string; href: string; external?: boolean }> = [
+    { label: 'Quienes somos', href: ROUTES.quienesSomos },
     { label: 'Contacto', href: ROUTES.contacto },
-    { label: 'Herramientas', href: ROUTES.tools, external: true },
 ];
 
 function Footer() {
@@ -21,8 +20,7 @@ function Footer() {
     return (
         <footer className="bg-slate-900 text-slate-300">
             <Container>
-                <div className="py-16 grid grid-cols-1 md:grid-cols-4 gap-8">
-                    {/* Brand Column */}
+                <div className="grid grid-cols-1 gap-8 py-16 md:grid-cols-4">
                     <div>
                         <TrackedLink
                             href="/"
@@ -33,14 +31,13 @@ function Footer() {
                             <span className="text-xl font-bold gradient-text">◆</span>
                             <span className="text-2xl font-bold text-white">AduanasPE</span>
                         </TrackedLink>
-                        <p className="mt-4 text-slate-400 max-w-md">
-                            Agencia de aduanas y logística internacional para importadores que necesitan claridad, seguimiento y respuesta rápida.
+                        <p className="mt-4 max-w-md text-slate-400">
+                            Agencia de aduanas y logistica internacional para importadores que necesitan claridad, seguimiento y respuesta rapida.
                         </p>
                     </div>
 
-                    {/* Services */}
                     <div>
-                        <h3 className="text-white font-semibold mb-4">Servicios</h3>
+                        <h3 className="mb-4 font-semibold text-white">Servicios</h3>
                         <ul className="space-y-3">
                             {services.map((service) => (
                                 <li key={service.slug}>
@@ -48,7 +45,7 @@ function Footer() {
                                         href={`/servicios/${service.slug}`}
                                         eventName={GA4_EVENTS.NAV_CLICK}
                                         eventParams={{ location: 'footer', label: service.slug }}
-                                        className="text-slate-400 hover:text-purple-400 transition-colors"
+                                        className="text-slate-400 transition-colors hover:text-purple-400"
                                     >
                                         {service.title}
                                     </TrackedLink>
@@ -58,7 +55,7 @@ function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-white font-semibold mb-4">Recursos</h3>
+                        <h3 className="mb-4 font-semibold text-white">Recursos</h3>
                         <ul className="space-y-3">
                             {resourceLinks.map((item) => (
                                 <li key={item.href}>
@@ -66,7 +63,7 @@ function Footer() {
                                         href={item.href}
                                         eventName={GA4_EVENTS.NAV_CLICK}
                                         eventParams={{ location: 'footer', label: item.label }}
-                                        className="text-slate-400 hover:text-purple-400 transition-colors"
+                                        className="text-slate-400 transition-colors hover:text-purple-400"
                                     >
                                         {item.label}
                                     </TrackedLink>
@@ -76,7 +73,7 @@ function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-white font-semibold mb-4">Empresa</h3>
+                        <h3 className="mb-4 font-semibold text-white">Empresa</h3>
                         <ul className="space-y-3 text-slate-400">
                             {companyLinks.map((item) => (
                                 <li key={item.href}>
@@ -85,18 +82,15 @@ function Footer() {
                                         external={item.external}
                                         eventName={GA4_EVENTS.NAV_CLICK}
                                         eventParams={{ location: 'footer', label: item.label }}
-                                        className="hover:text-purple-400 transition-colors"
+                                        className="transition-colors hover:text-purple-400"
                                     >
                                         {item.label}
                                     </TrackedLink>
                                 </li>
                             ))}
-                            <li>Callao, Perú</li>
+                            <li>Callao, Peru</li>
                             <li>
-                                <a
-                                    href="mailto:info@aduanaspe.com"
-                                    className="hover:text-purple-400 transition-colors"
-                                >
+                                <a href="mailto:info@aduanaspe.com" className="transition-colors hover:text-purple-400">
                                     info@aduanaspe.com
                                 </a>
                             </li>
@@ -113,9 +107,8 @@ function Footer() {
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
                 <div className="border-t border-slate-800 py-6 text-center text-sm text-slate-500">
-                    <p>© {currentYear} AduanasPE. Comercio exterior con atención personalizada.</p>
+                    <p>© {currentYear} AduanasPE. Comercio exterior con atencion personalizada.</p>
                 </div>
             </Container>
         </footer>

@@ -27,7 +27,6 @@ import {
     ServiceCTA,
 } from '@/components/blog';
 import { mdxComponents, slugifyHeading } from '@/components/blog/MdxComponents';
-import { TopicIcon } from '@/components/blog/MdxEnhanced';
 import { formatDate } from '@/lib/utils';
 
 interface ArticleHeading {
@@ -121,7 +120,6 @@ export default async function BlogPostPage({
     };
     const inlineLeadHeadline = inlineLeadHeadlineByTopic[post.topic];
     const inlineLeadService = topicMapping?.primaryService ?? 'agenciamiento-aduanas';
-    const contextTags = post.tags.slice(0, 3).join(' · ');
 
     return (
         <>
@@ -136,7 +134,7 @@ export default async function BlogPostPage({
 
             <article className="bg-[linear-gradient(90deg,rgba(248,250,252,0.96)_0%,rgba(255,255,255,1)_18%,rgba(255,255,255,1)_82%,rgba(248,250,252,0.96)_100%)] py-12 md:py-16">
                 <Container size="xl">
-                    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_minmax(0,1fr)_280px] lg:gap-10 xl:grid-cols-[240px_minmax(0,1fr)_320px] xl:gap-14">
+                    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[220px_minmax(0,1fr)] xl:gap-12">
                         <aside className="hidden min-w-0 lg:block">
                             <div className="sticky top-32">
                                 <ArticleToc headings={articleHeadings} />
@@ -156,7 +154,7 @@ export default async function BlogPostPage({
                                 </Link>
                             </div>
 
-                            <header className="mb-10 max-w-[74ch] border-b border-slate-200 pb-10">
+                            <header className="mb-10 max-w-[82ch] border-b border-slate-200 pb-10">
                                 <div className="mb-5 flex flex-wrap items-center gap-3">
                                     <span className="section-badge text-xs">
                                         {post.category}
@@ -194,11 +192,11 @@ export default async function BlogPostPage({
                                 </div>
                             </header>
 
-                            <div className="mb-8 max-w-[74ch]">
+                            <div className="mb-8 max-w-[82ch]">
                                 <ArticleToc headings={articleHeadings} compact />
                             </div>
 
-                            <div className="prose prose-lg max-w-[74ch]" id="post-content">
+                            <div className="prose prose-lg max-w-[82ch]" id="post-content">
                                 {rawContent ? (
                                     <MDXRemote
                                         source={rawContent}
@@ -219,7 +217,7 @@ export default async function BlogPostPage({
                             </div>
 
                             {post.tags.length > 0 && (
-                                <div className="mt-10 max-w-[74ch] border-t border-slate-200 pt-6">
+                                <div className="mt-10 max-w-[82ch] border-t border-slate-200 pt-6">
                                     <h3 className="mb-3 text-sm font-semibold text-slate-500">
                                         Etiquetas:
                                     </h3>
@@ -236,16 +234,12 @@ export default async function BlogPostPage({
                                 </div>
                             )}
 
-                            <div className="mt-8 max-w-[74ch] border-t border-slate-200 pt-6">
+                            <div className="mt-8 max-w-[82ch] border-t border-slate-200 pt-6">
                                 <ArticleShareActions articleUrl={articleUrl} title={post.title} />
                             </div>
 
-                            <div className="mt-10 max-w-[74ch]">
-                                <ServiceCTA topic={post.topic} position="inline" />
-                            </div>
-
                             {showInlineLeadForm && (
-                                <div className="max-w-[74ch]">
+                                <div className="max-w-[82ch]">
                                     <InlineLeadForm
                                         service={inlineLeadService}
                                         topic={post.topic}
@@ -253,31 +247,15 @@ export default async function BlogPostPage({
                                     />
                                 </div>
                             )}
-                        </div>
 
-                        <aside className="min-w-0">
-                            <div className="space-y-6 lg:sticky lg:top-32">
-                                <div className="rounded-[28px] border border-slate-200/80 bg-[linear-gradient(180deg,rgba(248,250,252,0.96),rgba(241,245,249,0.96))] p-5 shadow-none backdrop-blur-[2px]">
-                                    <div className="flex items-start gap-4">
-                                        <div className="shrink-0 rounded-2xl border border-slate-200 bg-white p-1">
-                                            <TopicIcon topic={post.topic} />
-                                        </div>
-                                        <div className="min-w-0">
-                                            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                                                Contexto de lectura
-                                            </p>
-                                            <p className="mt-2 text-sm leading-6 text-slate-600">
-                                                Lectura orientada a <span className="font-semibold text-slate-900">{post.category}</span>
-                                                {contextTags ? ` · ${contextTags}` : ''}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <div className="mt-12 max-w-[82ch] border-t border-slate-200 pt-8">
                                 <RelatedServices topic={post.topic} />
-                                <ServiceCTA topic={post.topic} position="sidebar" />
                             </div>
-                        </aside>
+
+                            <div className="mt-8 max-w-[82ch]">
+                                <ServiceCTA topic={post.topic} position="footer" />
+                            </div>
+                        </div>
                     </div>
 
                     {relatedPosts.length > 0 && (

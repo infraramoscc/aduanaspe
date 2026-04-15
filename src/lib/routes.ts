@@ -22,7 +22,7 @@ export const ROUTES = {
     contacto: '/contacto',
     blog: '/blog',
     blogPost: (slug: string) => `/blog/${slug}`,
-    tools: 'https://tools.aduanaspe.com',
+    tools: '/herramientas',
     lp: (slug: string) => `/lp/${slug}`,
 } as const;
 

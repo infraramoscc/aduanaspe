@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Container } from './Container';
+import { toolPreviews } from '@/content/tools';
 
 interface BreadcrumbItem {
     label: string;
@@ -21,6 +22,7 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
         'quienes-somos': 'Quiénes somos',
         'servicios': 'Servicios',
         'comercio-exterior': 'Comercio Exterior',
+        'herramientas': 'Herramientas',
         'contacto': 'Contacto',
         'agenciamiento-aduanas': 'Agenciamiento de Aduanas',
         'agencia-de-carga-internacional': 'Agencia de Carga Internacional',
@@ -37,10 +39,12 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
         'blog': 'Blog',
     };
 
+    const toolLabelMap = Object.fromEntries(toolPreviews.map((tool) => [tool.slug, tool.title]));
+
     segments.forEach((segment) => {
         currentPath += `/${segment}`;
         breadcrumbs.push({
-            label: labels[segment] || segment.charAt(0).toUpperCase() + segment.slice(1),
+            label: toolLabelMap[segment] || labels[segment] || segment.charAt(0).toUpperCase() + segment.slice(1),
             href: currentPath,
         });
     });
@@ -51,7 +55,11 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
 function Breadcrumbs() {
     const pathname = usePathname();
     const breadcrumbs = generateBreadcrumbs(pathname);
-    const shouldShow = pathname.startsWith('/servicios/') || pathname.startsWith('/comercio-exterior/') || pathname.startsWith('/blog/');
+    const shouldShow = pathname === '/herramientas'
+        || pathname.startsWith('/herramientas/')
+        || pathname.startsWith('/servicios/')
+        || pathname.startsWith('/comercio-exterior/')
+        || pathname.startsWith('/blog/');
 
     if (pathname === '/' || !shouldShow) return null;
 
