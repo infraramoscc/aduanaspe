@@ -299,6 +299,8 @@ import {
 } from './MdxEnhanced';
 
 import { FaqGroup } from './FaqGroup';
+import { InlineLeadForm } from './InlineLeadForm';
+import { ServiceCTA } from './ServiceCTA';
 
 export {
     DataCard,
@@ -311,7 +313,9 @@ export {
     ComparisonRow,
     Highlight,
     TopicIcon,
-    FaqGroup
+    FaqGroup,
+    InlineLeadForm,
+    ServiceCTA
 };
 
 /* --------------------------------------------------
@@ -352,5 +356,7 @@ export const mdxComponents = {
     ComparisonRow,
     Highlight,
     FaqGroup,
+    InlineLeadForm,
+    ServiceCTA,
 };
 
