@@ -101,6 +101,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.75,
         },
         {
+            url: `${BASE_URL}/comercio-exterior/importacion/importar-juguetes-utiles-escritorio/`,
+            sourceFile: 'src/app/(site)/comercio-exterior/importacion/importar-juguetes-utiles-escritorio/page.tsx',
+            changeFrequency: 'weekly',
+            priority: 0.75,
+        },
+        {
             url: `${BASE_URL}/comercio-exterior/exportacion/`,
             sourceFile: 'src/app/(site)/comercio-exterior/exportacion/page.tsx',
             changeFrequency: 'weekly',

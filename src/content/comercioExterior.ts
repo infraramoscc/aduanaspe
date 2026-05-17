@@ -76,6 +76,14 @@ export const importacionSubLandings: ComercioExteriorSubLanding[] = [
         ctaLabel: 'Ver comparativa',
         parentSlug: 'importacion',
     },
+    {
+        title: 'Juguetes y útiles de escritorio',
+        slug: 'importar-juguetes-utiles-escritorio',
+        summary: 'Guía para importar juguetes y útiles con revisión sanitaria, rotulado y documentación.',
+        description: 'Revisa permisos, documentos, composición, rotulado y riesgos antes de comprar juguetes o útiles de escritorio.',
+        ctaLabel: 'Ver guía',
+        parentSlug: 'importacion',
+    },
 ];
 
 export function getCategoryBySlug(slug: string): ComercioExteriorCategory | undefined {

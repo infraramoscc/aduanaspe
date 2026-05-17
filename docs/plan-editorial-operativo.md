@@ -43,26 +43,28 @@ El objetivo no es publicar por volumen. Es publicar piezas que:
 
 Para cada articulo nuevo:
 
-1. Confirmar tema desde el roadmap vigente.
-2. Clasificar la pieza por intencion:
+1. Revisar `docs/seo_content_map.csv` para confirmar si ya existe una URL duenia de la intencion de busqueda.
+2. Confirmar tema desde el roadmap vigente o desde `docs/docs_recursos/registro_fuentes_blog.csv` si nace de un PDF oficial.
+3. Clasificar la pieza por intencion:
    - informativa
    - comercial
    - transaccional
-3. Definir un solo CTA principal.
-4. Definir el destino correcto:
+4. Definir un solo CTA principal.
+5. Definir el destino correcto:
    - `/comercio-exterior/*` si el lector sigue aprendiendo
    - `/servicios/*` si el lector ya evalua o tiene urgencia
    - `/contacto` solo si el caso ya admite cierre
-5. Definir:
+6. Definir:
    - keyword principal
    - keyword secundaria
    - buyer stage
    - servicio destino
    - 3 articulos internos obligatorios
-6. Redactar en MDX con frontmatter valido.
-7. Revisar con `copy-editing`.
-8. Optimizar con `ai-seo` y `schema-markup` si aplica.
-9. Publicar y medir con `analytics-tracking`.
+7. Redactar en MDX con frontmatter valido.
+8. Revisar con `copy-editing`.
+9. Optimizar con `ai-seo` y `schema-markup` si aplica.
+10. Actualizar `docs/seo_content_map.csv` y, si corresponde, `docs/docs_recursos/registro_fuentes_blog.csv`.
+11. Publicar y medir con `analytics-tracking`.
 
 ## 4. Regla de mapeo editorial
 

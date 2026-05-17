@@ -18,6 +18,7 @@ export const ROUTES = {
         importarDesdeChina: '/comercio-exterior/importacion/importar-desde-china',
         importaPuertaAPuerta: '/comercio-exterior/importacion/importa-puerta-a-puerta',
         courierVsCarga: '/comercio-exterior/importacion/courier-vs-carga',
+        importarJuguetesUtilesEscritorio: '/comercio-exterior/importacion/importar-juguetes-utiles-escritorio',
     },
     contacto: '/contacto',
     blog: '/blog',
