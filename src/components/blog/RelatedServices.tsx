@@ -20,7 +20,7 @@ export function RelatedServices({ topic }: { topic: BlogTopic }) {
     if (allServices.length === 0) return null;
 
     return (
-        <aside className="rounded-[28px] border border-slate-200/80 bg-slate-50/90 p-6 shadow-none backdrop-blur-[2px]">
+        <aside className="service-card service-green">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 Servicios relacionados
             </p>
@@ -28,7 +28,7 @@ export function RelatedServices({ topic }: { topic: BlogTopic }) {
                 Opciones cercanas a este tema
             </h3>
             <p className="mt-2 text-sm leading-7 text-slate-600">
-                Si este articulo describe una necesidad real, estas lineas de servicio son las mas cercanas.
+                Si este artículo describe una necesidad real, estas líneas de servicio son las más cercanas.
             </p>
 
             <div className="mt-5 space-y-3">
@@ -36,10 +36,7 @@ export function RelatedServices({ topic }: { topic: BlogTopic }) {
                     <Link
                         key={service!.slug}
                         href={`/servicios/${service!.slug}`}
-                        className={`block rounded-[22px] border p-4 transition-[transform,box-shadow,border-color,background-color,color] duration-200 hover:-translate-y-0.5 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4 ${idx === 0
-                            ? 'border-slate-300 bg-white'
-                            : 'border-slate-200/80 bg-slate-50 hover:border-slate-300 hover:bg-white'
-                            }`}
+                        className={`service-card service-card-compact block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4 ${idx === 0 ? 'service-blue' : 'service-cyan'}`}
                     >
                         <div className="flex items-start gap-3">
                             <span

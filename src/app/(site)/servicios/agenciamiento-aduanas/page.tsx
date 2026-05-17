@@ -206,7 +206,7 @@ export default function AgenciamientoAduanasPage() {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {serviceIncludes.map((item) => (
-                            <div key={item.title} className="p-4 rounded-xl bg-slate-50 border border-slate-100 hover:shadow-lg transition-all hover:-translate-y-1">
+                            <div key={item.title} className="service-card service-card-compact service-cyan p-4">
                                 <span className="text-2xl">{item.icon}</span>
                                 <h4 className="mt-2 font-semibold text-slate-900">{item.title}</h4>
                                 <p className="mt-1 text-sm text-slate-600">{item.description}</p>
@@ -305,7 +305,7 @@ export default function AgenciamientoAduanasPage() {
                         {/* Etapas principales */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {/* Etapa 1 */}
-                            <Link href="/servicios/agencia-de-carga-internacional" className="group block p-6 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition-all hover:shadow-lg hover:-translate-y-1">
+                            <Link href="/servicios/agencia-de-carga-internacional" className="service-card service-card-compact service-blue group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full mb-3">ETAPA 1</span>
                                     <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚢</span>
@@ -315,8 +315,8 @@ export default function AgenciamientoAduanasPage() {
                                 </div>
                             </Link>
                             {/* Etapa 2 - Actual */}
-                            <div className="p-6 rounded-xl bg-purple-50 border-2 border-purple-500 shadow-lg ring-2 ring-purple-200 ring-offset-2 scale-105">
-                                <div className="text-center">
+                            <div className="service-card service-purple p-6 text-center ring-2 ring-purple-200 ring-offset-2 scale-105">
+                                <div>
                                     <span className="inline-block px-3 py-1 bg-purple-600 text-white text-xs font-bold rounded-full mb-3 animate-pulse">ETAPA 2</span>
                                     <span className="text-3xl block mb-2">📋</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Aduanas</h3>
@@ -325,7 +325,7 @@ export default function AgenciamientoAduanasPage() {
                                 </div>
                             </div>
                             {/* Etapa 3 */}
-                            <Link href="/servicios/transporte-de-carga" className="group block p-6 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition-all hover:shadow-lg hover:-translate-y-1">
+                            <Link href="/servicios/transporte-de-carga" className="service-card service-card-compact service-blue group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 3</span>
                                     <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚚</span>
@@ -345,7 +345,7 @@ export default function AgenciamientoAduanasPage() {
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Consultoría Aduanera */}
-                                <Link href="/servicios/consultoria-aduanera" className="group flex items-center gap-4 p-5 rounded-xl bg-gradient-to-r from-cyan-50 to-blue-50 border border-cyan-200 hover:border-cyan-400 hover:shadow-lg transition-all hover:-translate-y-1">
+                                <Link href="/servicios/consultoria-aduanera" className="service-card service-card-compact service-cyan group flex items-center gap-4 p-5">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-cyan-100 flex items-center justify-center group-hover:scale-110 transition-transform">
                                         <span className="text-2xl">💡</span>
                                     </div>
@@ -359,7 +359,7 @@ export default function AgenciamientoAduanasPage() {
                                     </div>
                                 </Link>
                                 {/* Resguardo Aduanero */}
-                                <Link href="/servicios/resguardo-aduanero" className="group flex items-center gap-4 p-5 rounded-xl bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 hover:border-orange-400 hover:shadow-lg transition-all hover:-translate-y-1">
+                                <Link href="/servicios/resguardo-aduanero" className="service-card service-card-compact service-orange group flex items-center gap-4 p-5">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center group-hover:scale-110 transition-transform">
                                         <span className="text-2xl">🛡️</span>
                                     </div>
@@ -398,7 +398,7 @@ export default function AgenciamientoAduanasPage() {
                     </div>
                     <div className="max-w-3xl mx-auto space-y-6">
                         {faqs.map((faq) => (
-                            <div key={faq.question} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div key={faq.question} className="service-card service-card-compact service-blue p-6">
                                 <h4 className="font-semibold text-slate-900 text-lg">{faq.question}</h4>
                                 <p className="mt-2 text-slate-600">{faq.answer}</p>
                             </div>

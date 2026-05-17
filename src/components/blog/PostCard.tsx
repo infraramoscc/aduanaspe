@@ -20,12 +20,11 @@ export function PostCard({ post, featured = false }: PostCardProps) {
         <Link
             href={`/blog/${post.slug}`}
             className={cn(
-                'group flex h-full min-w-0 flex-col rounded-[28px] border p-5 shadow-sm transition-[transform,box-shadow,border-color,background-color,color] duration-200',
+                'group flex h-full min-w-0 flex-col transition-[transform,box-shadow,border-color,background-color,color] duration-200',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4',
-                'hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(15,23,42,0.08)]',
                 featured
-                    ? 'border-slate-900 bg-slate-950 text-white lg:flex-row lg:gap-6 lg:p-7'
-                    : 'border-slate-200 bg-white hover:border-slate-300'
+                    ? 'service-card service-dark p-5 text-white lg:flex-row lg:gap-6 lg:p-7'
+                    : 'service-card service-blue'
             )}
         >
             <div className={cn('min-w-0', featured ? 'lg:flex lg:w-[38%] lg:flex-col lg:justify-between' : '')}>
@@ -86,7 +85,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
             <div className={cn('flex min-w-0 flex-1 flex-col', featured ? 'lg:border-l lg:border-white/10 lg:pl-6' : 'mt-5')}>
                 <h3 className={cn(
                     'text-xl font-bold leading-tight transition-colors',
-                    featured ? 'text-white group-hover:text-slate-100' : 'text-slate-950 group-hover:text-slate-700'
+                    featured ? 'text-white group-hover:text-slate-100' : 'text-slate-950 group-hover:text-slate-800'
                 )}>
                     {post.title}
                 </h3>
@@ -107,12 +106,10 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                     </span>
                     <span className={cn(
                         'inline-flex items-center gap-2 font-semibold',
-                        featured ? 'text-white' : 'text-slate-900'
+                        featured ? 'text-white' : 'service-link'
                     )}>
-                        Leer articulo
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
+                        Leer artículo
+                        <span aria-hidden="true">{'->'}</span>
                     </span>
                 </div>
             </div>

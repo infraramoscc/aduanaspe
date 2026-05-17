@@ -25,28 +25,28 @@ const topicCtaOverrides: Partial<Record<BlogTopic, Partial<CtaConfig>>> = {
     importacion: {
         eyebrow: 'Antes de cerrar la compra',
         title: 'Valida costos, tributos y requisitos antes de pagar al proveedor',
-        description: 'Si ya tienes producto, proveedor o una cotizacion preliminar, te orientamos con asesoria sin costo para revisar la viabilidad de la operacion y el siguiente paso mas conveniente.',
-        buttonText: 'Revisar servicio de importacion',
+        description: 'Si ya tienes producto, proveedor o una cotización preliminar, te orientamos con asesoría sin costo para revisar la viabilidad de la operación y el siguiente paso más conveniente.',
+        buttonText: 'Revisar servicio de importación',
     },
 };
 
 const ctaConfigMap: Record<'frio' | 'tibio' | 'caliente', CtaConfig> = {
     frio: {
         eyebrow: 'Siguiente paso recomendado',
-        title: 'Lleva este tema a una decision mejor informada',
-        description: 'Revisa como encaja este servicio en tu operacion y que parte del proceso puede simplificar.',
+        title: 'Lleva este tema a una decisión mejor informada',
+        description: 'Revisa cómo encaja este servicio en tu operación y qué parte del proceso puede simplificar.',
         buttonText: 'Ver servicio relacionado',
     },
     tibio: {
         eyebrow: 'Apoyo especializado',
-        title: 'Convierte la lectura en un plan de accion',
-        description: 'Conoce el servicio mas cercano al problema que estas evaluando y cuando conviene activarlo.',
+        title: 'Convierte la lectura en un plan de acción',
+        description: 'Conoce el servicio más cercano al problema que estás evaluando y cuándo conviene activarlo.',
         buttonText: 'Conocer servicio',
     },
     caliente: {
-        eyebrow: 'Atencion prioritaria',
+        eyebrow: 'Atención prioritaria',
         title: 'Si necesitas resolverlo ahora, habla con un especialista',
-        description: 'Este servicio suele ser el siguiente paso cuando ya hay una operacion en curso o una urgencia que destrabar.',
+        description: 'Este servicio suele ser el siguiente paso cuando ya hay una operación en curso o una urgencia que destrabar.',
         buttonText: 'Revisar servicio',
     },
 };
@@ -68,7 +68,7 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
 
     return (
         <div
-            className={`rounded-[28px] border ${isSidebar ? 'border-slate-200/80 bg-slate-50/90 shadow-none backdrop-blur-[2px] p-6' : 'border-slate-200 bg-white shadow-sm my-8 p-6 md:p-8'}`}
+            className={`service-card service-orange ${isSidebar ? 'service-card-compact' : 'my-8'}`}
         >
             <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-600">
                 {ctaConfig.eyebrow}
@@ -82,7 +82,7 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
                 {ctaConfig.description}
             </p>
 
-            <div className={`mt-5 rounded-[22px] border p-4 ${isSidebar ? 'border-slate-200/80 bg-white' : 'border-slate-200 bg-slate-50'}`}>
+            <div className="service-card service-card-compact service-blue mt-5">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
                     Servicio vinculado
                 </p>
@@ -108,14 +108,14 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
                         serviceSlug={primaryService.slug}
                         className="justify-center border border-slate-300 bg-white px-6 py-3.5 text-sm text-slate-900 hover:border-slate-400 hover:bg-slate-50"
                     >
-                        {topic === 'importacion' ? 'Pedir asesoria sin costo' : 'Hablar por WhatsApp'}
+                        {topic === 'importacion' ? 'Pedir asesoría sin costo' : 'Hablar por WhatsApp'}
                     </WhatsAppLink>
                 ) : (
                     <Link
                         href="/contacto"
                         className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 transition-[border-color,background-color,color] hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                     >
-                        Solicitar asesoria sin costo
+                        Solicitar asesoría sin costo
                     </Link>
                 )}
             </div>
@@ -123,7 +123,7 @@ export function ServiceCTA({ topic, position = 'inline' }: ServiceCTAProps) {
             {mapping.secondaryServices.length > 0 && (
                 <div className="mt-6 border-t border-slate-200 pt-5">
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
-                        Tambien puede ayudarte
+                        También puede ayudarte
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
                         {mapping.secondaryServices.map((slug) => {

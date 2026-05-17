@@ -32,29 +32,31 @@ export async function RecommendedReading({
                 </div>
 
                 <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
-                    {posts.map((post) => (
-                        <Link
-                            key={post!.slug}
-                            href={`/blog/${post!.slug}`}
-                            className="group rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm transition-[transform,box-shadow,border-color] hover:-translate-y-1 hover:border-slate-300 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
-                        >
-                            <span className="inline-flex rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700">
-                                {post!.category}
-                            </span>
-                            <h3 className="mt-4 text-xl font-bold leading-tight text-slate-950 group-hover:text-slate-800">
-                                {post!.title}
-                            </h3>
-                            <p className="mt-3 text-sm leading-7 text-slate-600">
-                                {post!.description}
-                            </p>
-                            <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 transition-transform group-hover:translate-x-1">
-                                Leer artículo
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg>
-                            </span>
-                        </Link>
-                    ))}
+                    {posts.map((post, index) => {
+                        const color = ['service-blue', 'service-green', 'service-orange'][index % 3];
+
+                        return (
+                            <Link
+                                key={post!.slug}
+                                href={`/blog/${post!.slug}`}
+                                className={`service-card ${color} group flex h-full flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4`}
+                            >
+                                <span className="inline-flex w-fit rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700">
+                                    {post!.category}
+                                </span>
+                                <h3 className="mt-5 text-xl font-bold leading-tight text-slate-950 group-hover:text-slate-800">
+                                    {post!.title}
+                                </h3>
+                                <p className="mt-3 flex-1 text-sm leading-7 text-slate-600">
+                                    {post!.description}
+                                </p>
+                                <span className="service-link mt-6">
+                                    Leer artículo
+                                    <span>{'->'}</span>
+                                </span>
+                            </Link>
+                        );
+                    })}
                 </div>
             </div>
         </section>

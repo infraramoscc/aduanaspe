@@ -9,7 +9,7 @@ interface BlogFilterBarProps {
 
 export function BlogFilterBar({ activeCategory, categories, buildHref }: BlogFilterBarProps) {
     return (
-        <section className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+        <section className="service-card service-card-roomy service-cyan">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                 <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">

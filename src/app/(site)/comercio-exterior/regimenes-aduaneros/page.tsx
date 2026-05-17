@@ -100,7 +100,7 @@ export default function RegimenesAduanerosPage() {
 
                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                         {regimenes.map((reg) => (
-                            <div key={reg.code} className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+                            <div key={reg.code} className="service-card service-card-roomy service-blue">
                                 <span className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
                                     {reg.icon}
                                 </span>
@@ -120,12 +120,12 @@ export default function RegimenesAduanerosPage() {
                 description="Una destinación incorrecta puede generar contingencias, retrasos o pagos que no correspondían. Por eso conviene revisar el objetivo real de la operación antes de declarar."
                 imageSide="right"
             >
-                <div className="space-y-4">
-                    <div className="rounded-2xl border border-red-200 bg-red-50 p-4">
+                    <div className="space-y-4">
+                    <div className="service-card service-card-compact service-coral">
                         <h4 className="font-bold text-red-800">Riesgo operativo</h4>
                         <p className="mt-1 text-sm text-red-700">Observaciones, demoras y costos adicionales por una mala destinación.</p>
                     </div>
-                    <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+                    <div className="service-card service-card-compact service-green">
                         <h4 className="font-bold text-emerald-800">Oportunidad de orden</h4>
                         <p className="mt-1 text-sm text-emerald-700">Con el régimen correcto, la operación se planifica mejor desde el inicio.</p>
                     </div>
@@ -134,7 +134,7 @@ export default function RegimenesAduanerosPage() {
 
             <Container>
                 <div className="py-20">
-                    <div className="mx-auto max-w-3xl rounded-3xl bg-slate-900 p-8 text-center text-white md:p-12">
+                    <div className="service-card service-dark mx-auto max-w-3xl p-8 text-center text-white md:p-12">
                         <h2 className="text-3xl font-bold">¿No sabes qué régimen aplicar?</h2>
                         <p className="mt-4 text-lg text-slate-300">
                             Cuéntanos qué tipo de mercancía manejas y cuál es el objetivo de la operación para orientarte mejor.

@@ -117,7 +117,7 @@ export default function ComercioExteriorPage() {
                         {quickTools.map((tool, index) => (
                             <div
                                 key={tool.title}
-                                className="rounded-3xl border border-slate-200 bg-slate-50 p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+                                className="service-card service-card-compact service-blue p-6"
                             >
                                 <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-sm font-bold text-slate-700">
                                     {`0${index + 1}`}

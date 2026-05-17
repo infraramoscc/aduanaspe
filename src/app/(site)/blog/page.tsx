@@ -73,7 +73,7 @@ export default async function BlogPage({
                         </div>
 
                         <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                            <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm">
+                            <div className="service-card service-card-compact service-blue">
                                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                                     Archivo
                                 </p>
@@ -84,7 +84,7 @@ export default async function BlogPage({
                                     articulos publicados
                                 </p>
                             </div>
-                            <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm">
+                            <div className="service-card service-card-compact service-cyan">
                                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                                     Cobertura
                                 </p>
@@ -95,7 +95,7 @@ export default async function BlogPage({
                                     categorias activas
                                 </p>
                             </div>
-                            <div className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm">
+                            <div className="service-card service-card-compact service-pink">
                                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                                     Vista actual
                                 </p>
@@ -128,7 +128,7 @@ export default async function BlogPage({
                     {posts.length > 0 ? (
                         <BlogSearch posts={posts} activeCategory={activeCategory} />
                     ) : (
-                        <div className="rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-16 text-center">
+                        <div className="service-card service-card-spacious service-orange text-center">
                             <h2 className="text-2xl font-bold text-slate-900">
                                 No encontramos articulos para esta categoria
                             </h2>

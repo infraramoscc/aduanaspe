@@ -119,7 +119,7 @@ function Strong({ children }: { children: ReactNode }) {
 
 function Blockquote({ children }: { children: ReactNode }) {
     return (
-        <blockquote className="my-8 rounded-[24px] border border-slate-200 bg-slate-50 px-6 py-5 text-[var(--text-body)] italic">
+        <blockquote className="service-card service-card-roomy service-cyan my-8 text-[var(--text-body)] italic">
             {children}
         </blockquote>
     );
@@ -240,9 +240,15 @@ export function Callout({ type = 'info', title, children }: CalloutProps) {
     };
 
     const style = styles[type];
+    const serviceColor = {
+        info: 'service-blue',
+        warning: 'service-amber',
+        tip: 'service-green',
+        danger: 'service-coral',
+    }[type];
 
     return (
-        <div className={`${style.bg} border-l-4 ${style.border} rounded-r-xl p-5 my-6`}>
+        <div className={`service-card service-card-roomy ${serviceColor} border-l-4 ${style.border} my-6`}>
             <div className="font-bold text-[var(--text-heading)] mb-1">
                 {style.icon} {title ?? type.charAt(0).toUpperCase() + type.slice(1)}
             </div>

@@ -42,7 +42,7 @@ export function BlogSearch({ posts, activeCategory }: BlogSearchProps) {
 
     return (
         <div>
-            <section className="rounded-[28px] border border-slate-200 bg-white p-5 shadow-sm md:p-6">
+            <section className="service-card service-card-roomy service-blue">
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                     <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
@@ -117,7 +117,7 @@ export function BlogSearch({ posts, activeCategory }: BlogSearchProps) {
                         )}
                     </>
                 ) : (
-                    <div className="rounded-[28px] border border-slate-200 bg-slate-50 px-6 py-16 text-center">
+                    <div className="service-card service-card-spacious service-orange text-center">
                         <h3 className="text-2xl font-bold text-slate-900">
                             No encontramos coincidencias
                         </h3>

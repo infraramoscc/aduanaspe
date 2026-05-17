@@ -143,7 +143,7 @@ function Hero({
                                 {defaultStats.map((stat) => (
                                     <div
                                         key={stat.label}
-                                        className="rounded-3xl border border-slate-200/80 bg-white/80 px-6 py-5 shadow-sm backdrop-blur-sm"
+                                        className="service-card service-card-roomy service-blue"
                                     >
                                         <span className="stat-number">{stat.number}</span>
                                         <span className="stat-label">{stat.label}</span>
@@ -177,7 +177,7 @@ function Hero({
 
             {footer && (
                 <div className="relative z-10 mt-14">
-                    <div className="mx-auto max-w-5xl rounded-[28px] border border-slate-200/80 bg-white/88 shadow-sm backdrop-blur-md">
+                    <div className="service-card service-card-compact service-cyan mx-auto max-w-5xl">
                         {footer}
                     </div>
                 </div>

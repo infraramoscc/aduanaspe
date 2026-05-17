@@ -59,7 +59,7 @@ function TrustBar({ points = defaultPoints, title, variant = 'default', classNam
                     {points.map((point, index) => (
                         <div
                             key={index}
-                            className="rounded-3xl border border-slate-200/80 bg-white/88 px-5 py-6 shadow-sm transition-transform duration-200 hover:-translate-y-0.5"
+                            className="service-card service-card-roomy service-blue"
                         >
                             {point.icon && (
                                 <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">

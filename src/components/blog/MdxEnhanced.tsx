@@ -131,6 +131,15 @@ const dataColorMap: Record<DataColor, { bg: string; accent: string; text: string
     coral: { bg: 'var(--coral-light)', accent: 'var(--coral)', text: 'var(--coral)' },
 };
 
+const serviceColorMap: Record<DataColor, string> = {
+    purple: 'service-purple',
+    blue: 'service-blue',
+    green: 'service-green',
+    pink: 'service-pink',
+    orange: 'service-orange',
+    coral: 'service-coral',
+};
+
 interface DataCardProps {
     label: string;
     value: string;
@@ -142,7 +151,7 @@ export function DataCard({ label, value, description, color = 'purple' }: DataCa
     const c = dataColorMap[color];
     return (
         <div
-            className="rounded-xl p-5 border not-prose"
+            className={`service-card service-card-roomy ${serviceColorMap[color]} not-prose`}
             style={{
                 background: c.bg,
                 borderColor: `${c.accent}33`,
@@ -221,7 +230,7 @@ export function Step({ n, title, children }: StepProps) {
 
 export function StepProcess({ children }: { children: ReactNode }) {
     return (
-        <div className="my-8 space-y-2 rounded-xl border border-gray-100 p-6 bg-white shadow-sm not-prose">
+        <div className="service-card service-card-roomy service-blue my-8 space-y-2 not-prose">
             {children}
         </div>
     );
@@ -243,6 +252,14 @@ const infoBoxStyles: Record<InfoBoxType, { bg: string; border: string; iconBg: s
     important: { bg: 'var(--coral-light)', border: 'var(--coral)', iconBg: 'var(--coral)', icon: '🔑' },
 };
 
+const infoBoxServiceColor: Record<InfoBoxType, string> = {
+    info: 'service-blue',
+    warning: 'service-amber',
+    success: 'service-green',
+    formula: 'service-purple',
+    important: 'service-coral',
+};
+
 interface InfoBoxProps {
     type?: InfoBoxType;
     title: string;
@@ -253,7 +270,7 @@ export function InfoBox({ type = 'info', title, children }: InfoBoxProps) {
     const s = infoBoxStyles[type];
     return (
         <div
-            className="rounded-xl p-6 my-6 not-prose"
+            className={`service-card service-card-roomy ${infoBoxServiceColor[type]} my-6 not-prose`}
             style={{
                 background: s.bg,
                 border: `1px solid ${s.border}33`,
@@ -285,7 +302,7 @@ export function InfoBox({ type = 'info', title, children }: InfoBoxProps) {
 export function ProTip({ children }: { children: ReactNode }) {
     return (
         <div
-            className="rounded-r-xl p-4 my-4 flex gap-3 items-start not-prose"
+            className="service-card service-card-compact service-green my-4 flex gap-3 items-start not-prose"
             style={{
                 background: 'var(--green-light)',
                 borderLeft: '4px solid var(--green)',
@@ -345,7 +362,7 @@ interface ComparisonTableProps {
 
 export function ComparisonTable({ leftHeader, rightHeader, children }: ComparisonTableProps) {
     return (
-        <div className="my-6 rounded-xl border border-gray-200 overflow-hidden bg-white shadow-sm not-prose">
+        <div className="service-card service-card-compact service-purple my-6 overflow-hidden not-prose">
             {/* Header */}
             <div className="grid grid-cols-3 gap-2 px-5 py-3 text-xs font-semibold uppercase tracking-wider"
                 style={{ background: 'var(--purple-light)', color: 'var(--purple)' }}

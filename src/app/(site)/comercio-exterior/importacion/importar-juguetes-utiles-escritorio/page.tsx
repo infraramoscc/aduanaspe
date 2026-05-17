@@ -387,14 +387,14 @@ export default function ImportarJuguetesUtilesPage() {
             <section className="bg-white py-16">
                 <Container>
                     <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-                        <div className="rounded-[32px] border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6 shadow-sm md:sticky md:top-24 md:p-8">
+                        <div className="service-card service-card-spacious service-blue md:sticky md:top-24">
                             <span className="section-badge">Índice de la guía</span>
                             <nav className="mt-6 grid gap-3" aria-label="Índice de contenido">
                                 {tableOfContents.map((item) => (
                                     <a
                                         key={item.href}
                                         href={item.href}
-                                        className="group flex items-center justify-between rounded-2xl bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm ring-1 ring-slate-100 transition-all hover:-translate-y-0.5 hover:text-slate-950 hover:shadow-md"
+                                        className="service-card service-card-compact service-cyan group flex items-center justify-between px-4 py-3 text-sm font-semibold text-slate-700 hover:text-slate-950"
                                     >
                                         <span>{item.label}</span>
                                         <span className="text-slate-300 transition-colors group-hover:text-slate-500">→</span>
@@ -445,8 +445,8 @@ export default function ImportarJuguetesUtilesPage() {
                     </div>
 
                     <div className="grid gap-6 md:grid-cols-2">
-                        {productGroups.map((group) => (
-                            <article key={group.title} className={`rounded-[28px] border p-6 shadow-sm transition-transform hover:-translate-y-1 ${group.tone}`}>
+                        {productGroups.map((group, index) => (
+                            <article key={group.title} className={`service-card ${['service-blue', 'service-green', 'service-amber', 'service-pink'][index % 4]} p-6`}>
                                 <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] ${group.pill}`}>
                                     {group.label}
                                 </span>
@@ -473,7 +473,7 @@ export default function ImportarJuguetesUtilesPage() {
                             <p className="mt-5 text-lg leading-8 text-slate-600">
                                 Usa esta matriz como filtro inicial. No reemplaza una evaluación técnica, pero ayuda a detectar cuándo una importación no debería tratarse como una compra simple de mercadería.
                             </p>
-                            <div className="mt-8 rounded-[28px] border border-amber-200 bg-amber-50 p-6">
+                            <div className="service-card service-amber mt-8 p-6">
                                 <h3 className="font-bold text-amber-950">Regla práctica</h3>
                                 <p className="mt-3 text-sm leading-7 text-amber-900">
                                     Si el producto será usado por niños, tiene sustancias o pinturas, o se comercializa en campaña escolar, valida requisitos antes de enviar dinero al proveedor.
@@ -483,7 +483,7 @@ export default function ImportarJuguetesUtilesPage() {
 
                         <div className="grid gap-4">
                             {decisionMatrix.map((row, index) => (
-                                <article key={row.signal} className={`rounded-[26px] border p-5 shadow-sm ${row.tone}`}>
+                                <article key={row.signal} className={`service-card ${['service-blue', 'service-green', 'service-amber', 'service-orange', 'service-pink'][index % 5]} p-5`}>
                                     <div className="flex flex-col gap-4 md:flex-row md:items-start">
                                         <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white text-sm font-black shadow-sm">
                                             {String(index + 1).padStart(2, '0')}
@@ -550,8 +550,8 @@ export default function ImportarJuguetesUtilesPage() {
                     </div>
 
                     <div className="mt-12 grid gap-5">
-                        {digesaFlow.map((item) => (
-                            <article key={item.step} className={`grid gap-5 rounded-[28px] border border-slate-200 bg-gradient-to-br p-6 shadow-sm md:grid-cols-[100px_1fr] md:items-start ${item.tone}`}>
+                        {digesaFlow.map((item, index) => (
+                            <article key={item.step} className={`service-card grid gap-5 p-6 md:grid-cols-[100px_1fr] md:items-start ${['service-blue', 'service-green', 'service-amber', 'service-orange', 'service-pink'][index % 5]}`}>
                                 <span className="text-4xl font-black tracking-tight">{item.step}</span>
                                 <div>
                                     <h3 className="text-2xl font-bold text-slate-950">{item.title}</h3>
@@ -577,8 +577,8 @@ export default function ImportarJuguetesUtilesPage() {
                         </div>
 
                         <div className="grid gap-5 md:grid-cols-2">
-                            {labelingItems.map((item) => (
-                                <article key={item.title} className={`rounded-[26px] border p-6 shadow-sm ${item.tone}`}>
+                            {labelingItems.map((item, index) => (
+                                <article key={item.title} className={`service-card p-6 ${['service-blue', 'service-green', 'service-amber', 'service-pink'][index % 4]}`}>
                                     <h3 className="text-lg font-bold text-slate-950">{item.title}</h3>
                                     <p className="mt-3 text-sm leading-7 text-slate-700">{item.text}</p>
                                 </article>
@@ -601,8 +601,8 @@ export default function ImportarJuguetesUtilesPage() {
                     </div>
 
                     <div className="grid gap-6 md:grid-cols-2">
-                        {importerScenarios.map((scenario) => (
-                            <article key={scenario.title} className={`rounded-[30px] border p-6 shadow-sm transition-transform hover:-translate-y-1 ${scenario.tone}`}>
+                        {importerScenarios.map((scenario, index) => (
+                            <article key={scenario.title} className={`service-card p-6 ${['service-blue', 'service-green', 'service-amber', 'service-pink'][index % 4]}`}>
                                 <span className="rounded-full bg-white px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] shadow-sm">
                                     {scenario.label}
                                 </span>
@@ -648,7 +648,7 @@ export default function ImportarJuguetesUtilesPage() {
 
             <section id="checklist" className="bg-white py-20">
                 <Container>
-                    <div className="grid gap-10 overflow-hidden rounded-[40px] border border-slate-200 bg-gradient-to-br from-emerald-50 via-white to-sky-50 p-7 shadow-sm md:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+                    <div className="service-card service-green grid gap-10 p-7 md:p-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
                         <div>
                             <span className="section-badge">Recurso descargable</span>
                             <h2 className="mt-4 text-3xl font-bold text-slate-950 md:text-5xl">
@@ -671,7 +671,7 @@ export default function ImportarJuguetesUtilesPage() {
                             </div>
                         </div>
 
-                        <div className="rounded-[32px] bg-white p-6 shadow-sm ring-1 ring-slate-100">
+                        <div className="service-card service-card-compact service-blue p-6">
                             <h3 className="text-xl font-bold text-slate-950">Qué incluye el checklist</h3>
                             <ul className="mt-6 grid gap-3">
                                 {downloadableChecklist.map((item) => (
@@ -699,7 +699,7 @@ export default function ImportarJuguetesUtilesPage() {
                             </p>
                         </div>
 
-                        <div className="rounded-[32px] border border-rose-200 bg-white p-6 shadow-sm md:p-8">
+                        <div className="service-card service-pink p-6 md:p-8">
                             <span className="rounded-full bg-rose-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] text-rose-800">
                                 Proyecto en consulta
                             </span>
@@ -731,7 +731,7 @@ export default function ImportarJuguetesUtilesPage() {
 
                     <div className="grid gap-5 md:grid-cols-2">
                         {sources.map((source) => (
-                            <article key={source.label} className="rounded-[26px] border border-slate-200 bg-white p-6 shadow-sm">
+                            <article key={source.label} className="service-card service-blue p-6">
                                 <span className={`rounded-full px-3 py-1 text-xs font-bold uppercase tracking-[0.14em] ${source.tone}`}>
                                     {source.status}
                                 </span>
@@ -761,7 +761,7 @@ export default function ImportarJuguetesUtilesPage() {
                         <span className="section-badge">Preguntas frecuentes</span>
                         <div className="mt-8 grid gap-4">
                             {faqs.map((faq) => (
-                                <article key={faq.question} className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-sm">
+                                <article key={faq.question} className="service-card service-card-compact service-blue p-6">
                                     <h3 className="text-xl font-bold text-slate-950">{faq.question}</h3>
                                     <p className="mt-3 text-sm leading-7 text-slate-600">{faq.answer}</p>
                                 </article>
@@ -773,7 +773,7 @@ export default function ImportarJuguetesUtilesPage() {
 
             <Container>
                 <div className="py-20">
-                    <div className="mx-auto max-w-3xl rounded-[32px] border border-slate-200 bg-white p-8 shadow-sm md:p-10">
+                    <div className="service-card service-orange mx-auto max-w-3xl p-8 md:p-10">
                         <h2 className="text-2xl font-bold text-slate-950">Revisa tu producto antes de comprar</h2>
                         <p className="mt-4 text-sm leading-7 text-slate-600">
                             Si ya tienes proveedor, ficha técnica, certificado, fotos o cotización, podemos ayudarte a ordenar la revisión antes de embarcar.

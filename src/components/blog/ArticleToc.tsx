@@ -79,8 +79,6 @@ export function ArticleToc({ headings, compact = false }: ArticleTocProps) {
     const scrollContainerRef = useRef<HTMLDivElement | null>(null);
     const activeLinkRef = useRef<HTMLAnchorElement | null>(null);
 
-    if (headings.length <= 1) return null;
-
     useEffect(() => {
         if (compact) return;
         if (!scrollContainerRef.current || !activeLinkRef.current) return;
@@ -95,9 +93,11 @@ export function ArticleToc({ headings, compact = false }: ArticleTocProps) {
         });
     }, [activeId, compact]);
 
+    if (headings.length <= 1) return null;
+
     if (compact) {
         return (
-            <details className="rounded-[24px] border border-slate-200 bg-white p-4 shadow-sm lg:hidden">
+            <details className="service-card service-card-compact service-blue lg:hidden">
                 <summary className="cursor-pointer list-none text-sm font-semibold text-slate-900">
                     Ir a una seccion
                 </summary>
@@ -112,7 +112,7 @@ export function ArticleToc({ headings, compact = false }: ArticleTocProps) {
     }
 
     return (
-        <nav className="rounded-[28px] border border-slate-200/80 bg-slate-50/90 p-6 shadow-none backdrop-blur-[2px]" aria-label="En este articulo">
+        <nav className="service-card service-card-roomy service-blue" aria-label="En este articulo">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
                 En este articulo
             </p>
@@ -131,8 +131,8 @@ export function ArticleToc({ headings, compact = false }: ArticleTocProps) {
                         activeLinkRef={activeLinkRef}
                     />
                 </div>
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-8 rounded-t-[24px] bg-gradient-to-b from-slate-50 via-slate-50/90 to-transparent" />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 rounded-b-[24px] bg-gradient-to-t from-slate-50 via-slate-50/90 to-transparent" />
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-8 rounded-t-[24px] bg-gradient-to-b from-white via-white/90 to-transparent" />
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 rounded-b-[24px] bg-gradient-to-t from-white via-white/90 to-transparent" />
             </div>
         </nav>
     );

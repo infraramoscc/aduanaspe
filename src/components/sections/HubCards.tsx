@@ -76,14 +76,14 @@ function HubCards({ title, highlightedWord, subtitle, items, basePath = '', colu
                                 eventParams={{ location: id || 'hub_cards', label: item.slug }}
                                 className="group block h-full"
                             >
-                                <div className={cn('service-card h-full', `service-${colorClass}`)}>
+                                <div className={cn('service-card service-card-spacious h-full', `service-${colorClass}`)}>
                                     <div className="flex h-full flex-col">
                                         {item.icon && (
                                             <span className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-2xl">
                                                 {item.icon}
                                             </span>
                                         )}
-                                        <h3 className="text-xl font-semibold text-slate-950 transition-colors group-hover:text-purple-600">
+                                        <h3 className="text-xl font-semibold text-slate-950 transition-colors group-hover:text-slate-800">
                                             {item.title}
                                         </h3>
                                         <p className="mt-3 flex-1 text-sm leading-7 text-slate-600">

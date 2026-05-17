@@ -58,6 +58,12 @@ const accentClasses: Record<
     },
 };
 
+const serviceAccentClasses: Record<ToolCategory['accent'], string> = {
+    indigo: 'service-pink',
+    cyan: 'service-blue',
+    coral: 'service-coral',
+};
+
 const toolButtonClass =
     'inline-flex min-w-[170px] items-center justify-center rounded-full bg-[#3c3794] px-5 py-3 text-sm font-semibold text-white shadow-[0_16px_30px_rgba(60,55,148,0.22)] transition-all hover:-translate-y-0.5 hover:bg-[#2f2b77]';
 
@@ -132,7 +138,7 @@ function ToolsExplorer() {
     return (
         <section id="catalogo-herramientas" className="bg-[#f8f6f1] py-16 md:py-20">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="glass rounded-[30px] border border-[rgba(23,32,51,0.08)] bg-[rgba(255,255,255,0.76)] p-5 shadow-[0_18px_45px_rgba(15,23,42,0.06)] md:p-6">
+                <div className="service-card service-card-roomy service-cyan">
                     <div className="flex flex-col gap-5">
                         <div>
                             <span className="section-badge bg-white/82">Catalogo</span>
@@ -191,7 +197,7 @@ function ToolsExplorer() {
                         </div>
 
                         {activeCategoryConfig && (
-                            <div className={cn('glass rounded-[22px] border px-4 py-3 text-sm leading-7', accentClasses[activeCategoryConfig.accent].border, accentClasses[activeCategoryConfig.accent].panel)}>
+                            <div className={cn('service-card service-card-compact text-sm leading-7', serviceAccentClasses[activeCategoryConfig.accent], accentClasses[activeCategoryConfig.accent].border)}>
                                 <span className="font-semibold text-slate-950">{activeCategoryConfig.eyebrow}. </span>
                                 <span className="text-slate-600">{activeCategoryConfig.description}</span>
                             </div>
@@ -215,9 +221,9 @@ function ToolsExplorer() {
                                     <article
                                         key={tool.slug}
                                         className={cn(
-                                            'group relative overflow-hidden rounded-[28px] border bg-white/92 p-6 transition-all duration-300 hover:-translate-y-1',
+                                            'service-card service-card-roomy group',
+                                            serviceAccentClasses[category.accent],
                                             accent.border,
-                                            accent.glow
                                         )}
                                     >
                                         <div className={cn('absolute inset-x-0 top-0 h-1 bg-gradient-to-r', accent.topLine)} />
@@ -305,9 +311,9 @@ function ToolsExplorer() {
                                         <article
                                             key={tool.slug}
                                             className={cn(
-                                                'group relative overflow-hidden rounded-[26px] border bg-white/92 p-6 transition-all duration-300 hover:-translate-y-1',
+                                                'service-card service-card-roomy group',
+                                                serviceAccentClasses[category.accent],
                                                 accent.border,
-                                                accent.glow
                                             )}
                                         >
                                             <div className={cn('absolute inset-x-0 top-0 h-1 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100', accent.topLine)} />
@@ -368,7 +374,7 @@ function ToolsExplorer() {
                 </div>
 
                 {!filteredTools.length && (
-                    <div className="glass mt-12 rounded-[28px] border border-dashed border-[rgba(60,55,148,0.18)] bg-white/82 px-6 py-12 text-center shadow-[0_16px_34px_rgba(15,23,42,0.04)]">
+                    <div className="service-card service-card-spacious service-pink mt-12 text-center">
                         <p className="text-lg font-semibold text-slate-900">No encontramos una coincidencia exacta.</p>
                         <p className="mt-3 text-slate-600">
                             Si haces esta consulta con frecuencia, cuentanosla y la priorizamos dentro del centro.

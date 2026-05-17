@@ -180,7 +180,7 @@ export default function ResguardoPage() {
                     </div>
                 }
             >
-                <div className="p-4 bg-orange-50 rounded-xl border border-orange-100">
+                <div className="service-card service-card-compact service-orange p-4">
                     <p className="text-sm text-orange-800">
                         <strong>Importante:</strong> El resguardo puede contratarse junto con nuestro servicio de transporte o de manera independiente si ya tienes transportista.
                     </p>
@@ -239,7 +239,7 @@ export default function ResguardoPage() {
                         {/* Etapas principales */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {/* Etapa 1 */}
-                            <Link href="/servicios/agencia-de-carga-internacional" className="group block p-6 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition-all hover:shadow-lg hover:-translate-y-1">
+                            <Link href="/servicios/agencia-de-carga-internacional" className="service-card service-card-compact service-blue group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 1</span>
                                     <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚢</span>
@@ -249,7 +249,7 @@ export default function ResguardoPage() {
                                 </div>
                             </Link>
                             {/* Etapa 2 */}
-                            <Link href="/servicios/agenciamiento-aduanas" className="group block p-6 rounded-xl bg-slate-50 border border-slate-200 hover:border-purple-400 hover:bg-purple-50 transition-all hover:shadow-lg hover:-translate-y-1">
+                            <Link href="/servicios/agenciamiento-aduanas" className="service-card service-card-compact service-purple group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 2</span>
                                     <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">📋</span>
@@ -259,7 +259,7 @@ export default function ResguardoPage() {
                                 </div>
                             </Link>
                             {/* Etapa 3 */}
-                            <Link href="/servicios/transporte-de-carga" className="group block p-6 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-400 hover:bg-blue-50 transition-all hover:shadow-lg hover:-translate-y-1">
+                            <Link href="/servicios/transporte-de-carga" className="service-card service-card-compact service-blue group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 3</span>
                                     <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚚</span>
@@ -279,7 +279,7 @@ export default function ResguardoPage() {
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 {/* Resguardo Aduanero - Actual */}
-                                <div className="flex items-center gap-4 p-5 rounded-xl bg-orange-50 border-2 border-orange-500 shadow-lg ring-2 ring-orange-200 ring-offset-2 scale-105">
+                                <div className="service-card service-orange flex items-center gap-4 p-5 ring-2 ring-orange-200 ring-offset-2 scale-105">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-200 flex items-center justify-center">
                                         <span className="text-2xl">🛡️</span>
                                     </div>
@@ -292,7 +292,7 @@ export default function ResguardoPage() {
                                     </div>
                                 </div>
                                 {/* Consultoría Aduanera */}
-                                <Link href="/servicios/consultoria-aduanera" className="group flex items-center gap-4 p-5 rounded-xl bg-slate-50 border border-slate-200 hover:border-cyan-400 hover:bg-cyan-50 transition-all hover:shadow-lg hover:-translate-y-1">
+                                <Link href="/servicios/consultoria-aduanera" className="service-card service-card-compact service-cyan group flex items-center gap-4 p-5">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-cyan-100 flex items-center justify-center group-hover:scale-110 transition-transform">
                                         <span className="text-2xl">💡</span>
                                     </div>
@@ -359,7 +359,7 @@ export default function ResguardoPage() {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
                         {whenToHire.map((item) => (
-                            <div key={item.scenario} className="p-4 rounded-xl bg-slate-50 border border-slate-100 shadow-sm hover:shadow-md transition-all cursor-default">
+                            <div key={item.scenario} className="service-card service-card-compact service-orange p-4 cursor-default">
                                 <h4 className="font-semibold text-slate-900 text-lg border-b border-slate-200 pb-2 mb-2">{item.scenario}</h4>
                                 <p className="text-sm text-slate-600">{item.description}</p>
                             </div>
@@ -401,7 +401,7 @@ export default function ResguardoPage() {
                     </div>
                     <div className="max-w-3xl mx-auto space-y-6">
                         {faqs.map((faq) => (
-                            <div key={faq.question} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                            <div key={faq.question} className="service-card service-card-compact service-blue p-6">
                                 <h4 className="font-semibold text-slate-900 text-lg">{faq.question}</h4>
                                 <p className="mt-2 text-slate-600">{faq.answer}</p>
                             </div>

@@ -22,7 +22,7 @@ export function ArticleShareActions({ articleUrl, title }: ArticleShareActionsPr
     }
 
     return (
-        <div className="rounded-[24px] border border-slate-200 bg-slate-50/80 p-5">
+        <div className="service-card service-card-roomy service-green">
             <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">

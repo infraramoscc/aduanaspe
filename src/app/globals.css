@@ -256,14 +256,20 @@ body {
   color: var(--text-muted);
 }
 
-/* ===== SERVICE CARDS CON BORDE DE COLOR ===== */
+/* ===== TARJETAS GLOBALES CON GLOW ===== */
 .service-card {
-  background: var(--background);
-  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 1.375rem;
   padding: var(--spacing-xl);
-  border: 1px solid rgba(23, 32, 51, 0.08);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  border: 1px solid rgba(15, 23, 42, 0.09);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 14px 34px rgba(15, 23, 42, 0.055);
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease,
+    background-color 0.28s ease;
   position: relative;
   overflow: hidden;
 }
@@ -271,87 +277,241 @@ body {
 .service-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
+  inset: -1px;
+  pointer-events: none;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.28s ease;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: auto 1.5rem 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(15, 23, 42, 0.12), transparent);
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.service-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.service-card-compact {
+  padding: 1rem;
+}
+
+.service-card-roomy {
+  padding: 1.5rem;
+}
+
+.service-card-spacious {
+  padding: clamp(2rem, 3vw, 3rem);
+}
+
+.service-card.p-0 {
+  padding: 0;
+}
+
+.service-card.p-4 {
+  padding: 1rem;
+}
+
+.service-card.p-5 {
+  padding: 1.25rem;
+}
+
+.service-card.p-6 {
+  padding: 1.5rem;
+}
+
+.service-card.p-7 {
+  padding: 1.75rem;
+}
+
+.service-card.p-8 {
+  padding: 2rem;
+}
+
+.service-card.p-10 {
+  padding: 2.5rem;
+}
+
+.service-card.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.service-card.px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.service-card.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.service-card.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.service-card.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+}
+
+.service-card.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.service-card.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 48rem) {
+  .service-card.md\:p-6 {
+    padding: 1.5rem;
+  }
+
+  .service-card.md\:p-8 {
+    padding: 2rem;
+  }
+
+  .service-card.md\:p-10 {
+    padding: 2.5rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .service-card.lg\:p-7 {
+    padding: 1.75rem;
+  }
 }
 
 .service-pink::before {
-  background: var(--gradient-primary);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(232, 101, 143, 0.18), transparent 34%),
+    radial-gradient(circle at 90% 110%, rgba(135, 95, 214, 0.16), transparent 32%);
 }
 
 .service-blue::before {
-  background: var(--gradient-secondary);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(47, 179, 216, 0.18), transparent 34%),
+    radial-gradient(circle at 90% 110%, rgba(0, 212, 255, 0.15), transparent 32%);
+}
+
+.service-purple::before {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(135, 95, 214, 0.18), transparent 34%),
+    radial-gradient(circle at 90% 110%, rgba(232, 101, 143, 0.14), transparent 32%);
 }
 
 .service-green::before {
-  background: linear-gradient(135deg, var(--green), var(--yellow));
+  background:
+    radial-gradient(circle at 18% 0%, rgba(15, 159, 110, 0.18), transparent 34%),
+    radial-gradient(circle at 90% 110%, rgba(255, 209, 102, 0.18), transparent 32%);
 }
 
 .service-orange::before {
-  background: var(--gradient-warm);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 159, 28, 0.2), transparent 34%),
+    radial-gradient(circle at 90% 110%, rgba(255, 107, 107, 0.16), transparent 32%);
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(23, 32, 51, 0.04);
+  transform: translateY(-6px);
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.06);
 }
 
-.service-card:hover::before {
+.service-card:hover::before,
+.service-card:hover::after {
   opacity: 1;
 }
 
 .service-pink:hover {
-  box-shadow: var(--shadow-pink);
+  box-shadow: 0 26px 58px rgba(232, 101, 143, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 
 .service-blue:hover {
-  box-shadow: var(--shadow-blue);
+  box-shadow: 0 26px 58px rgba(47, 179, 216, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
+}
+
+.service-purple:hover {
+  box-shadow: 0 26px 58px rgba(135, 95, 214, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 
 .service-green:hover {
-  box-shadow: var(--shadow-green);
+  box-shadow: 0 26px 58px rgba(15, 159, 110, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 
 .service-orange:hover {
-  box-shadow: 0 10px 40px rgba(255, 159, 28, 0.25);
+  box-shadow: 0 26px 58px rgba(255, 159, 28, 0.2), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 
 /* Colores adicionales para Card.tsx */
 .service-cyan::before {
-  background: linear-gradient(135deg, #00D4FF, #00F5A0);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(0, 212, 255, 0.18), transparent 34%),
+    radial-gradient(circle at 90% 110%, rgba(0, 245, 160, 0.16), transparent 32%);
 }
 
 .service-coral::before {
-  background: linear-gradient(135deg, #FF6B6B, #FF9F1C);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 107, 107, 0.18), transparent 34%),
+    radial-gradient(circle at 90% 110%, rgba(255, 159, 28, 0.18), transparent 32%);
 }
 
 .service-teal::before {
-  background: linear-gradient(135deg, #00F5A0, #00B8E0);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(0, 245, 160, 0.16), transparent 34%),
+    radial-gradient(circle at 90% 110%, rgba(0, 184, 224, 0.16), transparent 32%);
 }
 
 .service-amber::before {
-  background: linear-gradient(135deg, #FFD166, #FF9F1C);
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 209, 102, 0.2), transparent 34%),
+    radial-gradient(circle at 90% 110%, rgba(255, 159, 28, 0.18), transparent 32%);
+}
+
+.service-dark {
+  background: #0f172a;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.service-dark::before {
+  background:
+    radial-gradient(circle at 18% 0%, rgba(135, 95, 214, 0.32), transparent 36%),
+    radial-gradient(circle at 90% 110%, rgba(47, 179, 216, 0.24), transparent 34%);
 }
 
 /* Hover effects para colores adicionales */
 .service-cyan:hover {
-  box-shadow: var(--shadow-blue);
+  box-shadow: 0 26px 58px rgba(0, 212, 255, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 
 .service-coral:hover {
-  box-shadow: 0 10px 40px rgba(255, 107, 107, 0.25);
+  box-shadow: 0 26px 58px rgba(255, 107, 107, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 
 .service-teal:hover {
-  box-shadow: var(--shadow-green);
+  box-shadow: 0 26px 58px rgba(0, 184, 224, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 
 .service-amber:hover {
-  box-shadow: 0 10px 40px rgba(255, 159, 28, 0.25);
+  box-shadow: 0 26px 58px rgba(255, 159, 28, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
+}
+
+.service-dark:hover {
+  background: #111827;
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 26px 58px rgba(15, 23, 42, 0.22), 0 10px 24px rgba(135, 95, 214, 0.14);
 }
 
 /* ===== SERVICE LINK ===== */

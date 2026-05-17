@@ -62,7 +62,7 @@ export default function HerramientasPage() {
                             </div>
 
                             <div className="space-y-4">
-                                <div className="glass relative overflow-hidden rounded-[30px] border border-[rgba(23,32,51,0.08)] bg-white/76 p-6 shadow-[0_18px_42px_rgba(15,23,42,0.05)]">
+                                <div className="service-card service-card-roomy service-pink">
                                     <div className="pointer-events-none absolute -right-8 top-4 h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(60,55,148,0.34)_0%,transparent_68%)] blur-2xl" />
                                     <div className="pointer-events-none absolute -left-8 bottom-0 h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(0,212,255,0.22)_0%,transparent_70%)] blur-2xl" />
                                     <p className="relative z-10 text-sm font-semibold uppercase tracking-[0.18em] text-[#3c3794]">Uso recurrente</p>
@@ -79,7 +79,7 @@ export default function HerramientasPage() {
                                             href={item.href}
                                             eventName={GA4_EVENTS.NAV_CLICK}
                                             eventParams={{ location: 'tools_hero_quick_links', label: item.label }}
-                                            className="glass rounded-[24px] border border-[rgba(23,32,51,0.08)] bg-white/76 px-5 py-5 transition-all hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(15,23,42,0.06)]"
+                                            className="service-card service-card-compact service-blue px-5 py-5"
                                         >
                                             <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] ring-1 ${item.color}`}>
                                                 0{index + 1}
@@ -116,7 +116,7 @@ export default function HerramientasPage() {
                             </div>
                         </div>
 
-                        <div className="glass relative overflow-hidden rounded-[28px] border border-[rgba(23,32,51,0.08)] bg-white/78 p-6 shadow-[0_16px_36px_rgba(15,23,42,0.05)]">
+                        <div className="service-card service-card-roomy service-coral">
                             <div className="pointer-events-none absolute inset-x-10 bottom-0 h-24 bg-[radial-gradient(circle,rgba(255,107,107,0.24)_0%,transparent_72%)] blur-3xl" />
                             <p className="relative z-10 text-sm font-semibold uppercase tracking-[0.18em] text-[#cf5858]">
                                 No encuentras la herramienta que buscas?

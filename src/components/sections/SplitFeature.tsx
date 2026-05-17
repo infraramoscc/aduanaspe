@@ -34,10 +34,10 @@ function SplitFeature({
 
                     <div className={cn(imageSide === 'left' && 'lg:order-1')}>
                         {image || (
-                            <div className="relative overflow-hidden rounded-[30px] border border-slate-200 bg-[linear-gradient(135deg,#ffffff_0%,#f5f6f2_100%)] p-8 shadow-sm">
+                            <div className="service-card service-card-spacious service-blue">
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(135,95,214,0.12),transparent_24%),radial-gradient(circle_at_left,rgba(15,159,110,0.1),transparent_22%)]" />
                                 <div className="relative grid gap-4 md:grid-cols-2">
-                                    <div className="rounded-3xl border border-slate-200/80 bg-white/90 p-5 shadow-sm">
+                                    <div className="service-card service-card-roomy service-cyan">
                                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                                             Paso 1
                                         </p>
@@ -48,7 +48,7 @@ function SplitFeature({
                                             Menos idas y vueltas, más claridad desde el inicio.
                                         </p>
                                     </div>
-                                    <div className="rounded-3xl border border-slate-200/80 bg-slate-950 p-5 text-white shadow-sm">
+                                    <div className="service-card service-card-roomy service-purple text-white">
                                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
                                             Paso 2
                                         </p>
@@ -59,7 +59,7 @@ function SplitFeature({
                                             La operación se explica y se reporta sin que tengas que perseguir a nadie.
                                         </p>
                                     </div>
-                                    <div className="rounded-3xl border border-slate-200/80 bg-white/90 p-5 shadow-sm md:col-span-2">
+                                    <div className="service-card service-card-roomy service-green md:col-span-2">
                                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
                                             Resultado
                                         </p>

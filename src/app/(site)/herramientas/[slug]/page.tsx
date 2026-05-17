@@ -114,7 +114,7 @@ export default async function HerramientaPreviewPage({ params }: ToolPageProps) 
                             </div>
                         </div>
 
-                        <div className={`glass relative overflow-hidden rounded-[30px] border bg-white/82 p-6 shadow-[0_18px_42px_rgba(15,23,42,0.05)] ${accent.panel}`}>
+                        <div className={`service-card service-card-roomy relative ${accent.panel}`}>
                             <div className={`pointer-events-none absolute inset-x-10 bottom-0 h-28 blur-3xl ${accent.orb}`} />
                             <div className="relative z-10 flex items-start gap-4">
                                 <ToolGlyph icon={tool.icon} accent={category?.accent || 'indigo'} />
@@ -134,15 +134,15 @@ export default async function HerramientaPreviewPage({ params }: ToolPageProps) 
             <section className="bg-[#f8f6f1] py-16 md:py-20">
                 <Container size="xl">
                     <div className="grid gap-6 lg:grid-cols-3">
-                        <article className="glass rounded-[26px] border border-[rgba(23,32,51,0.08)] bg-white/84 p-6 shadow-sm">
+                        <article className="service-card service-card-roomy service-blue">
                             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Ideal para</p>
                             <p className="mt-3 text-base leading-7 text-slate-700">{tool.idealFor}</p>
                         </article>
-                        <article className="glass rounded-[26px] border border-[rgba(23,32,51,0.08)] bg-white/84 p-6 shadow-sm">
+                        <article className="service-card service-card-roomy service-cyan">
                             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Cuando usarla</p>
                             <p className="mt-3 text-base leading-7 text-slate-700">{tool.whenToUse}</p>
                         </article>
-                        <article className="glass rounded-[26px] border border-[rgba(23,32,51,0.08)] bg-white/84 p-6 shadow-sm">
+                        <article className="service-card service-card-roomy service-coral">
                             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">Relacionada con</p>
                             <TrackedLink
                                 href={tool.relatedHref}
@@ -156,11 +156,11 @@ export default async function HerramientaPreviewPage({ params }: ToolPageProps) 
                     </div>
 
                     <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-                        <div className="glass rounded-[28px] border border-[rgba(23,32,51,0.08)] bg-white/82 p-6 shadow-[0_16px_34px_rgba(15,23,42,0.05)]">
+                        <div className="service-card service-card-roomy service-blue">
                             <span className="section-badge bg-white/84">Que deberia entregar</span>
                             <div className="mt-4 space-y-4">
                                 {tool.outputs.map((output) => (
-                                    <div key={output} className="rounded-[20px] bg-[#fcfcfd] px-4 py-4 ring-1 ring-[rgba(23,32,51,0.08)]">
+                                    <div key={output} className="service-card service-card-compact service-cyan">
                                         <div className="flex items-start gap-3">
                                             <span className={`mt-2 h-2 w-2 rounded-full ${accent.dot}`} />
                                             <p className="text-sm leading-7 text-slate-700">{output}</p>
@@ -170,7 +170,7 @@ export default async function HerramientaPreviewPage({ params }: ToolPageProps) 
                             </div>
                         </div>
 
-                        <div className={`glass relative overflow-hidden rounded-[28px] border bg-white/84 p-6 shadow-[0_16px_34px_rgba(15,23,42,0.05)] ${accent.panel}`}>
+                        <div className={`service-card service-card-roomy service-coral relative ${accent.panel}`}>
                             <div className={`pointer-events-none absolute inset-x-10 bottom-0 h-24 blur-3xl ${accent.orb}`} />
                             <div className="relative z-10">
                                 <div className="flex flex-wrap items-center gap-3">

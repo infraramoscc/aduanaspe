@@ -66,7 +66,7 @@ export function WhatsAppHero({
                             {features.map((feature, i) => (
                                 <div
                                     key={i}
-                                    className="rounded-2xl border border-white/10 bg-white/6 p-5 text-center backdrop-blur-sm"
+                                    className="service-card service-card-roomy service-dark text-center"
                                 >
                                     <div className="mb-3 text-3xl text-emerald-300">{feature.icon}</div>
                                     <h3 className="text-lg font-semibold">{feature.title}</h3>

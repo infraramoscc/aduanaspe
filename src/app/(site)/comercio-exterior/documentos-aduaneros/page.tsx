@@ -104,7 +104,7 @@ export default function DocumentosAduanerosPage() {
 
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
                         {documentos.map((doc) => (
-                            <div key={doc.title} className="rounded-3xl border border-slate-200 bg-slate-50 p-8 shadow-sm">
+                            <div key={doc.title} className="service-card service-card-roomy service-blue">
                                 <div className="mb-6 flex items-start justify-between">
                                     <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-white text-sm font-bold text-slate-700">
                                         {doc.icon}
@@ -115,7 +115,7 @@ export default function DocumentosAduanerosPage() {
                                 </div>
                                 <h3 className="text-2xl font-bold text-slate-900">{doc.title}</h3>
                                 <p className="mt-3 text-slate-600">{doc.desc}</p>
-                                <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-4">
+                                <div className="service-card service-card-compact service-cyan mt-6">
                                     <h4 className="text-sm font-bold text-slate-700">Checklist rápido</h4>
                                     <ul className="mt-3 space-y-2">
                                         {doc.tips.map((tip) => (
@@ -137,7 +137,7 @@ export default function DocumentosAduanerosPage() {
                 description="Una descripción ambigua, un dato mal consignado o un documento faltante puede generar observaciones, retrasos y costos adicionales que se pudieron evitar antes del embarque."
                 imageSide="left"
             >
-                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
+                <div className="service-card service-card-roomy service-amber">
                     <h4 className="font-bold text-amber-900">Revisión previa</h4>
                     <p className="mt-2 text-sm text-amber-800">
                         Si revisas los documentos antes de la emisión final, reduces mucho más el riesgo de correcciones tardías.
@@ -152,7 +152,7 @@ export default function DocumentosAduanerosPage() {
 
             <Container>
                 <div className="py-20">
-                    <div className="mx-auto max-w-3xl rounded-3xl border border-slate-200 bg-slate-50 p-8 text-center md:p-12">
+                    <div className="service-card service-card-spacious service-blue mx-auto max-w-3xl text-center">
                         <h2 className="text-2xl font-bold text-slate-900">Consulta sobre documentos</h2>
                         <p className="mt-4 text-slate-600">
                             Si tienes dudas sobre requisitos o soportes, cuéntanos tu operación y revisamos qué hace falta.

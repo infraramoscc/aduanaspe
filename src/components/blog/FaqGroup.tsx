@@ -28,12 +28,12 @@ export function FaqGroup({ faqs, json }: FaqGroupProps) {
         <section className="my-10" aria-label="Preguntas frecuentes">
             <FaqJsonLd faqs={parsedFaqs} />
 
-            <div className="mt-8 rounded-[26px] border border-slate-200 bg-slate-50/90 p-4 shadow-sm md:p-6">
+            <div className="service-card service-card-roomy service-cyan mt-8">
                 <div className="space-y-3">
                     {parsedFaqs.map((faq, index) => (
                         <details
                             key={index}
-                            className="group rounded-[22px] border border-slate-200 bg-white px-5 py-4 shadow-[0_2px_8px_rgb(0,0,0,0.04)]"
+                            className="service-card service-card-compact service-blue group"
                         >
                             <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-left">
                                 <span className="text-base font-bold leading-7 text-slate-900">

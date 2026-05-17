@@ -36,6 +36,7 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
         'importar-desde-china': 'Importar desde China',
         'importa-puerta-a-puerta': 'Importa Puerta a Puerta',
         'courier-vs-carga': 'Courier vs Carga',
+        'importar-juguetes-utiles-escritorio': 'Juguetes y útiles',
         'blog': 'Blog',
     };
 
@@ -66,7 +67,7 @@ function Breadcrumbs() {
     return (
         <nav aria-label="Breadcrumb" className="bg-gray-50 border-b border-gray-200">
             <Container>
-                <ol className="flex items-center gap-2 py-3 text-sm overflow-x-auto">
+                <ol className="flex items-center gap-2 overflow-x-auto py-3 text-sm [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     {breadcrumbs.map((crumb, index) => {
                         const isLast = index === breadcrumbs.length - 1;
 
