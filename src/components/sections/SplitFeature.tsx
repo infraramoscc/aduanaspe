@@ -35,7 +35,7 @@ function SplitFeature({
                     <div className={cn(imageSide === 'left' && 'lg:order-1')}>
                         {image || (
                             <div className="service-card service-card-spacious service-blue">
-                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(135,95,214,0.12),transparent_24%),radial-gradient(circle_at_left,rgba(15,159,110,0.1),transparent_22%)]" />
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.13),transparent_24%),radial-gradient(circle_at_left,rgba(56,189,248,0.1),transparent_22%)]" />
                                 <div className="relative grid gap-4 md:grid-cols-2">
                                     <div className="service-card service-card-roomy service-cyan">
                                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">

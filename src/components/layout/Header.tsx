@@ -8,10 +8,11 @@ import { TrackedLink, WhatsAppLink, GA4_EVENTS } from '@/components/tracking';
 
 function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const mobileNavId = 'mobile-navigation';
 
     return (
         <header className="glass fixed top-0 left-0 right-0 z-50 border-b border-slate-100">
-            <div className="border-b border-white/10 bg-slate-950 text-white">
+            <div className="border-b border-white/10 bg-[#172554] text-white">
                 <Container>
                     <div className="flex min-h-11 flex-col items-center justify-center gap-2 py-2 text-center md:flex-row md:justify-between md:text-left">
                         <p className="text-sm font-medium text-slate-100">
@@ -50,7 +51,7 @@ function Header() {
                                 href={item.href}
                                 eventName={GA4_EVENTS.NAV_CLICK}
                                 eventParams={{ location: 'header', label: item.label }}
-                                className="text-slate-600 hover:text-purple-600 transition-colors font-medium"
+                                className="text-slate-600 hover:text-indigo-700 transition-colors font-medium"
                             >
                                 {item.label}
                             </TrackedLink>
@@ -60,7 +61,7 @@ function Header() {
                             href="/contacto"
                             eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
                             eventParams={{ location: 'header' }}
-                            className="bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 text-white px-5 py-2 rounded-full font-semibold hover:shadow-pink transition-all hover:-translate-y-0.5"
+                            className="bg-gradient-to-r from-indigo-600 via-blue-700 to-sky-400 text-white px-5 py-2 rounded-full font-semibold hover:shadow-pink transition-all hover:-translate-y-0.5"
                         >
                             Contactar
                         </TrackedLink>
@@ -70,8 +71,10 @@ function Header() {
                     <button
                         type="button"
                         className="md:hidden p-2 text-slate-600 hover:text-slate-900"
-                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                        aria-label="Toggle menu"
+                        onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
+                        aria-label={mobileMenuOpen ? 'Cerrar menu' : 'Abrir menu'}
+                        aria-controls={mobileNavId}
+                        aria-expanded={mobileMenuOpen}
                     >
                         <svg
                             className="w-6 h-6"
@@ -100,6 +103,7 @@ function Header() {
 
                 {/* Mobile Navigation */}
                 <div
+                    id={mobileNavId}
                     className={cn(
                         'md:hidden overflow-hidden transition-all duration-300',
                         mobileMenuOpen ? 'max-h-64 pb-4' : 'max-h-0'
@@ -112,7 +116,7 @@ function Header() {
                                 href={item.href}
                                 eventName={GA4_EVENTS.NAV_CLICK}
                                 eventParams={{ location: 'mobile_header', label: item.label }}
-                                className="px-4 py-2 text-slate-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-colors font-medium"
+                                className="px-4 py-2 text-slate-600 hover:text-indigo-700 hover:bg-indigo-50 rounded-lg transition-colors font-medium"
                                 onClick={() => setMobileMenuOpen(false)}
                             >
                                 {item.label}
@@ -122,7 +126,7 @@ function Header() {
                             href="/contacto"
                             eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
                             eventParams={{ location: 'mobile_header' }}
-                            className="mx-4 mt-2 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 text-white px-5 py-2 rounded-full font-semibold text-center"
+                            className="mx-4 mt-2 bg-gradient-to-r from-indigo-600 via-blue-700 to-sky-400 text-white px-5 py-2 rounded-full font-semibold text-center"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Contactar

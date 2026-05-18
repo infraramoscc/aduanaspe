@@ -91,7 +91,7 @@ export default function QuienesSomosPage() {
                 description="Trabajamos años en agencias de aduanas grandes. Vimos cómo los clientes eran tratados como números: sin seguimiento, sin explicaciones, sin atención real. Un día nos preguntamos: ¿por qué nadie hace esto bien? Y decidimos hacerlo nosotros."
                 imageSide="right"
             >
-                <p className="text-slate-600 italic border-l-4 border-purple-500 pl-4">
+                <p className="text-slate-600 italic border-l-4 border-indigo-500 pl-4">
                     &ldquo;Lo que nos diferencia no es ser los más grandes, sino los más cercanos. Cada cliente tiene un ejecutivo asignado que conoce su negocio y está disponible cuando lo necesita.&rdquo;
                 </p>
             </SplitFeature>
@@ -104,19 +104,19 @@ export default function QuienesSomosPage() {
             >
                 <ul className="space-y-2 text-slate-600">
                     <li className="flex items-start gap-2">
-                        <span className="text-purple-600">✓</span>
+                        <span className="text-indigo-700">✓</span>
                         <span>Ejecutivo personal asignado a tu cuenta</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-purple-600">✓</span>
+                        <span className="text-indigo-700">✓</span>
                         <span>Envío de estatus constante sin que lo pidas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-purple-600">✓</span>
+                        <span className="text-indigo-700">✓</span>
                         <span>Capacitación y asesoramiento incluido</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-purple-600">✓</span>
+                        <span className="text-indigo-700">✓</span>
                         <span>Facturación inmediata cuando la necesitas</span>
                     </li>
                 </ul>

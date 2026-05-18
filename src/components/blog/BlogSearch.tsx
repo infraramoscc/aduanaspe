@@ -46,13 +46,13 @@ export function BlogSearch({ posts, activeCategory }: BlogSearchProps) {
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
                     <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                            Buscar articulos
+                            Buscador editorial
                         </p>
                         <h2 className="mt-2 text-2xl font-bold text-slate-950">
-                            Filtra por texto dentro de la categoria activa
+                            Busca por producto, trámite o documento
                         </h2>
                         <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-600">
-                            La busqueda respeta la categoria seleccionada y revisa titulo, descripcion, tags y categoria.
+                            La búsqueda respeta la categoría activa y revisa título, descripción, etiquetas y tema.
                         </p>
                     </div>
 
@@ -62,11 +62,13 @@ export function BlogSearch({ posts, activeCategory }: BlogSearchProps) {
                         </label>
                         <input
                             id="blog-search"
+                            name="blog-search"
                             type="search"
+                            autoComplete="off"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            placeholder="Buscar por tema, palabra clave o categoria..."
-                            className="w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 shadow-sm placeholder:text-slate-400 transition focus:border-slate-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-slate-200/70"
+                            placeholder="Ejemplo: rotulado, DIGESA, tributos…"
+                            className="w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm placeholder:text-slate-400 transition-[border-color,background-color,box-shadow] focus:border-slate-400 focus:bg-white focus:outline-none focus:ring-4 focus:ring-slate-200/70"
                         />
                     </div>
                 </div>
@@ -76,7 +78,7 @@ export function BlogSearch({ posts, activeCategory }: BlogSearchProps) {
                 <div className="mb-8 flex flex-col gap-4 border-b border-slate-200 pb-6 md:flex-row md:items-end md:justify-between">
                     <div>
                         <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                            {deferredQuery.trim() ? 'Resultados filtrados' : activeCategory ? 'Categoria activa' : 'Vista general'}
+                            {deferredQuery.trim() ? 'Resultados filtrados' : activeCategory ? 'Categoría activa' : 'Lecturas recomendadas'}
                         </p>
                         <h2 className="mt-2 text-2xl font-bold text-slate-950">
                             {deferredQuery.trim()

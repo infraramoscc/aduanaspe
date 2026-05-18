@@ -26,6 +26,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                     ? 'service-card service-dark p-5 text-white lg:flex-row lg:gap-6 lg:p-7'
                     : 'service-card service-blue'
             )}
+            style={featured ? { background: 'linear-gradient(135deg,#172554 0%,#1E3A5F 58%,#0E7490 100%)' } : undefined}
         >
             <div className={cn('min-w-0', featured ? 'lg:flex lg:w-[38%] lg:flex-col lg:justify-between' : '')}>
                 <div className="mb-4 flex items-start justify-between gap-4">
@@ -51,14 +52,14 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                                 'mt-2 text-xs',
                                 featured ? 'text-slate-300' : 'text-slate-500'
                             )}>
-                                {formatDate(new Date(post.date))} · {post.readingTime}
+                                {formatDate(post.date)} · {post.readingTime}
                             </p>
                         </div>
                     </div>
 
                     {featured && (
                         <span className="shrink-0 rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
-                            Destacado
+                            Análisis destacado
                         </span>
                     )}
                 </div>
@@ -108,7 +109,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                         'inline-flex items-center gap-2 font-semibold',
                         featured ? 'text-white' : 'service-link'
                     )}>
-                        Leer artículo
+                        Leer análisis
                         <span aria-hidden="true">{'->'}</span>
                     </span>
                 </div>

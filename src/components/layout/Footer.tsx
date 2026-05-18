@@ -18,7 +18,7 @@ function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-slate-900 text-slate-300">
+        <footer className="bg-[#102033] text-slate-300">
             <Container>
                 <div className="grid grid-cols-1 gap-8 py-16 md:grid-cols-4">
                     <div>
@@ -45,7 +45,7 @@ function Footer() {
                                         href={`/servicios/${service.slug}`}
                                         eventName={GA4_EVENTS.NAV_CLICK}
                                         eventParams={{ location: 'footer', label: service.slug }}
-                                        className="text-slate-400 transition-colors hover:text-purple-400"
+                                        className="text-slate-400 transition-colors hover:text-sky-300"
                                     >
                                         {service.title}
                                     </TrackedLink>
@@ -63,7 +63,7 @@ function Footer() {
                                         href={item.href}
                                         eventName={GA4_EVENTS.NAV_CLICK}
                                         eventParams={{ location: 'footer', label: item.label }}
-                                        className="text-slate-400 transition-colors hover:text-purple-400"
+                                        className="text-slate-400 transition-colors hover:text-sky-300"
                                     >
                                         {item.label}
                                     </TrackedLink>
@@ -82,7 +82,7 @@ function Footer() {
                                         external={item.external}
                                         eventName={GA4_EVENTS.NAV_CLICK}
                                         eventParams={{ location: 'footer', label: item.label }}
-                                        className="transition-colors hover:text-purple-400"
+                                        className="transition-colors hover:text-sky-300"
                                     >
                                         {item.label}
                                     </TrackedLink>
@@ -90,7 +90,7 @@ function Footer() {
                             ))}
                             <li>Callao, Peru</li>
                             <li>
-                                <a href="mailto:info@aduanaspe.com" className="transition-colors hover:text-purple-400">
+                                <a href="mailto:info@aduanaspe.com" className="transition-colors hover:text-sky-300">
                                     info@aduanaspe.com
                                 </a>
                             </li>

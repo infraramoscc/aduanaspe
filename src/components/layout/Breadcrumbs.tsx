@@ -45,12 +45,20 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
     segments.forEach((segment) => {
         currentPath += `/${segment}`;
         breadcrumbs.push({
-            label: toolLabelMap[segment] || labels[segment] || segment.charAt(0).toUpperCase() + segment.slice(1),
+            label: toolLabelMap[segment] || labels[segment] || humanizePathSegment(segment),
             href: currentPath,
         });
     });
 
     return breadcrumbs;
+}
+
+function humanizePathSegment(segment: string) {
+    return segment
+        .split('-')
+        .filter(Boolean)
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
 }
 
 function Breadcrumbs() {
@@ -93,7 +101,7 @@ function Breadcrumbs() {
                                 ) : (
                                     <Link
                                         href={crumb.href}
-                                        className="text-gray-500 hover:text-violet-600 transition-colors"
+                                        className="text-gray-500 hover:text-indigo-700 transition-colors"
                                     >
                                         {crumb.label}
                                     </Link>

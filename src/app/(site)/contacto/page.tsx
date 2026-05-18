@@ -84,7 +84,7 @@ export default function ContactoPage() {
                     href="#contacto-form"
                     eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
                     eventParams={{ location: 'contact_hero' }}
-                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-purple-400 hover:bg-purple-50 hover:text-purple-600"
+                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700"
                 >
                     Prefiero que me contacten
                 </TrackedLink>
@@ -128,7 +128,7 @@ export default function ContactoPage() {
                                     </p>
                                     <a
                                         href={`mailto:${contactInfo.email}`}
-                                        className="text-lg font-medium text-purple-600 hover:text-pink-600 transition-colors"
+                                        className="text-lg font-medium text-indigo-700 hover:text-sky-600 transition-colors"
                                     >
                                         {contactInfo.email}
                                     </a>

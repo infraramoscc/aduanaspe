@@ -99,10 +99,10 @@ export function ArticleToc({ headings, compact = false }: ArticleTocProps) {
         return (
             <details className="service-card service-card-compact service-blue lg:hidden">
                 <summary className="cursor-pointer list-none text-sm font-semibold text-slate-900">
-                    Ir a una seccion
+                    Ir a una sección
                 </summary>
                 <p className="mt-2 text-sm text-slate-500">
-                    Usa este indice rapido para moverte por el articulo.
+                    Usa este índice rápido para moverte por el artículo.
                 </p>
                 <div className="mt-4">
                     <TocLinks headings={headings} activeId={activeId} onNavigate={setActiveId} />
@@ -112,12 +112,12 @@ export function ArticleToc({ headings, compact = false }: ArticleTocProps) {
     }
 
     return (
-        <nav className="service-card service-card-roomy service-blue" aria-label="En este articulo">
+        <nav className="service-card service-card-roomy service-blue" aria-label="En este artículo">
             <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                En este articulo
+                En este artículo
             </p>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-                Sigue la estructura y vuelve a la seccion que necesitas sin perder el hilo.
+                Sigue la estructura y vuelve a la sección que necesitas sin perder el hilo.
             </p>
             <div className="relative mt-4">
                 <div
@@ -162,7 +162,7 @@ function TocLinks({
                         onClick={() => onNavigate?.(heading.id)}
                         aria-current={isActive ? 'location' : undefined}
                         className={`block rounded-2xl border px-3 py-2.5 text-sm leading-6 transition-[border-color,background-color,color,padding,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 ${heading.level === 3 ? 'ml-3' : ''} ${isActive
-                            ? 'border-amber-200 bg-amber-50 text-slate-950 shadow-[inset_3px_0_0_0_rgb(180,83,9)]'
+                            ? 'border-indigo-200 bg-indigo-50 text-slate-950 shadow-[inset_3px_0_0_0_rgb(79,70,229)]'
                             : 'border-transparent text-slate-600 hover:border-slate-200 hover:bg-slate-50 hover:text-slate-950'
                             }`}
                     >

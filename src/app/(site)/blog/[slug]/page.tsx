@@ -120,6 +120,20 @@ export default async function BlogPostPage({
     };
     const inlineLeadHeadline = inlineLeadHeadlineByTopic[post.topic];
     const inlineLeadService = topicMapping?.primaryService ?? 'agenciamiento-aduanas';
+    const editorialSignals = [
+        {
+            label: 'Base de lectura',
+            value: 'Normativa, fuentes y contexto operativo',
+        },
+        {
+            label: 'Enfoque',
+            value: 'Aplicado a decisiones de importación',
+        },
+        {
+            label: 'Actualización',
+            value: post.updatedAt ? formatDate(post.updatedAt) : formatDate(post.date),
+        },
+    ];
 
     return (
         <>
@@ -132,12 +146,20 @@ export default async function BlogPostPage({
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
 
-            <article className="bg-[linear-gradient(90deg,rgba(248,250,252,0.96)_0%,rgba(255,255,255,1)_18%,rgba(255,255,255,1)_82%,rgba(248,250,252,0.96)_100%)] py-12 md:py-16">
+            <article className="bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_26%),linear-gradient(90deg,rgba(248,250,252,0.96)_0%,rgba(255,255,255,1)_18%,rgba(255,255,255,1)_82%,rgba(248,250,252,0.96)_100%)] py-12 md:py-16">
                 <Container size="xl">
                     <div className="grid grid-cols-1 gap-10 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[220px_minmax(0,1fr)] xl:gap-12">
                         <aside className="hidden min-w-0 lg:block">
-                            <div className="sticky top-32">
+                            <div className="sticky top-32 space-y-5">
                                 <ArticleToc headings={articleHeadings} />
+                                <div className="service-card service-card-compact service-cyan">
+                                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
+                                        Confianza
+                                    </p>
+                                    <p className="mt-2 text-sm leading-6 text-slate-700">
+                                        Contenido escrito para orientar decisiones. No reemplaza la revisión puntual de tu partida, documentos o permisos.
+                                    </p>
+                                </div>
                             </div>
                         </aside>
 
@@ -172,23 +194,36 @@ export default async function BlogPostPage({
                                     {post.description}
                                 </p>
 
-                                <div className="mt-8 grid gap-5 md:grid-cols-[auto,1fr] md:items-center">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-slate-950 text-sm font-bold text-white">
+                                <div className="mt-8 grid gap-5 rounded-[28px] border border-slate-200 bg-slate-50/80 p-5 md:grid-cols-[auto,1fr] md:items-center">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#172554] text-sm font-bold text-white shadow-sm">
                                         {post.author.charAt(0)}
                                     </div>
                                     <div>
-                                        <p className="font-medium text-slate-950">
+                                        <p className="font-semibold text-slate-950">
                                             {post.author}
                                         </p>
                                         <time dateTime={post.date} className="text-sm text-slate-500">
-                                            {formatDate(new Date(post.date))}
+                                            {formatDate(post.date)}
                                             {post.updatedAt && (
                                                 <span className="ml-2">
-                                                    (Actualizado: {formatDate(new Date(post.updatedAt))})
+                                                    (Actualizado: {formatDate(post.updatedAt)})
                                                 </span>
                                             )}
                                         </time>
                                     </div>
+                                </div>
+
+                                <div className="mt-5 grid gap-3 md:grid-cols-3">
+                                    {editorialSignals.map((item) => (
+                                        <div key={item.label} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
+                                            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                                                {item.label}
+                                            </p>
+                                            <p className="mt-1 text-sm font-semibold leading-6 text-slate-800">
+                                                {item.value}
+                                            </p>
+                                        </div>
+                                    ))}
                                 </div>
                             </header>
 
@@ -280,7 +315,7 @@ export default async function BlogPostPage({
                         </a>
                         <Link
                             href="/blog"
-                            className="inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
+                            className="inline-flex items-center justify-center rounded-full bg-[#172554] px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-[#1E3A5F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                         >
                             Ver mas articulos
                         </Link>

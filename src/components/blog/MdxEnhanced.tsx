@@ -249,7 +249,7 @@ const infoBoxStyles: Record<InfoBoxType, { bg: string; border: string; iconBg: s
     warning: { bg: 'var(--yellow-light)', border: 'var(--yellow-dark)', iconBg: 'var(--yellow-dark)', icon: '⚠️' },
     success: { bg: 'var(--green-light)', border: 'var(--green)', iconBg: 'var(--green-dark)', icon: '✅' },
     formula: { bg: 'var(--purple-light)', border: 'var(--purple)', iconBg: 'var(--purple)', icon: '📐' },
-    important: { bg: 'var(--coral-light)', border: 'var(--coral)', iconBg: 'var(--coral)', icon: '🔑' },
+    important: { bg: 'var(--purple-light)', border: 'var(--purple)', iconBg: 'var(--purple)', icon: '🔑' },
 };
 
 const infoBoxServiceColor: Record<InfoBoxType, string> = {
@@ -257,7 +257,7 @@ const infoBoxServiceColor: Record<InfoBoxType, string> = {
     warning: 'service-amber',
     success: 'service-green',
     formula: 'service-purple',
-    important: 'service-coral',
+    important: 'service-purple',
 };
 
 interface InfoBoxProps {

@@ -75,7 +75,7 @@ function Hero({
     return (
         <section
             className={cn(
-                'relative overflow-hidden border-b border-slate-200/80 bg-[radial-gradient(circle_at_top_right,rgba(232,101,143,0.08),transparent_28%),radial-gradient(circle_at_left,rgba(15,159,110,0.08),transparent_22%)]',
+                'relative overflow-hidden border-b border-slate-200/80 bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.1),transparent_28%),radial-gradient(circle_at_left,rgba(56,189,248,0.1),transparent_22%)]',
                 {
                     'py-16': size === 'sm',
                     'py-20 md:py-24': size === 'md',
