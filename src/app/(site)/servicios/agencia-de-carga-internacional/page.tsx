@@ -201,7 +201,7 @@ export default function AgenciamientoCargaPage() {
                                         <div>
                                             <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                                             <p className="mt-2 text-slate-600">{item.description}</p>
-                                            <p className="mt-3 text-sm italic text-slate-500 border-l-2 border-indigo-300 pl-2">{item.highlight}</p>
+                                            <p className="mt-3 text-sm italic text-slate-500 border-l-2 border-[#D8D5FF] pl-2">{item.highlight}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -233,7 +233,7 @@ export default function AgenciamientoCargaPage() {
                                     <ul className="space-y-3 text-left inline-block">
                                         {mode.options.map((option) => (
                                             <li key={option} className="flex items-center gap-2 text-slate-600">
-                                                <span className="text-indigo-700">✓</span>
+                                                <span className="text-[#3C3794]">✓</span>
                                                 {option}
                                             </li>
                                         ))}
@@ -324,7 +324,7 @@ export default function AgenciamientoCargaPage() {
                                     <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">📋</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Aduanas</h3>
                                     <p className="text-sm text-slate-600 mt-2">Despacho aduanero en destino</p>
-                                    <p className="text-xs text-indigo-700 font-medium mt-2">Ver servicio →</p>
+                                    <p className="text-xs text-[#3C3794] font-medium mt-2">Ver servicio →</p>
                                 </div>
                             </Link>
                             {/* Etapa 3 */}
@@ -379,7 +379,7 @@ export default function AgenciamientoCargaPage() {
                         </div>
 
                         {/* Servicio Integral */}
-                        <div className="mt-8 p-8 rounded-xl bg-gradient-to-r from-indigo-700 to-blue-600 text-white text-center shadow-xl">
+                        <div className="mt-8 p-8 rounded-xl bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_62%,#38BDF8_100%)] text-white text-center shadow-xl">
                             <h3 className="text-2xl font-bold">¿Prefieres un servicio integral?</h3>
                             <p className="mt-2 text-blue-100 text-lg">Contratamos las 3 etapas + opcionales por ti. Un solo punto de contacto, una sola factura.</p>
                             <div className="mt-6">

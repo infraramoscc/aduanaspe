@@ -195,7 +195,7 @@ export default async function BlogPostPage({
                                 </p>
 
                                 <div className="mt-8 grid gap-5 rounded-[28px] border border-slate-200 bg-slate-50/80 p-5 md:grid-cols-[auto,1fr] md:items-center">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#172554] text-sm font-bold text-white shadow-sm">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#3C3794] text-sm font-bold text-white shadow-sm">
                                         {post.author.charAt(0)}
                                     </div>
                                     <div>
@@ -315,7 +315,7 @@ export default async function BlogPostPage({
                         </a>
                         <Link
                             href="/blog"
-                            className="inline-flex items-center justify-center rounded-full bg-[#172554] px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-[#1E3A5F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
+                            className="inline-flex items-center justify-center rounded-full bg-[#3C3794] px-5 py-3 text-sm font-semibold text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-[#2F2B77] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                         >
                             Ver mas articulos
                         </Link>

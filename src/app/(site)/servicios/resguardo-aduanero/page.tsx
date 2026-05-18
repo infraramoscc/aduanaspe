@@ -172,7 +172,7 @@ export default function ResguardoPage() {
                         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-300/30 to-transparent"></div>
                         <div className="relative z-10 flex flex-col items-center">
                             <span className="text-9xl filter drop-shadow-2xl animate-pulse">🛡️</span>
-                            <div className="mt-6 px-6 py-2 bg-[#172554] text-white rounded-lg shadow-xl border border-white/10 flex items-center gap-2">
+                            <div className="mt-6 px-6 py-2 bg-[#3C3794] text-white rounded-lg shadow-xl border border-white/10 flex items-center gap-2">
                                 <span className="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
                                 <span className="font-mono text-sm">SISTEMA ACTIVO</span>
                             </div>
@@ -210,7 +210,7 @@ export default function ResguardoPage() {
                                     <ul className="space-y-4 mb-6">
                                         {mode.features.map((feature) => (
                                             <li key={feature} className="flex items-start gap-3 text-slate-600">
-                                                <span className="text-indigo-700 flex-shrink-0 mt-1">✓</span>
+                                                <span className="text-[#3C3794] flex-shrink-0 mt-1">✓</span>
                                                 <span>{feature}</span>
                                             </li>
                                         ))}
@@ -309,7 +309,7 @@ export default function ResguardoPage() {
                         </div>
 
                         {/* Servicio Integral */}
-                        <div className="mt-8 p-8 rounded-xl bg-gradient-to-r from-slate-800 to-indigo-900 text-white text-center shadow-xl">
+                        <div className="mt-8 p-8 rounded-xl bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_100%)] text-white text-center shadow-xl">
                             <h3 className="text-xl font-bold">¿Prefieres un servicio integral?</h3>
                             <p className="mt-2 text-slate-300">Contratamos las 3 etapas + resguardo + consultoría por ti. Un solo punto de contacto, una sola factura.</p>
                             <div className="mt-6">

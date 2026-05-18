@@ -155,7 +155,7 @@ function HR() {
 
 function Pre({ children }: { children: ReactNode }) {
     return (
-        <pre className="bg-[#172554] text-slate-100 rounded-xl p-6 overflow-x-auto my-6 text-sm leading-relaxed border border-white/10">
+        <pre className="bg-[#2F2B77] text-slate-100 rounded-xl p-6 overflow-x-auto my-6 text-sm leading-relaxed border border-white/10">
             {children}
         </pre>
     );

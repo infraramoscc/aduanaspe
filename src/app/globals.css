@@ -3,9 +3,9 @@
 /* ===== CSS VARIABLES - VIBRANTE CLARO PREMIUM ===== */
 :root {
   /* Indigo - CTAs primarios y acentos de marca */
-  --pink: #4F46E5;
-  --pink-dark: #1E1B4B;
-  --pink-light: #EEF2FF;
+  --pink: #3C3794;
+  --pink-dark: #2F2B77;
+  --pink-light: #ECEBFF;
 
   /* Cyan puerto - Gradientes, iconos y soporte logístico */
   --blue: #38BDF8;
@@ -13,9 +13,9 @@
   --blue-light: #E0F2FE;
 
   /* Navy indigo - Profundidad, palabras destacadas */
-  --purple: #3730A3;
-  --purple-dark: #1E1B4B;
-  --purple-light: #E0E7FF;
+  --purple: #3C3794;
+  --purple-dark: #2F2B77;
+  --purple-light: #ECEBFF;
 
   /* Verde Neón - Éxito, secundario */
   --green: #00F5A0;
@@ -44,13 +44,13 @@
   --text-muted: #6F7B8C;
 
   /* Fondos oscuros de marca */
-  --brand-deep: #172554;
-  --brand-panel: #1E3A5F;
+  --brand-deep: #3C3794;
+  --brand-panel: #2F2B77;
   --brand-harbor: #0E7490;
-  --gradient-deep: linear-gradient(135deg, #172554 0%, #1E3A5F 58%, #0E7490 100%);
+  --gradient-deep: linear-gradient(135deg, #3C3794 0%, #2F2B77 58%, #0E7490 100%);
 
   /* Gradientes Premium */
-  --gradient-primary: linear-gradient(135deg, #4F46E5 0%, #1E40AF 54%, #38BDF8 100%);
+  --gradient-primary: linear-gradient(135deg, #3C3794 0%, #2F2B77 54%, #38BDF8 100%);
   --gradient-secondary: linear-gradient(135deg, #0F9F6E 0%, #1299C2 100%);
   --gradient-warm: linear-gradient(135deg, #F3D46B 0%, #E69A33 56%, #E46969 100%);
   --gradient-soft: linear-gradient(180deg, #FCFCFA 0%, #F5F6F2 100%);
@@ -59,9 +59,9 @@
   --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.05);
   --shadow-md: 0 12px 30px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.12);
-  --shadow-pink: 0 16px 36px rgba(79, 70, 229, 0.16);
+  --shadow-pink: 0 16px 36px rgba(60, 55, 148, 0.18);
   --shadow-blue: 0 16px 36px rgba(56, 189, 248, 0.14);
-  --shadow-purple: 0 16px 36px rgba(55, 48, 163, 0.16);
+  --shadow-purple: 0 16px 36px rgba(60, 55, 148, 0.16);
   --shadow-green: 0 16px 36px rgba(15, 159, 110, 0.14);
   --shadow-card: 0 16px 40px rgba(15, 23, 42, 0.08);
 
@@ -401,19 +401,19 @@ body {
 
 .service-pink::before {
   background:
-    radial-gradient(circle at 18% 0%, rgba(79, 70, 229, 0.2), transparent 34%),
+    radial-gradient(circle at 18% 0%, rgba(60, 55, 148, 0.22), transparent 34%),
     radial-gradient(circle at 90% 110%, rgba(56, 189, 248, 0.16), transparent 32%);
 }
 
 .service-blue::before {
   background:
     radial-gradient(circle at 18% 0%, rgba(56, 189, 248, 0.18), transparent 34%),
-    radial-gradient(circle at 90% 110%, rgba(79, 70, 229, 0.12), transparent 32%);
+    radial-gradient(circle at 90% 110%, rgba(60, 55, 148, 0.13), transparent 32%);
 }
 
 .service-purple::before {
   background:
-    radial-gradient(circle at 18% 0%, rgba(55, 48, 163, 0.2), transparent 34%),
+    radial-gradient(circle at 18% 0%, rgba(60, 55, 148, 0.22), transparent 34%),
     radial-gradient(circle at 90% 110%, rgba(56, 189, 248, 0.14), transparent 32%);
 }
 
@@ -441,7 +441,7 @@ body {
 }
 
 .service-pink:hover {
-  box-shadow: 0 26px 58px rgba(79, 70, 229, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
+  box-shadow: 0 26px 58px rgba(60, 55, 148, 0.2), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 
 .service-blue:hover {
@@ -449,7 +449,7 @@ body {
 }
 
 .service-purple:hover {
-  box-shadow: 0 26px 58px rgba(55, 48, 163, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
+  box-shadow: 0 26px 58px rgba(60, 55, 148, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 
 .service-green:hover {
@@ -515,9 +515,9 @@ body {
 }
 
 .service-dark:hover {
-  background: #1E3A5F;
+  background: #2F2B77;
   border-color: rgba(255, 255, 255, 0.16);
-  box-shadow: 0 26px 58px rgba(15, 23, 42, 0.22), 0 10px 24px rgba(79, 70, 229, 0.14);
+  box-shadow: 0 26px 58px rgba(15, 23, 42, 0.22), 0 10px 24px rgba(60, 55, 148, 0.16);
 }
 
 /* ===== SERVICE LINK ===== */

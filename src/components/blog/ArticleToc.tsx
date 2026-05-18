@@ -162,7 +162,7 @@ function TocLinks({
                         onClick={() => onNavigate?.(heading.id)}
                         aria-current={isActive ? 'location' : undefined}
                         className={`block rounded-2xl border px-3 py-2.5 text-sm leading-6 transition-[border-color,background-color,color,padding,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 ${heading.level === 3 ? 'ml-3' : ''} ${isActive
-                            ? 'border-indigo-200 bg-indigo-50 text-slate-950 shadow-[inset_3px_0_0_0_rgb(79,70,229)]'
+                            ? 'border-[#D8D5FF] bg-[#ECEBFF] text-slate-950 shadow-[inset_3px_0_0_0_rgb(60,55,148)]'
                             : 'border-transparent text-slate-600 hover:border-slate-200 hover:bg-slate-50 hover:text-slate-950'
                             }`}
                     >

@@ -61,7 +61,7 @@ export function ArticleShareActions({ articleUrl, title }: ArticleShareActionsPr
                     <button
                         type="button"
                         onClick={handleCopy}
-                        className="inline-flex items-center justify-center rounded-full bg-[#172554] px-4 py-2 text-sm font-medium text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-[#1E3A5F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
+                        className="inline-flex items-center justify-center rounded-full bg-[#3C3794] px-4 py-2 text-sm font-medium text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-[#2F2B77] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                     >
                         {copyState === 'success' ? 'Enlace copiado' : copyState === 'error' ? 'No se pudo copiar' : 'Copiar enlace'}
                     </button>

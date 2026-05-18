@@ -26,7 +26,7 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                     ? 'service-card service-dark p-5 text-white lg:flex-row lg:gap-6 lg:p-7'
                     : 'service-card service-blue'
             )}
-            style={featured ? { background: 'linear-gradient(135deg,#172554 0%,#1E3A5F 58%,#0E7490 100%)' } : undefined}
+            style={featured ? { background: 'linear-gradient(135deg,#3C3794 0%,#2F2B77 58%,#0E7490 100%)' } : undefined}
         >
             <div className={cn('min-w-0', featured ? 'lg:flex lg:w-[38%] lg:flex-col lg:justify-between' : '')}>
                 <div className="mb-4 flex items-start justify-between gap-4">

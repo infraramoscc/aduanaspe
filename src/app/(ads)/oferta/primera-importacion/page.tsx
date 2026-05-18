@@ -27,7 +27,7 @@ export default function PrimeraImportacionLanding() {
                 <Container>
                     <div className="flex justify-between items-center">
                         <Link href="/" className="inline-block">
-                            <span className="text-2xl font-black text-indigo-900 tracking-tight">
+                            <span className="text-2xl font-black text-[#2F2B77] tracking-tight">
                                 AduanasPE<span className="text-green-500">.</span>
                             </span>
                         </Link>
@@ -73,7 +73,7 @@ export default function PrimeraImportacionLanding() {
 
                     <div className="grid md:grid-cols-3 gap-8 relative">
                         {/* Línea conectora (solo desktop) */}
-                        <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-indigo-100 -z-10" />
+                        <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-[#ECEBFF] -z-10" />
 
                         {[
                             { step: '01', title: 'Escríbenos', desc: 'Cuéntanos qué quieres importar de China y te asesoramos por WhatsApp.' },
@@ -81,7 +81,7 @@ export default function PrimeraImportacionLanding() {
                             { step: '03', title: 'Recibes', desc: 'Tu mercancía llega segura a Perú y la entregamos en tu local.' }
                         ].map((item, i) => (
                             <div key={i} className="flex flex-col items-center text-center">
-                                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center border-4 border-indigo-50 shadow-xl mb-6 text-2xl font-black text-indigo-600">
+                                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center border-4 border-[#ECEBFF] shadow-xl mb-6 text-2xl font-black text-[#3C3794]">
                                     {item.step}
                                 </div>
                                 <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
@@ -118,7 +118,7 @@ export default function PrimeraImportacionLanding() {
                                 messageKey="ads_primera_importacion"
                                 customNumber="51944785974"
                                 variant="link"
-                                className="font-semibold text-indigo-600"
+                                className="font-semibold text-[#3C3794]"
                             >
                                 Cotizar Flete →
                             </WhatsAppLink>
@@ -126,7 +126,7 @@ export default function PrimeraImportacionLanding() {
 
                         {/* Agencia de Aduanas */}
                         <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                            <div className="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-3xl mb-6">
+                            <div className="w-16 h-16 bg-[#ECEBFF] text-[#3C3794] rounded-xl flex items-center justify-center text-3xl mb-6">
                                 🏢
                             </div>
                             <h3 className="text-xl font-bold text-slate-900 mb-3">Agencia de Aduanas</h3>
@@ -137,7 +137,7 @@ export default function PrimeraImportacionLanding() {
                                 messageKey="ads_primera_importacion"
                                 customNumber="51944785974"
                                 variant="link"
-                                className="font-semibold text-indigo-600"
+                                className="font-semibold text-[#3C3794]"
                             >
                                 Cotizar Aduanas →
                             </WhatsAppLink>
@@ -156,7 +156,7 @@ export default function PrimeraImportacionLanding() {
                                 messageKey="ads_primera_importacion"
                                 customNumber="51944785974"
                                 variant="link"
-                                className="font-semibold text-indigo-600"
+                                className="font-semibold text-[#3C3794]"
                             >
                                 Agendar Asesoría →
                             </WhatsAppLink>
@@ -166,7 +166,7 @@ export default function PrimeraImportacionLanding() {
             </section>
 
             {/* Por qué elegirnos / Trust Section Ampliada */}
-            <section className="py-20 bg-indigo-900 text-white">
+            <section className="py-20 bg-[#2F2B77] text-white">
                 <Container>
                     <div className="grid md:grid-cols-2 gap-12 items-center">
                         <div>
@@ -175,24 +175,24 @@ export default function PrimeraImportacionLanding() {
                             </h2>
                             <ul className="space-y-6">
                                 <li className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-indigo-800 flex items-center justify-center flex-shrink-0 mt-1">✓</span>
+                                    <span className="w-8 h-8 rounded-full bg-[#3C3794] flex items-center justify-center flex-shrink-0 mt-1">✓</span>
                                     <div>
                                         <strong className="block text-lg mb-1">Cero Costos Ocultos</strong>
-                                        <p className="text-indigo-200">Te cotizamos el flete y los gastos aduaneros desde el principio para que sepas tu costo real.</p>
+                                        <p className="text-[#D8D5FF]">Te cotizamos el flete y los gastos aduaneros desde el principio para que sepas tu costo real.</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-indigo-800 flex items-center justify-center flex-shrink-0 mt-1">✓</span>
+                                    <span className="w-8 h-8 rounded-full bg-[#3C3794] flex items-center justify-center flex-shrink-0 mt-1">✓</span>
                                     <div>
                                         <strong className="block text-lg mb-1">Agentes en Asia</strong>
-                                        <p className="text-indigo-200">Nuestra red de agentes logísticos recolecta la mercadería directo de la fábrica de tu proveedor en China.</p>
+                                        <p className="text-[#D8D5FF]">Nuestra red de agentes logísticos recolecta la mercadería directo de la fábrica de tu proveedor en China.</p>
                                     </div>
                                 </li>
                                 <li className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-indigo-800 flex items-center justify-center flex-shrink-0 mt-1">✓</span>
+                                    <span className="w-8 h-8 rounded-full bg-[#3C3794] flex items-center justify-center flex-shrink-0 mt-1">✓</span>
                                     <div>
                                         <strong className="block text-lg mb-1">Evita Retenciones</strong>
-                                        <p className="text-indigo-200">Analizamos los certificados (CE, FDA, DIGESA, etc.) requeridos ANTES de que embarques tu compra.</p>
+                                        <p className="text-[#D8D5FF]">Analizamos los certificados (CE, FDA, DIGESA, etc.) requeridos ANTES de que embarques tu compra.</p>
                                     </div>
                                 </li>
                             </ul>
@@ -202,21 +202,21 @@ export default function PrimeraImportacionLanding() {
                                     messageKey="ads_primera_importacion"
                                     customNumber="51944785974"
                                     variant="button"
-                                    className="text-lg px-8 py-4 shadow-lg hover:shadow-indigo-500/50"
+                                    className="text-lg px-8 py-4 shadow-lg hover:shadow-[0_16px_34px_rgba(60,55,148,0.35)]"
                                 >
                                     WhatsApp: Quiero empezar a importar
                                 </WhatsAppLink>
                             </div>
                         </div>
-                        <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden shadow-2xl bg-indigo-950 flex flex-col justify-center items-center border border-indigo-800 p-8 text-center">
+                        <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden shadow-2xl bg-[#1F1A62] flex flex-col justify-center items-center border border-[#3C3794] p-8 text-center">
                             {/* Gráfico Visual Simple de Beneficio */}
                             <div className="text-6xl mb-6">🤝</div>
                             <h3 className="text-2xl font-bold mb-4">Un Solo Responsable</h3>
-                            <p className="text-indigo-200 text-lg">
+                            <p className="text-[#D8D5FF] text-lg">
                                 En lugar de pelear con la naviera por un lado y con el agente de aduanas por el otro, consolida toda tu importación con AduanasPE. Nosotros nos hacemos cargo de que llegue seguro.
                             </p>
 
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500 rounded-bl-full opacity-20 blur-xl"></div>
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#3C3794] rounded-bl-full opacity-20 blur-xl"></div>
                             <div className="absolute bottom-0 left-0 w-32 h-32 bg-green-500 rounded-tr-full opacity-20 blur-xl"></div>
                         </div>
                     </div>
@@ -237,9 +237,9 @@ export default function PrimeraImportacionLanding() {
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
                         <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative shadow-sm">
-                            <div className="text-6xl absolute top-4 right-8 text-indigo-100 font-serif">"</div>
+                            <div className="text-6xl absolute top-4 right-8 text-[#ECEBFF] font-serif">"</div>
                             <div className="flex items-center gap-4 mb-6 relative z-10">
-                                <div className="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center text-xl font-black text-indigo-700">
+                                <div className="w-14 h-14 bg-[#ECEBFF] rounded-full flex items-center justify-center text-xl font-black text-[#3C3794]">
                                     CM
                                 </div>
                                 <div>
@@ -253,7 +253,7 @@ export default function PrimeraImportacionLanding() {
                         </div>
 
                         <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative shadow-sm">
-                            <div className="text-6xl absolute top-4 right-8 text-indigo-100 font-serif">"</div>
+                            <div className="text-6xl absolute top-4 right-8 text-[#ECEBFF] font-serif">"</div>
                             <div className="flex items-center gap-4 mb-6 relative z-10">
                                 <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-xl font-black text-green-700">
                                     AR
@@ -303,7 +303,7 @@ export default function PrimeraImportacionLanding() {
                             messageKey="ads_primera_importacion"
                             customNumber="51944785974"
                             variant="button"
-                            className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg"
+                            className="bg-[#3C3794] hover:bg-[#2F2B77] text-white shadow-lg"
                         >
                             Pregúntanos por WhatsApp
                         </WhatsAppLink>

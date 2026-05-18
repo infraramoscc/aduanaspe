@@ -22,7 +22,7 @@ export function WhatsAppHero({
     features = [],
 }: WhatsAppHeroProps) {
     return (
-        <section className="relative overflow-hidden border-b border-slate-200 bg-[linear-gradient(135deg,#172554_0%,#1E3A5F_58%,#0E7490_100%)] py-16 text-white md:py-24">
+        <section className="relative overflow-hidden border-b border-slate-200 bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_58%,#0E7490_100%)] py-16 text-white md:py-24">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_26%),radial-gradient(circle_at_left,rgba(15,159,110,0.12),transparent_22%)]" />
 
             <Container className="relative z-10">

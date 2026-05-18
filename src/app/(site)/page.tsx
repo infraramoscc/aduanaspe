@@ -64,7 +64,7 @@ export default function HomePage() {
                     href={ROUTES.contacto}
                     eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
                     eventParams={{ location: 'home_hero' }}
-                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700"
+                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-[#3C3794] hover:bg-[#ECEBFF] hover:text-[#3C3794]"
                 >
                     Solicitar cotización
                 </TrackedLink>
@@ -94,7 +94,7 @@ export default function HomePage() {
                                     href={ROUTES.contacto}
                                     eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
                                     eventParams={{ location: 'home_risk_free' }}
-                                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700"
+                                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:border-[#3C3794] hover:bg-[#ECEBFF] hover:text-[#3C3794]"
                                 >
                                     Prefiero que me contacten
                                 </TrackedLink>
@@ -130,19 +130,19 @@ export default function HomePage() {
             >
                 <ul className="space-y-3 text-slate-600">
                     <li className="flex items-start gap-2">
-                        <span className="text-indigo-700 mt-1">✓</span>
+                        <span className="text-[#3C3794] mt-1">✓</span>
                         <span><strong>Ejecutivo personal:</strong> Un solo punto de contacto que conoce tu negocio</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-indigo-700 mt-1">✓</span>
+                        <span className="text-[#3C3794] mt-1">✓</span>
                         <span><strong>Seguimiento constante:</strong> Te informamos el estatus de tu carga sin que tengas que preguntar</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-indigo-700 mt-1">✓</span>
+                        <span className="text-[#3C3794] mt-1">✓</span>
                         <span><strong>Facturación inmediata:</strong> Documentos listos cuando los necesitas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-indigo-700 mt-1">✓</span>
+                        <span className="text-[#3C3794] mt-1">✓</span>
                         <span><strong>Capacitación incluida:</strong> Te enseñamos el proceso para que tomes mejores decisiones</span>
                     </li>
                 </ul>
@@ -169,7 +169,7 @@ export default function HomePage() {
                     href={ROUTES.comercioExterior.importacion}
                     eventName={GA4_EVENTS.CLICK_CTA_TO_COMERCIO}
                     eventParams={{ location: 'home_first_import' }}
-                    className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-400 px-6 py-3 font-semibold text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-pink"
+                    className="inline-flex items-center justify-center rounded-full bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_62%,#38BDF8_100%)] px-6 py-3 font-semibold text-white shadow-lg transition-all hover:-translate-y-1 hover:shadow-pink"
                 >
                     Ver guías de importación
                 </TrackedLink>
@@ -197,7 +197,7 @@ export default function HomePage() {
                     href={ROUTES.contacto}
                     eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
                     eventParams={{ location: 'home_final_cta' }}
-                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-indigo-400 hover:bg-indigo-50 hover:text-indigo-700"
+                    className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-[#3C3794] hover:bg-[#ECEBFF] hover:text-[#3C3794]"
                 >
                     Solicitar cotización
                 </TrackedLink>

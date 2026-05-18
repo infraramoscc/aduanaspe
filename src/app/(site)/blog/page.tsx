@@ -177,7 +177,7 @@ export default async function BlogPage({
                             {hasNext && (
                                 <Link
                                     href={buildBlogHref(safePage + 1, activeCategory)}
-                                    className="rounded-full bg-[#172554] px-6 py-3 font-semibold text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-[#1E3A5F] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
+                                    className="rounded-full bg-[#3C3794] px-6 py-3 font-semibold text-white transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-[#2F2B77] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                                 >
                                     Siguiente
                                 </Link>

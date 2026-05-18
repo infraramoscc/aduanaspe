@@ -34,7 +34,7 @@ function ContactNudge() {
     return (
         <aside className="fixed inset-x-3 bottom-3 z-50 md:inset-x-auto md:right-5 md:bottom-5 md:w-[380px]">
             <div className="overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/96 shadow-[0_24px_60px_rgba(15,23,42,0.18)] backdrop-blur-xl">
-                <div className="bg-[linear-gradient(135deg,#172554_0%,#1E3A5F_60%,#0E7490_100%)] px-5 py-3 text-white">
+                <div className="bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_60%,#0E7490_100%)] px-5 py-3 text-white">
                     <div className="flex items-start justify-between gap-4">
                         <div>
                             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-300">

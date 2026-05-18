@@ -184,7 +184,7 @@ export default function AgenciamientoAduanasPage() {
                                         <div>
                                             <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                                             <p className="mt-2 text-slate-600">{item.description}</p>
-                                            <p className="mt-3 text-sm italic text-slate-500 border-l-2 border-indigo-300 pl-2">{item.highlight}</p>
+                                            <p className="mt-3 text-sm italic text-slate-500 border-l-2 border-[#D8D5FF] pl-2">{item.highlight}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -229,12 +229,12 @@ export default function AgenciamientoAduanasPage() {
                     <div className="max-w-3xl mx-auto">
                         {processSteps.map((item, index) => (
                             <div key={item.step} className="flex gap-4 mb-6 relative">
-                                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-blue-500 text-white flex items-center justify-center font-bold z-10 shadow-lg">
+                                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[linear-gradient(135deg,#3C3794_0%,#38BDF8_100%)] text-white flex items-center justify-center font-bold z-10 shadow-lg">
                                     {item.step}
                                 </div>
                                 {/* Línea conectora */}
                                 {index < processSteps.length - 1 && (
-                                    <div className="absolute left-5 top-10 bottom-[-24px] w-0.5 bg-indigo-100 -z-0"></div>
+                                    <div className="absolute left-5 top-10 bottom-[-24px] w-0.5 bg-[#ECEBFF] -z-0"></div>
                                 )}
                                 <div className="flex-1 pb-6 pt-1 pl-2">
                                     <h4 className="font-bold text-slate-900 text-lg">{item.title}</h4>
@@ -258,7 +258,7 @@ export default function AgenciamientoAduanasPage() {
                             <span className="text-red-500 mt-1">{item.icon}</span>
                             <div>
                                 <span className="line-through text-slate-400 block text-sm">{item.problem}</span>
-                                <span className="text-indigo-700 font-medium block">→ {item.solution}</span>
+                                <span className="text-[#3C3794] font-medium block">→ {item.solution}</span>
                             </div>
                         </div>
                     ))}
@@ -273,19 +273,19 @@ export default function AgenciamientoAduanasPage() {
             >
                 <ul className="space-y-3 text-slate-600">
                     <li className="flex items-start gap-2">
-                        <span className="text-indigo-700 mt-1">✓</span>
+                        <span className="text-[#3C3794] mt-1">✓</span>
                         <span>Importadores y exportadores con carga marítima o aérea</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-indigo-700 mt-1">✓</span>
+                        <span className="text-[#3C3794] mt-1">✓</span>
                         <span>Empresas con operaciones regulares o esporádicas</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-indigo-700 mt-1">✓</span>
+                        <span className="text-[#3C3794] mt-1">✓</span>
                         <span>Negocios que buscan una agencia personalizada, no masiva</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <span className="text-indigo-700 mt-1">✓</span>
+                        <span className="text-[#3C3794] mt-1">✓</span>
                         <span>Clientes que valoran respuestas claras y asesoría continua</span>
                     </li>
                 </ul>
@@ -315,13 +315,13 @@ export default function AgenciamientoAduanasPage() {
                                 </div>
                             </Link>
                             {/* Etapa 2 - Actual */}
-                            <div className="service-card service-purple p-6 text-center ring-2 ring-indigo-200 ring-offset-2 scale-105">
+                            <div className="service-card service-purple p-6 text-center ring-2 ring-[#D8D5FF] ring-offset-2 scale-105">
                                 <div>
-                                    <span className="inline-block px-3 py-1 bg-indigo-700 text-white text-xs font-bold rounded-full mb-3 animate-pulse">ETAPA 2</span>
+                                    <span className="inline-block px-3 py-1 bg-[#3C3794] text-white text-xs font-bold rounded-full mb-3 animate-pulse">ETAPA 2</span>
                                     <span className="text-3xl block mb-2">📋</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Aduanas</h3>
                                     <p className="text-sm text-slate-600 mt-2">Despacho aduanero</p>
-                                    <p className="text-xs text-indigo-700 font-medium mt-2">← Estás aquí</p>
+                                    <p className="text-xs text-[#3C3794] font-medium mt-2">← Estás aquí</p>
                                 </div>
                             </div>
                             {/* Etapa 3 */}
@@ -376,7 +376,7 @@ export default function AgenciamientoAduanasPage() {
                         </div>
 
                         {/* Servicio Integral */}
-                        <div className="mt-8 p-8 rounded-xl bg-gradient-to-r from-indigo-700 to-blue-600 text-white text-center shadow-xl">
+                        <div className="mt-8 p-8 rounded-xl bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_62%,#38BDF8_100%)] text-white text-center shadow-xl">
                             <h3 className="text-2xl font-bold">¿Prefieres un servicio integral?</h3>
                             <p className="mt-2 text-blue-100 text-lg">Contratamos las 3 etapas + opcionales por ti. Un solo punto de contacto, una sola factura.</p>
                             <div className="mt-6">

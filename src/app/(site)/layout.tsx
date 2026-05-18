@@ -20,7 +20,7 @@ export default function SiteLayout({
             <StructuredData />
             <a
                 href="#main-content"
-                className="sr-only fixed left-4 top-4 z-[120] rounded-full bg-[#172554] px-4 py-2 text-sm font-semibold text-white focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-offset-4"
+                className="sr-only fixed left-4 top-4 z-[120] rounded-full bg-[#3C3794] px-4 py-2 text-sm font-semibold text-white focus:not-sr-only focus:outline-none focus:ring-2 focus:ring-slate-300 focus:ring-offset-4"
             >
                 Saltar al contenido principal
             </a>

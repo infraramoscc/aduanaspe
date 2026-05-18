@@ -37,7 +37,7 @@ export function BlogFilterBar({ activeCategory, categories, buildHref }: BlogFil
                 <Link
                     href={buildHref()}
                     className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-semibold transition-[border-color,background-color,color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4 ${!activeCategory
-                        ? 'border-[#172554] bg-[#172554] text-white'
+                        ? 'border-[#3C3794] bg-[#3C3794] text-white'
                         : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white'
                         }`}
                 >
@@ -55,7 +55,7 @@ export function BlogFilterBar({ activeCategory, categories, buildHref }: BlogFil
                             key={category}
                             href={buildHref(1, category)}
                             className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-semibold transition-[border-color,background-color,color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4 ${isActive
-                                ? 'border-[#172554] bg-[#172554] text-white'
+                                ? 'border-[#3C3794] bg-[#3C3794] text-white'
                                 : 'border-slate-200 bg-slate-50 text-slate-700 hover:border-slate-300 hover:bg-white'
                                 }`}
                         >

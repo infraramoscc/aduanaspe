@@ -101,7 +101,7 @@ function Breadcrumbs() {
                                 ) : (
                                     <Link
                                         href={crumb.href}
-                                        className="text-gray-500 hover:text-indigo-700 transition-colors"
+                                        className="text-gray-500 hover:text-[#3C3794] transition-colors"
                                     >
                                         {crumb.label}
                                     </Link>

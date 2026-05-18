@@ -195,13 +195,13 @@ export default function TransportePage() {
                                 </div>
                             </Link>
                             {/* Etapa 3 - Actual */}
-                            <div className="service-card service-purple p-6 text-center ring-2 ring-indigo-200 ring-offset-2 scale-105">
+                            <div className="service-card service-purple p-6 text-center ring-2 ring-[#D8D5FF] ring-offset-2 scale-105">
                                 <div>
-                                    <span className="inline-block px-3 py-1 bg-indigo-700 text-white text-xs font-bold rounded-full mb-3 animate-pulse">ETAPA 3</span>
+                                    <span className="inline-block px-3 py-1 bg-[#3C3794] text-white text-xs font-bold rounded-full mb-3 animate-pulse">ETAPA 3</span>
                                     <span className="text-3xl block mb-2">🚚</span>
                                     <h3 className="font-bold text-slate-900">Transporte de Carga</h3>
                                     <p className="text-sm text-slate-600 mt-2">Entrega en tu almacén</p>
-                                    <p className="text-xs text-indigo-700 font-medium mt-2">← Estás aquí</p>
+                                    <p className="text-xs text-[#3C3794] font-medium mt-2">← Estás aquí</p>
                                 </div>
                             </div>
                         </div>
@@ -246,7 +246,7 @@ export default function TransportePage() {
                         </div>
 
                         {/* Servicio Integral */}
-                        <div className="mt-8 p-8 rounded-xl bg-gradient-to-r from-indigo-700 to-blue-600 text-white text-center shadow-xl">
+                        <div className="mt-8 p-8 rounded-xl bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_62%,#38BDF8_100%)] text-white text-center shadow-xl">
                             <h3 className="text-2xl font-bold">¿Prefieres un servicio integral?</h3>
                             <p className="mt-2 text-blue-100 text-lg">Contratamos las 3 etapas + opcionales por ti. Un solo punto de contacto, una sola factura.</p>
                             <div className="mt-6">
@@ -282,7 +282,7 @@ export default function TransportePage() {
                 }
             >
                 <div className="service-card service-card-compact service-purple p-4">
-                    <p className="text-sm text-indigo-900">
+                    <p className="text-sm text-[#2F2B77]">
                         <strong>Nuestro valor:</strong> Gestión, control y acompañamiento permanente de tu carga. Tú te dedicas a tu negocio, nosotros nos encargamos del transporte.
                     </p>
                 </div>
@@ -306,7 +306,7 @@ export default function TransportePage() {
                                         <div>
                                             <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                                             <p className="mt-2 text-slate-600">{item.description}</p>
-                                            <p className="mt-3 text-sm italic text-slate-500 border-l-2 border-indigo-300 pl-2">{item.highlight}</p>
+                                            <p className="mt-3 text-sm italic text-slate-500 border-l-2 border-[#D8D5FF] pl-2">{item.highlight}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -351,7 +351,7 @@ export default function TransportePage() {
             </section>
 
             {/* Servicio de Resguardo */}
-            <section className="py-20 bg-[linear-gradient(135deg,#172554_0%,#1E3A5F_58%,#0E7490_100%)] text-white">
+            <section className="py-20 bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_58%,#0E7490_100%)] text-white">
                 <Container>
                     <div className="max-w-4xl mx-auto text-center">
                         <span className="text-6xl inline-block animate-bounce">🛡️</span>
@@ -360,14 +360,14 @@ export default function TransportePage() {
                             Ofrecemos custodia de carga durante el traslado. Dos modalidades disponibles:
                         </p>
                         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="p-6 bg-[#1E3A5F]/70 backdrop-blur rounded-xl border border-white/10 hover:border-sky-300 transition-colors">
+                            <div className="p-6 bg-[#2F2B77]/70 backdrop-blur rounded-xl border border-white/10 hover:border-sky-300 transition-colors">
                                 <span className="text-4xl">👤</span>
-                                <h3 className="mt-4 text-xl font-bold text-indigo-400">Resguardo Cabina</h3>
+                                <h3 className="mt-4 text-xl font-bold text-[#AFAAFF]">Resguardo Cabina</h3>
                                 <p className="mt-2 text-slate-400">Personal de seguridad armado viaja en la cabina del camión junto al conductor.</p>
                             </div>
-                            <div className="p-6 bg-[#1E3A5F]/70 backdrop-blur rounded-xl border border-white/10 hover:border-sky-300 transition-colors">
+                            <div className="p-6 bg-[#2F2B77]/70 backdrop-blur rounded-xl border border-white/10 hover:border-sky-300 transition-colors">
                                 <span className="text-4xl">🚗</span>
-                                <h3 className="mt-4 text-xl font-bold text-indigo-400">Resguardo Vehículo</h3>
+                                <h3 className="mt-4 text-xl font-bold text-[#AFAAFF]">Resguardo Vehículo</h3>
                                 <p className="mt-2 text-slate-400">Vehículo de seguridad escolta a la unidad de transporte durante todo el trayecto.</p>
                             </div>
                         </div>
@@ -464,7 +464,7 @@ export default function TransportePage() {
                 <ul className="space-y-3">
                     {problemsSolved.map((problem) => (
                         <li key={problem} className="flex items-start gap-3 text-slate-600">
-                            <span className="text-indigo-700 mt-1">✓</span>
+                            <span className="text-[#3C3794] mt-1">✓</span>
                             <span>{problem}</span>
                         </li>
                     ))}

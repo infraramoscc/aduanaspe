@@ -374,7 +374,7 @@ export default function ImportarJuguetesUtilesPage() {
             >
                 <a
                     href={checklistPdfUrl}
-                    className="inline-flex items-center justify-center rounded-full bg-[#172554] px-8 py-4 text-lg font-semibold text-white shadow-[0_12px_30px_rgba(23,37,84,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#1E3A5F] hover:shadow-[0_18px_36px_rgba(23,37,84,0.22)]"
+                    className="inline-flex items-center justify-center rounded-full bg-[#3C3794] px-8 py-4 text-lg font-semibold text-white shadow-[0_12px_30px_rgba(60,55,148,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#2F2B77] hover:shadow-[0_18px_36px_rgba(60,55,148,0.24)]"
                     download
                 >
                     Descargar checklist PDF
@@ -403,7 +403,7 @@ export default function ImportarJuguetesUtilesPage() {
                             </nav>
                         </div>
 
-                        <div id="resumen" className="overflow-hidden rounded-[36px] bg-[linear-gradient(135deg,#172554_0%,#1E3A5F_60%,#0E7490_100%)] text-white shadow-xl">
+                        <div id="resumen" className="overflow-hidden rounded-[36px] bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_60%,#0E7490_100%)] text-white shadow-xl">
                             <div className="bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.28),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(16,185,129,0.22),transparent_30%)] p-7 md:p-10">
                                 <span className="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-slate-200">
                                     Resumen para decidir
@@ -501,7 +501,7 @@ export default function ImportarJuguetesUtilesPage() {
                 </Container>
             </section>
 
-            <section id="documentos" className="bg-[linear-gradient(135deg,#172554_0%,#1E3A5F_58%,#0E7490_100%)] py-20 text-white">
+            <section id="documentos" className="bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_58%,#0E7490_100%)] py-20 text-white">
                 <Container>
                     <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
                         <div>
@@ -617,7 +617,7 @@ export default function ImportarJuguetesUtilesPage() {
                 </Container>
             </section>
 
-            <section className="bg-[linear-gradient(135deg,#172554_0%,#1E3A5F_58%,#0E7490_100%)] py-20 text-white">
+            <section className="bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_58%,#0E7490_100%)] py-20 text-white">
                 <Container>
                     <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
                         <div>
@@ -661,7 +661,7 @@ export default function ImportarJuguetesUtilesPage() {
                                 <a
                                     href={checklistPdfUrl}
                                     download
-                                    className="inline-flex items-center justify-center rounded-full bg-[#172554] px-6 py-3.5 font-semibold text-white shadow-[0_12px_30px_rgba(23,37,84,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#1E3A5F]"
+                                    className="inline-flex items-center justify-center rounded-full bg-[#3C3794] px-6 py-3.5 font-semibold text-white shadow-[0_12px_30px_rgba(60,55,148,0.18)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#2F2B77]"
                                 >
                                     Descargar PDF
                                 </a>
