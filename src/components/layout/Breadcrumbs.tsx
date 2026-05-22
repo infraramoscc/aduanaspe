@@ -29,6 +29,7 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
         'transporte-de-carga': 'Transporte de Carga',
         'resguardo-aduanero': 'Resguardo Aduanero',
         'consultoria-aduanera': 'Consultoría Aduanera',
+        'ajuste-de-valor-aduanero': 'Ajuste de Valor Aduanero',
         'importacion': 'Importación',
         'exportacion': 'Exportación',
         'regimenes-aduaneros': 'Regímenes Aduaneros',

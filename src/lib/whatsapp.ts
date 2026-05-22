@@ -14,82 +14,26 @@ export const WA_SUBDOMAIN_URL = 'https://wa.aduanaspe.com';
 // Mensajes prellenados por servicio
 export const WHATSAPP_MESSAGES: Record<string, string> = {
     // Servicios principales
-    aduanas: `Hola, estoy interesado en el servicio de *Agenciamiento de Aduanas*.
+    aduanas: 'Hola, tengo una consulta sobre despacho aduanero:',
 
-Me gustaría recibir información sobre:
-• Requisitos para nacionalizar mi carga
-• Tiempos de despacho
-• Documentación necesaria
+    carga: 'Hola, quisiera consultar sobre una carga internacional:',
 
-¿Podrían orientarme?`,
+    transporte: 'Hola, tengo una consulta sobre transporte de carga:',
 
-    carga: `Hola, estoy interesado en el servicio de *Agencia de Carga Internacional*.
+    resguardo: 'Hola, quisiera consultar sobre resguardo para una operación:',
 
-Necesito cotización para:
-• Origen: 
-• Destino: 
-• Tipo de carga: 
-• Peso/Volumen aproximado: 
-
-¿Podrían ayudarme?`,
-
-    transporte: `Hola, estoy interesado en el servicio de *Transporte de Carga*.
-
-Necesito trasladar mercancía:
-• Desde: Puerto/Aeropuerto
-• Hasta: 
-• Tipo de carga: 
-• Fecha aproximada: 
-
-¿Podrían cotizarme?`,
-
-    resguardo: `Hola, estoy interesado en el servicio de *Resguardo Aduanero*.
-
-Necesito custodia para:
-• Tipo de mercancía: 
-• Ruta: 
-• Valor aproximado: 
-
-¿Pueden brindarme información?`,
-
-    consultoria: `Hola, estoy interesado en el servicio de *Consultoría Aduanera*.
-
-Me gustaría asesoría sobre:
-• Clasificación arancelaria
-• Tratados de libre comercio
-• Regímenes aduaneros
-• Otro: 
-
-¿Podemos agendar una consulta?`,
+    consultoria: 'Hola, tengo una consulta aduanera:',
 
     // Mensaje general
-    general: `Hola, me contacto desde su sitio web *AduanasPE*.
-
-Me interesa recibir información sobre sus servicios de comercio exterior.
-
-¿Podrían orientarme?`,
+    general: 'Hola, tengo la siguiente consulta:',
 
     // Mensaje de contacto rápido
-    contacto: `Hola, me contacto desde su sitio web *AduanasPE*.
+    contacto: 'Hola, quisiera hacer una consulta:',
 
-¿Podrían ayudarme con una consulta?`,
-
-    asesoria_gratis: `Hola, vengo de su sitio web *AduanasPE*.
-
-Quiero solicitar *asesoría aduanera sin costo*.
-
-Me gustaría orientación sobre:
-• Requisitos
-• Costos aproximados
-• Documentos necesarios
-
-¿Podemos verlo por WhatsApp?`,
+    asesoria_gratis: 'Hola, quisiera recibir orientación sobre mi caso:',
 
     // Mensaje para Campañas Ads
-    ads_primera_importacion: `Hola, vengo de su anuncio. 🚀
-
-Quiero que me asesoren para mi *primera importación*. 
-¿Me pueden ayudar con los costos y el proceso?`,
+    ads_primera_importacion: 'Hola, quiero consultar sobre mi primera importación:',
 };
 
 // Generar URL de WhatsApp

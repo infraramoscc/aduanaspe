@@ -37,8 +37,8 @@ export default function HerramientasPage() {
                             <div className="pt-4">
                                 <span className="section-badge bg-white/84">Centro de herramientas</span>
                                 <h1 className="mt-5 max-w-3xl text-4xl font-extrabold tracking-tight text-slate-950 md:text-6xl">
-                                    Herramientas para calcular, cotizar y validar
-                                    <span className="block text-[#3c3794]">con mas claridad.</span>
+                                    Herramientas para calcular, cotizar y validar{' '}
+                                    <span className="block text-[#3c3794]">con más claridad.</span>
                                 </h1>
                                 <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
                                     Un espacio vivo y funcional para encontrar rapido utilidades de comercio exterior y entrar directo a la que necesitas usar.

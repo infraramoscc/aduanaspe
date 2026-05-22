@@ -55,6 +55,11 @@ const consultingServices = [
         title: 'Capacitación',
         description: 'Formación a tu equipo en normativa aduanera y mejores prácticas.',
     },
+    {
+        icon: '🧾',
+        title: 'Ajuste de Valor Aduanero',
+        description: 'Revisión de duda razonable, sustento del valor declarado y observaciones de SUNAT.',
+    },
 ];
 
 // Por qué elegirnos
@@ -101,6 +106,7 @@ const problemsSolved = [
     'Tener contingencias aduaneras sin resolver',
     'Recibir multas y sanciones de SUNAT',
     'No saber qué régimen aduanero usar',
+    'Tener una observación o ajuste de valor sin expediente ordenado',
 ];
 
 // FAQ

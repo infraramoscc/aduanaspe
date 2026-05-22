@@ -48,6 +48,14 @@ export const services: Service[] = [
         ctaLabel: 'Conocer servicio',
         icon: '💼',
     },
+    {
+        title: 'Ajuste de Valor Aduanero',
+        slug: 'ajuste-de-valor-aduanero',
+        summary: 'Revisión de duda razonable, sustento del valor declarado y observaciones SUNAT.',
+        description: 'Revisamos factura, pagos, flete, seguro, descuentos y expediente documental para ayudarte a sustentar el valor declarado antes de responder a SUNAT.',
+        ctaLabel: 'Revisar servicio',
+        icon: '🧾',
+    },
 ];
 
 export function getServiceBySlug(slug: string): Service | undefined {

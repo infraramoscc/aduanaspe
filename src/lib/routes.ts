@@ -8,6 +8,7 @@ export const ROUTES = {
         transporteDeCarga: '/servicios/transporte-de-carga',
         resguardoAduanero: '/servicios/resguardo-aduanero',
         consultoriaAduanera: '/servicios/consultoria-aduanera',
+        ajusteValorAduanero: '/servicios/ajuste-de-valor-aduanero',
     },
     comercioExterior: {
         index: '/comercio-exterior',
@@ -54,6 +55,11 @@ export const HEADER_NAV_GROUPS = [
                         label: 'Consultoria Aduanera',
                         href: ROUTES.servicios.consultoriaAduanera,
                         description: 'Clasificacion, permisos, TLC y decisiones de riesgo.',
+                    },
+                    {
+                        label: 'Ajuste de Valor Aduanero',
+                        href: ROUTES.servicios.ajusteValorAduanero,
+                        description: 'Duda razonable, sustento del valor declarado y ajustes SUNAT.',
                     },
                     {
                         label: 'Resguardo Aduanero',

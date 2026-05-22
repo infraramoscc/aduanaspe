@@ -15,14 +15,14 @@ function Header() {
             <div className="border-b border-white/10 bg-[#3C3794] text-white">
                 <Container>
                     <div className="flex min-h-11 flex-col items-center justify-center gap-2 py-2 text-center md:flex-row md:justify-between md:text-left">
-                        <p className="text-sm font-medium text-slate-100">
+                        <p className="w-full max-w-full text-sm font-medium leading-5 text-slate-100 md:w-auto">
                             ¿Tienes dudas sobre comercio exterior? Recibe una asesoría sin costo.
                             <span className="hidden text-slate-300 sm:inline"> Sin compromiso y antes de cotizar cualquier servicio.</span>
                         </p>
                         <WhatsAppLink
                             messageKey="asesoria_gratis"
                             variant="link"
-                            className="text-sm font-semibold text-emerald-300 hover:text-emerald-200"
+                            className="shrink-0 text-sm font-semibold text-emerald-300 hover:text-emerald-200"
                         >
                             Resolver mis dudas
                         </WhatsAppLink>

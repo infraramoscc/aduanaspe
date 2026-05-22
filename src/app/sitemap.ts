@@ -71,6 +71,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.8,
         },
         {
+            url: `${BASE_URL}/servicios/ajuste-de-valor-aduanero/`,
+            sourceFile: 'src/app/(site)/servicios/ajuste-de-valor-aduanero/page.tsx',
+            changeFrequency: 'weekly',
+            priority: 0.8,
+        },
+        {
             url: `${BASE_URL}/comercio-exterior/`,
             sourceFile: 'src/app/(site)/comercio-exterior/page.tsx',
             changeFrequency: 'weekly',
