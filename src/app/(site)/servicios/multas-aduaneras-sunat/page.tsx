@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { RecommendedReading } from '@/components/blog';
-import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
+import { Hero, CTASection, TrustBar } from '@/components/sections';
 import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
@@ -12,8 +12,8 @@ import { ROUTES } from '@/lib/routes';
 import { generateBreadcrumbSchema, generateServiceSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
-    title: 'Multas Aduaneras SUNAT | Revision de Notificaciones | AduanasPE',
-    description: 'Revision de multas aduaneras, notificaciones, requerimientos y descargos ante SUNAT Aduanas para importadores y exportadores en Peru.',
+    title: 'Multas Aduaneras SUNAT | Revisión de Notificaciones | AduanasPE',
+    description: 'Revisión de multas aduaneras, notificaciones, requerimientos y descargos ante SUNAT Aduanas para importadores y exportadores en Perú.',
     alternates: {
         canonical: 'https://aduanaspe.com/servicios/multas-aduaneras-sunat/',
     },
@@ -26,18 +26,18 @@ export const metadata: Metadata = {
 const urgentCases = [
     {
         icon: '📩',
-        title: 'Notificacion recibida',
-        description: 'Leemos el acto, ubicamos el plazo y separamos si es requerimiento, fiscalizacion, observacion o multa.',
+        title: 'Notificación recibida',
+        description: 'Leemos el acto, ubicamos el plazo y separamos si es requerimiento, fiscalización, observación o multa.',
     },
     {
         icon: '⚖️',
         title: 'Multa aduanera',
-        description: 'Identificamos codigo, supuesto, base de calculo y documentos para responder con criterio.',
+        description: 'Identificamos código, supuesto, base de cálculo y documentos para responder con criterio.',
     },
     {
         icon: '🔎',
-        title: 'Fiscalizacion posterior',
-        description: 'Ordenamos el expediente post despacho para atender pedidos de informacion sin improvisar.',
+        title: 'Fiscalización posterior',
+        description: 'Ordenamos el expediente post despacho para atender pedidos de información sin improvisar.',
     },
     {
         icon: '📋',
@@ -47,70 +47,105 @@ const urgentCases = [
     {
         icon: '🧾',
         title: 'Descargo o respuesta',
-        description: 'Definimos que conviene sustentar, subsanar, aclarar o ampliar segun la etapa del caso.',
+        description: 'Definimos qué conviene sustentar, subsanar, aclarar o ampliar según la etapa del caso.',
     },
     {
         icon: '🛡️',
         title: 'Riesgo operativo',
-        description: 'Medimos si el problema tambien puede afectar levante, almacenaje, costos o futuras operaciones.',
+        description: 'Medimos si el problema también puede afectar levante, almacenaje, costos o futuras operaciones.',
     },
 ];
 
 const whyChooseUs = [
     {
         icon: '🧭',
-        title: 'Diagnostico rapido del acto recibido',
-        description: 'No tratamos igual una esquela, un requerimiento, una resolucion o una comunicacion de fiscalizacion.',
-        highlight: 'Primero entendemos que te notificaron',
+        title: 'Diagnóstico rápido del acto recibido',
+        description: 'No tratamos igual una esquela, un requerimiento, una resolución o una comunicación de fiscalización.',
+        highlight: 'Primero entendemos qué te notificaron',
     },
     {
         icon: '📚',
         title: 'Expediente ordenado antes de responder',
         description: 'Agrupamos DAM, factura, transporte, pagos, permisos y comunicaciones para evitar respuestas desordenadas.',
-        highlight: 'Documentos con logica, no archivos sueltos',
+        highlight: 'Documentos con lógica, no archivos sueltos',
     },
     {
         icon: '🎯',
-        title: 'Separacion clara de riesgos',
-        description: 'Diferenciamos si el problema es valor, permisos, tributos, factura, DAM o fiscalizacion posterior.',
+        title: 'Separación clara de riesgos',
+        description: 'Diferenciamos si el problema es valor, permisos, tributos, factura, DAM o fiscalización posterior.',
         highlight: 'Cada supuesto pide una estrategia distinta',
     },
     {
         icon: '🤝',
-        title: 'Acompanamiento segun alcance',
-        description: 'Si el caso requiere descargo, revision tecnica o soporte adicional, definimos el alcance antes de avanzar.',
-        highlight: 'Sin promesas vacias ni respuestas genericas',
+        title: 'Acompañamiento según alcance',
+        description: 'Si el caso requiere descargo, revisión técnica o soporte adicional, definimos el alcance antes de avanzar.',
+        highlight: 'Sin promesas vacías ni respuestas genéricas',
     },
 ];
 
 const processSteps = [
-    { step: 1, title: 'Envias la notificacion', description: 'Compartes el documento recibido, DAM, factura y datos basicos de la operacion.' },
-    { step: 2, title: 'Ubicamos plazo y supuesto', description: 'Revisamos que pide SUNAT, que consecuencia indica y que tipo de respuesta exige.' },
-    { step: 3, title: 'Ordenamos el expediente', description: 'Separamos soporte comercial, logistico, aduanero, regulatorio y financiero.' },
+    { step: 1, title: 'Envías la notificación', description: 'Compartes el documento recibido, DAM, factura y datos básicos de la operación.' },
+    { step: 2, title: 'Ubicamos plazo y supuesto', description: 'Revisamos qué pide SUNAT, qué consecuencia indica y qué tipo de respuesta exige.' },
+    { step: 3, title: 'Ordenamos el expediente', description: 'Separamos soporte comercial, logístico, aduanero, regulatorio y financiero.' },
     { step: 4, title: 'Definimos la ruta de respuesta', description: 'Evaluamos si corresponde sustentar, subsanar, aclarar, ampliar o preparar descargo.' },
-    { step: 5, title: 'Te damos el siguiente paso', description: 'Si el caso requiere analisis profundo, te proponemos un alcance tecnico claro.' },
+    { step: 5, title: 'Te damos el siguiente paso', description: 'Si el caso requiere análisis profundo, te proponemos un alcance técnico claro.' },
+];
+
+const documentFlow = [
+    {
+        step: '1',
+        title: 'Envíanos lo que recibiste',
+        text: 'No necesitas tener todo perfecto para empezar. Con el documento de SUNAT y los soportes principales podemos ubicar el caso, el plazo y la operación relacionada.',
+        items: ['Notificación o resolución', 'DAM', 'Factura', 'Documento de transporte'],
+    },
+    {
+        step: '2',
+        title: 'Revisamos qué está cuestionando SUNAT',
+        text: 'Separamos si el problema es de valor, tributos, permisos, factura, datos de la DAM, documentación digitalizada o fiscalización posterior.',
+        items: ['Plazo', 'Supuesto de infracción', 'Valor o tributos', 'Permisos o VUCE'],
+    },
+    {
+        step: '3',
+        title: 'Te damos una ruta clara',
+        text: 'Al final sabes qué falta, qué riesgo existe y cuál es el siguiente paso razonable antes de enviar una respuesta o preparar un descargo.',
+        items: ['Riesgo principal', 'Documentos faltantes', 'Siguiente acción', 'Alcance si aplica'],
+    },
+];
+
+const checklistItems = [
+    'Notificación, requerimiento o resolución',
+    'DAM, factura, packing list y transporte',
+    'Valor, pagos, flete, seguro y tributos',
+    'Permisos, VUCE o documentos sectoriales',
+    'Comunicaciones con proveedor u operador',
+    'Plazos, subsanaciones y respuestas previas',
 ];
 
 const problemsSolved = [
-    { icon: '✕', problem: 'Responder sin saber que acto te notificaron', solution: 'Lectura inicial del documento y del plazo' },
-    { icon: '✕', problem: 'Mandar documentos sin orden ni explicacion', solution: 'Expediente armado por tipo de riesgo' },
-    { icon: '✕', problem: 'Confundir multa, ajuste de valor y requerimiento', solution: 'Separacion tecnica del supuesto observado' },
-    { icon: '✕', problem: 'Llegar al ultimo dia sin estrategia', solution: 'Priorizacion por urgencia y evidencia disponible' },
-    { icon: '✕', problem: 'No saber si el error puede repetirse', solution: 'Recomendaciones para corregir el flujo documental' },
-];
-
-const documentGroups = [
     {
-        title: 'Acto recibido',
-        items: ['Notificacion', 'Requerimiento', 'Resolucion', 'Esquela o carta'],
+        step: '01',
+        title: 'Entiendes qué te notificaron antes de responder',
+        text: 'No todas las comunicaciones de SUNAT significan lo mismo. Primero identificamos si se trata de una carta, requerimiento, fiscalización, resolución o multa, porque cada documento exige una respuesta distinta.',
     },
     {
-        title: 'Operacion',
-        items: ['DAM', 'Factura', 'Packing list', 'Documento de transporte'],
+        step: '02',
+        title: 'Ordenas los documentos que sí ayudan al caso',
+        text: 'Evitas enviar archivos por enviar. Revisamos DAM, factura, transporte, pagos, permisos y comunicaciones según el punto observado para que la respuesta tenga coherencia.',
     },
     {
-        title: 'Sustento',
-        items: ['Pagos', 'Permisos', 'Documentos digitalizados', 'Comunicaciones'],
+        step: '03',
+        title: 'Separas multas, valor, permisos y errores documentarios',
+        text: 'Un ajuste de valor no se defiende igual que una multa por documento, una mercancía restringida o un dato incorrecto en la DAM. Separar el problema evita respuestas débiles.',
+    },
+    {
+        step: '04',
+        title: 'Priorizas lo urgente sin perder el sustento',
+        text: 'Si el plazo está cerca, definimos qué debe resolverse primero y qué evidencia falta. La idea es responder a tiempo sin improvisar ni dejar puntos importantes fuera.',
+    },
+    {
+        step: '05',
+        title: 'Sales con una decisión práctica',
+        text: 'Después de revisar el expediente, te indicamos si conviene sustentar, subsanar, aclarar, ampliar información o preparar un descargo más completo.',
     },
 ];
 
@@ -118,51 +153,51 @@ const contentLinks = [
     {
         title: 'Multas aduaneras SUNAT',
         href: '/blog/multas-aduaneras-sunat-como-evitarlas/',
-        text: 'Guia principal para entender infracciones, tabla de sanciones y riesgos frecuentes.',
+        text: 'Guía principal para entender infracciones, tabla de sanciones y riesgos frecuentes.',
     },
     {
-        title: 'Notificacion de SUNAT Aduanas',
+        title: 'Notificación de SUNAT Aduanas',
         href: '/blog/notificacion-sunat-aduanas-que-hacer/',
-        text: 'Que revisar el mismo dia que recibes una comunicacion de la Administracion Aduanera.',
+        text: 'Qué revisar el mismo día que recibes una comunicación de la Administración Aduanera.',
     },
     {
         title: 'Descargo de multa aduanera',
         href: '/blog/descargo-multa-aduanera-sunat/',
-        text: 'Como ordenar argumentos, documentos y tiempos antes de presentar un descargo.',
+        text: 'Cómo ordenar argumentos, documentos y tiempos antes de presentar un descargo.',
     },
 ];
 
 const faqs = [
     {
-        question: 'Pueden revisar una notificacion que acabo de recibir de SUNAT Aduanas?',
-        answer: 'Si. Revisamos el documento, el plazo, el tipo de actuacion, el supuesto observado y la documentacion disponible para definir el siguiente paso antes de responder.',
+        question: '¿Pueden revisar una notificación que acabo de recibir de SUNAT Aduanas?',
+        answer: 'Sí. Revisamos el documento, el plazo, el tipo de actuación, el supuesto observado y la documentación disponible para definir el siguiente paso antes de responder.',
     },
     {
-        question: 'Pueden ayudarme si ya tengo una multa aduanera?',
-        answer: 'Si. Primero identificamos el codigo o supuesto de infraccion, la base de calculo, el momento en que se detecto el error y si existe sustento para responder, subsanar o preparar un descargo.',
+        question: '¿Pueden ayudarme si ya tengo una multa aduanera?',
+        answer: 'Sí. Primero identificamos el código o supuesto de infracción, la base de cálculo, el momento en que se detectó el error y si existe sustento para responder, subsanar o preparar un descargo.',
     },
     {
-        question: 'Una multa aduanera siempre se puede eliminar?',
-        answer: 'No conviene prometer eso sin revisar el caso. Algunas situaciones permiten sustento, subsanacion o discusion tecnica; otras requieren gestionar el riesgo y evitar que el problema crezca.',
+        question: '¿Una multa aduanera siempre se puede eliminar?',
+        answer: 'No conviene prometer eso sin revisar el caso. Algunas situaciones permiten sustento, subsanación o discusión técnica; otras requieren gestionar el riesgo y evitar que el problema crezca.',
     },
     {
-        question: 'Que documentos debo enviar para empezar?',
-        answer: 'Como minimo, la notificacion o resolucion recibida, DAM, factura, packing list, documento de transporte, documentos digitalizados, comunicaciones previas y cualquier soporte vinculado al problema observado.',
+        question: '¿Qué documentos debo enviar para empezar?',
+        answer: 'Como mínimo, la notificación o resolución recibida, DAM, factura, packing list, documento de transporte, documentos digitalizados, comunicaciones previas y cualquier soporte vinculado al problema observado.',
     },
     {
-        question: 'Esto tambien aplica a exportadores?',
-        answer: 'Si. Algunos supuestos documentarios de la tabla vigente tambien pueden alcanzar al exportador. La revision depende del tipo de operacion, documento observado y etapa del procedimiento.',
+        question: '¿Esto también aplica a exportadores?',
+        answer: 'Sí. Algunos supuestos documentarios de la tabla vigente también pueden alcanzar al exportador. La revisión depende del tipo de operación, documento observado y etapa del procedimiento.',
     },
     {
-        question: 'Que diferencia hay entre este servicio y ajuste de valor?',
-        answer: 'Ajuste de valor se enfoca en valor declarado, duda razonable y sustento economico. Multas aduaneras cubre notificaciones, requerimientos, infracciones, fiscalizacion y descargos de forma mas amplia.',
+        question: '¿Qué diferencia hay entre este servicio y ajuste de valor?',
+        answer: 'Ajuste de valor se enfoca en valor declarado, duda razonable y sustento económico. Multas aduaneras cubre notificaciones, requerimientos, infracciones, fiscalización y descargos de forma más amplia.',
     },
 ];
 
 export default function MultasAduanerasSunatPage() {
     const serviceJsonLd = generateServiceSchema({
-        name: 'Revision de Multas Aduaneras SUNAT',
-        description: 'Revision de multas aduaneras, notificaciones, requerimientos y descargos ante SUNAT Aduanas para importadores y exportadores en Peru.',
+        name: 'Revisión de Multas Aduaneras SUNAT',
+        description: 'Revisión de multas aduaneras, notificaciones, requerimientos y descargos ante SUNAT Aduanas para importadores y exportadores en Perú.',
         url: 'https://aduanaspe.com/servicios/multas-aduaneras-sunat/',
     });
     const breadcrumbJsonLd = generateBreadcrumbSchema([
@@ -178,10 +213,10 @@ export default function MultasAduanerasSunatPage() {
             <FaqJsonLd faqs={faqs} />
 
             <Hero
-                badge="Revision de multas y notificaciones SUNAT"
-                title="Te notifico SUNAT Aduanas? Revisemos tu caso antes de responder"
+                badge="Revisión de multas y notificaciones SUNAT"
+                title="¿Te notificó SUNAT Aduanas? Revisemos tu caso antes de responder"
                 highlightedWord="Revisemos"
-                subtitle="Atendemos notificaciones, requerimientos, fiscalizacion posterior y multas aduaneras. Ordenamos el expediente, identificamos el riesgo y te decimos que ruta conviene seguir."
+                subtitle="Atendemos notificaciones, requerimientos, fiscalización posterior y multas aduaneras. Ordenamos el expediente, identificamos el riesgo y te decimos qué ruta conviene seguir."
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
@@ -190,16 +225,16 @@ export default function MultasAduanerasSunatPage() {
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '📩', title: 'Notificaciones', description: 'Revision inicial' },
+                            { icon: '📩', title: 'Notificaciones', description: 'Revisión inicial' },
                             { icon: '⏱️', title: 'Plazos', description: 'Prioridad clara' },
                             { icon: '📚', title: 'Expediente', description: 'Documentos ordenados' },
-                            { icon: '⚖️', title: 'Descargos', description: 'Criterio tecnico' },
+                            { icon: '⚖️', title: 'Descargos', description: 'Criterio técnico' },
                         ]}
                     />
                 }
             >
                 <WhatsAppLink route="multas-aduaneras-sunat" messageKey="asesoria_gratis" variant="button">
-                    Revisar mi notificacion
+                    Revisar mi notificación
                 </WhatsAppLink>
                 <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
                     <Link href="#proceso">
@@ -218,10 +253,10 @@ export default function MultasAduanerasSunatPage() {
                     <div className="mb-14 text-center">
                         <span className="section-badge">Casos que atendemos</span>
                         <h2 className="text-3xl font-bold text-slate-900">
-                            Cuando SUNAT ya te escribio, el orden importa
+                            Cuando SUNAT ya te escribió, el orden importa
                         </h2>
                         <p className="mx-auto mt-4 max-w-3xl text-lg leading-8 text-slate-600">
-                            La pagina debe ayudarte a actuar con calma: primero entender el documento, luego revisar evidencia y recien despues responder.
+                            Primero entendemos el documento, luego revisamos evidencia y recién después definimos cómo responder.
                         </p>
                     </div>
                     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -242,7 +277,7 @@ export default function MultasAduanerasSunatPage() {
             <section className="bg-white py-20">
                 <Container>
                     <div className="mb-14 text-center">
-                        <span className="section-badge">Por que elegirnos</span>
+                        <span className="section-badge">Por qué elegirnos</span>
                         <h2 className="text-3xl font-bold text-slate-900">
                             Una respuesta fuerte empieza con una <span className="gradient-text">lectura correcta</span>
                         </h2>
@@ -272,7 +307,7 @@ export default function MultasAduanerasSunatPage() {
                     <div className="mb-14 text-center">
                         <span className="section-badge">Proceso</span>
                         <h2 className="text-3xl font-bold text-slate-900">
-                            Como trabajamos una <span className="gradient-text">notificacion aduanera</span>
+                            Cómo trabajamos una <span className="gradient-text">notificación aduanera</span>
                         </h2>
                         <p className="mt-4 text-lg text-slate-600">
                             Del documento recibido a una ruta clara de respuesta.
@@ -297,87 +332,113 @@ export default function MultasAduanerasSunatPage() {
                 </Container>
             </section>
 
-            <SplitFeature
-                title="Que documentos revisamos antes de responder"
-                description="No todos los anexos pesan igual. Primero ubicamos que esta cuestionando SUNAT y luego armamos el sustento alrededor de ese punto."
-                imageSide="right"
-                image={
-                    <div className="service-card service-card-spacious service-blue">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(79,70,229,0.12),transparent_26%),radial-gradient(circle_at_left,rgba(56,189,248,0.1),transparent_24%)]" />
-                        <div className="relative grid gap-4">
-                            {documentGroups.map((group, index) => (
-                                <div key={group.title} className={`service-card service-card-roomy ${index === 1 ? 'service-purple text-white' : 'service-cyan'}`}>
-                                    <p className={`text-xs font-semibold uppercase tracking-[0.18em] ${index === 1 ? 'text-slate-300' : 'text-slate-500'}`}>
-                                        Bloque {index + 1}
-                                    </p>
-                                    <h3 className="mt-3 text-xl font-bold">{group.title}</h3>
-                                    <div className="mt-4 flex flex-wrap gap-2">
-                                        {group.items.map((item) => (
-                                            <span key={item} className={`rounded-full px-3 py-1 text-xs font-semibold ${index === 1 ? 'bg-white/10 text-white' : 'bg-white text-slate-700 shadow-sm'}`}>
-                                                {item}
-                                            </span>
-                                        ))}
-                                    </div>
+            <section className="bg-white py-20">
+                <Container>
+                    <div className="mx-auto mb-12 max-w-3xl text-center">
+                        <span className="section-badge">Documentos</span>
+                        <h2 className="text-3xl font-bold tracking-tight text-slate-950 md:text-5xl">
+                            Qué enviar y qué hacemos con tus documentos
+                        </h2>
+                        <p className="mt-5 text-lg leading-8 text-slate-600">
+                            No buscamos que el cliente adivine qué presentar. La idea es avanzar con una lectura simple: primero vemos lo que recibiste, luego ordenamos el expediente y finalmente definimos el siguiente paso.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-6 lg:grid-cols-3">
+                        {documentFlow.map((group) => (
+                            <article key={group.title} className="service-card service-card-spacious service-blue h-full p-7">
+                                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#3C3794] text-sm font-bold text-white shadow-sm">
+                                    {group.step}
+                                </span>
+                                <h3 className="mt-6 text-2xl font-bold text-slate-950">{group.title}</h3>
+                                <p className="mt-4 text-base leading-8 text-slate-600">{group.text}</p>
+                                <div className="mt-6 space-y-3">
+                                    {group.items.map((item) => (
+                                        <div key={item} className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 shadow-sm">
+                                            {item}
+                                        </div>
+                                    ))}
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+
+                    <div className="mt-8 rounded-3xl border border-slate-200 bg-slate-50 p-6 md:p-8">
+                        <h3 className="text-xl font-bold text-slate-950">Documentos que normalmente ayudan a empezar</h3>
+                        <p className="mt-2 max-w-3xl text-sm leading-7 text-slate-600">
+                            Si tienes algunos de estos soportes, envíalos. Si falta alguno, igual podemos iniciar la revisión y decirte qué conviene completar.
+                        </p>
+                        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                            {checklistItems.map((item) => (
+                                <div key={item} className="rounded-2xl border border-white bg-white p-4 text-sm font-semibold leading-6 text-slate-700 shadow-sm">
+                                    {item}
                                 </div>
                             ))}
                         </div>
                     </div>
-                }
-            >
-                <div className="grid gap-3 sm:grid-cols-2">
-                    {[
-                        'Notificacion, requerimiento o resolucion',
-                        'DAM, factura, packing list y transporte',
-                        'Valor, pagos, flete, seguro y tributos',
-                        'Permisos, VUCE o documentos sectoriales',
-                        'Comunicaciones con proveedor u operador',
-                        'Plazos, subsanaciones y respuestas previas',
-                    ].map((item) => (
-                        <div key={item} className="service-card service-card-compact service-cyan p-4 text-sm font-semibold text-slate-700">
-                            {item}
-                        </div>
-                    ))}
-                </div>
-            </SplitFeature>
+                </Container>
+            </section>
 
-            <SplitFeature
-                title="Que problemas evita este servicio"
-                description="El objetivo no es responder mas rapido, sino responder mejor: con el supuesto claro, el expediente completo y una ruta de accion razonable."
-                imageSide="left"
-            >
-                <div className="space-y-3">
-                    {problemsSolved.map((item) => (
-                        <div key={item.problem} className="flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-slate-50">
-                            <span className="mt-1 text-red-500">{item.icon}</span>
-                            <div>
-                                <span className="block text-sm text-slate-400 line-through">{item.problem}</span>
-                                <span className="block font-medium text-[#3C3794]">→ {item.solution}</span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </SplitFeature>
+            <section className="bg-slate-50 py-20">
+                <Container>
+                    <div className="mx-auto mb-12 max-w-3xl text-center">
+                        <span className="section-badge">Lectura clara</span>
+                        <h2 className="text-3xl font-bold tracking-tight text-slate-950 md:text-5xl">
+                            Qué problemas evita este servicio
+                        </h2>
+                        <p className="mt-5 text-lg leading-8 text-slate-600">
+                            Cuando llega una notificación de SUNAT, el mayor riesgo es contestar rápido sin entender el fondo. Esta revisión ayuda a bajar la ansiedad y convertir el caso en pasos concretos.
+                        </p>
+                    </div>
+
+                    <div className="mx-auto max-w-5xl space-y-5">
+                        {problemsSolved.map((item) => (
+                            <article key={item.title} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#D8D5FF] hover:shadow-md md:p-8">
+                                <div className="flex flex-col gap-5 md:flex-row md:items-start">
+                                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#EEF2FF] text-sm font-bold text-[#3C3794]">
+                                        {item.step}
+                                    </span>
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-slate-950">{item.title}</h3>
+                                        <p className="mt-3 text-base leading-8 text-slate-600">{item.text}</p>
+                                    </div>
+                                </div>
+                            </article>
+                        ))}
+                    </div>
+
+                    <div className="mx-auto mt-8 max-w-5xl rounded-3xl border border-emerald-100 bg-emerald-50 p-6 md:p-8">
+                        <p className="text-sm font-bold uppercase tracking-[0.18em] text-emerald-700">Resultado esperado</p>
+                        <h3 className="mt-3 text-2xl font-bold text-slate-950">
+                            Una respuesta más clara, sustentada y a tiempo
+                        </h3>
+                        <p className="mt-3 max-w-3xl text-base leading-8 text-slate-600">
+                            El cliente termina entendiendo qué está en discusión, qué documentos faltan y si corresponde sustentar, subsanar, aclarar, ampliar información o preparar un descargo.
+                        </p>
+                    </div>
+                </Container>
+            </section>
 
             <section className="bg-white py-20">
                 <Container>
                     <div className="mb-14 text-center">
-                        <span className="section-badge">Flujo de decision</span>
+                        <span className="section-badge">Flujo de decisión</span>
                         <h2 className="text-3xl font-bold text-slate-900">
-                            Elige la ruta segun el <span className="gradient-text">problema real</span>
+                            Elige la ruta según el <span className="gradient-text">problema real</span>
                         </h2>
                         <p className="mt-4 text-lg text-slate-600">
-                            Asi evitamos que multas, ajuste de valor y consultoria general compitan entre si.
+                            Así evitamos que multas, ajuste de valor y consultoría general compitan entre sí.
                         </p>
                     </div>
                     <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-3">
                         <div className="service-card service-purple p-6 text-center ring-2 ring-[#D8D5FF] ring-offset-2">
-                            <span className="mb-3 inline-block rounded-full bg-[#3C3794] px-3 py-1 text-xs font-bold text-white">ESTAS AQUI</span>
+                            <span className="mb-3 inline-block rounded-full bg-[#3C3794] px-3 py-1 text-xs font-bold text-white">ESTÁS AQUÍ</span>
                             <span className="mb-2 block text-3xl">⚖️</span>
                             <h3 className="font-bold text-slate-900">Multas y notificaciones</h3>
-                            <p className="mt-2 text-sm text-slate-600">Cuando SUNAT ya te notifico o existe riesgo sancionador.</p>
+                            <p className="mt-2 text-sm text-slate-600">Cuando SUNAT ya te notificó o existe riesgo sancionador.</p>
                         </div>
                         <Link href="/servicios/ajuste-de-valor-aduanero" className="service-card service-card-compact service-cyan group block p-6 text-center">
-                            <span className="mb-3 inline-block rounded-full bg-slate-400 px-3 py-1 text-xs font-bold text-white">RUTA ESPECIFICA</span>
+                            <span className="mb-3 inline-block rounded-full bg-slate-400 px-3 py-1 text-xs font-bold text-white">RUTA ESPECÍFICA</span>
                             <span className="mb-2 block text-3xl transition-transform group-hover:scale-110">🧾</span>
                             <h3 className="font-bold text-slate-900">Ajuste de valor</h3>
                             <p className="mt-2 text-sm text-slate-600">Si el problema principal es valor declarado o duda razonable.</p>
@@ -385,7 +446,7 @@ export default function MultasAduanerasSunatPage() {
                         <Link href="/servicios/consultoria-aduanera" className="service-card service-card-compact service-blue group block p-6 text-center">
                             <span className="mb-3 inline-block rounded-full bg-slate-400 px-3 py-1 text-xs font-bold text-white">PREVENTIVO</span>
                             <span className="mb-2 block text-3xl transition-transform group-hover:scale-110">💡</span>
-                            <h3 className="font-bold text-slate-900">Consultoria aduanera</h3>
+                            <h3 className="font-bold text-slate-900">Consultoría aduanera</h3>
                             <p className="mt-2 text-sm text-slate-600">Si quieres prevenir errores antes de comprar, embarcar o numerar.</p>
                         </Link>
                     </div>
@@ -397,7 +458,7 @@ export default function MultasAduanerasSunatPage() {
                     <div className="mb-14 text-center">
                         <span className="section-badge">Recursos</span>
                         <h2 className="text-3xl font-bold text-slate-900">
-                            Guias para entender tu <span className="gradient-text">notificacion</span>
+                            Guías para entender tu <span className="gradient-text">notificación</span>
                         </h2>
                     </div>
                     <div className="mx-auto grid max-w-5xl gap-5 md:grid-cols-3">
@@ -405,7 +466,7 @@ export default function MultasAduanerasSunatPage() {
                             <Link key={resource.href} href={resource.href} className="service-card service-card-compact service-green group block p-6">
                                 <h3 className="text-lg font-bold text-slate-900">{resource.title}</h3>
                                 <p className="mt-3 text-sm leading-7 text-slate-600">{resource.text}</p>
-                                <p className="mt-4 text-sm font-semibold text-[#3C3794] group-hover:underline">Leer guia →</p>
+                                <p className="mt-4 text-sm font-semibold text-[#3C3794] group-hover:underline">Leer guía →</p>
                             </Link>
                         ))}
                     </div>
@@ -434,7 +495,7 @@ export default function MultasAduanerasSunatPage() {
             <Container>
                 <div id="cotizacion" className="py-16">
                     <PrecotizacionForm
-                        title="Solicita revision de tu notificacion"
+                        title="Solicita revisión de tu notificación"
                         serviceName="multas-aduaneras-sunat"
                     />
                 </div>
@@ -442,7 +503,7 @@ export default function MultasAduanerasSunatPage() {
 
             <RecommendedReading
                 title="Lecturas para preparar mejor tu respuesta"
-                subtitle="Si todavia estas identificando el riesgo, estas guias te ayudan a ordenar el caso antes de enviar documentos."
+                subtitle="Si todavía estás identificando el riesgo, estas guías te ayudan a ordenar el caso antes de enviar documentos."
                 slugs={[
                     'notificacion-sunat-aduanas-que-hacer',
                     'requerimiento-aduanero-sunat-como-responder',
@@ -451,9 +512,9 @@ export default function MultasAduanerasSunatPage() {
             />
 
             <CTASection
-                title="No respondas una notificacion aduanera a ciegas"
-                highlightedWord="notificacion"
-                subtitle="Envianos el documento recibido y revisamos contigo el plazo, el riesgo y los documentos que conviene ordenar antes de actuar."
+                title="No respondas una notificación aduanera a ciegas"
+                highlightedWord="notificación"
+                subtitle="Envíanos el documento recibido y revisamos contigo el plazo, el riesgo y los documentos que conviene ordenar antes de actuar."
                 variant="secondary"
             >
                 <WhatsAppLink route="multas-aduaneras-sunat-final" messageKey="asesoria_gratis" variant="button">

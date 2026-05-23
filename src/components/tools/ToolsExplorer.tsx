@@ -87,7 +87,7 @@ function getStatusClass(status: string) {
         return 'bg-[#fdecec] text-[#b42318] ring-1 ring-[rgba(180,35,24,0.14)]';
     }
 
-    if (/diseno/i.test(status)) {
+    if (/diseño/i.test(status)) {
         return 'bg-[rgba(255,241,241,0.96)] text-[#cf5858] ring-1 ring-[rgba(255,107,107,0.14)]';
     }
 

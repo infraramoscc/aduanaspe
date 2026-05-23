@@ -77,7 +77,7 @@ export const toolPreviews: ToolPreview[] = [
         idealFor: 'Importadores que comparan proveedores, volumenes o escenarios de rentabilidad.',
         whenToUse: 'Antes de cotizar formalmente, para aterrizar el costo total por operacion.',
         icon: 'simulation',
-        statusLabel: 'En diseno funcional',
+        statusLabel: 'En diseño funcional',
         featured: true,
         outputs: ['Costo aterrizado', 'Escenario por tramo', 'Base para pre-cotizacion'],
         relatedLabel: 'Ver guia de importacion',
