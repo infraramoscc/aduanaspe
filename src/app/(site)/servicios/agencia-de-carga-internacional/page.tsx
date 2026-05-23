@@ -87,6 +87,61 @@ const cargoModes = [
     },
 ];
 
+const logisticsGuides = [
+    {
+        title: 'FCL vs LCL',
+        description: 'Elige entre contenedor completo y carga consolidada según volumen, riesgo y costo total.',
+        href: '/blog/fcl-vs-lcl-importar-peru/',
+        label: 'Modalidad',
+    },
+    {
+        title: 'Cotizar flete China-Perú',
+        description: 'Qué datos enviar, qué costos comparar y qué preguntar antes de confirmar booking.',
+        href: '/blog/cotizar-flete-maritimo-china-peru/',
+        label: 'Cotización',
+    },
+    {
+        title: 'Costos locales',
+        description: 'THC, visto bueno, desconsolidación, almacenaje, devolución de vacío y transporte local.',
+        href: '/blog/costos-locales-carga-internacional-peru/',
+        label: 'Costos',
+    },
+    {
+        title: 'Booking y Bill of Lading',
+        description: 'Datos críticos que debes revisar antes de aprobar documentos de transporte.',
+        href: '/blog/booking-bill-of-lading-importacion-peru/',
+        label: 'Documentos',
+    },
+];
+
+const quoteChecklist = [
+    'Origen, destino e Incoterm',
+    'Peso, volumen y dimensiones',
+    'Número de bultos y tipo de embalaje',
+    'Tipo de mercancía y valor comercial',
+    'Fecha estimada de carga lista',
+    'Si requiere permiso, frío, seguro o manejo especial',
+];
+
+const avoidProblems = [
+    {
+        title: 'Cotizaciones incompletas',
+        description: 'Separamos flete, origen, destino, seguro, aduanas y transporte local para que compares con claridad.',
+    },
+    {
+        title: 'Modalidad incorrecta',
+        description: 'Comparamos FCL, LCL, aéreo o solución integral antes de reservar espacio.',
+    },
+    {
+        title: 'Documentos tardíos',
+        description: 'Coordinamos booking, B/L, factura y packing list para anticipar el despacho aduanero.',
+    },
+    {
+        title: 'Sobrecostos en destino',
+        description: 'Revisamos días libres, gastos locales, retiro, almacenaje y devolución de contenedor.',
+    },
+];
+
 // FAQ
 const faqs = [
     {
@@ -238,6 +293,90 @@ export default function AgenciamientoCargaPage() {
                                             </li>
                                         ))}
                                     </ul>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </Container>
+            </section>
+
+            {/* Biblioteca logística */}
+            <section className="py-20 bg-slate-50">
+                <Container>
+                    <div className="max-w-3xl mx-auto text-center mb-12">
+                        <span className="section-badge">Biblioteca logística</span>
+                        <h2 className="text-3xl font-bold text-slate-900">Aprende antes de <span className="gradient-text">cotizar</span></h2>
+                        <p className="mt-4 text-lg text-slate-600">
+                            Guías prácticas para decidir modalidad, comparar costos y revisar documentos antes de embarcar.
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                        {logisticsGuides.map((guide, index) => {
+                            const colors = ['service-blue', 'service-green', 'service-orange', 'service-purple'];
+                            return (
+                                <Link key={guide.href} href={guide.href} className={`service-card service-card-compact ${colors[index % colors.length]} group block p-6`}>
+                                    <span className="inline-flex px-3 py-1 rounded-full bg-white/70 text-xs font-bold text-slate-700 border border-slate-200">
+                                        {guide.label}
+                                    </span>
+                                    <h3 className="mt-4 text-xl font-bold text-slate-900 group-hover:text-[#3C3794] transition-colors">{guide.title}</h3>
+                                    <p className="mt-3 text-sm leading-6 text-slate-600">{guide.description}</p>
+                                    <p className="mt-5 text-sm font-semibold text-[#3C3794]">Leer guía →</p>
+                                </Link>
+                            );
+                        })}
+                    </div>
+                </Container>
+            </section>
+
+            {/* Antes de cotizar */}
+            <section className="py-20 bg-white">
+                <Container>
+                    <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+                        <div>
+                            <span className="section-badge">Cotización clara</span>
+                            <h2 className="mt-4 text-3xl font-bold text-slate-900">Qué necesitamos para cotizar bien tu carga</h2>
+                            <p className="mt-4 text-lg leading-8 text-slate-600">
+                                Mientras más precisos sean los datos iniciales, mejor podemos comparar FCL, LCL, carga aérea, seguro, costos locales y conexión con aduanas.
+                            </p>
+                            <div className="mt-7 flex flex-col sm:flex-row gap-3">
+                                <WhatsAppLink route="agencia-carga-checklist" serviceName="agencia-de-carga-internacional" variant="button">
+                                    Enviar datos de mi carga
+                                </WhatsAppLink>
+                                <Link href="/blog/cotizar-flete-maritimo-china-peru/">
+                                    <Button variant="secondary" size="lg">
+                                        Ver guía de cotización
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {quoteChecklist.map((item) => (
+                                <div key={item} className="service-card service-card-compact service-cyan p-5">
+                                    <p className="font-semibold text-slate-900">{item}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </Container>
+            </section>
+
+            {/* Problemas evitables */}
+            <section className="py-20 bg-slate-50">
+                <Container>
+                    <div className="max-w-3xl mx-auto text-center mb-12">
+                        <span className="section-badge">Control operativo</span>
+                        <h2 className="text-3xl font-bold text-slate-900">Problemas que evitamos antes de que la carga llegue</h2>
+                        <p className="mt-4 text-lg text-slate-600">
+                            La logística internacional se encarece cuando se decide tarde. Por eso revisamos modalidad, costos y documentos desde el inicio.
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        {avoidProblems.map((item, index) => {
+                            const colors = ['service-pink', 'service-blue', 'service-green', 'service-orange'];
+                            return (
+                                <div key={item.title} className={`service-card ${colors[index % colors.length]} p-6`}>
+                                    <h3 className="text-xl font-bold text-slate-900">{item.title}</h3>
+                                    <p className="mt-3 leading-7 text-slate-600">{item.description}</p>
                                 </div>
                             );
                         })}
@@ -421,11 +560,12 @@ export default function AgenciamientoCargaPage() {
             </Container>
 
             <RecommendedReading
-                title="Lecturas para definir mejor tu operacion antes del embarque"
-                subtitle="Estas guias ayudan a resolver modalidad, costos y coordinacion antes de cerrar con proveedor o forwarder."
+                title="Lecturas para definir mejor tu operación antes del embarque"
+                subtitle="Estas guías ayudan a resolver modalidad, costos y coordinación antes de cerrar con proveedor o forwarder."
                 slugs={[
-                    'como-importar-por-primera-vez-en-peru',
-                    'como-calcular-costos-de-importacion-en-peru',
+                    'fcl-vs-lcl-importar-peru',
+                    'cotizar-flete-maritimo-china-peru',
+                    'costos-locales-carga-internacional-peru',
                     'agente-de-aduanas-vs-agencia-de-carga',
                 ]}
             />
