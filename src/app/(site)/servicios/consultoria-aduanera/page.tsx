@@ -60,6 +60,11 @@ const consultingServices = [
         title: 'Ajuste de Valor Aduanero',
         description: 'Revisión de duda razonable, sustento del valor declarado y observaciones de SUNAT.',
     },
+    {
+        icon: '⚖️',
+        title: 'Multas y Notificaciones SUNAT',
+        description: 'Revisión de requerimientos, fiscalización, descargos y contingencias aduaneras notificadas.',
+    },
 ];
 
 // Por qué elegirnos
@@ -105,6 +110,7 @@ const problemsSolved = [
     'Desconocer los beneficios de los TLC',
     'Tener contingencias aduaneras sin resolver',
     'Recibir multas y sanciones de SUNAT',
+    'Tener una notificación o requerimiento aduanero sin respuesta clara',
     'No saber qué régimen aduanero usar',
     'Tener una observación o ajuste de valor sin expediente ordenado',
 ];
@@ -439,9 +445,9 @@ export default function ConsultoriaAduaneraPage() {
                 title="Guias que suelen activar una revision tecnica previa"
                 subtitle="Si tu duda esta en viabilidad, requisitos o sobrecostos, estos contenidos te dan el contexto antes de una consultoria."
                 slugs={[
+                    'notificacion-sunat-aduanas-que-hacer',
+                    'descargo-multa-aduanera-sunat',
                     'como-saber-si-tu-producto-necesita-permisos-para-importar-en-peru',
-                    'importar-electronicos-a-peru-requisitos-y-permisos',
-                    'como-calcular-costos-de-importacion-en-peru',
                 ]}
             />
 

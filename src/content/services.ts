@@ -56,6 +56,14 @@ export const services: Service[] = [
         ctaLabel: 'Revisar servicio',
         icon: '🧾',
     },
+    {
+        title: 'Multas Aduaneras SUNAT',
+        slug: 'multas-aduaneras-sunat',
+        summary: 'Revisión de notificaciones, requerimientos, fiscalización y descargos aduaneros.',
+        description: 'Revisamos la notificación o resolución recibida, identificamos el supuesto observado y ordenamos documentos para definir cómo responder ante SUNAT Aduanas.',
+        ctaLabel: 'Revisar notificación',
+        icon: '⚖️',
+    },
 ];
 
 export function getServiceBySlug(slug: string): Service | undefined {

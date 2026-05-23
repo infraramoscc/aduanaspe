@@ -77,6 +77,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.8,
         },
         {
+            url: `${BASE_URL}/servicios/multas-aduaneras-sunat/`,
+            sourceFile: 'src/app/(site)/servicios/multas-aduaneras-sunat/page.tsx',
+            changeFrequency: 'weekly',
+            priority: 0.85,
+        },
+        {
             url: `${BASE_URL}/comercio-exterior/`,
             sourceFile: 'src/app/(site)/comercio-exterior/page.tsx',
             changeFrequency: 'weekly',

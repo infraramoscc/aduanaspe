@@ -30,6 +30,7 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
         'resguardo-aduanero': 'Resguardo Aduanero',
         'consultoria-aduanera': 'Consultoría Aduanera',
         'ajuste-de-valor-aduanero': 'Ajuste de Valor Aduanero',
+        'multas-aduaneras-sunat': 'Multas Aduaneras SUNAT',
         'importacion': 'Importación',
         'exportacion': 'Exportación',
         'regimenes-aduaneros': 'Regímenes Aduaneros',

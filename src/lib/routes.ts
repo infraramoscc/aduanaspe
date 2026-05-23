@@ -9,6 +9,7 @@ export const ROUTES = {
         resguardoAduanero: '/servicios/resguardo-aduanero',
         consultoriaAduanera: '/servicios/consultoria-aduanera',
         ajusteValorAduanero: '/servicios/ajuste-de-valor-aduanero',
+        multasAduanerasSunat: '/servicios/multas-aduaneras-sunat',
     },
     comercioExterior: {
         index: '/comercio-exterior',
@@ -60,6 +61,11 @@ export const HEADER_NAV_GROUPS = [
                         label: 'Ajuste de Valor Aduanero',
                         href: ROUTES.servicios.ajusteValorAduanero,
                         description: 'Duda razonable, sustento del valor declarado y ajustes SUNAT.',
+                    },
+                    {
+                        label: 'Multas Aduaneras SUNAT',
+                        href: ROUTES.servicios.multasAduanerasSunat,
+                        description: 'Notificaciones, requerimientos, fiscalizacion y descargos aduaneros.',
                     },
                     {
                         label: 'Resguardo Aduanero',
