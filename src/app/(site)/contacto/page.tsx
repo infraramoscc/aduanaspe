@@ -19,8 +19,8 @@ export const metadata: Metadata = {
 
 // Información de contacto
 const contactInfo = {
-    whatsapp: '+51 963 461 006',
-    whatsappLink: 'https://wa.me/51963461006',
+    whatsapp: '+51 944 785 974',
+    whatsappLink: 'https://wa.me/51944785974',
     email: 'info@aduanaspe.com',
     location: 'Callao, Perú',
     workMode: 'Atención 100% remota – Clientes de todo el Perú',

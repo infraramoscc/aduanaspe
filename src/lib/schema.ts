@@ -29,7 +29,7 @@ export const businessData: LocalBusinessSchema = {
     name: 'AduanasPE',
     description: 'Agencia de Aduanas y Comercio Exterior en Peru. Servicios de agenciamiento aduanero, carga internacional, transporte y consultoria.',
     url: 'https://aduanaspe.com',
-    telephone: '+51963461006',
+    telephone: '+51944785974',
     email: 'info@aduanaspe.com',
     address: {
         streetAddress: '',

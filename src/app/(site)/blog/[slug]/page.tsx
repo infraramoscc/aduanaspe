@@ -75,8 +75,6 @@ function extractHeadings(rawContent: string | null): ArticleHeading[] {
     return headings;
 }
 
-export const revalidate = 60;
-
 export async function generateStaticParams() {
     const slugs = await getAllSlugs();
     return slugs.map((slug) => ({ slug }));
