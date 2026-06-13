@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seo:test": "node --test scripts/seo/*.test.mjs",
+    "seo:analyze": "node scripts/seo/analyze.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
