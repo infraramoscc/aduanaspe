@@ -1,0 +1,70 @@
+name: SEO Monthly Analysis
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "15 13 * * 1"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check whether this is the first Monday
+        id: gate
+        shell: bash
+        run: |
+          DAY_OF_MONTH=$((10#$(date -u +%d)))
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]] || [[ "$DAY_OF_MONTH" -le 7 ]]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out repository
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        if: steps.gate.outputs.run == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.gate.outputs.run == 'true'
+        run: npm ci
+
+      - name: Generate Search Console report
+        if: steps.gate.outputs.run == 'true'
+        env:
+          GSC_CLIENT_EMAIL: ${{ secrets.GSC_CLIENT_EMAIL }}
+          GSC_PRIVATE_KEY: ${{ secrets.GSC_PRIVATE_KEY }}
+          SEARCH_CONSOLE_SITE_URL: ${{ secrets.SEARCH_CONSOLE_SITE_URL }}
+          SEO_REPORT_PATH: seo-report.md
+        run: npm run seo:analyze
+
+      - name: Create or update monthly issue
+        if: steps.gate.outputs.run == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          REPORT_MONTH="$(date -u +%Y-%m)"
+          TITLE="SEO mensual: ${REPORT_MONTH}"
+          ISSUE_NUMBER="$(
+            gh issue list --state all --limit 100 --json number,title |
+              jq -r --arg title "$TITLE" '.[] | select(.title == $title) | .number' |
+              head -n 1
+          )"
+
+          if [[ -n "$ISSUE_NUMBER" ]]; then
+            gh issue edit "$ISSUE_NUMBER" --title "$TITLE" --body-file seo-report.md
+          else
+            gh issue create --title "$TITLE" --body-file seo-report.md
+          fi
