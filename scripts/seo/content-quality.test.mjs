@@ -87,3 +87,22 @@ test('cargo agency article helps buyers compare providers', async () => {
     assert.match(content, /\]\(\/blog\/importar-maquinaria-usada-peru\/\)/);
     assert.match(content, /\]\(\/servicios\/agencia-de-carga-internacional\/\)/);
 });
+
+test('import hub links to priority high-risk import guides', async () => {
+    const content = await read('src/app/(site)/comercio-exterior/importacion/page.tsx');
+
+    for (const slug of [
+        'importar-ropa-textiles-china-peru',
+        'importar-maquinaria-usada-peru',
+        'importar-utiles-escolares-peru-revision-sanitaria',
+    ]) {
+        assert.match(content, new RegExp(`'${slug}'`));
+    }
+});
+
+test('SUNAT penalties service links to priority response guides', async () => {
+    const content = await read('src/app/(site)/servicios/multas-aduaneras-sunat/page.tsx');
+
+    assert.match(content, /\/blog\/fiscalizacion-aduanera-posterior-sunat\//);
+    assert.match(content, /\/blog\/multa-mercancia-restringida-sin-permiso\//);
+});

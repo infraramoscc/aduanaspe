@@ -165,6 +165,16 @@ const contentLinks = [
         href: '/blog/descargo-multa-aduanera-sunat/',
         text: 'Cómo ordenar argumentos, documentos y tiempos antes de presentar un descargo.',
     },
+    {
+        title: 'Fiscalización aduanera posterior',
+        href: '/blog/fiscalizacion-aduanera-posterior-sunat/',
+        text: 'Qué documentos ordenar cuando SUNAT revisa una operación después del levante.',
+    },
+    {
+        title: 'Mercancía restringida sin permiso',
+        href: '/blog/multa-mercancia-restringida-sin-permiso/',
+        text: 'Cómo ubicar el riesgo cuando la observación se relaciona con permisos o control sectorial.',
+    },
 ];
 
 const faqs = [

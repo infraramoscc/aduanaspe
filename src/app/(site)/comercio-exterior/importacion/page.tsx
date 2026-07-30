@@ -68,6 +68,15 @@ export default function ImportacionPage() {
                     'como-saber-si-tu-producto-necesita-permisos-para-importar-en-peru',
                 ]}
             />
+            <RecommendedReading
+                title="Guías para importaciones con mayor control o riesgo"
+                subtitle="Revisa permisos, modalidad y documentos antes de comprar mercancías que suelen necesitar una evaluación más cuidadosa."
+                slugs={[
+                    'importar-ropa-textiles-china-peru',
+                    'importar-maquinaria-usada-peru',
+                    'importar-utiles-escolares-peru-revision-sanitaria',
+                ]}
+            />
             <Container>
                 <DiagnosticoForm title="¿Quieres importar? Cuéntanos tu proyecto" />
             </Container>
