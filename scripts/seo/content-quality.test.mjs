@@ -74,3 +74,16 @@ test('regimes page contains comparison, FAQs, canonicals, and decision links', a
     assert.match(content, /href=\{ROUTES\.comercioExterior\.exportacion\}/);
     assert.match(content, /href=\{ROUTES\.servicios\.consultoriaAduanera\}/);
 });
+
+test('cargo agency article helps buyers compare providers', async () => {
+    const content = await read('src/content/blog/servicios-clave-agencia-de-cargas.mdx');
+
+    assert.match(content, /title: "Qué servicios debe ofrecer una agencia de carga en Perú"/);
+    assert.match(content, /updatedAt: "2026-07-29"/);
+    assert.match(content, /## Cómo comparar agencias de carga antes de contratar/);
+    assert.match(content, /agencia de carga coordina el transporte internacional/i);
+    assert.match(content, /agente de aduanas gestiona el despacho/i);
+    assert.match(content, /\]\(\/blog\/flat-rack-vs-roro-maquinaria-pesada\/\)/);
+    assert.match(content, /\]\(\/blog\/importar-maquinaria-usada-peru\/\)/);
+    assert.match(content, /\]\(\/servicios\/agencia-de-carga-internacional\/\)/);
+});
