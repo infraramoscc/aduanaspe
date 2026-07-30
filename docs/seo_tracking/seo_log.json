@@ -50,5 +50,101 @@
             "audifonos inalambricos partida arancelaria peru"
         ],
         "status": "watching"
+    },
+    {
+        "date": "2026-07-29",
+        "url": "/blog/importar-de-china-a-peru/",
+        "metric_before": {
+            "period": "2026-04-28/2026-07-27",
+            "clicks": 289,
+            "impressions": 25229,
+            "ctr": "1.1%",
+            "avg_position": 5.1
+        },
+        "change_applied": "Título y descripción ajustados para priorizar costos, requisitos y actualidad 2026 sin reescribir el cuerpo.",
+        "target_queries": [
+            "como importar de china a peru",
+            "importar de china a peru"
+        ],
+        "status": "watching"
+    },
+    {
+        "date": "2026-07-29",
+        "url": "/blog/multas-aduaneras-sunat-como-evitarlas/",
+        "metric_before": {
+            "period": "2026-04-28/2026-07-27",
+            "clicks": 411,
+            "impressions": 19284,
+            "ctr": "2.1%",
+            "avg_position": 5.7
+        },
+        "change_applied": "Snippet reenfocado a tabla de sanciones SUNAT 2026 y prevención de multas.",
+        "target_queries": [
+            "tabla de sanciones sunat",
+            "tabla de sanciones aduaneras 2026"
+        ],
+        "status": "watching"
+    },
+    {
+        "date": "2026-07-29",
+        "url": "/blog/registrar-mandato-electronico-sunat/",
+        "metric_before": {
+            "period": "2026-04-28/2026-07-27",
+            "clicks": 203,
+            "impressions": 12002,
+            "ctr": "1.7%",
+            "avg_position": 4.1
+        },
+        "change_applied": "Título y descripción acortados para mandato electrónico SUNAT y guía paso a paso 2026.",
+        "target_queries": [
+            "mandato electronico sunat",
+            "como hacer un mandato electronico sunat"
+        ],
+        "status": "watching"
+    },
+    {
+        "date": "2026-07-29",
+        "url": "/blog/guia-inspeccion-no-intrusiva-puertos-2024/",
+        "metric_before": {
+            "period": "2026-04-28/2026-07-27",
+            "clicks": 66,
+            "impressions": 8568,
+            "ctr": "0.8%",
+            "avg_position": 4.3
+        },
+        "change_applied": "Snippet acortado para explicar SINI, costos y consecuencias del escáner.",
+        "target_queries": [
+            "sini",
+            "que es sini en aduanas"
+        ],
+        "status": "watching"
+    },
+    {
+        "date": "2026-07-29",
+        "url": "/blog/servicios-clave-agencia-de-cargas/",
+        "metric_before": {
+            "index_status": "Crawled - currently not indexed",
+            "last_crawled": "2026-04-11"
+        },
+        "change_applied": "Artículo reenfocado a comparar proveedores, alcances y servicios de una agencia de carga.",
+        "target_queries": [
+            "servicios agencia de carga",
+            "agencia de carga peru"
+        ],
+        "status": "watching"
+    },
+    {
+        "date": "2026-07-29",
+        "url": "/comercio-exterior/regimenes-aduaneros/",
+        "metric_before": {
+            "index_status": "Crawled - currently not indexed",
+            "last_crawled": "2026-06-15"
+        },
+        "change_applied": "Página ampliada con comparación de regímenes, criterios de decisión, preguntas frecuentes y enlaces internos.",
+        "target_queries": [
+            "regimenes aduaneros en peru",
+            "tipos de regimenes aduaneros"
+        ],
+        "status": "watching"
     }
 ]

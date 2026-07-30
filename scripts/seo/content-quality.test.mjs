@@ -106,3 +106,23 @@ test('SUNAT penalties service links to priority response guides', async () => {
     assert.match(content, /\/blog\/fiscalizacion-aduanera-posterior-sunat\//);
     assert.match(content, /\/blog\/multa-mercancia-restringida-sin-permiso\//);
 });
+
+test('SEO log records every material Search Console edit', async () => {
+    const entries = JSON.parse(await read('docs/seo_tracking/seo_log.json'));
+    const editedUrls = new Set(
+        entries
+            .filter((entry) => entry.date === '2026-07-29')
+            .map((entry) => entry.url)
+    );
+
+    for (const url of [
+        '/blog/importar-de-china-a-peru/',
+        '/blog/multas-aduaneras-sunat-como-evitarlas/',
+        '/blog/registrar-mandato-electronico-sunat/',
+        '/blog/guia-inspeccion-no-intrusiva-puertos-2024/',
+        '/blog/servicios-clave-agencia-de-cargas/',
+        '/comercio-exterior/regimenes-aduaneros/',
+    ]) {
+        assert.ok(editedUrls.has(url), `Missing SEO log entry for ${url}`);
+    }
+});
