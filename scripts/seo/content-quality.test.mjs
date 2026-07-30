@@ -59,3 +59,18 @@ test('Next and sitemap keep the trailing-slash convention', async () => {
     assert.match(sitemap, /`\$\{BASE_URL\}\/blog\/\$\{post\.slug\}\/`/);
     assert.match(blogSeo, /`\$\{SITE_URL\}\/blog\/\$\{post\.slug\}\/`/);
 });
+
+test('regimes page contains comparison, FAQs, canonicals, and decision links', async () => {
+    const content = await read('src/app/(site)/comercio-exterior/regimenes-aduaneros/page.tsx');
+
+    assert.match(content, /Regímenes aduaneros en Perú: tipos y cómo elegir \| AduanasPE/);
+    assert.match(content, /https:\/\/aduanaspe\.com\/comercio-exterior\/regimenes-aduaneros\//);
+    assert.match(content, /const decisionGuide = \[/);
+    assert.match(content, /Finalidad/);
+    assert.match(content, /Tratamiento tributario general/);
+    assert.match(content, /Riesgo habitual/);
+    assert.match(content, /<FaqJsonLd faqs=\{faqs\} \/>/);
+    assert.match(content, /href=\{ROUTES\.comercioExterior\.importacion\}/);
+    assert.match(content, /href=\{ROUTES\.comercioExterior\.exportacion\}/);
+    assert.match(content, /href=\{ROUTES\.servicios\.consultoriaAduanera\}/);
+});
