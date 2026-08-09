@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "ads:test": "node --test scripts/ads/*.test.mjs",
     "seo:test": "node --test scripts/seo/*.test.mjs",
     "seo:analyze": "node scripts/seo/analyze.mjs"
   },
