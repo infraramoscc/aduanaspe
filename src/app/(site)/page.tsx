@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import { Hero, HubCards, TrustBar, CTASection, SplitFeature } from '@/components/sections';
+import { Hero, HubCards, TrustBar, CTASection, SplitFeature, EditorialMedia } from '@/components/sections';
 import { Container } from '@/components/layout';
 import { TrackedLink, WhatsAppLink, GA4_EVENTS } from '@/components/tracking';
 import { services } from '@/content/services';
 import { comercioExteriorCategories } from '@/content/comercioExterior';
+import { mainPageImages } from '@/content/mainPageImages';
 import { ROUTES } from '@/lib/routes';
 
 export const metadata: Metadata = {
@@ -54,7 +55,8 @@ export default function HomePage() {
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
-                centered={true}
+                centered={false}
+                editorialImage={mainPageImages.home.hero}
                 footer={<TrustBar points={trustPoints} variant="clean" />}
             >
                 <WhatsAppLink route="home" variant="button">
@@ -127,6 +129,7 @@ export default function HomePage() {
                 title="¿Por qué trabajar con nosotros?"
                 description="Sabemos que importar puede ser complejo y estresante. Por eso, no te tratamos como un cliente más. Desde el primer contacto, te asignamos un ejecutivo que se encargará personalmente de tus operaciones, te mantendrá informado en cada paso y resolverá tus dudas en tiempo real."
                 imageSide="right"
+                image={<EditorialMedia image={mainPageImages.home.middle} />}
             >
                 <ul className="space-y-3 text-slate-600">
                     <li className="flex items-start gap-2">
@@ -164,6 +167,7 @@ export default function HomePage() {
                 title="¿Primera vez importando?"
                 description="No te preocupes, estás en el lugar correcto. Más del 60% de nuestros clientes empezaron sin experiencia en importaciones. Te guiamos paso a paso, te explicamos cada documento y te acompañamos hasta que tu mercancía llegue a tu almacén."
                 imageSide="left"
+                image={<EditorialMedia image={mainPageImages.home.lower} aspect="compact" />}
             >
                 <TrackedLink
                     href={ROUTES.comercioExterior.importacion}
