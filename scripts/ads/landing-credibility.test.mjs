@@ -5,6 +5,7 @@ import test from 'node:test';
 const landingSource = 'src/content/lp.ts';
 const sharedPage = 'src/app/(ads)/lp/[slug]/page.tsx';
 const offerPage = 'src/app/(ads)/oferta/primera-importacion/page.tsx';
+const campaignHero = 'src/components/ads/CampaignHero.tsx';
 
 const assets = [
     'public/images/landings/importar-china.webp',
@@ -45,6 +46,15 @@ test('both Ads experiences use the reusable campaign hero', async () => {
     assert.match(offer, /<CampaignHero/);
     assert.match(shared, /lp\.heroImage/);
     assert.match(offer, /\/images\/landings\/primera-importacion\.webp/);
+});
+
+test('campaign hero renders optimized imagery and campaign benefits', async () => {
+    const hero = await readFile(campaignHero, 'utf8');
+    assert.match(hero, /from 'next\/image'/);
+    assert.match(hero, /priority/);
+    assert.match(hero, /sizes=/);
+    assert.match(hero, /benefits\.map/);
+    assert.match(hero, /trustNote/);
 });
 
 test('first-import offer avoids unsupported urgency and trust claims', async () => {
