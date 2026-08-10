@@ -91,6 +91,36 @@ function jsxExpression(attribute, label) {
   return attribute.initializer.expression;
 }
 
+function jsxStringAttribute(opening, name, label) {
+  const attribute = jsxAttribute(opening, name);
+  assert.ok(attribute?.initializer && ts.isStringLiteral(attribute.initializer), `${label} must use a string literal`);
+  return attribute.initializer.text;
+}
+
+function logicalAndExpression(node, condition, label) {
+  const expression = descendants(node).find((child) =>
+    ts.isBinaryExpression(child)
+    && child.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken
+    && isIdentifier(child.left, condition),
+  );
+  assert.ok(expression, `${label} must be conditionally rendered by ${condition}`);
+  return expression;
+}
+
+function assertCnClasses(opening, baseClass, condition, conditionalClass, label) {
+  const expression = jsxExpression(jsxAttribute(opening, 'className'), `${label} className`);
+  assert.ok(ts.isCallExpression(expression) && isIdentifier(expression.expression, 'cn'), `${label} must use cn`);
+  assert.equal(literalString(expression.arguments[0], `${label} base class`), baseClass, `${label} must retain its base classes`);
+  const conditional = expression.arguments[1];
+  assert.ok(
+    ts.isBinaryExpression(conditional)
+      && conditional.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken
+      && isIdentifier(conditional.left, condition),
+    `${label} must retain its ${condition} class condition`,
+  );
+  assert.equal(literalString(conditional.right, `${label} conditional class`), conditionalClass, `${label} must retain its conditional classes`);
+}
+
 function propertyChain(node) {
   if (!ts.isPropertyAccessExpression(node)) return undefined;
   const names = [];
@@ -186,7 +216,7 @@ test('image registry is typed and maps exact semantic image metadata', () => {
   assert.doesNotMatch(readRequired('src/content/mainPageImages.ts'), /\b(?:cliente(?:s)?|caso(?:s)?|operaci[o\u00f3]n(?:es)?|env[i\u00ed]o(?:s)?|embarque(?:s)?|terminal(?:es)?)\s+real(?:es)?\b/i, 'registry must not present generated imagery as real evidence');
 });
 
-test('EditorialMedia wires next/image, priority, sizes, and caption in JSX', () => {
+test('EditorialMedia wires next/image, responsive sizing, reduced motion, and caption in JSX', () => {
   const source = parse('src/components/sections/EditorialMedia.tsx');
   const imageImport = source.statements.find((statement) => ts.isImportDeclaration(statement) && ts.isStringLiteral(statement.moduleSpecifier) && statement.moduleSpecifier.text === 'next/image');
   const imageName = imageImport?.importClause?.name?.text;
@@ -208,7 +238,18 @@ test('EditorialMedia wires next/image, priority, sizes, and caption in JSX', () 
   assert.equal(propertyChain(jsxExpression(jsxAttribute(image, 'src'), 'next/image src')), 'image.src', 'next/image must receive src={image.src}');
   assert.equal(propertyChain(jsxExpression(jsxAttribute(image, 'alt'), 'next/image alt')), 'image.alt', 'next/image must receive alt={image.alt}');
   assert.ok(isIdentifier(jsxExpression(jsxAttribute(image, 'priority'), 'next/image priority'), 'priority'), 'next/image must receive priority={priority}');
-  assert.ok(jsxAttribute(image, 'sizes'), 'next/image must receive sizes');
+  assert.equal(
+    jsxStringAttribute(image, 'sizes', 'next/image sizes'),
+    '(min-width: 1280px) 560px, (min-width: 1024px) 46vw, (min-width: 640px) calc(100vw - 3rem), calc(100vw - 2rem)',
+    'next/image sizes must match the responsive container widths',
+  );
+  const imageClasses = jsxStringAttribute(image, 'className', 'next/image className').split(/\s+/);
+  assert.ok(imageClasses.includes('motion-safe:transition-transform'), 'image transform transition must be motion-safe');
+  assert.ok(imageClasses.includes('motion-safe:duration-700'), 'image transition duration must be motion-safe');
+  assert.ok(imageClasses.includes('motion-safe:ease-out'), 'image transition easing must be motion-safe');
+  assert.ok(imageClasses.includes('motion-safe:group-hover:scale-[1.015]'), 'image hover scaling must be motion-safe');
+  assert.ok(!imageClasses.includes('transition-transform'), 'image must not enable an ungated transform transition');
+  assert.ok(!imageClasses.includes('group-hover:scale-[1.015]'), 'image must not enable ungated hover scaling');
 
   const captions = jsxOpeningElements(figure, 'figcaption');
   assert.equal(captions.length, 1, 'EditorialMedia must render one figcaption');
@@ -226,7 +267,53 @@ test('Hero renders editorial media conditionally and preserves the centered fall
   assert.ok(hero?.body, 'Hero component must exist');
   const heroContent = descendants(hero.body).find((node) => ts.isVariableDeclaration(node) && isIdentifier(node.name, 'heroContent'));
   assert.ok(heroContent?.initializer, 'Hero must define shared heroContent');
-  assert.equal(jsxOpeningElements(heroContent.initializer, 'h1').length, 1, 'heroContent must contain one h1');
+  const badge = logicalAndExpression(heroContent.initializer, 'badge', 'hero badge');
+  const badgeSpans = jsxOpeningElements(badge.right, 'span');
+  assert.equal(badgeSpans.length, 1, 'hero badge must render one span');
+  assert.equal(jsxStringAttribute(badgeSpans[0], 'className', 'hero badge className'), 'section-badge animate-fade-in-up', 'hero badge must retain its classes');
+
+  const headings = jsxOpeningElements(heroContent.initializer, 'h1');
+  assert.equal(headings.length, 1, 'heroContent must contain one h1');
+  assert.equal(
+    jsxStringAttribute(headings[0], 'className', 'hero h1 className'),
+    'animate-fade-in-up text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-950 md:text-6xl lg:text-7xl',
+    'hero h1 must retain its animation and typography classes',
+  );
+
+  const subtitle = logicalAndExpression(heroContent.initializer, 'subtitle', 'hero subtitle');
+  const subtitleParagraphs = jsxOpeningElements(subtitle.right, 'p');
+  assert.equal(subtitleParagraphs.length, 1, 'hero subtitle must render one paragraph');
+  assertCnClasses(
+    subtitleParagraphs[0],
+    'mt-6 animate-fade-in-up text-lg leading-8 text-slate-600 md:text-xl',
+    'centered',
+    'mx-auto max-w-3xl',
+    'hero subtitle',
+  );
+
+  const children = logicalAndExpression(heroContent.initializer, 'children', 'hero children');
+  const childrenWrappers = jsxOpeningElements(children.right, 'div');
+  assert.equal(childrenWrappers.length, 1, 'hero children must render one flex wrapper');
+  assertCnClasses(
+    childrenWrappers[0],
+    'mt-8 flex flex-wrap gap-4 animate-fade-in-up',
+    'centered',
+    'justify-center',
+    'hero children wrapper',
+  );
+
+  const stats = logicalAndExpression(heroContent.initializer, 'showStats', 'hero stats');
+  const statsWrappers = jsxOpeningElements(stats.right, 'div');
+  assert.ok(statsWrappers.length > 0, 'hero stats must render a grid wrapper');
+  assertCnClasses(
+    statsWrappers[0],
+    'mt-10 grid gap-4 animate-fade-in-up sm:grid-cols-3',
+    'centered',
+    'mx-auto max-w-3xl',
+    'hero stats grid',
+  );
+  assert.ok(descendants(stats.right).some((node) => ts.isCallExpression(node) && propertyChain(node.expression) === 'defaultStats.map'), 'hero stats grid must render defaultStats');
+
   assert.equal(jsxOpeningElements(hero.body, 'h1').length, 1, 'Hero must render exactly one h1');
   const branches = descendants(hero.body).filter((node) => ts.isConditionalExpression(node) && isIdentifier(node.condition, 'editorialImage'));
   assert.equal(branches.length, 1, 'Hero must have one editorialImage conditional branch');
@@ -244,6 +331,13 @@ test('Hero renders editorial media conditionally and preserves the centered fall
     return className?.initializer && ts.isJsxExpression(className.initializer) && descendants(className.initializer).some((node) => ts.isConditionalExpression(node) && isIdentifier(node.condition, 'centered'));
   });
   assert.equal(centeredWrappers.length, 1, 'Hero fallback must retain its centered wrapper');
+  const fallbackClasses = jsxExpression(jsxAttribute(centeredWrappers[0], 'className'), 'Hero fallback className');
+  assert.ok(ts.isCallExpression(fallbackClasses) && isIdentifier(fallbackClasses.expression, 'cn'), 'Hero fallback wrapper must use cn');
+  assert.equal(literalString(fallbackClasses.arguments[0], 'Hero fallback base class'), 'relative', 'Hero fallback wrapper must remain relative');
+  const centeredClasses = fallbackClasses.arguments[1];
+  assert.ok(ts.isConditionalExpression(centeredClasses) && isIdentifier(centeredClasses.condition, 'centered'), 'Hero fallback wrapper must retain its centered conditional');
+  assert.equal(literalString(centeredClasses.whenTrue, 'Hero centered classes'), 'mx-auto max-w-4xl text-center', 'Hero centered fallback classes must be preserved');
+  assert.equal(literalString(centeredClasses.whenFalse, 'Hero default classes'), 'max-w-3xl', 'Hero default fallback classes must be preserved');
 });
 
 test('each principal page wires exactly three registered images into real JSX components', () => {
