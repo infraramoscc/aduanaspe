@@ -1,7 +1,9 @@
 import { type ReactNode } from 'react';
 import NextImage from 'next/image';
 import { Container } from '@/components/layout';
+import { type EditorialImageData } from '@/content/mainPageImages';
 import { cn } from '@/lib/utils';
+import { EditorialMedia } from './EditorialMedia';
 
 interface HeroProps {
     title: string;
@@ -14,6 +16,7 @@ interface HeroProps {
     showFloatingCards?: boolean;
     badge?: string;
     image?: string;
+    editorialImage?: EditorialImageData;
     floatingCards?: FloatingCardItem[];
     footer?: ReactNode;
 }
@@ -55,6 +58,7 @@ function Hero({
     showFloatingCards = true,
     badge,
     image,
+    editorialImage,
     floatingCards,
     footer,
 }: HeroProps) {
@@ -71,6 +75,57 @@ function Hero({
         }
         return title;
     };
+
+    const heroContent = (
+        <>
+            {badge && <span className="section-badge animate-fade-in-up">{badge}</span>}
+
+            <h1 className="animate-fade-in-up text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-950 md:text-6xl lg:text-7xl">
+                {renderTitle()}
+            </h1>
+
+            {subtitle && (
+                <p
+                    className={cn(
+                        'mt-6 animate-fade-in-up text-lg leading-8 text-slate-600 md:text-xl',
+                        centered && 'mx-auto max-w-3xl'
+                    )}
+                >
+                    {subtitle}
+                </p>
+            )}
+
+            {children && (
+                <div
+                    className={cn(
+                        'mt-8 flex flex-wrap gap-4 animate-fade-in-up',
+                        centered && 'justify-center'
+                    )}
+                >
+                    {children}
+                </div>
+            )}
+
+            {showStats && (
+                <div
+                    className={cn(
+                        'mt-10 grid gap-4 animate-fade-in-up sm:grid-cols-3',
+                        centered && 'mx-auto max-w-3xl'
+                    )}
+                >
+                    {defaultStats.map((stat) => (
+                        <div
+                            key={stat.label}
+                            className="service-card service-card-roomy service-blue"
+                        >
+                            <span className="stat-number">{stat.number}</span>
+                            <span className="stat-label">{stat.label}</span>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </>
+    );
 
     return (
         <section
@@ -99,59 +154,21 @@ function Hero({
 
             <div className="relative z-10">
                 <Container className="relative">
-                    <div
-                        className={cn(
-                            'relative',
-                            centered ? 'mx-auto max-w-4xl text-center' : 'max-w-3xl'
-                        )}
-                    >
-                        {badge && <span className="section-badge animate-fade-in-up">{badge}</span>}
-
-                        <h1 className="animate-fade-in-up text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-950 md:text-6xl lg:text-7xl">
-                            {renderTitle()}
-                        </h1>
-
-                        {subtitle && (
-                            <p
-                                className={cn(
-                                    'mt-6 animate-fade-in-up text-lg leading-8 text-slate-600 md:text-xl',
-                                    centered && 'mx-auto max-w-3xl'
-                                )}
-                            >
-                                {subtitle}
-                            </p>
-                        )}
-
-                        {children && (
-                            <div
-                                className={cn(
-                                    'mt-8 flex flex-wrap gap-4 animate-fade-in-up',
-                                    centered && 'justify-center'
-                                )}
-                            >
-                                {children}
-                            </div>
-                        )}
-
-                        {showStats && (
-                            <div
-                                className={cn(
-                                    'mt-10 grid gap-4 animate-fade-in-up sm:grid-cols-3',
-                                    centered && 'mx-auto max-w-3xl'
-                                )}
-                            >
-                                {defaultStats.map((stat) => (
-                                    <div
-                                        key={stat.label}
-                                        className="service-card service-card-roomy service-blue"
-                                    >
-                                        <span className="stat-number">{stat.number}</span>
-                                        <span className="stat-label">{stat.label}</span>
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    {editorialImage ? (
+                        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)] lg:gap-14">
+                            <div className="relative max-w-3xl">{heroContent}</div>
+                            <EditorialMedia image={editorialImage} priority />
+                        </div>
+                    ) : (
+                        <div
+                            className={cn(
+                                'relative',
+                                centered ? 'mx-auto max-w-4xl text-center' : 'max-w-3xl'
+                            )}
+                        >
+                            {heroContent}
+                        </div>
+                    )}
 
                     {showFloatingCards && (
                         <div className="hidden 2xl:block">
