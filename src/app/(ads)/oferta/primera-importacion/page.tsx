@@ -1,335 +1,277 @@
-/* eslint-disable react/no-unescaped-entities */
-import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+import { CampaignHero } from '@/components/ads';
 import { Container } from '@/components/layout';
-import { WhatsAppHero } from '@/components/sections/WhatsAppHero';
 import { WhatsAppLink } from '@/components/tracking';
 
 export const metadata: Metadata = {
     title: 'Primera Importación desde China | AduanasPE',
-    description: 'Landing para nuevos importadores que buscan apoyo por WhatsApp para traer carga desde China con guía operativa y despacho aduanero.',
+    description: 'Orientación para evaluar modalidad, documentos, costos y coordinación de una primera importación desde China a Perú.',
     robots: {
         index: false,
         follow: false,
-    }
+    },
 };
+
+const processSteps = [
+    {
+        number: '01',
+        title: 'Cuéntanos qué quieres importar',
+        description: 'Comparte producto, valor, cantidad, peso, volumen y ciudad de entrega. Si aún falta información, te indicamos cómo completarla.',
+    },
+    {
+        number: '02',
+        title: 'Revisamos la operación',
+        description: 'Evaluamos modalidad de transporte, documentos disponibles, posibles restricciones y componentes del costo.',
+    },
+    {
+        number: '03',
+        title: 'Coordinamos el alcance',
+        description: 'Definimos qué etapas necesitas: carga internacional, despacho aduanero, transporte local o acompañamiento puntual.',
+    },
+];
+
+const serviceAreas = [
+    {
+        code: 'FLETE',
+        title: 'Carga internacional',
+        description: 'Comparamos alternativas marítimas y aéreas según volumen, urgencia, origen y condiciones de entrega.',
+        cta: 'Revisar mi flete',
+    },
+    {
+        code: 'ADUANA',
+        title: 'Despacho aduanero',
+        description: 'Ordenamos la documentación necesaria y coordinamos el despacho según mercancía, régimen y canal asignado.',
+        cta: 'Revisar mi despacho',
+    },
+    {
+        code: 'ENTREGA',
+        title: 'Transporte local',
+        description: 'Coordinamos el traslado desde puerto o almacén hasta el destino acordado cuando forma parte del servicio.',
+        cta: 'Consultar entrega',
+    },
+];
+
+const faqs = [
+    {
+        question: '¿Qué información necesito para una primera evaluación?',
+        answer: 'Producto, cantidad, valor comercial, país y ciudad de origen, peso, volumen y destino en Perú. También ayudan la factura proforma, ficha técnica y fotografías del producto.',
+    },
+    {
+        question: '¿Pueden revisar los documentos de mi proveedor?',
+        answer: 'Podemos revisar la documentación comercial y logística disponible para detectar información faltante o inconsistente. Esta revisión no sustituye una verificación legal o financiera independiente del proveedor.',
+    },
+    {
+        question: '¿También atienden cargas pequeñas?',
+        answer: 'Evaluamos carga consolidada marítima y alternativas aéreas. La modalidad adecuada depende del producto, volumen, urgencia, restricciones y costo total estimado.',
+    },
+    {
+        question: '¿Cuánto demora una importación desde China?',
+        answer: 'El plazo depende de la ruta, modalidad, disponibilidad, documentación y controles aplicables. Al revisar tus datos podemos darte una referencia actualizada para esa operación.',
+    },
+];
 
 export default function PrimeraImportacionLanding() {
     return (
-        <main className="min-h-screen bg-slate-50 flex flex-col font-sans">
-            {/* Top Banner de Urgencia */}
-            <div className="bg-amber-400 text-amber-950 px-4 py-2 text-center text-sm md:text-base font-bold flex items-center justify-center gap-2">
-                <span className="animate-pulse">🔥</span> ÚLTIMO DÍA: Aprovecha uno de los 3 cupos de asesoría gratuita restantes esta semana.
-            </div>
-
-            {/* Header minimalista - Sin navegación */}
-            <header className="bg-white border-b border-slate-200 py-4 top-0 z-50">
+        <main className="min-h-screen bg-[#f5f6f8] text-slate-900">
+            <header className="border-b border-slate-200 bg-white/95 py-4 backdrop-blur">
                 <Container>
-                    <div className="flex justify-between items-center">
-                        <Link href="/" className="inline-block">
-                            <span className="text-2xl font-black text-[#2F2B77] tracking-tight">
-                                AduanasPE<span className="text-green-500">.</span>
-                            </span>
+                    <div className="flex items-center justify-between gap-4">
+                        <Link href="/" className="text-2xl font-black tracking-tight text-[#2F2B77]">
+                            AduanasPE<span className="text-emerald-500">.</span>
                         </Link>
-                        {/* Pequeño CTA en el header por si hacen scroll */}
                         <WhatsAppLink
                             messageKey="ads_primera_importacion"
                             customNumber="51944785974"
                             variant="button"
-                            className="text-sm px-4 py-2 hidden sm:flex"
+                            className="hidden px-5 py-2.5 text-sm sm:inline-flex"
                         >
-                            Cotizar Ahora
+                            Consultar operación
                         </WhatsAppLink>
                     </div>
                 </Container>
             </header>
 
-            {/* Hero Principal 100% WhatsApp */}
-            <WhatsAppHero
-                title="Tu Primera Importación desde China, Sin Sorpresas en Aduanas."
-                subtitle="Te acompañamos desde que compras en China hasta que la carga llega a la puerta de tu local. Asesoría GRATIS por WhatsApp."
-                ctaText="👉 Cotizar mi importación por WhatsApp"
-                messageKey="ads_primera_importacion"
-                customNumber="51944785974"
-                badges={['✨ Especialistas en PYMES', '🔒 Agentes Autorizados SUNAT']}
-                features={[
-                    { icon: '🚀', title: 'Cotización Rápida', desc: 'Respuesta en menos de 30 minutos vía WhatsApp.' },
-                    { icon: '🛡️', title: 'Cero Multas', desc: 'Revisamos tu documentación antes de embarcar.' },
-                    { icon: '📱', title: 'Tracking 24/7', desc: 'Te informamos el estado de tu carga en todo momento.' },
+            <CampaignHero
+                eyebrow="Primera importación desde China"
+                title="Importa con una ruta clara desde la compra hasta la entrega"
+                subtitle="Te ayudamos a revisar modalidad, documentos, costos y coordinación logística antes de mover tu carga."
+                imageSrc="/images/landings/primera-importacion.webp"
+                imageAlt="Pequeña empresa recibiendo una carga consolidada con apoyo logístico"
+                showBrand={false}
+                trustNote="Orientación inicial por WhatsApp en horario de atención."
+                benefits={[
+                    { title: 'Revisión previa', description: 'Ordenamos la información de producto, proveedor y documentos antes del embarque.' },
+                    { title: 'Costos explicados', description: 'Separamos flete, gastos locales, tributos y entrega para evaluar la operación.' },
+                    { title: 'Un punto de coordinación', description: 'Conectamos carga internacional, despacho y transporte según tu necesidad.' },
                 ]}
+                actions={
+                    <WhatsAppLink
+                        messageKey="ads_primera_importacion"
+                        customNumber="51944785974"
+                        variant="button"
+                        className="px-8 py-4 text-base"
+                    >
+                        Revisar mi primera importación
+                    </WhatsAppLink>
+                }
             />
 
-            {/* Cómo Funciona - 3 Pasos Simples */}
-            <section className="py-20 bg-white">
+            <section className="border-b border-slate-200 bg-white py-20">
                 <Container>
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                            Importar de China es fácil si vas de la mano de expertos
+                    <div className="grid gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:items-end">
+                        <div>
+                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#3C3794]">Cómo empezamos</p>
+                            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+                                Tres decisiones antes de mover la carga
+                            </h2>
+                            <p className="mt-5 text-lg leading-8 text-slate-600">
+                                Una primera importación se vuelve manejable cuando la información, el alcance y los costos se ordenan desde el inicio.
+                            </p>
+                        </div>
+                        <div className="grid gap-4 md:grid-cols-3">
+                            {processSteps.map((step) => (
+                                <article key={step.number} className="border-l-2 border-slate-200 py-2 pl-5">
+                                    <p className="text-xs font-bold tracking-[0.2em] text-cyan-700">{step.number}</p>
+                                    <h3 className="mt-3 text-lg font-bold text-slate-950">{step.title}</h3>
+                                    <p className="mt-3 text-sm leading-6 text-slate-600">{step.description}</p>
+                                </article>
+                            ))}
+                        </div>
+                    </div>
+                </Container>
+            </section>
+
+            <section className="py-20">
+                <Container>
+                    <div className="max-w-3xl">
+                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#3C3794]">Alcance modular</p>
+                        <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+                            Contrata solo las etapas que tu operación necesita
                         </h2>
-                        <p className="text-lg text-slate-600">
-                            Desde buscar el flete más económico en Asia hasta el papeleo de nacionalización. Nosotros nos encargamos de todo.
+                        <p className="mt-5 text-lg leading-8 text-slate-600">
+                            Te indicamos qué parte podemos coordinar y qué información falta para construir una cotización útil.
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-8 relative">
-                        {/* Línea conectora (solo desktop) */}
-                        <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-[#ECEBFF] -z-10" />
-
-                        {[
-                            { step: '01', title: 'Escríbenos', desc: 'Cuéntanos qué quieres importar de China y te asesoramos por WhatsApp.' },
-                            { step: '02', title: 'Coordinamos', desc: 'Consolidamos tu carga (flete) y preparamos los trámites de aduana.' },
-                            { step: '03', title: 'Recibes', desc: 'Tu mercancía llega segura a Perú y la entregamos en tu local.' }
-                        ].map((item, i) => (
-                            <div key={i} className="flex flex-col items-center text-center">
-                                <div className="w-24 h-24 bg-white rounded-full flex items-center justify-center border-4 border-[#ECEBFF] shadow-xl mb-6 text-2xl font-black text-[#3C3794]">
-                                    {item.step}
-                                </div>
-                                <h3 className="text-xl font-bold text-slate-900 mb-3">{item.title}</h3>
-                                <p className="text-slate-600">{item.desc}</p>
-                            </div>
+                    <div className="mt-12 grid gap-5 lg:grid-cols-3">
+                        {serviceAreas.map((service) => (
+                            <article key={service.code} className="group flex min-h-80 flex-col border border-slate-200 bg-white p-7 shadow-[0_18px_50px_rgba(15,23,42,0.06)] transition hover:-translate-y-1 hover:border-slate-300">
+                                <p className="text-[10px] font-bold tracking-[0.22em] text-cyan-700">{service.code}</p>
+                                <h3 className="mt-6 text-2xl font-bold text-slate-950">{service.title}</h3>
+                                <p className="mt-4 flex-1 leading-7 text-slate-600">{service.description}</p>
+                                <WhatsAppLink
+                                    messageKey="ads_primera_importacion"
+                                    customNumber="51944785974"
+                                    variant="link"
+                                    className="mt-8 font-semibold text-[#3C3794]"
+                                >
+                                    {service.cta} →
+                                </WhatsAppLink>
+                            </article>
                         ))}
                     </div>
                 </Container>
             </section>
 
-            {/* Nueva Sección: Servicios Específicos */}
-            <section className="py-20 bg-slate-50 border-t border-slate-200">
+            <section className="bg-[#111827] py-20 text-white">
                 <Container>
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                            Todo lo que necesitas en un solo Operador Logístico
-                        </h2>
-                        <p className="text-lg text-slate-600">
-                            Ya sea que quieras importar marítimo o aéreo, te ofrecemos una solución integral para que no tengas que contratar múltiples agencias.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {/* Agente de Carga */}
-                        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                            <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center text-3xl mb-6">
-                                🚢
-                            </div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-3">Agencia de Carga (Fletes)</h3>
-                            <p className="text-slate-600 mb-6">
-                                Trabajamos con las principales navieras para conseguirte las mejores tarifas. Fletes exclusivos (FCL) y compartidos (LCL) desde Ningbo, Shenzhen, Shanghai y más.
-                            </p>
-                            <WhatsAppLink
-                                messageKey="ads_primera_importacion"
-                                customNumber="51944785974"
-                                variant="link"
-                                className="font-semibold text-[#3C3794]"
-                            >
-                                Cotizar Flete →
-                            </WhatsAppLink>
-                        </div>
-
-                        {/* Agencia de Aduanas */}
-                        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                            <div className="w-16 h-16 bg-[#ECEBFF] text-[#3C3794] rounded-xl flex items-center justify-center text-3xl mb-6">
-                                🏢
-                            </div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-3">Agencia de Aduanas</h3>
-                            <p className="text-slate-600 mb-6">
-                                Nacionalizamos tu carga de forma rápida y evitamos retenciones en SUNAT. Revisamos permisos, subpartidas arancelarias y liquidación de impuestos.
-                            </p>
-                            <WhatsAppLink
-                                messageKey="ads_primera_importacion"
-                                customNumber="51944785974"
-                                variant="link"
-                                className="font-semibold text-[#3C3794]"
-                            >
-                                Cotizar Aduanas →
-                            </WhatsAppLink>
-                        </div>
-
-                        {/* Asesoría y Consultoría */}
-                        <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
-                            <div className="w-16 h-16 bg-green-100 text-green-600 rounded-xl flex items-center justify-center text-3xl mb-6">
-                                💡
-                            </div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-3">Asesoría de Importación</h3>
-                            <p className="text-slate-600 mb-6">
-                                ¿Es tu primera vez importando de China? Te enseñamos cómo verificar proveedores, evaluar rentabilidad y cumplir con las regulaciones peruanas.
-                            </p>
-                            <WhatsAppLink
-                                messageKey="ads_primera_importacion"
-                                customNumber="51944785974"
-                                variant="link"
-                                className="font-semibold text-[#3C3794]"
-                            >
-                                Agendar Asesoría →
-                            </WhatsAppLink>
-                        </div>
-                    </div>
-                </Container>
-            </section>
-
-            {/* Por qué elegirnos / Trust Section Ampliada */}
-            <section className="py-20 bg-[#2F2B77] text-white">
-                <Container>
-                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div className="grid items-center gap-12 lg:grid-cols-2">
                         <div>
-                            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                                ¿Por qué centralizar tus importaciones de China con nosotros?
+                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-200">Coordinación operativa</p>
+                            <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-4xl">
+                                Menos intermediación para ti, más claridad sobre cada etapa
                             </h2>
-                            <ul className="space-y-6">
-                                <li className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-[#3C3794] flex items-center justify-center flex-shrink-0 mt-1">✓</span>
-                                    <div>
-                                        <strong className="block text-lg mb-1">Cero Costos Ocultos</strong>
-                                        <p className="text-[#D8D5FF]">Te cotizamos el flete y los gastos aduaneros desde el principio para que sepas tu costo real.</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-[#3C3794] flex items-center justify-center flex-shrink-0 mt-1">✓</span>
-                                    <div>
-                                        <strong className="block text-lg mb-1">Agentes en Asia</strong>
-                                        <p className="text-[#D8D5FF]">Nuestra red de agentes logísticos recolecta la mercadería directo de la fábrica de tu proveedor en China.</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start gap-4">
-                                    <span className="w-8 h-8 rounded-full bg-[#3C3794] flex items-center justify-center flex-shrink-0 mt-1">✓</span>
-                                    <div>
-                                        <strong className="block text-lg mb-1">Evita Retenciones</strong>
-                                        <p className="text-[#D8D5FF]">Analizamos los certificados (CE, FDA, DIGESA, etc.) requeridos ANTES de que embarques tu compra.</p>
-                                    </div>
-                                </li>
+                            <p className="mt-5 text-lg leading-8 text-slate-300">
+                                Definimos responsables, entregables y supuestos antes de iniciar. Así puedes distinguir el costo estimado de los importes que dependen de terceros o de la autoridad.
+                            </p>
+                            <ul className="mt-8 space-y-5">
+                                {[
+                                    'Alcance y exclusiones explicados antes de coordinar.',
+                                    'Revisión preventiva de la información disponible.',
+                                    'Comunicación por hitos y próximos pasos.',
+                                ].map((item) => (
+                                    <li key={item} className="flex items-start gap-3 text-slate-200">
+                                        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-400" aria-hidden="true" />
+                                        {item}
+                                    </li>
+                                ))}
                             </ul>
-
-                            <div className="mt-10">
-                                <WhatsAppLink
-                                    messageKey="ads_primera_importacion"
-                                    customNumber="51944785974"
-                                    variant="button"
-                                    className="text-lg px-8 py-4 shadow-lg hover:shadow-[0_16px_34px_rgba(60,55,148,0.35)]"
-                                >
-                                    WhatsApp: Quiero empezar a importar
-                                </WhatsAppLink>
-                            </div>
                         </div>
-                        <div className="relative h-full min-h-[400px] rounded-2xl overflow-hidden shadow-2xl bg-[#1F1A62] flex flex-col justify-center items-center border border-[#3C3794] p-8 text-center">
-                            {/* Gráfico Visual Simple de Beneficio */}
-                            <div className="text-6xl mb-6">🤝</div>
-                            <h3 className="text-2xl font-bold mb-4">Un Solo Responsable</h3>
-                            <p className="text-[#D8D5FF] text-lg">
-                                En lugar de pelear con la naviera por un lado y con el agente de aduanas por el otro, consolida toda tu importación con AduanasPE. Nosotros nos hacemos cargo de que llegue seguro.
-                            </p>
-
-                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#3C3794] rounded-bl-full opacity-20 blur-xl"></div>
-                            <div className="absolute bottom-0 left-0 w-32 h-32 bg-green-500 rounded-tr-full opacity-20 blur-xl"></div>
+                        <div className="relative min-h-[420px] overflow-hidden rounded-2xl border border-white/15 shadow-2xl">
+                            <Image
+                                src="/images/landings/primera-importacion.webp"
+                                alt="Carga consolidada preparada para su entrega a una pequeña empresa"
+                                fill
+                                sizes="(max-width: 1023px) 100vw, 50vw"
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/10 to-transparent" />
+                            <div className="absolute inset-x-0 bottom-0 p-8">
+                                <h3 className="text-2xl font-bold text-white">Un solo punto de coordinación</h3>
+                                <p className="mt-3 text-base leading-7 text-slate-200">
+                                    Conectamos carga internacional, despacho aduanero y transporte según el alcance acordado para tu operación.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </Container>
             </section>
 
-            {/* Testimonios / Casos de Éxito */}
-            <section className="py-20 bg-white">
+            <section className="border-b border-slate-200 bg-white py-20">
                 <Container>
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                            Importadores que ya confiaron en nosotros
-                        </h2>
-                        <p className="text-lg text-slate-600">
-                            No te arriesgues en tu primera importación. Mira lo que dicen quienes ya trabajan de la mano con AduanasPE.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative shadow-sm">
-                            <div className="text-6xl absolute top-4 right-8 text-[#ECEBFF] font-serif">"</div>
-                            <div className="flex items-center gap-4 mb-6 relative z-10">
-                                <div className="w-14 h-14 bg-[#ECEBFF] rounded-full flex items-center justify-center text-xl font-black text-[#3C3794]">
-                                    CM
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-slate-900 text-lg">Carlos Mendoza</h4>
-                                    <p className="text-sm text-slate-500 font-medium">Importador de Tecnología</p>
-                                </div>
-                            </div>
-                            <p className="text-slate-700 italic text-lg relative z-10">
-                                "Tenía mucho miedo de que mi mercadería de China se quedara en aduanas porque no sabía qué permisos necesitaba. AduanasPE me revisó todo ANTES de pagarle al proveedor en China y la carga llegó impecable. 100% recomendados."
-                            </p>
+                    <div className="mx-auto max-w-4xl">
+                        <div className="max-w-2xl">
+                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#3C3794]">Preguntas frecuentes</p>
+                            <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
+                                Lo que conviene aclarar antes de cotizar
+                            </h2>
                         </div>
-
-                        <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 relative shadow-sm">
-                            <div className="text-6xl absolute top-4 right-8 text-[#ECEBFF] font-serif">"</div>
-                            <div className="flex items-center gap-4 mb-6 relative z-10">
-                                <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center text-xl font-black text-green-700">
-                                    AR
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-slate-900 text-lg">Ana Ramírez</h4>
-                                    <p className="text-sm text-slate-500 font-medium">Emprendedora Textil</p>
-                                </div>
-                            </div>
-                            <p className="text-slate-700 italic text-lg relative z-10">
-                                "Me cobraron exactamente lo que cotizaron al principio. Cero costos ocultos. Antes trabajaba con otra agencia que me sacaba recargos de almacén de la nada. Me quedo con AduanasPE definitivo, hacen todo fácil."
-                            </p>
+                        <div className="mt-10 divide-y divide-slate-200 border-y border-slate-200">
+                            {faqs.map((faq, index) => (
+                                <article key={faq.question} className="grid gap-4 py-7 md:grid-cols-[3rem_1fr]">
+                                    <p className="text-xs font-bold tracking-[0.2em] text-cyan-700">0{index + 1}</p>
+                                    <div>
+                                        <h3 className="text-lg font-bold text-slate-950">{faq.question}</h3>
+                                        <p className="mt-3 leading-7 text-slate-600">{faq.answer}</p>
+                                    </div>
+                                </article>
+                            ))}
                         </div>
                     </div>
                 </Container>
             </section>
 
-            {/* Preguntas Frecuentes */}
-            <section className="py-20 bg-slate-50 border-t border-slate-200">
+            <section className="bg-[#ecebff] py-16">
                 <Container>
-                    <div className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                            Preguntas Frecuentes
-                        </h2>
-                    </div>
-                    <div className="max-w-3xl mx-auto space-y-4">
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">¿Necesito RUC 10 o 20 para empezar a importar?</h3>
-                            <p className="text-slate-600">Puedes importar con DNI hasta 3 veces al año u optar por el RUC 10 con negocio / RUC 20 sin límite. Nosotros te asesoramos sobre qué opción te conviene más según el perfil de tu carga y tu negocio.</p>
+                    <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-center">
+                        <div className="max-w-2xl">
+                            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#3C3794]">Siguiente paso</p>
+                            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-950">
+                                Revisa tu operación antes de comprometer la carga
+                            </h2>
+                            <p className="mt-4 text-lg leading-8 text-slate-600">
+                                Envíanos los datos disponibles y te indicaremos qué hace falta para evaluar el alcance.
+                            </p>
                         </div>
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">¿Ustedes me ayudan a verificar a mi proveedor en China?</h3>
-                            <p className="text-slate-600">Sí. Como parte de nuestra asesoría para nuevos importadores, te guiamos validando los documentos y perfil de tu proveedor en plataformas como Alibaba, reduciendo significativamente los riesgos de estafa antes de que pagues.</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">¿Existe un monto o volumen mínimo para que me ayuden?</h3>
-                            <p className="text-slate-600">Atendemos desde importadores PYME con cargas consolidadas o compartidas (LCL) hasta contenedores exclusivos (FCL). No hay un monto mínimo prohibitivo; nos adaptamos para crecer contigo.</p>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
-                            <h3 className="text-lg font-bold text-slate-900 mb-2">¿Cuáles son los tiempos promedio desde China a Perú?</h3>
-                            <p className="text-slate-600">Por vía aérea, una carga puede demorar de 7 a 10 días laborables. Por vía marítima, el tránsito es de aproximadamente 30 a 45 días. Evaluaremos juntos qué medio se ajusta mejor a tu presupuesto de flete.</p>
-                        </div>
-                    </div>
-                    <div className="mt-12 text-center">
-                        <p className="text-slate-600 mb-4 font-medium">¿Tienes otra consulta en mente?</p>
                         <WhatsAppLink
                             messageKey="ads_primera_importacion"
                             customNumber="51944785974"
                             variant="button"
-                            className="bg-[#3C3794] hover:bg-[#2F2B77] text-white shadow-lg"
+                            className="px-8 py-4 text-base"
                         >
-                            Pregúntanos por WhatsApp
+                            Enviar datos por WhatsApp
                         </WhatsAppLink>
                     </div>
                 </Container>
             </section>
 
-            {/* Trust Section Simple */}
-            <section className="py-12 bg-white border-t border-b border-slate-200">
+            <footer className="bg-white py-8">
                 <Container>
-                    <div className="flex flex-wrap justify-center gap-12 md:gap-24 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                        {/* Logos simulados de confianza */}
-                        <div className="text-xl font-black text-slate-400">SUNAT</div>
-                        <div className="text-xl font-black text-slate-400">BASC</div>
-                        <div className="text-xl font-black text-slate-400">OEA</div>
-                        <div className="text-xl font-black text-slate-400">Cámara de Comercio</div>
-                    </div>
-                </Container>
-            </section>
-
-            {/* Footer Minimalista */}
-            <footer className="bg-white py-8 mt-auto">
-                <Container>
-                    <div className="text-center text-sm text-slate-500">
+                    <div className="flex flex-col gap-2 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
                         <p>© {new Date().getFullYear()} AduanasPE. Todos los derechos reservados.</p>
-                        <p className="mt-2 text-xs">Agencia de Aduanas y Carga Internacional</p>
+                        <p>Servicios de comercio exterior en Perú</p>
                     </div>
                 </Container>
             </footer>
