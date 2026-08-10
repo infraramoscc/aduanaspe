@@ -5,7 +5,7 @@ import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { ROUTES } from '@/lib/routes';
-import { mainPageImages } from '@/lib/main-page-images';
+import { mainPageImages } from '@/content/mainPageImages';
 
 export const metadata: Metadata = {
     title: 'Quiénes Somos | AduanasPE',
