@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { CampaignHero } from '@/components/ads';
 import { CTASection } from '@/components/sections';
 import { DiagnosticoForm, PrecotizacionForm, ContactoForm } from '@/components/forms';
 import { Container } from '@/components/layout';
-import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { landingPages, getLandingBySlug } from '@/content/lp';
 import { generateAdsMetadata } from '@/lib/seo';
@@ -53,51 +52,28 @@ export default async function LPPage({ params }: LPPageProps) {
 
     return (
         <>
-            <div className="relative overflow-hidden border-b border-slate-200 bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_58%,#0E7490_100%)] py-16 text-white md:py-24">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.08),transparent_26%),radial-gradient(circle_at_left,rgba(15,159,110,0.12),transparent_22%)]" />
-                <Container>
-                    <div className="relative mx-auto max-w-3xl text-center">
-                        <Link href="/" className="mb-8 inline-block">
-                            <span className="text-2xl font-bold text-white">AduanasPE</span>
-                        </Link>
-
-                        <h1 className="text-3xl font-bold leading-tight md:text-5xl">
-                            {lp.title}
-                        </h1>
-                        <p className="mt-6 text-xl text-slate-200">{lp.subtitle}</p>
-
-                        <div className="mt-8 flex flex-wrap justify-center gap-4">
-                            <a href={lp.ctaLink}>
-                                <Button size="lg" variant="secondary">
-                                    {lp.ctaLabel}
-                                </Button>
-                            </a>
-                            <WhatsAppLink messageKey="general" variant="button">
-                                Escribir por WhatsApp
-                            </WhatsAppLink>
-                        </div>
-                    </div>
-                </Container>
-            </div>
-
-            <div className="border-b border-slate-200 bg-slate-50 py-8">
-                <Container>
-                    <div className="flex flex-wrap justify-center gap-8 text-center">
-                        <div>
-                            <span className="text-2xl font-bold text-slate-900">Atención directa</span>
-                            <p className="text-sm text-slate-600">Sin desvíos innecesarios</p>
-                        </div>
-                        <div>
-                            <span className="text-2xl font-bold text-slate-900">Seguimiento claro</span>
-                            <p className="text-sm text-slate-600">Durante el proceso</p>
-                        </div>
-                        <div>
-                            <span className="text-2xl font-bold text-slate-900">Respuesta rápida</span>
-                            <p className="text-sm text-slate-600">En horario de atención</p>
-                        </div>
-                    </div>
-                </Container>
-            </div>
+            <CampaignHero
+                eyebrow={lp.eyebrow}
+                title={lp.title}
+                subtitle={lp.subtitle}
+                imageSrc={lp.heroImage}
+                imageAlt={lp.heroImageAlt}
+                benefits={lp.benefits}
+                trustNote={lp.trustNote}
+                actions={
+                    <>
+                        <a
+                            href={lp.ctaLink}
+                            className="inline-flex min-h-12 items-center justify-center rounded-full border border-white bg-white px-7 py-3 font-semibold text-slate-950 shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+                        >
+                            {lp.ctaLabel}
+                        </a>
+                        <WhatsAppLink messageKey="general" variant="button">
+                            Escribir por WhatsApp
+                        </WhatsAppLink>
+                    </>
+                }
+            />
 
             {lp.showForm && lp.formType && (
                 <Container>
