@@ -155,8 +155,8 @@ function Hero({
             <div className="relative z-10">
                 <Container className="relative">
                     {editorialImage ? (
-                        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)] lg:gap-14">
-                            <div className="relative max-w-3xl">{heroContent}</div>
+                        <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)] lg:gap-16">
+                            <div className="max-w-3xl text-left">{heroContent}</div>
                             <EditorialMedia image={editorialImage} priority />
                         </div>
                     ) : (
