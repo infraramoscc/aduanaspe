@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Hero, SplitFeature, TrustBar, CTASection } from '@/components/sections';
+import { CTASection, EditorialMedia, Hero, SplitFeature, TrustBar } from '@/components/sections';
 import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { ROUTES } from '@/lib/routes';
+import { mainPageImages } from '@/lib/main-page-images';
 
 export const metadata: Metadata = {
     title: 'Quiénes Somos | AduanasPE',
@@ -81,7 +82,8 @@ export default function QuienesSomosPage() {
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
-                centered={true}
+                editorialImage={mainPageImages.about.hero}
+                centered={false}
                 footer={<TrustBar variant="clean" />}
             />
 
@@ -89,6 +91,7 @@ export default function QuienesSomosPage() {
             <SplitFeature
                 title="Nuestra Historia"
                 description="Trabajamos años en agencias de aduanas grandes. Vimos cómo los clientes eran tratados como números: sin seguimiento, sin explicaciones, sin atención real. Un día nos preguntamos: ¿por qué nadie hace esto bien? Y decidimos hacerlo nosotros."
+                image={<EditorialMedia image={mainPageImages.about.middle} />}
                 imageSide="right"
             >
                 <p className="text-slate-600 italic border-l-4 border-[#3C3794] pl-4">
@@ -100,6 +103,7 @@ export default function QuienesSomosPage() {
             <SplitFeature
                 title="¿Por qué somos diferentes?"
                 description="En las agencias grandes, un ejecutivo atiende a cientos de clientes. Aquí, cada miembro del equipo trabaja con un grupo pequeño de clientes asignados. Eso significa que conocemos tu negocio, anticipamos tus necesidades y te mantenemos informado sin que tengas que preguntar."
+                image={<EditorialMedia image={mainPageImages.about.lower} aspect="compact" />}
                 imageSide="left"
             >
                 <ul className="space-y-2 text-slate-600">
