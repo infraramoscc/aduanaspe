@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Hero, HubCards, CTASection, TrustBar } from '@/components/sections';
+import { Hero, HubCards, CTASection, TrustBar, EditorialMedia, SplitFeature } from '@/components/sections';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { services } from '@/content/services';
+import { mainPageImages } from '@/content/mainPageImages';
 import { ROUTES } from '@/lib/routes';
 import { generateBreadcrumbSchema } from '@/lib/schema';
 
@@ -37,7 +38,8 @@ export default function ServiciosPage() {
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
-                centered={true}
+                editorialImage={mainPageImages.services.hero}
+                centered={false}
                 footer={
                     <TrustBar
                         variant="clean"
@@ -60,6 +62,13 @@ export default function ServiciosPage() {
                 </Link>
             </Hero>
 
+            <SplitFeature
+                title="Una operación ordenada empieza antes del despacho"
+                description="Revisamos la información comercial y aduanera para identificar requisitos, documentos y próximos pasos antes de coordinar la ejecución."
+                imageSide="right"
+                image={<EditorialMedia image={mainPageImages.services.middle} />}
+            />
+
             <HubCards
                 id="servicios-disponibles"
                 badge="Mapa de servicios"
@@ -68,6 +77,13 @@ export default function ServiciosPage() {
                 items={services}
                 basePath="/servicios"
                 columns={3}
+            />
+
+            <SplitFeature
+                title="Cada etapa conversa con la siguiente"
+                description="Conectamos la coordinación internacional, el despacho y la entrega local para que tengas un punto de contacto y una secuencia operativa clara."
+                imageSide="left"
+                image={<EditorialMedia image={mainPageImages.services.lower} aspect="compact" />}
             />
 
             <CTASection
