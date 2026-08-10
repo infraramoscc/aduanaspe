@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Hero, HubCards, CTASection, TrustBar } from '@/components/sections';
+import { Hero, HubCards, CTASection, TrustBar, EditorialMedia, SplitFeature } from '@/components/sections';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Button } from '@/components/ui';
 import { comercioExteriorCategories } from '@/content/comercioExterior';
 import { ROUTES } from '@/lib/routes';
 import { Container } from '@/components/layout';
 import { generateBreadcrumbSchema } from '@/lib/schema';
+import { mainPageImages } from '@/content/mainPageImages';
 
 export const metadata: Metadata = {
     title: 'Recursos de Comercio Exterior | AduanasPE',
@@ -55,7 +56,8 @@ export default function ComercioExteriorPage() {
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
-                centered={true}
+                editorialImage={mainPageImages.trade.hero}
+                centered={false}
                 footer={
                     <TrustBar
                         variant="clean"
@@ -82,6 +84,13 @@ export default function ComercioExteriorPage() {
                 </div>
             </Hero>
 
+            <SplitFeature
+                title="Primero entiende tu operación"
+                description="Origen, producto, valor, permisos y modalidad de transporte cambian las decisiones. Nuestras guías te ayudan a ordenar esas variables antes de cotizar."
+                imageSide="right"
+                image={<EditorialMedia image={mainPageImages.trade.middle} />}
+            />
+
             <section className="bg-slate-50 py-20">
                 <Container>
                     <div className="mb-16 text-center">
@@ -101,6 +110,13 @@ export default function ComercioExteriorPage() {
                     />
                 </Container>
             </section>
+
+            <SplitFeature
+                title="Convierte información en una decisión práctica"
+                description="Usa calculadoras, comparativas y guías como punto de partida; cuando el caso lo requiera, revisamos contigo los datos concretos de la operación."
+                imageSide="left"
+                image={<EditorialMedia image={mainPageImages.trade.lower} aspect="compact" />}
+            />
 
             <section className="bg-white py-20">
                 <Container>
