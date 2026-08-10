@@ -76,9 +76,9 @@ function isExported(node) {
   return node.modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword) ?? false;
 }
 
-function jsxOpeningElements(source, tagName) {
-  return descendants(source).filter((node) =>
-    (ts.isJsxOpeningElement(node) || ts.isJsxSelfClosingElement(node)) && node.tagName.getText(source) === tagName,
+function jsxOpeningElements(node, tagName) {
+  return descendants(node).filter((child) =>
+    (ts.isJsxOpeningElement(child) || ts.isJsxSelfClosingElement(child)) && child.tagName.getText() === tagName,
   );
 }
 
@@ -142,15 +142,18 @@ test('image registry is typed and maps exact semantic image metadata', () => {
   const editorial = interfaceDeclaration(source, 'EditorialImageData');
   assert.ok(isExported(editorial), 'EditorialImageData must be exported');
   const editorialMembers = editorial.members.filter(ts.isPropertySignature);
+  exactKeys(editorialMembers, ['src', 'alt', 'caption', 'objectPosition'], 'EditorialImageData');
   for (const key of ['src', 'alt', 'caption']) {
     const member = editorialMembers.find((item) => nameOf(item.name) === key);
-    assert.ok(member && member.type?.kind === ts.SyntaxKind.StringKeyword, `EditorialImageData.${key} must be a string`);
+    assert.ok(member && !member.questionToken && member.type?.kind === ts.SyntaxKind.StringKeyword, `EditorialImageData.${key} must be a required string`);
   }
+  const objectPosition = editorialMembers.find((item) => nameOf(item.name) === 'objectPosition');
+  assert.ok(objectPosition?.questionToken && objectPosition.type?.kind === ts.SyntaxKind.StringKeyword, 'EditorialImageData.objectPosition must be an optional string');
 
   const imageSet = interfaceDeclaration(source, 'MainPageImageSet');
   exactKeys(imageSet.members.filter(ts.isPropertySignature), slots, 'MainPageImageSet');
   for (const member of imageSet.members) {
-    assert.ok(ts.isPropertySignature(member) && ts.isTypeReferenceNode(member.type) && member.type.typeName.getText(source) === 'EditorialImageData', 'each MainPageImageSet slot must use EditorialImageData');
+    assert.ok(ts.isPropertySignature(member) && !member.questionToken && ts.isTypeReferenceNode(member.type) && member.type.typeName.getText(source) === 'EditorialImageData', 'each MainPageImageSet slot must be required EditorialImageData');
   }
 
   const declaration = source.statements
@@ -196,15 +199,18 @@ test('EditorialMedia wires next/image, priority, sizes, and caption in JSX', () 
   const priorityElement = priorityBinding.elements.find((element) => nameOf(element.name) === 'priority');
   assert.ok(priorityElement?.initializer?.kind === ts.SyntaxKind.FalseKeyword, 'EditorialMedia must default priority to false');
 
-  const images = jsxOpeningElements(component.body, imageName);
+  const figures = jsxOpeningElements(component.body, 'figure');
+  assert.equal(figures.length, 1, 'EditorialMedia must render one figure');
+  const figure = figures[0].parent;
+  const images = jsxOpeningElements(figure, imageName);
   assert.equal(images.length, 1, 'EditorialMedia must render one next/image element');
   const image = images[0];
+  assert.equal(propertyChain(jsxExpression(jsxAttribute(image, 'src'), 'next/image src')), 'image.src', 'next/image must receive src={image.src}');
+  assert.equal(propertyChain(jsxExpression(jsxAttribute(image, 'alt'), 'next/image alt')), 'image.alt', 'next/image must receive alt={image.alt}');
   assert.ok(isIdentifier(jsxExpression(jsxAttribute(image, 'priority'), 'next/image priority'), 'priority'), 'next/image must receive priority={priority}');
   assert.ok(jsxAttribute(image, 'sizes'), 'next/image must receive sizes');
 
-  const figures = jsxOpeningElements(component.body, 'figure');
-  assert.equal(figures.length, 1, 'EditorialMedia must render one figure');
-  const captions = jsxOpeningElements(component.body, 'figcaption');
+  const captions = jsxOpeningElements(figure, 'figcaption');
   assert.equal(captions.length, 1, 'EditorialMedia must render one figcaption');
   const captionExpression = descendants(captions[0].parent).find((node) => ts.isJsxExpression(node) && propertyChain(node.expression) === 'image.caption');
   assert.ok(captionExpression, 'figcaption must render {image.caption}');
@@ -218,6 +224,10 @@ test('Hero renders editorial media conditionally and preserves the centered fall
 
   const hero = source.statements.find((statement) => ts.isFunctionDeclaration(statement) && statement.name?.text === 'Hero');
   assert.ok(hero?.body, 'Hero component must exist');
+  const heroContent = descendants(hero.body).find((node) => ts.isVariableDeclaration(node) && isIdentifier(node.name, 'heroContent'));
+  assert.ok(heroContent?.initializer, 'Hero must define shared heroContent');
+  assert.equal(jsxOpeningElements(heroContent.initializer, 'h1').length, 1, 'heroContent must contain one h1');
+  assert.equal(jsxOpeningElements(hero.body, 'h1').length, 1, 'Hero must render exactly one h1');
   const branches = descendants(hero.body).filter((node) => ts.isConditionalExpression(node) && isIdentifier(node.condition, 'editorialImage'));
   assert.equal(branches.length, 1, 'Hero must have one editorialImage conditional branch');
   const branch = branches[0];
@@ -225,13 +235,15 @@ test('Hero renders editorial media conditionally and preserves the centered fall
   assert.equal(editorialMedia.length, 1, 'editorialImage branch must render EditorialMedia once');
   assert.ok(hasEnabledPriority(editorialMedia[0]), 'Hero editorial EditorialMedia must enable priority');
   assert.ok(isIdentifier(jsxExpression(jsxAttribute(editorialMedia[0], 'image'), 'Hero EditorialMedia image'), 'editorialImage'), 'Hero EditorialMedia must receive editorialImage');
+  for (const [label, content] of [['editorial', branch.whenTrue], ['fallback', branch.whenFalse]]) {
+    assert.ok(descendants(content).some((node) => ts.isJsxExpression(node) && isIdentifier(node.expression, 'heroContent')), `Hero ${label} branch must render {heroContent}`);
+  }
 
   const centeredWrappers = jsxOpeningElements(branch.whenFalse, 'div').filter((opening) => {
     const className = jsxAttribute(opening, 'className');
     return className?.initializer && ts.isJsxExpression(className.initializer) && descendants(className.initializer).some((node) => ts.isConditionalExpression(node) && isIdentifier(node.condition, 'centered'));
   });
   assert.equal(centeredWrappers.length, 1, 'Hero fallback must retain its centered wrapper');
-  assert.equal(jsxOpeningElements(hero.body, 'h1').length, 1, 'Hero must render exactly one h1');
 });
 
 test('each principal page wires exactly three registered images into real JSX components', () => {
