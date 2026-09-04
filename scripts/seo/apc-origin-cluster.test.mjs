@@ -122,7 +122,7 @@ test('SEO content map and source registry contain the APC origin cluster', async
     for (const { file } of articles) {
         const slug = file.split('/').pop().replace('.mdx', '');
         assert.match(contentMap, new RegExp(`"${escaped(slug)}"`));
-        assert.match(sourceRegistry, new RegExp(escaped(slug)));
+        assert.match(sourceRegistry, new RegExp(`"${escaped(slug)}"`));
     }
     assert.match(sourceRegistry, /05-manual-sobre-reglas-de-origen-del-apc-peru-ee-uu\.pdf/);
     assert.match(sourceRegistry, /06-certificado-origen-exportacion-peru-eeuu-formato\.doc/);
