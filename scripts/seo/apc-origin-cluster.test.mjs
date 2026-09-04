@@ -84,6 +84,19 @@ test('the APC origin hub links to all three satellite articles', async () => {
     }
 });
 
+test('the blog page suppresses its footer CTA when raw MDX already contains a ServiceCTA', async () => {
+    const page = await readFile('src/app/(site)/blog/[slug]/page.tsx', 'utf8');
+
+    assert.match(
+        page,
+        /const hasInlineServiceCta = Boolean\(rawContent\?\.includes\('<ServiceCTA'\)\);/,
+    );
+    assert.match(
+        page,
+        /\{!hasInlineServiceCta && \(\s*<div[^>]*>\s*<ServiceCTA topic=\{post\.topic\} position="footer" \/>\s*<\/div>\s*\)\}/,
+    );
+});
+
 test('the certificate tutorial contains all required fields and guidance', async () => {
     const content = await readFile(`src/content/blog/${tutorialSlug}.mdx`, 'utf8');
 

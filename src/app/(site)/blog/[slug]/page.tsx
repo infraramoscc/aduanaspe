@@ -105,6 +105,7 @@ export default async function BlogPostPage({
     const relatedPosts = await getRelatedPosts(slug, post.topic);
     const rawContent = post.source === 'mdx' ? getMdxRawContent(slug) : null;
     const articleHeadings = extractHeadings(rawContent);
+    const hasInlineServiceCta = Boolean(rawContent?.includes('<ServiceCTA'));
 
     const articleJsonLd = generateBlogPostJsonLd(post);
     const breadcrumbJsonLd = generateBlogBreadcrumbJsonLd(post);
@@ -285,9 +286,11 @@ export default async function BlogPostPage({
                                 <RelatedServices topic={post.topic} />
                             </div>
 
-                            <div className="mt-8 max-w-[82ch]">
-                                <ServiceCTA topic={post.topic} position="footer" />
-                            </div>
+                            {!hasInlineServiceCta && (
+                                <div className="mt-8 max-w-[82ch]">
+                                    <ServiceCTA topic={post.topic} position="footer" />
+                                </div>
+                            )}
                         </div>
                     </div>
 
