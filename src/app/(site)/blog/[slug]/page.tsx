@@ -10,6 +10,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
 import { getPostBySlug, getAllSlugs, getRelatedPosts } from '@/lib/blog';
 import { getMdxRawContent } from '@/lib/blog/mdx';
+import { hasServiceCtaOutsideFencedCode } from '@/lib/blog/mdx-content.mjs';
 import {
     generateBlogPostMetadata,
     generateBlogPostJsonLd,
@@ -105,7 +106,7 @@ export default async function BlogPostPage({
     const relatedPosts = await getRelatedPosts(slug, post.topic);
     const rawContent = post.source === 'mdx' ? getMdxRawContent(slug) : null;
     const articleHeadings = extractHeadings(rawContent);
-    const hasInlineServiceCta = Boolean(rawContent?.includes('<ServiceCTA'));
+    const hasInlineServiceCta = hasServiceCtaOutsideFencedCode(rawContent);
 
     const articleJsonLd = generateBlogPostJsonLd(post);
     const breadcrumbJsonLd = generateBlogBreadcrumbJsonLd(post);

@@ -5,6 +5,17 @@ import { readFile } from 'node:fs/promises';
 const officialApcUrl = 'https://www.acuerdoscomerciales.gob.pe/En_Vigencia/EEUU/inicio.html';
 const hubSlug = 'reglas-origen-tlc-peru-estados-unidos';
 const tutorialSlug = 'llenar-certificado-origen-peru-estados-unidos';
+const serviceCtaDetectorUrl = new URL('../../src/lib/blog/mdx-content.mjs', import.meta.url);
+
+async function loadServiceCtaDetector() {
+    try {
+        const detectorModule = await import(serviceCtaDetectorUrl);
+        assert.equal(typeof detectorModule.hasServiceCtaOutsideFencedCode, 'function');
+        return detectorModule.hasServiceCtaOutsideFencedCode;
+    } catch (error) {
+        assert.fail(`Unable to load the ServiceCTA detector: ${error.message}`);
+    }
+}
 
 const articles = [
     {
@@ -84,12 +95,41 @@ test('the APC origin hub links to all three satellite articles', async () => {
     }
 });
 
-test('the blog page suppresses its footer CTA when raw MDX already contains a ServiceCTA', async () => {
+test('the ServiceCTA detector recognizes a real component tag', async () => {
+    const hasServiceCta = await loadServiceCtaDetector();
+
+    assert.equal(hasServiceCta('<ServiceCTA topic="consultoria" />'), true);
+});
+
+test('the ServiceCTA detector rejects longer component names', async () => {
+    const hasServiceCta = await loadServiceCtaDetector();
+
+    assert.equal(hasServiceCta('<ServiceCTAFake topic="consultoria" />'), false);
+});
+
+test('the ServiceCTA detector ignores tags inside fenced code', async () => {
+    const hasServiceCta = await loadServiceCtaDetector();
+
+    assert.equal(hasServiceCta('```mdx\n<ServiceCTA topic="consultoria" />\n```'), false);
+    assert.equal(hasServiceCta('~~~mdx\n<ServiceCTA topic="consultoria" />\n~~~'), false);
+});
+
+test('the ServiceCTA detector treats null raw content as no inline CTA', async () => {
+    const hasServiceCta = await loadServiceCtaDetector();
+
+    assert.equal(hasServiceCta(null), false);
+});
+
+test('the blog page suppresses its footer CTA only when the detector finds one', async () => {
     const page = await readFile('src/app/(site)/blog/[slug]/page.tsx', 'utf8');
 
     assert.match(
         page,
-        /const hasInlineServiceCta = Boolean\(rawContent\?\.includes\('<ServiceCTA'\)\);/,
+        /import \{ hasServiceCtaOutsideFencedCode \} from '@\/lib\/blog\/mdx-content\.mjs';/,
+    );
+    assert.match(
+        page,
+        /const hasInlineServiceCta = hasServiceCtaOutsideFencedCode\(rawContent\);/,
     );
     assert.match(
         page,
