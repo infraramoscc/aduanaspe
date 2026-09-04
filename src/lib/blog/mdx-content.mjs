@@ -63,7 +63,11 @@ export function hasServiceCtaOutsideFencedCode(rawContent) {
 
             if (!activeFence) {
                 activeFence = marker;
-            } else if (marker[0] === activeFence[0] && marker.length >= activeFence.length) {
+            } else if (
+                marker[0] === activeFence[0]
+                && marker.length >= activeFence.length
+                && line.slice(fenceMatch[0].length).trim() === ''
+            ) {
                 activeFence = null;
             }
 

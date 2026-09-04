@@ -111,7 +111,7 @@ export default async function BlogPostPage({
     const articleJsonLd = generateBlogPostJsonLd(post);
     const breadcrumbJsonLd = generateBlogBreadcrumbJsonLd(post);
     const articleUrl = `https://aduanaspe.com/blog/${post.slug}/`;
-    const showInlineLeadForm = Boolean(topicMapping?.showInlineForm || topicMapping?.temperature === 'caliente');
+    const showInlineLeadForm = !hasInlineServiceCta && Boolean(topicMapping?.showInlineForm || topicMapping?.temperature === 'caliente');
     const inlineLeadHeadlineByTopic: Partial<Record<BlogTopic, string>> = {
         importacion: 'Cuentanos que producto quieres importar y te damos asesoria sin costo antes de pagar al proveedor',
         consultoria: 'Explicanos tu caso y te ayudamos a destrabar la operacion',

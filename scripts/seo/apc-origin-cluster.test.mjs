@@ -112,6 +112,10 @@ test('the ServiceCTA detector ignores tags inside fenced code', async () => {
 
     assert.equal(hasServiceCta('```mdx\n<ServiceCTA topic="consultoria" />\n```'), false);
     assert.equal(hasServiceCta('~~~mdx\n<ServiceCTA topic="consultoria" />\n~~~'), false);
+    assert.equal(
+        hasServiceCta('```mdx\n```not-a-closing-fence\n<ServiceCTA topic="consultoria" />\n```'),
+        false,
+    );
 });
 
 test('the ServiceCTA detector ignores tags inside inline code spans', async () => {
@@ -163,6 +167,15 @@ test('the blog page suppresses its footer CTA only when the detector finds one',
     );
 });
 
+test('the blog page suppresses its inline lead form when the article has a ServiceCTA', async () => {
+    const page = await readFile('src/app/(site)/blog/[slug]/page.tsx', 'utf8');
+
+    assert.match(
+        page,
+        /const showInlineLeadForm = !hasInlineServiceCta && Boolean\(topicMapping\?\.showInlineForm \|\| topicMapping\?\.temperature === 'caliente'\);/,
+    );
+});
+
 test('the certificate tutorial contains all required fields and guidance', async () => {
     const content = await readFile(`src/content/blog/${tutorialSlug}.mdx`, 'utf8');
 
@@ -175,6 +188,15 @@ test('the certificate tutorial contains all required fields and guidance', async
     assert.match(content, /máximo de 12 meses/i);
     assert.match(content, /código `PE`/i);
     assert.match(content, /no existe un formato único obligatorio/i);
+});
+
+test('field 10 distinguishes the basic declaration from conditional transit statements', async () => {
+    const content = await readFile(`src/content/blog/${tutorialSlug}.mdx`, 'utf8');
+    const fieldTen = content.match(/^### Campo 10$([\s\S]*?)(?=^### Campo 11$)/m)?.[1] ?? '';
+
+    assert.match(fieldTen, /declaración básica de quien firma/i);
+    assert.match(fieldTen, /cuando el formato o procedimiento aplicable lo exija/i);
+    assert.match(fieldTen, /especialmente si certifica el importador/i);
 });
 
 test('the export guide links the CBP reference and covers exporter evidence', async () => {
