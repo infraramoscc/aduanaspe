@@ -3,6 +3,46 @@ const FENCE_PATTERN = /^\s*(`{3,}|~{3,})/;
 const MDX_COMMENT_PATTERN = /\{\/\*[\s\S]*?\*\/\}/g;
 const HTML_COMMENT_PATTERN = /<!--[\s\S]*?-->/g;
 
+function stripInlineCodeSpans(content) {
+    let visibleContent = '';
+    let visibleStart = 0;
+    let cursor = 0;
+
+    while (cursor < content.length) {
+        if (content[cursor] !== '`') {
+            cursor += 1;
+            continue;
+        }
+
+        const openingStart = cursor;
+        while (content[cursor] === '`') cursor += 1;
+        const delimiterLength = cursor - openingStart;
+        let closingEnd = null;
+
+        while (cursor < content.length) {
+            const nextRunStart = content.indexOf('`', cursor);
+            if (nextRunStart === -1) break;
+
+            cursor = nextRunStart;
+            while (content[cursor] === '`') cursor += 1;
+
+            if (cursor - nextRunStart === delimiterLength) {
+                closingEnd = cursor;
+                break;
+            }
+        }
+
+        if (closingEnd !== null) {
+            visibleContent += content.slice(visibleStart, openingStart);
+            visibleStart = closingEnd;
+        } else {
+            cursor = openingStart + delimiterLength;
+        }
+    }
+
+    return visibleContent + content.slice(visibleStart);
+}
+
 /**
  * Detect a real ServiceCTA component tag outside Markdown fenced code blocks.
  *
@@ -38,5 +78,5 @@ export function hasServiceCtaOutsideFencedCode(rawContent) {
         .replace(MDX_COMMENT_PATTERN, '')
         .replace(HTML_COMMENT_PATTERN, '');
 
-    return SERVICE_CTA_TAG_PATTERN.test(visibleContent);
+    return SERVICE_CTA_TAG_PATTERN.test(stripInlineCodeSpans(visibleContent));
 }

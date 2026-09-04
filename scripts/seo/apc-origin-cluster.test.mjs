@@ -114,6 +114,18 @@ test('the ServiceCTA detector ignores tags inside fenced code', async () => {
     assert.equal(hasServiceCta('~~~mdx\n<ServiceCTA topic="consultoria" />\n~~~'), false);
 });
 
+test('the ServiceCTA detector ignores tags inside inline code spans', async () => {
+    const hasServiceCta = await loadServiceCtaDetector();
+
+    assert.equal(hasServiceCta('Ejemplo: `<ServiceCTA topic="consultoria" />`.'), false);
+    assert.equal(hasServiceCta('Ejemplo: ``<ServiceCTA topic="consultoria" />``.'), false);
+    assert.equal(hasServiceCta('Ejemplo: ```<ServiceCTA topic="consultoria" />```.'), false);
+    assert.equal(
+        hasServiceCta('`<ServiceCTA topic="consultoria" />`\n<ServiceCTA topic="consultoria" />'),
+        true,
+    );
+});
+
 test('the ServiceCTA detector ignores tags inside MDX comments', async () => {
     const hasServiceCta = await loadServiceCtaDetector();
 
