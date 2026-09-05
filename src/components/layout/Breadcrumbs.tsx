@@ -35,6 +35,7 @@ function generateBreadcrumbs(pathname: string): BreadcrumbItem[] {
         'exportacion': 'Exportación',
         'regimenes-aduaneros': 'Regímenes Aduaneros',
         'documentos-aduaneros': 'Documentos Aduaneros',
+        'acuerdos-comerciales': 'Acuerdos comerciales',
         'importar-desde-china': 'Importar desde China',
         'importa-puerta-a-puerta': 'Importa Puerta a Puerta',
         'courier-vs-carga': 'Courier vs Carga',

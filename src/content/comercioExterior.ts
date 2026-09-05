@@ -18,6 +18,14 @@ export interface ComercioExteriorSubLanding {
 
 export const comercioExteriorCategories: ComercioExteriorCategory[] = [
     {
+        title: 'Acuerdos comerciales',
+        slug: 'acuerdos-comerciales',
+        summary: 'Aprende a utilizar los acuerdos del Perú con sustento.',
+        description: 'Guías por acuerdo sobre reglas de origen, preferencias arancelarias y certificados para importar y exportar.',
+        ctaLabel: 'Explorar acuerdos',
+        icon: '🌐',
+    },
+    {
         title: 'Importación',
         slug: 'importacion',
         summary: 'Guías y recursos para importar productos a Perú.',

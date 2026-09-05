@@ -17,6 +17,7 @@ export const ROUTES = {
         exportacion: '/comercio-exterior/exportacion',
         regimenesAduaneros: '/comercio-exterior/regimenes-aduaneros',
         documentosAduaneros: '/comercio-exterior/documentos-aduaneros',
+        acuerdosComerciales: '/comercio-exterior/acuerdos-comerciales',
         importarDesdeChina: '/comercio-exterior/importacion/importar-desde-china',
         importaPuertaAPuerta: '/comercio-exterior/importacion/importa-puerta-a-puerta',
         courierVsCarga: '/comercio-exterior/importacion/courier-vs-carga',
@@ -168,6 +169,11 @@ export const HEADER_NAV_GROUPS = [
             {
                 title: 'Biblioteca',
                 links: [
+                    {
+                        label: 'Acuerdos comerciales',
+                        href: ROUTES.comercioExterior.acuerdosComerciales,
+                        description: 'Aprende sobre origen, preferencias y certificados por acuerdo.',
+                    },
                     {
                         label: 'Blog AduanasPE',
                         href: ROUTES.blog,

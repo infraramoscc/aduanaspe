@@ -23,6 +23,12 @@ function getFileLastModified(sourceFile: string) {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const staticRoutes: StaticRouteEntry[] = [
         {
+            url: `${BASE_URL}/comercio-exterior/acuerdos-comerciales/`,
+            sourceFile: 'src/app/(site)/comercio-exterior/acuerdos-comerciales/page.tsx',
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
             url: `${BASE_URL}/`,
             sourceFile: 'src/app/(site)/page.tsx',
             changeFrequency: 'weekly',
