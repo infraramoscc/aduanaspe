@@ -8,12 +8,21 @@ const canonical = 'https://aduanaspe.com/comercio-exterior/acuerdos-comerciales/
 
 export const metadata: Metadata = {
     title: 'Acuerdos comerciales del Perú: guías para aprender | AduanasPE',
-    description: 'Aprende a revisar reglas de origen, preferencias arancelarias y certificados. Guías de China y Estados Unidos para importar a Perú y exportar desde Perú.',
+    description: 'Aprende a revisar reglas de origen, preferencias y certificados. Guías de China, Estados Unidos y Unión Europea para preparar tus operaciones con Perú.',
     alternates: { canonical },
     robots: { index: true, follow: true },
 };
 
 const agreements = [
+    {
+        name: 'Perú – Unión Europea',
+        label: 'Acuerdo comercial',
+        introduction: 'Revisa el certificado EUR.1 antes de importar desde la Unión Europea. Primera guía disponible de esta colección.',
+        lessons: [
+            { stage: 'Documentar · Guía disponible', title: 'Certificado EUR.1: revisión casilla por casilla', href: '/blog/certificado-eur1-union-europea-peru/', detail: 'Formato ilustrado, casillas obligatorias y opcionales, consultas y casos frecuentes.' },
+        ],
+        source: 'https://www.acuerdoscomerciales.gob.pe/en_vigencia/union_europea/inicio.html',
+    },
     {
         name: 'Perú – China',
         label: 'TLC',
@@ -70,7 +79,7 @@ export default function AcuerdosComercialesPage() {
                             <a href="#preparar" className={linkStyle}>Tengo una operación</a>
                         </nav>
                     </div>
-                    <p className="mt-10 text-sm text-slate-500">Primera colección: China y Estados Unidos · Revisión editorial: 4 de septiembre de 2026</p>
+                    <p className="mt-10 text-sm text-slate-500">Guías de China, Estados Unidos y Unión Europea · Biblioteca actualizada: 5 de septiembre de 2026</p>
                 </Container>
             </section>
 
@@ -104,7 +113,7 @@ export default function AcuerdosComercialesPage() {
                     <div className="mt-10 grid gap-8 lg:grid-cols-2">
                         {agreements.map((agreement) => (
                             <article key={agreement.name} className="rounded-2xl border border-slate-200 bg-white p-6 md:p-8">
-                                <p className="text-xs font-bold uppercase tracking-widest text-blue-800">{agreement.label} · 4 guías</p>
+                                <p className="text-xs font-bold uppercase tracking-widest text-blue-800">{agreement.label} · {agreement.lessons.length} {agreement.lessons.length === 1 ? 'guía' : 'guías'}</p>
                                 <h3 className="mt-3 text-2xl font-bold text-slate-950">{agreement.name}</h3>
                                 <p className="mt-3 leading-7 text-slate-600">{agreement.introduction}</p>
                                 <ol className="mt-7 divide-y divide-slate-200">
@@ -141,7 +150,7 @@ export default function AcuerdosComercialesPage() {
                         </div>
                         <div className="rounded-2xl bg-slate-50 p-7 md:p-8">
                             <h3 className="text-xl font-bold text-slate-950">¿Buscas otro acuerdo?</h3>
-                            <p className="mt-4 leading-7 text-slate-600">Ampliaremos esta biblioteca a los demás acuerdos del Perú. Por ahora, las guías desarrolladas aquí cubren China y Estados Unidos; no son instrucciones universales para otros destinos.</p>
+                            <p className="mt-4 leading-7 text-slate-600">Ampliaremos esta biblioteca a los demás acuerdos del Perú. Por ahora, encontrarás colecciones de China y Estados Unidos, y la primera guía de Unión Europea sobre EUR.1. No son instrucciones universales para otros destinos.</p>
                             <p className="mt-4 leading-7 text-slate-600">Mientras incorporamos cada colección, consulta el directorio oficial para identificar el texto, anexos y estado del acuerdo que necesitas.</p>
                             <a href="https://www.acuerdoscomerciales.gob.pe/" className={`${linkStyle} mt-5 inline-block font-semibold`}>Ver los acuerdos comerciales en MINCETUR</a>
                             <p className="mt-7 border-t border-slate-200 pt-6 text-sm leading-6 text-slate-600">Para ordenar el resto de tu operación: <Link href="/comercio-exterior/documentos-aduaneros/" className={linkStyle}>documentos aduaneros</Link> y <Link href="/blog/certificado-origen-exportacion-peru/" className={linkStyle}>introducción al certificado de origen</Link>.</p>

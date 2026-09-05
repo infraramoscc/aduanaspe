@@ -301,6 +301,7 @@ import {
 import { FaqGroup } from './FaqGroup';
 import { InlineLeadForm } from './InlineLeadForm';
 import { ServiceCTA } from './ServiceCTA';
+import { DocumentImage } from './DocumentImage';
 
 export {
     DataCard,
@@ -322,6 +323,7 @@ export {
     * -------------------------------------------------- */
 
 export const mdxComponents = {
+    DocumentImage,
     h1: H1,
     h2: H2,
     h3: H3,
