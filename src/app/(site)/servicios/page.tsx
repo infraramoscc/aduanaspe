@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Hero, HubCards, CTASection, TrustBar, EditorialMedia, SplitFeature } from '@/components/sections';
 import { JsonLd } from '@/components/seo/JsonLd';
-import { Button } from '@/components/ui';
-import { WhatsAppLink } from '@/components/tracking';
+import { GA4_EVENTS, TrackedLink, WhatsAppLink } from '@/components/tracking';
 import { services } from '@/content/services';
 import { mainPageImages } from '@/content/mainPageImages';
 import { ROUTES } from '@/lib/routes';
@@ -32,9 +30,9 @@ export default function ServiciosPage() {
             <JsonLd json={breadcrumbJsonLd} />
             <Hero
                 badge="Servicios"
-                title="Servicios para mover tu operación sin fricciones"
-                highlightedWord="sin fricciones"
-                subtitle="Desde el flete internacional hasta el despacho y la entrega local. Resolvemos cada etapa con un solo equipo."
+                title="Encuentra el servicio que necesita tu operación"
+                highlightedWord="necesita tu operación"
+                subtitle="Elige una etapa concreta o cuéntanos tu caso. Coordinamos aduanas, carga internacional, transporte y respuesta técnica ante SUNAT con un solo equipo."
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
@@ -52,14 +50,17 @@ export default function ServiciosPage() {
                     />
                 }
             >
-                <WhatsAppLink messageKey="general" variant="button">
-                    Hablar con un asesor
+                <WhatsAppLink route="services-hero" messageKey="general" variant="button">
+                    Orientarme por WhatsApp
                 </WhatsAppLink>
-                <Link href="#servicios-disponibles">
-                    <Button variant="secondary" size="lg">
-                        Ver servicios disponibles
-                    </Button>
-                </Link>
+                <TrackedLink
+                    href="#servicios-disponibles"
+                    eventName={GA4_EVENTS.CLICK_CTA_TO_SERVICIOS}
+                    eventParams={{ location: 'services_hero' }}
+                    className="inline-flex min-h-14 items-center justify-center rounded-full border border-[var(--home-border)] bg-white px-7 py-3.5 text-lg font-bold text-[var(--home-ink)] transition-colors hover:border-[var(--home-brand)] hover:text-[var(--home-brand)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--home-brand)]"
+                >
+                    Ver servicios disponibles
+                </TrackedLink>
             </Hero>
 
             <SplitFeature
@@ -77,6 +78,7 @@ export default function ServiciosPage() {
                 items={services}
                 basePath="/servicios"
                 columns={3}
+                trackingLocation="services_hub"
             />
 
             <SplitFeature
@@ -91,11 +93,14 @@ export default function ServiciosPage() {
                 highlightedWord="qué contratar"
                 subtitle="Cuéntanos tu carga, origen y objetivo comercial. Te indicamos el servicio correcto sin hacerte pasar por varias áreas."
             >
-                <Link href={ROUTES.contacto}>
-                    <Button size="lg">
-                        Recibir asesoría
-                    </Button>
-                </Link>
+                <TrackedLink
+                    href={ROUTES.contacto}
+                    eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
+                    eventParams={{ location: 'services_final_cta' }}
+                    className="inline-flex min-h-14 items-center justify-center rounded-full bg-[var(--home-brand)] px-8 py-4 text-lg font-bold text-white shadow-[0_16px_35px_-18px_rgba(60,55,148,0.8)] transition-[background-color,transform] hover:-translate-y-0.5 hover:bg-[var(--home-brand-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--home-brand)]"
+                >
+                    Recibir orientación
+                </TrackedLink>
             </CTASection>
         </>
     );

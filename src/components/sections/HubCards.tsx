@@ -19,11 +19,12 @@ interface HubCardsProps {
     columns?: 2 | 3 | 4;
     badge?: string;
     id?: string;
+    trackingLocation?: string;
 }
 
 const cardColors = ['pink', 'blue', 'green', 'orange'] as const;
 
-function HubCards({ title, highlightedWord, subtitle, items, basePath = '', columns = 3, badge, id }: HubCardsProps) {
+function HubCards({ title, highlightedWord, subtitle, items, basePath = '', columns = 3, badge, id, trackingLocation }: HubCardsProps) {
     const renderTitle = () => {
         if (highlightedWord && title?.includes(highlightedWord)) {
             const parts = title.split(highlightedWord);
@@ -72,8 +73,12 @@ function HubCards({ title, highlightedWord, subtitle, items, basePath = '', colu
                             <TrackedLink
                                 key={item.slug}
                                 href={href}
-                                eventName={GA4_EVENTS.NAV_CLICK}
-                                eventParams={{ location: id || 'hub_cards', label: item.slug }}
+                                eventName={trackingLocation ? GA4_EVENTS.SERVICE_SELECTED : GA4_EVENTS.NAV_CLICK}
+                                eventParams={{
+                                    location: trackingLocation || id || 'hub_cards',
+                                    label: item.slug,
+                                    ...(trackingLocation ? { service_slug: item.slug } : {}),
+                                }}
                                 className="group block h-full"
                             >
                                 <div className={cn('service-card service-card-spacious h-full', `service-${colorClass}`)}>

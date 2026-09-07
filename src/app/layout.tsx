@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Outfit } from 'next/font/google';
 import { GoogleAnalytics } from '@/components/tracking/GoogleAnalytics';
 import './globals.css';
@@ -41,6 +41,13 @@ export const metadata: Metadata = {
         description:
             'Agenciamiento de aduanas, carga internacional y asesoría en comercio exterior para importadores y exportadores en Perú.',
     },
+};
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    viewportFit: 'cover',
+    themeColor: '#f3f0e7',
 };
 
 export default function RootLayout({

@@ -340,9 +340,8 @@ test('Hero renders editorial media conditionally and preserves the centered fall
   assert.equal(literalString(centeredClasses.whenFalse, 'Hero default classes'), 'max-w-3xl', 'Hero default fallback classes must be preserved');
 });
 
-test('each principal page wires exactly three registered images into real JSX components', () => {
+test('generic principal pages wire exactly three registered images into shared JSX components', () => {
   const routes = {
-    home: 'src/app/(site)/page.tsx',
     services: 'src/app/(site)/servicios/page.tsx',
     trade: 'src/app/(site)/comercio-exterior/page.tsx',
     about: 'src/app/(site)/quienes-somos/page.tsx',
@@ -363,4 +362,25 @@ test('each principal page wires exactly three registered images into real JSX co
       assert.equal(media.length, 1, `${route} must pass ${page}.${slot} to EditorialMedia exactly once`);
     }
   }
+});
+
+test('home wires its registered hero and middle images into the custom control-tower composition', () => {
+  const route = 'src/app/(site)/page.tsx';
+  const source = parse(route);
+  const homeBinding = descendants(source).find((node) =>
+    ts.isVariableDeclaration(node)
+    && isIdentifier(node.name, 'homeImages')
+    && propertyChain(node.initializer) === 'mainPageImages.home',
+  );
+  assert.ok(homeBinding, `${route} must bind mainPageImages.home once as homeImages`);
+
+  const images = jsxOpeningElements(source, 'Image');
+  assert.equal(images.length, 2, `${route} must render exactly two purposeful next/image elements`);
+  for (const slot of ['hero', 'middle']) {
+    const wired = images.filter((opening) =>
+      propertyChain(jsxExpression(jsxAttribute(opening, 'src'), `home ${slot} src`)) === `homeImages.${slot}.src`,
+    );
+    assert.equal(wired.length, 1, `${route} must wire homeImages.${slot}.src exactly once`);
+  }
+  assert.equal(descendants(source).filter((node) => propertyChain(node) === 'homeImages.lower').length, 0, `${route} must not add an unused lower image to the custom composition`);
 });

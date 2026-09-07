@@ -26,8 +26,6 @@ function WhatsAppLink({
     className,
     ...props
 }: WhatsAppLinkProps) {
-    void route;
-
     const effectiveServiceSlug = serviceSlug || serviceName;
     const effectiveKey = messageKey ||
         (effectiveServiceSlug ? SERVICE_TO_MESSAGE_KEY[effectiveServiceSlug] : null) ||
@@ -35,18 +33,18 @@ function WhatsAppLink({
     const href = getWhatsAppUrl(effectiveKey, customNumber);
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        const eventName = effectiveKey !== 'general'
-            ? GA4_EVENTS.CLICK_WHATSAPP_SERVICIO(effectiveKey)
-            : GA4_EVENTS.CLICK_WHATSAPP_GENERAL;
-
-        trackEvent(eventName, { message_key: effectiveKey });
+        trackEvent(GA4_EVENTS.WHATSAPP_CLICKED, {
+            location: route || 'unspecified',
+            service_slug: effectiveServiceSlug || 'general',
+            message_key: effectiveKey,
+        });
         onClick?.(e);
     };
 
     const baseStyles = {
-        button: 'inline-flex items-center gap-2 rounded-full bg-[#0f9f6e] px-6 py-3.5 font-semibold text-white shadow-[0_12px_30px_rgba(15,159,110,0.22)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#0c8c61] hover:shadow-[0_16px_34px_rgba(15,159,110,0.28)]',
-        link: 'inline-flex items-center gap-1 font-semibold text-[#0f9f6e] transition-colors hover:text-[#0c8c61]',
-        icon: 'inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#0f9f6e] text-white transition-colors hover:bg-[#0c8c61]',
+        button: 'inline-flex min-h-11 items-center gap-2 rounded-full bg-[var(--action-whatsapp)] px-6 py-3.5 font-semibold text-white shadow-[0_12px_30px_rgba(8,122,85,0.22)] transition-[background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:bg-[var(--action-whatsapp-hover)] hover:shadow-[0_16px_34px_rgba(8,122,85,0.28)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--action-whatsapp)]',
+        link: 'inline-flex min-h-11 items-center gap-1 font-semibold text-[var(--action-whatsapp)] transition-colors hover:text-[var(--action-whatsapp-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--action-whatsapp)]',
+        icon: 'inline-flex h-11 w-11 items-center justify-center rounded-full bg-[var(--action-whatsapp)] text-white transition-colors hover:bg-[var(--action-whatsapp-hover)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--action-whatsapp)]',
     };
 
     return (
@@ -59,6 +57,7 @@ function WhatsAppLink({
             {...props}
         >
             <svg
+                aria-hidden="true"
                 className="h-5 w-5"
                 fill="currentColor"
                 viewBox="0 0 24 24"

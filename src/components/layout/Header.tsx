@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { type KeyboardEvent, useRef, useState } from 'react';
 import { HEADER_NAV_GROUPS, ROUTES } from '@/lib/routes';
 import { Container } from './Container';
 import { cn } from '@/lib/utils';
@@ -8,7 +8,15 @@ import { TrackedLink, WhatsAppLink, GA4_EVENTS } from '@/components/tracking';
 
 function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const menuButtonRef = useRef<HTMLButtonElement>(null);
     const mobileNavId = 'mobile-navigation';
+
+    const handleMobileMenuKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Escape') {
+            setMobileMenuOpen(false);
+            menuButtonRef.current?.focus();
+        }
+    };
 
     return (
         <header className="glass fixed top-0 left-0 right-0 z-50 border-b border-slate-100">
@@ -22,7 +30,7 @@ function Header() {
                         <WhatsAppLink
                             messageKey="asesoria_gratis"
                             variant="link"
-                            className="shrink-0 text-sm font-semibold text-emerald-300 hover:text-emerald-200"
+                            className="min-h-11 shrink-0 text-sm font-semibold text-emerald-300 hover:text-emerald-200"
                         >
                             Resolver mis dudas
                         </WhatsAppLink>
@@ -36,7 +44,7 @@ function Header() {
                         href="/"
                         eventName={GA4_EVENTS.NAV_CLICK}
                         eventParams={{ location: 'header', label: 'logo' }}
-                        className="flex items-center gap-2"
+                        className="flex min-h-11 items-center gap-2"
                     >
                         <span className="text-xl font-bold gradient-text">◆</span>
                         <span className="text-2xl font-bold text-slate-900">AduanasPE</span>
@@ -66,15 +74,16 @@ function Header() {
                             href="/contacto"
                             eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
                             eventParams={{ location: 'header' }}
-                            className="rounded-full bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_62%,#38BDF8_100%)] px-5 py-2 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-pink"
+                            className="inline-flex min-h-11 items-center rounded-full bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_62%,#38BDF8_100%)] px-5 py-2 font-semibold text-white transition-[background-color,box-shadow,transform] hover:-translate-y-0.5 hover:shadow-pink"
                         >
                             Contactar
                         </TrackedLink>
                     </nav>
 
                     <button
+                        ref={menuButtonRef}
                         type="button"
-                        className="p-2 text-slate-600 hover:text-slate-900 lg:hidden"
+                        className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl text-slate-600 transition-colors hover:bg-[#ECEBFF] hover:text-[#3C3794] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3C3794] focus-visible:ring-offset-2 lg:hidden"
                         onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
                         aria-label={mobileMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
                         aria-controls={mobileNavId}
@@ -107,9 +116,12 @@ function Header() {
 
                 <div
                     id={mobileNavId}
+                    aria-hidden={!mobileMenuOpen}
+                    inert={!mobileMenuOpen}
+                    onKeyDown={handleMobileMenuKeyDown}
                     className={cn(
-                        'overflow-hidden transition-all duration-300 lg:hidden',
-                        mobileMenuOpen ? 'max-h-[calc(100vh-150px)] overflow-y-auto pb-4' : 'max-h-0'
+                        'overflow-hidden transition-[max-height] duration-300 lg:hidden',
+                        mobileMenuOpen ? 'max-h-[calc(100vh-150px)] overflow-y-auto overscroll-contain pb-4' : 'max-h-0'
                     )}
                 >
                     <nav className="flex flex-col gap-2 border-t border-slate-100 pt-3">
@@ -117,7 +129,7 @@ function Header() {
                             href={ROUTES.home}
                             eventName={GA4_EVENTS.NAV_CLICK}
                             eventParams={{ location: 'mobile_header', label: 'Inicio' }}
-                            className="rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#ECEBFF] hover:text-[#3C3794]"
+                            className="flex min-h-11 items-center rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#ECEBFF] hover:text-[#3C3794]"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Inicio
@@ -133,7 +145,7 @@ function Header() {
                             href={ROUTES.quienesSomos}
                             eventName={GA4_EVENTS.NAV_CLICK}
                             eventParams={{ location: 'mobile_header', label: 'Quiénes somos' }}
-                            className="rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#ECEBFF] hover:text-[#3C3794]"
+                            className="flex min-h-11 items-center rounded-2xl px-4 py-3 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#ECEBFF] hover:text-[#3C3794]"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Quiénes somos
@@ -142,7 +154,7 @@ function Header() {
                             href="/contacto"
                             eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
                             eventParams={{ location: 'mobile_header' }}
-                            className="mx-4 mt-2 rounded-full bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_62%,#38BDF8_100%)] px-5 py-2 text-center font-semibold text-white"
+                            className="mx-4 mt-2 flex min-h-11 items-center justify-center rounded-full bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_62%,#38BDF8_100%)] px-5 py-2 text-center font-semibold text-white"
                             onClick={() => setMobileMenuOpen(false)}
                         >
                             Contactar
@@ -173,7 +185,7 @@ function DesktopNavGroup({ group }: { group: HeaderNavGroup }) {
                 </svg>
             </TrackedLink>
 
-            <div className="invisible absolute left-1/2 top-full z-50 w-[min(920px,calc(100vw-3rem))] -translate-x-1/2 translate-y-4 pt-4 opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+            <div className="invisible absolute left-1/2 top-full z-50 w-[min(920px,calc(100vw-3rem))] -translate-x-1/2 translate-y-4 pt-4 opacity-0 transition-[opacity,transform,visibility] duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
                 <div className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_28px_90px_rgba(15,23,42,0.16)]">
                     <div className="grid gap-0 lg:grid-cols-[1fr_260px]">
                         <div className="p-5">
@@ -262,7 +274,7 @@ function MegaMenuLink({ item }: { item: HeaderNavLink }) {
 function MobileNavGroup({ group, onNavigate }: { group: HeaderNavGroup; onNavigate: () => void }) {
     return (
         <details className="rounded-[22px] border border-slate-200 bg-white">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-bold text-slate-900">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-bold text-slate-900">
                 {group.label}
                 <span className="text-xs font-semibold text-[#3C3794]">Ver opciones</span>
             </summary>
@@ -282,7 +294,7 @@ function MobileNavGroup({ group, onNavigate }: { group: HeaderNavGroup; onNaviga
                                     href={item.href}
                                     eventName={GA4_EVENTS.NAV_CLICK}
                                     eventParams={{ location: 'mobile_header_group', label: item.label }}
-                                    className="block rounded-2xl px-3 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#ECEBFF] hover:text-[#3C3794]"
+                                    className="flex min-h-11 items-center rounded-2xl px-3 py-2.5 text-sm font-semibold text-slate-700 transition-colors hover:bg-[#ECEBFF] hover:text-[#3C3794]"
                                     onClick={onNavigate}
                                 >
                                     {item.label}
@@ -295,7 +307,7 @@ function MobileNavGroup({ group, onNavigate }: { group: HeaderNavGroup; onNaviga
                     href={group.featured.href}
                     eventName={GA4_EVENTS.NAV_CLICK}
                     eventParams={{ location: 'mobile_header_featured', label: group.featured.label }}
-                    className="mt-4 block rounded-2xl bg-[#3C3794] px-4 py-3 text-sm font-semibold text-white"
+                    className="mt-4 flex min-h-11 items-center rounded-2xl bg-[#3C3794] px-4 py-3 text-sm font-semibold text-white"
                     onClick={onNavigate}
                 >
                     {group.featured.label}

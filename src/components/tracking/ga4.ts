@@ -29,10 +29,12 @@ export const GA4_EVENTS = {
     CLICK_CTA_TO_SERVICIOS: 'click_cta_to_servicios',
     CLICK_CTA_TO_CONTACTO: 'click_cta_to_contacto',
     CLICK_CTA_TO_COMERCIO: 'click_cta_to_comercio',
+    SERVICE_SELECTED: 'service_selected',
 
     // WhatsApp Events
     CLICK_WHATSAPP_GENERAL: 'click_whatsapp_general',
     CLICK_WHATSAPP_SERVICIO: (servicio: string) => `click_whatsapp_${servicio}`,
+    WHATSAPP_CLICKED: 'whatsapp_clicked',
 
     // Form Events
     SUBMIT_FORM_DIAGNOSTICO: 'submit_form_diagnostico',

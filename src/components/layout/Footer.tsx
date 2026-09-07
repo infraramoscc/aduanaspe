@@ -5,12 +5,12 @@ import { WhatsAppLink, TrackedLink, GA4_EVENTS } from '@/components/tracking';
 
 const resourceLinks = [
     { label: 'Blog', href: ROUTES.blog },
-    { label: 'Importacion', href: ROUTES.comercioExterior.importacion },
+    { label: 'Importación', href: ROUTES.comercioExterior.importacion },
     { label: 'Documentos aduaneros', href: ROUTES.comercioExterior.documentosAduaneros },
 ];
 
 const companyLinks: Array<{ label: string; href: string; external?: boolean }> = [
-    { label: 'Quienes somos', href: ROUTES.quienesSomos },
+    { label: 'Quiénes somos', href: ROUTES.quienesSomos },
     { label: 'Contacto', href: ROUTES.contacto },
 ];
 
@@ -26,13 +26,13 @@ function Footer() {
                             href="/"
                             eventName={GA4_EVENTS.NAV_CLICK}
                             eventParams={{ location: 'footer', label: 'logo' }}
-                            className="flex items-center gap-2"
+                            className="inline-flex min-h-11 items-center gap-2"
                         >
                             <span className="text-xl font-bold gradient-text">◆</span>
                             <span className="text-2xl font-bold text-white">AduanasPE</span>
                         </TrackedLink>
                         <p className="mt-4 max-w-md text-slate-400">
-                            Agencia de aduanas y logistica internacional para importadores que necesitan claridad, seguimiento y respuesta rapida.
+                            Agencia de aduanas y logística internacional para importadores que necesitan claridad, seguimiento y respuesta rápida.
                         </p>
                     </div>
 
@@ -45,7 +45,7 @@ function Footer() {
                                         href={`/servicios/${service.slug}`}
                                         eventName={GA4_EVENTS.NAV_CLICK}
                                         eventParams={{ location: 'footer', label: service.slug }}
-                                        className="text-slate-400 transition-colors hover:text-sky-300"
+                                        className="inline-flex min-h-11 items-center text-slate-400 transition-colors hover:text-sky-300"
                                     >
                                         {service.title}
                                     </TrackedLink>
@@ -63,7 +63,7 @@ function Footer() {
                                         href={item.href}
                                         eventName={GA4_EVENTS.NAV_CLICK}
                                         eventParams={{ location: 'footer', label: item.label }}
-                                        className="text-slate-400 transition-colors hover:text-sky-300"
+                                        className="inline-flex min-h-11 items-center text-slate-400 transition-colors hover:text-sky-300"
                                     >
                                         {item.label}
                                     </TrackedLink>
@@ -82,13 +82,13 @@ function Footer() {
                                         external={item.external}
                                         eventName={GA4_EVENTS.NAV_CLICK}
                                         eventParams={{ location: 'footer', label: item.label }}
-                                        className="transition-colors hover:text-sky-300"
+                                        className="inline-flex min-h-11 items-center transition-colors hover:text-sky-300"
                                     >
                                         {item.label}
                                     </TrackedLink>
                                 </li>
                             ))}
-                            <li>Callao, Peru</li>
+                            <li>Callao, Perú</li>
                             <li>
                                 <WhatsAppLink
                                     messageKey="contacto"
@@ -103,7 +103,7 @@ function Footer() {
                 </div>
 
                 <div className="border-t border-slate-800 py-6 text-center text-sm text-slate-500">
-                    <p>© {currentYear} AduanasPE. Comercio exterior con atencion personalizada.</p>
+                    <p>© {currentYear} AduanasPE. Comercio exterior con atención personalizada.</p>
                 </div>
             </Container>
         </footer>
