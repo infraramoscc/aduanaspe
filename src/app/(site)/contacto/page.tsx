@@ -21,7 +21,6 @@ export const metadata: Metadata = {
 const contactInfo = {
     whatsapp: '+51 944 785 974',
     whatsappLink: 'https://wa.me/51944785974',
-    email: 'info@aduanaspe.com',
     location: 'Callao, Perú',
     workMode: 'Atención 100% remota – Clientes de todo el Perú',
 };
@@ -46,7 +45,7 @@ const schedules = [
 ];
 
 const faqs = [
-    { question: '¿Cuánto demoran en responder?', answer: 'Por WhatsApp respondemos en menos de 1 hora durante horario de atención. Por email, máximo 24 hours.' },
+    { question: '¿Cuánto demoran en responder?', answer: 'Por WhatsApp respondemos en menos de 1 hora durante el horario de atención. Por correo, el plazo de respuesta es de hasta 24 horas.' },
     { question: '¿Atienden los fines de semana?', answer: 'Sábados de 8am a 12pm para cotizaciones. Domingos no laboramos.' },
     { question: '¿Atienden a clientes de provincia?', answer: 'Sí, atendemos clientes de todo el Perú. Trabajamos 100% remoto.' },
     { question: '¿La asesoría tiene costo?', answer: 'No, la asesoría sin costo no tiene compromiso. Si luego tu caso requiere gestión especializada o un análisis más complejo, te presentamos la opción adecuada.' },
@@ -58,10 +57,10 @@ export default function ContactoPage() {
             <FaqJsonLd faqs={faqs} />
             <Hero
                 badge="Contacto"
-                title="Resuelve tus dudas antes de pagar por un servicio"
-                highlightedWord="antes de pagar"
-                subtitle="Si no sabes cuánto cuesta importar, qué documentos necesitas o si tu caso requiere ayuda completa, escríbenos. Te brindamos asesoría sin costo y sin compromiso."
-                size="lg"
+                title="Cuéntanos qué necesitas resolver"
+                highlightedWord="resolver"
+                subtitle="¿Tienes una duda o una operación en marcha? Escríbenos por WhatsApp: es nuestro canal principal. Si prefieres dejar tu consulta, también puedes usar el formulario."
+                size="md"
                 showStats={false}
                 showFloatingCards={false}
                 centered={true}
@@ -86,21 +85,22 @@ export default function ContactoPage() {
                     eventParams={{ location: 'contact_hero' }}
                     className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-[#3C3794] hover:bg-[#ECEBFF] hover:text-[#3C3794]"
                 >
-                    Prefiero que me contacten
+                    Escribir por formulario
                 </TrackedLink>
             </Hero>
 
             <Container id="contacto-info">
                 <div className="py-16 grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {/* Contact Options - Left Side */}
-                    <div className="space-y-8">
+                    <div className="min-w-0 space-y-8">
+                        <h2 className="text-2xl font-bold text-slate-900">Hablemos por WhatsApp</h2>
                         {/* WhatsApp - Principal */}
                         <div className="service-card service-green p-6 border-2 border-emerald-200 bg-emerald-50/50">
-                            <div className="flex items-start gap-4">
-                                <span className="text-4xl">💬</span>
-                                <div className="flex-1">
+                            <div className="flex flex-col items-start gap-4 sm:flex-row">
+                                <span aria-hidden="true" className="text-4xl">💬</span>
+                                <div className="min-w-0 flex-1">
                                     <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                                        WhatsApp (Recomendado)
+                                        WhatsApp: para conversar
                                     </h3>
                                     <p className="text-slate-600 mb-4">
                                         La forma más rápida de contactarnos si aún tienes dudas. Primero te orientamos gratis y luego vemos si necesitas un servicio adicional.
@@ -108,30 +108,9 @@ export default function ContactoPage() {
                                     <p className="text-2xl font-bold text-slate-900 mb-4">
                                         {contactInfo.whatsapp}
                                     </p>
-                                    <WhatsAppLink route="contacto" messageKey="asesoria_gratis" variant="button">
-                                        Resolver mis dudas por WhatsApp
+                                    <WhatsAppLink route="contacto" messageKey="asesoria_gratis" variant="button" className="max-w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-700">
+                                        Abrir WhatsApp
                                     </WhatsAppLink>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Email */}
-                        <div className="service-card service-blue p-6">
-                            <div className="flex items-start gap-4">
-                                <span className="text-4xl">📧</span>
-                                <div>
-                                    <h3 className="text-xl font-semibold text-slate-900 mb-2">
-                                        Correo Electrónico
-                                    </h3>
-                                    <p className="text-slate-600 mb-2">
-                                        Para documentos, consultas formales o si prefieres email.
-                                    </p>
-                                    <a
-                                        href={`mailto:${contactInfo.email}`}
-                                        className="text-lg font-medium text-[#3C3794] hover:text-sky-600 transition-colors"
-                                    >
-                                        {contactInfo.email}
-                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +118,7 @@ export default function ContactoPage() {
                         {/* Ubicación */}
                         <div className="service-card service-pink p-6">
                             <div className="flex items-start gap-4">
-                                <span className="text-4xl">📍</span>
+                                <span aria-hidden="true" className="text-4xl">📍</span>
                                 <div>
                                     <h3 className="text-xl font-semibold text-slate-900 mb-2">
                                         Ubicación
@@ -155,10 +134,11 @@ export default function ContactoPage() {
                             <h3 className="text-xl font-semibold text-slate-900 mb-4">
                                 Horarios de Atención
                             </h3>
+                            <p className="mb-4 text-sm text-slate-600">Hora de Perú. Si escribes fuera de horario, retomaremos tu consulta en la siguiente jornada de atención.</p>
                             <div className="space-y-3">
                                 {schedules.map((schedule) => (
                                     <div key={schedule.area} className="flex items-center gap-3 text-slate-600">
-                                        <span className="text-xl">{schedule.icon}</span>
+                                        <span aria-hidden="true" className="text-xl">{schedule.icon}</span>
                                         <div>
                                             <span className="font-medium text-slate-900">{schedule.area}:</span>{' '}
                                             {schedule.hours}
@@ -170,13 +150,13 @@ export default function ContactoPage() {
                     </div>
 
                     {/* Form - Right Side */}
-                    <div id="contacto-form">
+                    <div id="contacto-form" className="scroll-mt-44 min-w-0">
                         <div className="mb-6">
                             <h2 className="text-2xl font-bold text-slate-900 mb-2">
-                                ¿Prefieres que te <span className="gradient-text">contactemos</span>?
+                                Escríbenos y recibe una respuesta por correo
                             </h2>
                             <p className="text-slate-600">
-                                Déjanos tus datos y un ejecutivo se comunicará contigo para resolver tus dudas sin costo.
+                                Describe tu caso con tus palabras. No necesitas saber qué servicio contratar ni adjuntar documentos para empezar.
                             </p>
                         </div>
                         <ContactoForm title="" />
@@ -204,22 +184,12 @@ export default function ContactoPage() {
                         Preguntas <span className="gradient-text">Frecuentes</span>
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                        <div className="service-card service-blue p-6">
-                            <h4 className="font-semibold text-slate-900 mb-2">¿Cuánto demoran en responder?</h4>
-                            <p className="text-slate-600">Por WhatsApp respondemos en menos de 1 hora durante horario de atención. Por email, máximo 24 horas.</p>
-                        </div>
-                        <div className="service-card service-pink p-6">
-                            <h4 className="font-semibold text-slate-900 mb-2">¿Atienden los fines de semana?</h4>
-                            <p className="text-slate-600">Sábados de 8am a 12pm para cotizaciones. Domingos no laboramos.</p>
-                        </div>
-                        <div className="service-card service-green p-6">
-                            <h4 className="font-semibold text-slate-900 mb-2">¿Atienden a clientes de provincia?</h4>
-                            <p className="text-slate-600">Sí, atendemos clientes de todo el Perú. Trabajamos 100% remoto.</p>
-                        </div>
-                        <div className="service-card service-orange p-6">
-                            <h4 className="font-semibold text-slate-900 mb-2">¿La asesoría tiene costo?</h4>
-                            <p className="text-slate-600">No, la asesoría sin costo no tiene compromiso. Si tu caso requiere una gestión más amplia o especializada, te guiamos con la mejor opción.</p>
-                        </div>
+                        {faqs.map((faq) => (
+                            <div key={faq.question} className="rounded-2xl border border-slate-200 bg-white p-6">
+                                <h3 className="mb-2 font-semibold text-slate-900">{faq.question}</h3>
+                                <p className="leading-7 text-slate-600">{faq.answer}</p>
+                            </div>
+                        ))}
                     </div>
                 </Container>
             </section>

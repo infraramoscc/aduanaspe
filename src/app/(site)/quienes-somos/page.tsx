@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { CTASection, EditorialMedia, Hero, SplitFeature, TrustBar } from '@/components/sections';
 import { Container } from '@/components/layout';
-import { Button } from '@/components/ui';
 import { WhatsAppLink } from '@/components/tracking';
 import { ROUTES } from '@/lib/routes';
 import { mainPageImages } from '@/content/mainPageImages';
@@ -75,22 +74,36 @@ export default function QuienesSomosPage() {
     return (
         <>
             <Hero
-                badge="✨ Sobre Nosotros"
-                title="Nacimos para hacer las cosas diferentes"
-                highlightedWord="diferentes"
-                subtitle="Somos dos hermanos que, después de trabajar en agencias donde la velocidad importaba más que el cliente, decidimos crear algo mejor: una agencia donde tú eres la prioridad."
+                badge="Conoce AduanasPE"
+                title="Un equipo cercano para entender y acompañar tu operación"
+                highlightedWord="equipo cercano"
+                subtitle="Somos dos hermanos con experiencia en agencias de aduanas. Creamos AduanasPE para que importadores y exportadores tengan explicaciones claras, seguimiento y una persona de contacto."
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
                 editorialImage={mainPageImages.about.hero}
                 centered={false}
                 footer={<TrustBar variant="clean" />}
-            />
+            >
+                <Link href="#como-trabajamos" className="inline-flex min-h-12 items-center rounded-full bg-[#3C3794] px-6 py-3 font-semibold text-white transition-colors hover:bg-[#2F2B77] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3C3794]">Conoce cómo te acompañamos</Link>
+                <Link href={ROUTES.contacto} className="inline-flex min-h-12 items-center rounded-full border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-4">Hablar con el equipo</Link>
+            </Hero>
+
+            <section id="como-trabajamos" aria-labelledby="acompanamiento-titulo" className="scroll-mt-44 bg-slate-50 py-12 md:py-16">
+                <Container>
+                    <h2 id="acompanamiento-titulo" className="text-balance text-3xl font-bold text-slate-950 md:text-4xl">¿Qué pasa cuando nos escribes?</h2>
+                    <ol className="mt-8 grid gap-6 md:grid-cols-3">
+                        <li className="border-t-2 border-[#3C3794] pt-5"><span aria-hidden="true" className="text-sm font-bold text-[#3C3794]">01</span><h3 className="mt-3 text-xl font-semibold">Nos cuentas tu situación</h3><p className="mt-3 leading-7 text-slate-600">Qué quieres importar o exportar y en qué etapa estás. No necesitas tener todos los documentos para hacer una primera consulta.</p></li>
+                        <li className="border-t-2 border-[#3C3794] pt-5"><span aria-hidden="true" className="text-sm font-bold text-[#3C3794]">02</span><h3 className="mt-3 text-xl font-semibold">Aclaramos el siguiente paso</h3><p className="mt-3 leading-7 text-slate-600">Te orientamos sobre la información que falta y el apoyo que podría necesitar tu operación.</p></li>
+                        <li className="border-t-2 border-[#3C3794] pt-5"><span aria-hidden="true" className="text-sm font-bold text-[#3C3794]">03</span><h3 className="mt-3 text-xl font-semibold">Tú decides cómo avanzar</h3><p className="mt-3 leading-7 text-slate-600">Si necesitas un servicio, revisamos su alcance y cotización contigo. La consulta inicial no te compromete a contratar.</p></li>
+                    </ol>
+                </Container>
+            </section>
 
             {/* Nuestra Historia */}
             <SplitFeature
                 title="Nuestra Historia"
-                description="Trabajamos años en agencias de aduanas grandes. Vimos cómo los clientes eran tratados como números: sin seguimiento, sin explicaciones, sin atención real. Un día nos preguntamos: ¿por qué nadie hace esto bien? Y decidimos hacerlo nosotros."
+                description="Nuestra experiencia en agencias de aduanas nos enseñó cuánto importa acompañar al cliente, además de gestionar su carga. Por eso creamos AduanasPE: para explicar el proceso, mantenerte informado y ayudarte a decidir con más contexto."
                 image={<EditorialMedia image={mainPageImages.about.middle} />}
                 imageSide="right"
             >
@@ -102,7 +115,7 @@ export default function QuienesSomosPage() {
             {/* Por qué somos diferentes */}
             <SplitFeature
                 title="¿Por qué somos diferentes?"
-                description="En las agencias grandes, un ejecutivo atiende a cientos de clientes. Aquí, cada miembro del equipo trabaja con un grupo pequeño de clientes asignados. Eso significa que conocemos tu negocio, anticipamos tus necesidades y te mantenemos informado sin que tengas que preguntar."
+                description="Tienes un ejecutivo asignado que conoce tu operación y coordina con el equipo. Así sabes a quién preguntar, qué información falta y cuál es el siguiente paso."
                 image={<EditorialMedia image={mainPageImages.about.lower} aspect="compact" />}
                 imageSide="left"
             >
@@ -141,7 +154,7 @@ export default function QuienesSomosPage() {
                             Un equipo que te <span className="gradient-text">respalda</span>
                         </h2>
                         <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
-                            Un equipo pequeño pero especializado. Cada uno sabe exactamente lo que hace.
+                            Estas son las funciones que acompañan tu operación. Tu ejecutivo es el punto de contacto para coordinar con ellas.
                         </p>
                     </div>
 
@@ -154,7 +167,7 @@ export default function QuienesSomosPage() {
                                     key={member.slug}
                                     className={`service-card service-${colorClass} text-center p-6`}
                                 >
-                                    <span className="text-4xl mb-4 block">{member.icon}</span>
+                                    <span aria-hidden="true" className="text-4xl mb-4 block">{member.icon}</span>
                                     <h3 className="text-lg font-semibold text-slate-900">{member.title}</h3>
                                     <p className="mt-2 text-sm text-slate-500">{member.summary}</p>
                                 </div>
@@ -165,11 +178,15 @@ export default function QuienesSomosPage() {
             </section>
 
             {/* Misión */}
-            <SplitFeature
-                title="Nuestra Misión"
-                description="Ser el socio estratégico de los importadores que buscan más que un proveedor de servicios. Queremos que te enfoques en hacer crecer tu negocio mientras nosotros nos encargamos de la complejidad aduanera."
-                imageSide="right"
-            />
+            <section className="bg-white py-12">
+                <Container>
+                    <div className="max-w-3xl border-l-4 border-[#3C3794] pl-6">
+                        <h2 className="text-3xl font-bold text-slate-950">Nuestra misión</h2>
+                        <p className="mt-4 text-lg leading-8 text-slate-600">Ayudarte a tomar decisiones informadas sobre importación y exportación, y acompañar la gestión aduanera y logística que tu negocio necesita.</p>
+                        <Link href={ROUTES.comercioExterior.index} className="mt-5 inline-flex min-h-11 items-center font-semibold text-[#3C3794] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">Explorar las guías de comercio exterior</Link>
+                    </div>
+                </Container>
+            </section>
 
             {/* Ubicación */}
             <section className="py-20 bg-white">
@@ -193,17 +210,15 @@ export default function QuienesSomosPage() {
 
             {/* CTA */}
             <CTASection
-                title="¿Listo para trabajar con un equipo diferente?"
-                highlightedWord="diferente"
-                subtitle="Escríbenos y descubre la diferencia de trabajar con una agencia que realmente se preocupa por ti."
+                title="Conversemos sobre lo que necesitas"
+                highlightedWord="Conversemos"
+                subtitle="Puedes empezar con una duda. Te orientamos sin costo y sin compromiso de contratar."
             >
                 <WhatsAppLink route="quienes-somos" variant="button">
                     Escríbenos por WhatsApp
                 </WhatsAppLink>
-                <Link href={ROUTES.contacto}>
-                    <Button size="lg" variant="secondary">
-                        Solicitar cotización
-                    </Button>
+                <Link href={ROUTES.contacto} className="inline-flex min-h-12 items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 font-semibold text-slate-900 hover:bg-slate-50 focus-visible:outline-2 focus-visible:outline-offset-4">
+                    Prefiero escribir por formulario
                 </Link>
             </CTASection>
         </>

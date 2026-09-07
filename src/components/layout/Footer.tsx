@@ -90,11 +90,6 @@ function Footer() {
                             ))}
                             <li>Callao, Peru</li>
                             <li>
-                                <a href="mailto:info@aduanaspe.com" className="transition-colors hover:text-sky-300">
-                                    info@aduanaspe.com
-                                </a>
-                            </li>
-                            <li>
                                 <WhatsAppLink
                                     messageKey="contacto"
                                     variant="link"

@@ -7,7 +7,6 @@ export interface LocalBusinessSchema {
     description: string;
     url: string;
     telephone: string;
-    email: string;
     address: {
         streetAddress: string;
         addressLocality: string;
@@ -30,7 +29,6 @@ export const businessData: LocalBusinessSchema = {
     description: 'Agencia de Aduanas y Comercio Exterior en Peru. Servicios de agenciamiento aduanero, carga internacional, transporte y consultoria.',
     url: 'https://aduanaspe.com',
     telephone: '+51944785974',
-    email: 'info@aduanaspe.com',
     address: {
         streetAddress: '',
         addressLocality: 'Callao',
@@ -53,7 +51,6 @@ export function generateOrganizationSchema(): string {
         description: businessData.description,
         url: businessData.url,
         telephone: businessData.telephone,
-        email: businessData.email,
         logo: `${businessData.url}/logo.png`,
         priceRange: businessData.priceRange,
         areaServed: {
@@ -64,7 +61,6 @@ export function generateOrganizationSchema(): string {
             {
                 '@type': 'ContactPoint',
                 telephone: businessData.telephone,
-                email: businessData.email,
                 contactType: 'customer support',
                 areaServed: 'PE',
                 availableLanguage: ['es'],

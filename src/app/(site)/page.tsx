@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { Hero, HubCards, TrustBar, CTASection, SplitFeature, EditorialMedia } from '@/components/sections';
 import { Container } from '@/components/layout';
 import { TrackedLink, WhatsAppLink, GA4_EVENTS } from '@/components/tracking';
@@ -48,10 +49,10 @@ export default function HomePage() {
         <>
             {/* Hero Section - Premium con stats y floating cards */}
             <Hero
-                badge="Comercio exterior para importadores"
-                title="Despacha tu carga con un equipo que sí te responde"
-                highlightedWord="sí te responde"
-                subtitle="Agenciamiento de aduanas, carga internacional y asesoría con seguimiento claro, respuesta rápida y un ejecutivo asignado para tu operación."
+                badge="Importadores y exportadores en Perú"
+                title="Tu próximo paso en comercio exterior, con claridad"
+                highlightedWord="con claridad"
+                subtitle="Entiende qué necesitas para importar o exportar. Te orientamos sobre documentos, costos y trámites; si necesitas apoyo, coordinamos aduanas y carga internacional."
                 size="lg"
                 showStats={false}
                 showFloatingCards={false}
@@ -63,12 +64,12 @@ export default function HomePage() {
                     Escríbenos por WhatsApp
                 </WhatsAppLink>
                 <TrackedLink
-                    href={ROUTES.contacto}
-                    eventName={GA4_EVENTS.CLICK_CTA_TO_CONTACTO}
+                    href="#empieza-aqui"
+                    eventName={GA4_EVENTS.CLICK_CTA_TO_COMERCIO}
                     eventParams={{ location: 'home_hero' }}
                     className="inline-flex items-center justify-center rounded-full border-2 border-slate-200 bg-white px-8 py-4 text-lg font-semibold text-slate-900 transition-all hover:border-[#3C3794] hover:bg-[#ECEBFF] hover:text-[#3C3794]"
                 >
-                    Solicitar cotización
+                    Quiero aprender primero
                 </TrackedLink>
                 <p className="basis-full text-sm text-slate-500 md:text-base">
                     Asesoría sin costo por WhatsApp. Te ayudamos con requisitos, costos y documentación antes de proponerte cualquier servicio.
@@ -77,16 +78,42 @@ export default function HomePage() {
 
             {/* Trust Bar integrated into Hero */}
 
+            <section id="empieza-aqui" aria-labelledby="empieza-titulo" className="scroll-mt-44 border-b border-slate-200 bg-slate-50 py-12 md:py-16">
+                <Container>
+                    <p className="text-sm font-semibold uppercase tracking-widest text-[#3C3794]">Empieza por tu necesidad</p>
+                    <h2 id="empieza-titulo" className="mt-3 text-balance text-3xl font-bold text-slate-950 md:text-4xl">¿Qué quieres hacer?</h2>
+                    <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">No necesitas conocer los términos aduaneros. Elige una ruta y avanza a tu ritmo.</p>
+                    <div className="mt-8 grid gap-4 md:grid-cols-3">
+                        <Link href={ROUTES.comercioExterior.importacion} className="rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-[#3C3794] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3C3794]">
+                            <h3 className="text-xl font-bold text-slate-900">Quiero importar</h3>
+                            <p className="mt-3 leading-7 text-slate-600">Requisitos, documentos y decisiones que conviene revisar antes de comprar.</p>
+                            <span className="mt-5 block font-semibold text-[#3C3794]">Ver guías de importación <span aria-hidden="true">→</span></span>
+                        </Link>
+                        <Link href={ROUTES.comercioExterior.exportacion} className="rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-[#3C3794] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3C3794]">
+                            <h3 className="text-xl font-bold text-slate-900">Quiero exportar</h3>
+                            <p className="mt-3 leading-7 text-slate-600">Conoce los pasos para preparar una venta y enviar mercancías al exterior.</p>
+                            <span className="mt-5 block font-semibold text-[#3C3794]">Ver guías de exportación <span aria-hidden="true">→</span></span>
+                        </Link>
+                        <Link href={ROUTES.comercioExterior.acuerdosComerciales} className="rounded-2xl border border-slate-200 bg-white p-6 transition-colors hover:border-[#3C3794] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#3C3794]">
+                            <h3 className="text-xl font-bold text-slate-900">Quiero entender un acuerdo comercial</h3>
+                            <p className="mt-3 leading-7 text-slate-600">Explora reglas de origen, certificados y casos de China, Estados Unidos y Unión Europea.</p>
+                            <span className="mt-5 block font-semibold text-[#3C3794]">Explorar acuerdos <span aria-hidden="true">→</span></span>
+                        </Link>
+                    </div>
+                    <p className="mt-6 text-slate-600">¿Ya tienes una operación en marcha? <Link href={ROUTES.contacto} className="font-semibold text-[#3C3794] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4">Cuéntanos en qué etapa estás.</Link></p>
+                </Container>
+            </section>
+
             <section className="border-b border-slate-200/70 bg-white">
                 <Container>
                     <div className="grid gap-6 py-12 lg:grid-cols-[1.2fr_1fr] lg:items-center">
                         <div>
-                            <span className="section-badge">Sin Riesgo</span>
+                            <span className="section-badge">Sin compromiso</span>
                             <h2 className="text-3xl font-bold tracking-tight text-slate-950 md:text-4xl">
-                                Primero resolvemos tus dudas. Luego te cotizamos solo si realmente lo necesitas.
+                                Primero te escuchamos. Después, decides.
                             </h2>
                             <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
-                                Muchas empresas no escriben por miedo al costo o porque no saben si su caso requiere un servicio completo. Por eso, ofrecemos asesoría sin costo: conversamos, revisamos tu operación y te orientamos sin compromiso.
+                                Cuéntanos qué producto quieres mover y qué te preocupa. Te orientamos sin costo; si hace falta una gestión especializada, te explicamos su alcance antes de cotizar.
                             </p>
                             <div className="mt-8 flex flex-wrap gap-4">
                                 <WhatsAppLink messageKey="asesoria_gratis" variant="button">
@@ -154,9 +181,9 @@ export default function HomePage() {
             {/* Services Hub */}
             <HubCards
                 badge="Nuestros Servicios"
-                title="Soluciones que transforman"
-                highlightedWord="transforman"
-                subtitle="Soluciones integrales para importadores que buscan un socio estratégico, no solo un proveedor"
+                title="Apoyo para cada etapa de tu operación"
+                highlightedWord="cada etapa"
+                subtitle="Conoce qué hace cada servicio y cuándo puede ayudarte. Si no sabes cuál elegir, podemos orientarte."
                 items={services}
                 basePath="/servicios"
                 columns={3}
@@ -165,7 +192,7 @@ export default function HomePage() {
             {/* For First-time importers */}
             <SplitFeature
                 title="¿Primera vez importando?"
-                description="No te preocupes, estás en el lugar correcto. Más del 60% de nuestros clientes empezaron sin experiencia en importaciones. Te guiamos paso a paso, te explicamos cada documento y te acompañamos hasta que tu mercancía llegue a tu almacén."
+                description="Puedes empezar por lo básico: qué producto traerás, qué requisitos tiene y qué costos debes considerar. Nuestras guías te ayudan a ordenar esas preguntas antes de comprar al proveedor."
                 imageSide="left"
                 image={<EditorialMedia image={mainPageImages.home.lower} aspect="compact" />}
             >

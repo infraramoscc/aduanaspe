@@ -7,6 +7,8 @@ const resend = process.env.RESEND_API_KEY
     : null;
 
 const EMAIL_TO = process.env.EMAIL_TO || 'contacto@aduanaspe.com';
+// Internal destination only; never expose it in public pages or client components.
+const CONTACT_EMAIL_TO = 'jean.ramos@perkel.com.pe';
 const EMAIL_FROM = process.env.EMAIL_FROM || 'onboarding@resend.dev';
 
 type FormType = 'diagnostico' | 'precotizacion' | 'contacto';
@@ -86,23 +88,27 @@ export async function sendNotificationEmail(
 ): Promise<EmailResult> {
     const subject = `[Web] Nuevo ${formTypeLabels[formType]}`;
     const html = generateNotificationHtml(formType, data);
+    const recipient = formType === 'contacto' ? CONTACT_EMAIL_TO : EMAIL_TO;
 
     // Modo desarrollo sin API key
     if (!resend) {
+        if (formType === 'contacto') return { success: false, error: 'Servicio de correo no configurado' };
         console.log('📧 [DEV] Email de notificación:');
-        console.log('   To:', EMAIL_TO);
+        console.log('   To:', recipient);
         console.log('   Subject:', subject);
         console.log('   Data:', data);
         return { success: true };
     }
 
     try {
-        await resend.emails.send({
+        const result = await resend.emails.send({
             from: EMAIL_FROM,
-            to: EMAIL_TO,
+            to: recipient,
+            replyTo: 'email' in data ? data.email : undefined,
             subject,
             html,
         });
+        if (result.error) return { success: false, error: 'Error al enviar notificación' };
         return { success: true };
     } catch (error) {
         console.error('Error enviando email de notificación:', error);

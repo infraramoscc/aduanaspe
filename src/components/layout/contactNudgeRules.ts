@@ -7,5 +7,6 @@ function normalizePathname(pathname: string): string {
 }
 
 export function shouldEnableContactNudge(pathname: string): boolean {
-    return normalizePathname(pathname) !== '/';
+    // These pages already offer direct contact paths; don't cover them with a timed overlay.
+    return !['/', '/contacto', '/quienes-somos'].includes(normalizePathname(pathname));
 }
