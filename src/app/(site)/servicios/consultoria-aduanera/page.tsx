@@ -71,8 +71,8 @@ const consultingServices = [
 const whyChooseUs = [
     {
         icon: '🎓',
-        title: 'Especialistas Certificados',
-        description: 'Equipo con certificaciones en comercio exterior, legislación aduanera y clasificación arancelaria.',
+        title: 'Experiencia aduanera',
+        description: 'Análisis aplicado a normativa aduanera, documentación y clasificación arancelaria.',
         highlight: 'Expertos a tu servicio',
     },
     {
@@ -85,7 +85,7 @@ const whyChooseUs = [
         icon: '📈',
         title: 'Resultados Medibles',
         description: 'Cuantificamos el ahorro y los beneficios de cada recomendación.',
-        highlight: 'Ahorro comprobado',
+        highlight: 'Impacto explicado antes de decidir',
     },
     {
         icon: '🤝',
@@ -174,10 +174,10 @@ export default function ConsultoriaAduaneraPage() {
                     <TrustBar
                         variant="clean"
                         points={[
-                            { icon: '🎓', title: 'Especialistas', description: 'Certificados' },
+                            { icon: '🎓', title: 'Atención especializada', description: 'Aplicada a tu caso' },
                             { icon: '📊', title: 'Optimización', description: 'De costos' },
                             { icon: '💬', title: 'Asesoría', description: 'Sin costo' },
-                            { icon: '⚡', title: 'Respuesta', description: 'En 24 horas' },
+                            { icon: '⚡', title: 'Respuesta en 1 hora', description: 'En horario de atención' },
                         ]}
                     />
                 }
@@ -200,14 +200,14 @@ export default function ConsultoriaAduaneraPage() {
                 description="Te brindamos asesoría estratégica para que tus operaciones de comercio exterior sean más eficientes, económicas y sin riesgos. Analizamos tu situación actual, identificamos oportunidades y te acompañamos en la implementación."
                 imageSide="right"
                 image={
-                    <div className="relative w-full h-full bg-gradient-to-br from-blue-100 to-cyan-100 flex items-center justify-center overflow-hidden">
-                        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-400 to-transparent"></div>
-                        <div className="relative z-10 text-center">
-                            <span className="text-8xl filter drop-shadow-xl animate-pulse">💡</span>
-                            <div className="mt-4 px-6 py-2 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-white/50">
-                                <span className="font-bold text-blue-600">Estrategia + Ahorro</span>
-                            </div>
-                        </div>
+                    <div className="service-advisory-panel">
+                        <p className="text-sm font-semibold text-sky-200">Análisis aplicado a tu caso</p>
+                        <h3 className="mt-2 text-3xl font-bold leading-tight">Decisiones aduaneras con sustento</h3>
+                        <ul className="mt-7">
+                            <li><b>01</b><span><strong className="block">Clasificación</strong><span className="text-sm text-slate-300">Revisamos la mercancía y su contexto.</span></span></li>
+                            <li><b>02</b><span><strong className="block">Requisitos</strong><span className="text-sm text-slate-300">Identificamos permisos y condiciones aplicables.</span></span></li>
+                            <li><b>03</b><span><strong className="block">Plan de acción</strong><span className="text-sm text-slate-300">Te explicamos opciones y siguientes pasos.</span></span></li>
+                        </ul>
                     </div>
                 }
             >
@@ -233,7 +233,6 @@ export default function ConsultoriaAduaneraPage() {
                             const colorClass = ['service-blue', 'service-cyan', 'service-purple', 'service-pink', 'service-orange', 'service-green'][index % 6];
                             return (
                                 <div key={service.title} className={`service-card ${colorClass} h-full p-6`}>
-                                    <span className="text-4xl filter drop-shadow-sm">{service.icon}</span>
                                     <h3 className="mt-4 text-xl font-bold text-slate-900">{service.title}</h3>
                                     <p className="mt-2 text-slate-600 leading-relaxed">{service.description}</p>
                                 </div>
@@ -260,7 +259,6 @@ export default function ConsultoriaAduaneraPage() {
                             <Link href="/servicios/agencia-de-carga-internacional" className="service-card service-card-compact service-blue group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 1</span>
-                                    <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚢</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Carga</h3>
                                     <p className="text-sm text-slate-600 mt-2">Flete desde origen</p>
                                     <p className="text-xs text-cyan-600 font-medium mt-2">+ Consultoría opcional</p>
@@ -270,7 +268,6 @@ export default function ConsultoriaAduaneraPage() {
                             <Link href="/servicios/agenciamiento-aduanas" className="service-card service-card-compact service-purple group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 2</span>
-                                    <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">📋</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Aduanas</h3>
                                     <p className="text-sm text-slate-600 mt-2">Despacho aduanero</p>
                                     <p className="text-xs text-cyan-600 font-medium mt-2">+ Consultoría opcional</p>
@@ -280,7 +277,6 @@ export default function ConsultoriaAduaneraPage() {
                             <Link href="/servicios/transporte-de-carga" className="service-card service-card-compact service-blue group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 3</span>
-                                    <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚚</span>
                                     <h3 className="font-bold text-slate-900">Transporte de Carga</h3>
                                     <p className="text-sm text-slate-600 mt-2">Entrega en tu almacén</p>
                                     <p className="text-xs text-cyan-600 font-medium mt-2">+ Consultoría opcional</p>
@@ -299,12 +295,11 @@ export default function ConsultoriaAduaneraPage() {
                                 {/* Consultoría Aduanera - Actual */}
                                 <div className="service-card service-cyan flex items-center gap-4 p-5 ring-2 ring-cyan-200 ring-offset-2 scale-105">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-cyan-200 flex items-center justify-center">
-                                        <span className="text-2xl">💡</span>
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">
                                             <h4 className="font-bold text-slate-900">Consultoría Aduanera</h4>
-                                            <span className="px-2 py-0.5 bg-cyan-600 text-white text-[10px] font-bold rounded-full animate-pulse">ESTÁS AQUÍ</span>
+                                            <span className="px-2 py-0.5 bg-cyan-600 text-white text-xs font-bold rounded-full">ESTÁS AQUÍ</span>
                                         </div>
                                         <p className="text-sm text-slate-600 mt-1">Asesoría experta para optimizar tus operaciones</p>
                                     </div>
@@ -312,7 +307,6 @@ export default function ConsultoriaAduaneraPage() {
                                 {/* Resguardo Aduanero */}
                                 <Link href="/servicios/resguardo-aduanero" className="service-card service-card-compact service-orange group flex items-center gap-4 p-5">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                        <span className="text-2xl">🛡️</span>
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">
@@ -354,7 +348,6 @@ export default function ConsultoriaAduaneraPage() {
                             return (
                                 <div key={item.title} className={`service-card service-${colorClass} h-full p-6`}>
                                     <div className="flex items-start gap-4">
-                                        <span className="text-3xl">{item.icon}</span>
                                         <div>
                                             <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                                             <p className="mt-2 text-slate-600">{item.description}</p>
@@ -378,7 +371,6 @@ export default function ConsultoriaAduaneraPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
                         {targetAudience.map((item) => (
                             <div key={item.title} className="service-card service-card-compact service-cyan p-6 text-center">
-                                <span className="text-4xl block mb-4">{item.icon}</span>
                                 <h3 className="font-bold text-slate-900 leading-tight">{item.title}</h3>
                                 <p className="mt-2 text-sm text-slate-600">{item.description}</p>
                             </div>
@@ -393,13 +385,14 @@ export default function ConsultoriaAduaneraPage() {
                 description="La consultoría aduanera te ayuda a evitar errores costosos y aprovechar oportunidades de ahorro."
                 imageSide="right"
                 image={
-                    <div className="relative w-full h-full bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center overflow-hidden">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-white rounded-full shadow-2xl flex items-center justify-center border-4 border-green-100 z-10">
-                            <span className="text-6xl">🛡️</span>
+                    <div className="service-risk-panel">
+                        <p className="text-sm font-semibold text-sky-200">Antes de ejecutar</p>
+                        <h3 className="mt-2 text-3xl font-bold leading-tight">Ordenamos la decisión técnica</h3>
+                        <div className="mt-7 grid gap-3">
+                            <p><strong>Riesgo:</strong> qué puede observarse o encarecerse.</p>
+                            <p><strong>Sustento:</strong> qué documento o criterio hace falta.</p>
+                            <p><strong>Acción:</strong> qué conviene resolver primero.</p>
                         </div>
-                        <div className="absolute top-10 right-10 text-4xl animate-bounce delay-100">💰</div>
-                        <div className="absolute bottom-10 left-10 text-4xl animate-bounce delay-300">⚖️</div>
-                        <div className="absolute bottom-20 right-20 text-4xl animate-bounce delay-500">📉</div>
                     </div>
                 }
             >

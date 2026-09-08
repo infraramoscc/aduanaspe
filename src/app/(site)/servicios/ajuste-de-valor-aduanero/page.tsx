@@ -121,7 +121,7 @@ export default function AjusteDeValorAduaneroPage() {
             <JsonLd json={breadcrumbJsonLd} />
             <FaqJsonLd faqs={faqs} />
 
-            <section className="overflow-hidden bg-slate-950 py-16 text-white md:py-24">
+            <section className="service-technical-hero overflow-hidden bg-slate-950 py-16 text-white md:py-24">
                 <Container>
                     <div className="max-w-4xl">
                         <p className="max-w-full break-words text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200 sm:text-sm sm:tracking-[0.18em]">

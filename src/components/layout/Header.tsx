@@ -50,7 +50,7 @@ function Header() {
                         <span className="text-2xl font-bold text-slate-900">AduanasPE</span>
                     </TrackedLink>
 
-                    <nav className="hidden items-center gap-2 lg:flex">
+                    <nav aria-label="Navegación principal" className="hidden items-center gap-1 lg:flex">
                         <TrackedLink
                             href={ROUTES.home}
                             eventName={GA4_EVENTS.NAV_CLICK}
@@ -120,11 +120,11 @@ function Header() {
                     inert={!mobileMenuOpen}
                     onKeyDown={handleMobileMenuKeyDown}
                     className={cn(
-                        'overflow-hidden transition-[max-height] duration-300 lg:hidden',
-                        mobileMenuOpen ? 'max-h-[calc(100vh-150px)] overflow-y-auto overscroll-contain pb-4' : 'max-h-0'
+                        'mobile-menu-panel overflow-hidden bg-white transition-[max-height,box-shadow] duration-300 lg:hidden',
+                        mobileMenuOpen ? 'max-h-[calc(100vh-150px)] overflow-y-auto overscroll-contain pb-4 shadow-[0_22px_38px_-28px_rgba(15,23,42,0.65)]' : 'max-h-0 shadow-none'
                     )}
                 >
-                    <nav className="flex flex-col gap-2 border-t border-slate-100 pt-3">
+                    <nav aria-label="Navegación principal móvil" className="flex flex-col border-t border-slate-200 pt-2">
                         <TrackedLink
                             href={ROUTES.home}
                             eventName={GA4_EVENTS.NAV_CLICK}
@@ -185,16 +185,12 @@ function DesktopNavGroup({ group }: { group: HeaderNavGroup }) {
                 </svg>
             </TrackedLink>
 
-            <div className="invisible absolute left-1/2 top-full z-50 w-[min(920px,calc(100vw-3rem))] -translate-x-1/2 translate-y-4 pt-4 opacity-0 transition-[opacity,transform,visibility] duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-                <div className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-[0_28px_90px_rgba(15,23,42,0.16)]">
-                    <div className="grid gap-0 lg:grid-cols-[1fr_260px]">
-                        <div className="p-5">
-                            <div className="mb-5 flex items-end justify-between gap-5 border-b border-slate-100 pb-4">
+            <div className="site-mega-menu invisible absolute left-1/2 top-full z-50 w-[min(800px,calc(100vw-3rem))] -translate-x-1/2 translate-y-3 pt-3 opacity-0 transition-[opacity,transform,visibility] duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_24px_64px_rgba(15,23,42,0.14)]">
+                    <div className="p-5">
+                            <div className="mb-4 flex items-end justify-between gap-5 border-b border-slate-200 pb-4">
                                 <div>
-                                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                                        {group.eyebrow}
-                                    </p>
-                                    <h3 className="mt-2 text-xl font-bold text-slate-950">
+                                    <h3 className="text-lg font-bold text-slate-950">
                                         {group.label}
                                     </h3>
                                     <p className="mt-1 max-w-xl text-sm leading-6 text-slate-600">
@@ -211,13 +207,13 @@ function DesktopNavGroup({ group }: { group: HeaderNavGroup }) {
                                 </TrackedLink>
                             </div>
 
-                            <div className="grid gap-5 md:grid-cols-2">
+                            <div className="grid gap-x-8 gap-y-5 md:grid-cols-2">
                                 {group.columns.map((column) => (
                                     <div key={column.title}>
-                                        <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
+                                        <p className="mb-2 text-xs font-semibold text-slate-500">
                                             {column.title}
                                         </p>
-                                        <div className="space-y-2">
+                                        <div className="divide-y divide-slate-100">
                                             {column.links.map((item) => (
                                                 <MegaMenuLink key={item.href} item={item} />
                                             ))}
@@ -225,28 +221,19 @@ function DesktopNavGroup({ group }: { group: HeaderNavGroup }) {
                                     </div>
                                 ))}
                             </div>
-                        </div>
-
-                        <div className="bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_58%,#0E7490_100%)] p-5 text-white">
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-sky-100">
-                                Ruta rápida
-                            </p>
-                            <h4 className="mt-3 text-xl font-bold leading-tight">
-                                {group.featured.label}
-                            </h4>
-                            <p className="mt-3 text-sm leading-6 text-slate-100">
-                                {group.featured.description}
-                            </p>
-                            <TrackedLink
-                                href={group.featured.href}
-                                eventName={GA4_EVENTS.NAV_CLICK}
-                                eventParams={{ location: 'header_mega_featured', label: group.featured.label }}
-                                className="mt-5 inline-flex rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#3C3794] transition-transform hover:-translate-y-0.5"
-                            >
-                                Ir ahora
-                            </TrackedLink>
-                        </div>
                     </div>
+                    <TrackedLink
+                        href={group.featured.href}
+                        eventName={GA4_EVENTS.NAV_CLICK}
+                        eventParams={{ location: 'header_mega_featured', label: group.featured.label }}
+                        className="flex min-h-14 items-center justify-between gap-5 border-t border-slate-200 bg-[#F5F3EA] px-5 py-3 transition-colors hover:bg-[#ECEBFF]"
+                    >
+                        <span>
+                            <strong className="block text-sm text-slate-950">{group.featured.label}</strong>
+                            <span className="mt-0.5 block text-xs text-slate-600">{group.featured.description}</span>
+                        </span>
+                        <span className="shrink-0 text-sm font-semibold text-[#3C3794]">Ver ruta →</span>
+                    </TrackedLink>
                 </div>
             </div>
         </div>
@@ -259,7 +246,7 @@ function MegaMenuLink({ item }: { item: HeaderNavLink }) {
             href={item.href}
             eventName={GA4_EVENTS.NAV_CLICK}
             eventParams={{ location: 'header_mega', label: item.label }}
-            className="block rounded-2xl border border-transparent px-3 py-3 transition-colors hover:border-[#D8D5FF] hover:bg-[#ECEBFF]/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300"
+            className="site-mega-link block min-h-11 px-2 py-3 transition-colors hover:bg-[#ECEBFF]/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-slate-300"
         >
             <span className="block text-sm font-bold text-slate-950">
                 {item.label}
@@ -273,7 +260,7 @@ function MegaMenuLink({ item }: { item: HeaderNavLink }) {
 
 function MobileNavGroup({ group, onNavigate }: { group: HeaderNavGroup; onNavigate: () => void }) {
     return (
-        <details className="rounded-[22px] border border-slate-200 bg-white">
+        <details className="site-mobile-nav-group border-b border-slate-200 bg-white">
             <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-3 px-4 py-3 text-sm font-bold text-slate-900">
                 {group.label}
                 <span className="text-xs font-semibold text-[#3C3794]">Ver opciones</span>
@@ -284,7 +271,7 @@ function MobileNavGroup({ group, onNavigate }: { group: HeaderNavGroup; onNaviga
                 </p>
                 {group.columns.map((column) => (
                     <div key={column.title} className="mt-4">
-                        <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                        <p className="mb-2 text-xs font-semibold text-slate-500">
                             {column.title}
                         </p>
                         <div className="space-y-1">

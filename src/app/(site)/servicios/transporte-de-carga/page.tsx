@@ -178,7 +178,6 @@ export default function TransportePage() {
                             <Link href="/servicios/agencia-de-carga-internacional" className="service-card service-card-compact service-blue group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full mb-3">ETAPA 1</span>
-                                    <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚢</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Carga</h3>
                                     <p className="text-sm text-slate-600 mt-2">Flete desde origen</p>
                                     <p className="text-xs text-green-600 font-medium mt-2">✓ Completada</p>
@@ -188,7 +187,6 @@ export default function TransportePage() {
                             <Link href="/servicios/agenciamiento-aduanas" className="service-card service-card-compact service-purple group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full mb-3">ETAPA 2</span>
-                                    <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">📋</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Aduanas</h3>
                                     <p className="text-sm text-slate-600 mt-2">Despacho aduanero</p>
                                     <p className="text-xs text-green-600 font-medium mt-2">✓ Completada</p>
@@ -197,8 +195,7 @@ export default function TransportePage() {
                             {/* Etapa 3 - Actual */}
                             <div className="service-card service-purple p-6 text-center ring-2 ring-[#D8D5FF] ring-offset-2 scale-105">
                                 <div>
-                                    <span className="inline-block px-3 py-1 bg-[#3C3794] text-white text-xs font-bold rounded-full mb-3 animate-pulse">ETAPA 3</span>
-                                    <span className="text-3xl block mb-2">🚚</span>
+                                    <span className="inline-block px-3 py-1 bg-[#3C3794] text-white text-xs font-bold rounded-full mb-3">ETAPA 3</span>
                                     <h3 className="font-bold text-slate-900">Transporte de Carga</h3>
                                     <p className="text-sm text-slate-600 mt-2">Entrega en tu almacén</p>
                                     <p className="text-xs text-[#3C3794] font-medium mt-2">← Estás aquí</p>
@@ -217,7 +214,6 @@ export default function TransportePage() {
                                 {/* Consultoría Aduanera */}
                                 <Link href="/servicios/consultoria-aduanera" className="service-card service-card-compact service-cyan group flex items-center gap-4 p-5">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-cyan-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                        <span className="text-2xl">💡</span>
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">
@@ -231,7 +227,6 @@ export default function TransportePage() {
                                 {/* Resguardo Aduanero */}
                                 <Link href="/servicios/resguardo-aduanero" className="service-card service-card-compact service-orange group flex items-center gap-4 p-5">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                        <span className="text-2xl">🛡️</span>
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">
@@ -265,19 +260,14 @@ export default function TransportePage() {
                 description="Nos encargamos del traslado de tu mercancía desde el puerto o aeropuerto hasta tu almacén. Actuamos como gestores logísticos: coordinamos la unidad, hacemos seguimiento, te informamos y resolvemos cualquier contratiempo."
                 imageSide="right"
                 image={
-                    <div className="w-full h-full bg-slate-50 relative rounded-2xl overflow-hidden flex items-center justify-center min-h-[300px]">
-                        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-50" />
-                        <div className="relative text-center p-8">
-                            <div className="text-8xl mb-4 animate-bounce">🚛</div>
-                            <div className="flex gap-8 justify-center items-center text-4xl mt-4 opacity-50">
-                                <span>⚓</span>
-                                <span className="text-slate-300 tracking-widest text-lg">••••••</span>
-                                <span>🏭</span>
-                            </div>
-                            <div className="mt-4 inline-block px-4 py-1 bg-white rounded-full shadow-sm border border-slate-100 text-xs font-medium text-slate-500">
-                                Monitoreo 24/7
-                            </div>
-                        </div>
+                    <div className="service-transport-panel">
+                        <p className="text-sm font-semibold text-sky-200">Coordinación del traslado</p>
+                        <h3 className="mt-2 text-3xl font-bold leading-tight">Del punto de retiro hasta tu destino</h3>
+                        <ul className="mt-7">
+                            <li><b>01</b><span><strong className="block">Unidad adecuada</strong><span className="text-sm text-slate-300">Según carga, peso, volumen y ruta.</span></span></li>
+                            <li><b>02</b><span><strong className="block">Retiro coordinado</strong><span className="text-sm text-slate-300">Desde puerto, aeropuerto o almacén.</span></span></li>
+                            <li><b>03</b><span><strong className="block">Entrega informada</strong><span className="text-sm text-slate-300">Seguimiento durante el recorrido acordado.</span></span></li>
+                        </ul>
                     </div>
                 }
             >
@@ -302,7 +292,6 @@ export default function TransportePage() {
                             return (
                                 <div key={item.title} className={`service-card service-${colorClass} h-full p-6`}>
                                     <div className="flex items-start gap-4">
-                                        <span className="text-3xl">{item.icon}</span>
                                         <div>
                                             <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                                             <p className="mt-2 text-slate-600">{item.description}</p>
@@ -330,16 +319,8 @@ export default function TransportePage() {
                         {vehicleTypes.map((vehicle, index) => {
                             const colorClass = ['service-blue', 'service-pink', 'service-green', 'service-orange'][index % 4];
                             return (
-                                <div key={vehicle.title} className={`service-card ${colorClass} overflow-hidden p-0 h-full group`}>
-                                    <div className="relative h-48 w-full bg-gradient-to-br from-white to-slate-50 flex items-center justify-center overflow-hidden border-b border-slate-100">
-                                        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:8px_8px]" />
-                                        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-slate-100/50 to-transparent" />
-
-                                        <div className="text-8xl transform group-hover:scale-110 transition-transform duration-500 drop-shadow-xl filter pb-4">
-                                            {vehicle.icon}
-                                        </div>
-                                    </div>
-                                    <div className="p-6 text-center">
+                                <div key={vehicle.title} className={`service-card ${colorClass} h-full border-t-4 p-6`}>
+                                    <div>
                                         <h3 className="font-bold text-slate-900">{vehicle.title}</h3>
                                         <p className="mt-2 text-sm text-slate-600">{vehicle.description}</p>
                                     </div>
@@ -354,21 +335,18 @@ export default function TransportePage() {
             <section className="py-20 bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_58%,#0E7490_100%)] text-white">
                 <Container>
                     <div className="max-w-4xl mx-auto text-center">
-                        <span className="text-6xl inline-block animate-bounce">🛡️</span>
-                        <h2 className="mt-6 text-3xl font-bold">¿Necesitas Resguardo?</h2>
+                        <h2 className="text-3xl font-bold">¿Necesitas resguardo?</h2>
                         <p className="mt-4 text-lg text-slate-300">
                             Ofrecemos custodia de carga durante el traslado. Dos modalidades disponibles:
                         </p>
                         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div className="p-6 bg-[#2F2B77]/70 backdrop-blur rounded-xl border border-white/10 hover:border-sky-300 transition-colors">
-                                <span className="text-4xl">👤</span>
-                                <h3 className="mt-4 text-xl font-bold text-[#AFAAFF]">Resguardo Cabina</h3>
-                                <p className="mt-2 text-slate-400">Personal de seguridad armado viaja en la cabina del camión junto al conductor.</p>
+                            <div className="rounded-xl bg-white/10 p-6 text-left">
+                                <h3 className="text-xl font-bold text-sky-100">Resguardo cabina</h3>
+                                <p className="mt-2 text-slate-200">Personal de seguridad acompaña la unidad junto al conductor.</p>
                             </div>
-                            <div className="p-6 bg-[#2F2B77]/70 backdrop-blur rounded-xl border border-white/10 hover:border-sky-300 transition-colors">
-                                <span className="text-4xl">🚗</span>
-                                <h3 className="mt-4 text-xl font-bold text-[#AFAAFF]">Resguardo Vehículo</h3>
-                                <p className="mt-2 text-slate-400">Vehículo de seguridad escolta a la unidad de transporte durante todo el trayecto.</p>
+                            <div className="rounded-xl bg-white/10 p-6 text-left">
+                                <h3 className="text-xl font-bold text-sky-100">Resguardo vehículo</h3>
+                                <p className="mt-2 text-slate-200">Un vehículo de seguridad acompaña la unidad durante el trayecto.</p>
                             </div>
                         </div>
                         <div className="mt-10">
@@ -391,7 +369,6 @@ export default function TransportePage() {
                             const colorClass = ['service-blue', 'service-green', 'service-orange'][index % 3];
                             return (
                                 <div key={item.zone} className={`service-card ${colorClass} text-center p-6 bg-white`}>
-                                    <span className="text-4xl">{item.icon}</span>
                                     <h3 className="mt-4 font-bold text-slate-900">{item.zone}</h3>
                                     <p className="mt-2 text-sm text-slate-600">{item.description}</p>
                                 </div>
@@ -411,7 +388,6 @@ export default function TransportePage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {serviceIncludes.map((item) => (
                             <div key={item.title} className="service-card service-card-compact service-cyan p-4">
-                                <span className="text-2xl">{item.icon}</span>
                                 <h4 className="mt-2 font-semibold text-slate-900">{item.title}</h4>
                                 <p className="mt-1 text-sm text-slate-600">{item.description}</p>
                             </div>
@@ -426,39 +402,11 @@ export default function TransportePage() {
                 description="Nos encargamos del control operativo para que tengas tranquilidad y visibilidad permanente."
                 imageSide="right"
                 image={
-                    <div className="w-full h-full bg-slate-50 relative rounded-2xl overflow-hidden flex items-center justify-center min-h-[300px]">
-                        <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px] opacity-50" />
-
-                        {/* Central Card */}
-                        <div className="relative bg-white p-6 rounded-xl shadow-lg border border-slate-100 rotate-2 hover:rotate-0 transition-transform duration-500">
-                            <div className="flex items-center gap-4 mb-4 border-b border-slate-100 pb-2">
-                                <span className="text-4xl">📋</span>
-                                <div>
-                                    <div className="h-2 w-24 bg-slate-200 rounded mb-1"></div>
-                                    <div className="h-2 w-16 bg-slate-100 rounded"></div>
-                                </div>
-                            </div>
-                            <div className="space-y-2">
-                                <div className="flex items-center gap-2">
-                                    <span className="text-green-500 text-lg">✓</span>
-                                    <div className="h-2 w-32 bg-slate-100 rounded"></div>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-green-500 text-lg">✓</span>
-                                    <div className="h-2 w-28 bg-slate-100 rounded"></div>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <span className="text-green-500 text-lg">✓</span>
-                                    <div className="h-2 w-36 bg-slate-100 rounded"></div>
-                                </div>
-                            </div>
-
-                            {/* Floating Badge */}
-                            <div className="absolute -top-3 -right-3 bg-green-500 text-white p-2 rounded-full shadow-lg animate-bounce">
-                                <span className="text-xl">✨</span>
-                            </div>
+                        <div className="service-control-panel">
+                            <p className="text-sm font-semibold text-sky-200">Control operativo</p>
+                            <h3 className="mt-2 text-3xl font-bold leading-tight">Un solo punto de coordinación</h3>
+                            <p className="mt-4 max-w-md text-slate-300">Centralizamos la unidad, el retiro, el recorrido y la confirmación de entrega para reducir llamadas y decisiones dispersas.</p>
                         </div>
-                    </div>
                 }
             >
                 <ul className="space-y-3">

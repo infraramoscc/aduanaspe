@@ -274,7 +274,6 @@ export default function MultasAduanerasSunatPage() {
                             const colors = ['service-pink', 'service-blue', 'service-green', 'service-orange', 'service-cyan', 'service-purple'];
                             return (
                                 <article key={item.title} className={`service-card ${colors[index % colors.length]} h-full p-6`}>
-                                    <span className="text-4xl">{item.icon}</span>
                                     <h3 className="mt-4 text-xl font-bold text-slate-900">{item.title}</h3>
                                     <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
                                 </article>
@@ -298,7 +297,6 @@ export default function MultasAduanerasSunatPage() {
                             return (
                                 <div key={item.title} className={`service-card service-${colors[index % colors.length]} h-full p-6`}>
                                     <div className="flex items-start gap-4">
-                                        <span className="text-3xl">{item.icon}</span>
                                         <div>
                                             <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                                             <p className="mt-2 leading-7 text-slate-600">{item.description}</p>
@@ -443,19 +441,16 @@ export default function MultasAduanerasSunatPage() {
                     <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-3">
                         <div className="service-card service-purple p-6 text-center ring-2 ring-[#D8D5FF] ring-offset-2">
                             <span className="mb-3 inline-block rounded-full bg-[#3C3794] px-3 py-1 text-xs font-bold text-white">ESTÁS AQUÍ</span>
-                            <span className="mb-2 block text-3xl">⚖️</span>
                             <h3 className="font-bold text-slate-900">Multas y notificaciones</h3>
                             <p className="mt-2 text-sm text-slate-600">Cuando SUNAT ya te notificó o existe riesgo sancionador.</p>
                         </div>
                         <Link href="/servicios/ajuste-de-valor-aduanero" className="service-card service-card-compact service-cyan group block p-6 text-center">
                             <span className="mb-3 inline-block rounded-full bg-slate-400 px-3 py-1 text-xs font-bold text-white">RUTA ESPECÍFICA</span>
-                            <span className="mb-2 block text-3xl transition-transform group-hover:scale-110">🧾</span>
                             <h3 className="font-bold text-slate-900">Ajuste de valor</h3>
                             <p className="mt-2 text-sm text-slate-600">Si el problema principal es valor declarado o duda razonable.</p>
                         </Link>
                         <Link href="/servicios/consultoria-aduanera" className="service-card service-card-compact service-blue group block p-6 text-center">
                             <span className="mb-3 inline-block rounded-full bg-slate-400 px-3 py-1 text-xs font-bold text-white">PREVENTIVO</span>
-                            <span className="mb-2 block text-3xl transition-transform group-hover:scale-110">💡</span>
                             <h3 className="font-bold text-slate-900">Consultoría aduanera</h3>
                             <p className="mt-2 text-sm text-slate-600">Si quieres prevenir errores antes de comprar, embarcar o numerar.</p>
                         </Link>

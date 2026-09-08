@@ -6,5 +6,7 @@ import {
 } from './contactNudgeRules.ts';
 
 assert.equal(shouldEnableContactNudge('/'), false);
-assert.equal(shouldEnableContactNudge('/servicios/agenciamiento-aduanas/'), true);
+assert.equal(shouldEnableContactNudge('/servicios/agenciamiento-aduanas/'), false);
+assert.equal(shouldEnableContactNudge('/servicios/'), false);
+assert.equal(shouldEnableContactNudge('/blog/como-importar-por-primera-vez-en-peru/'), true);
 assert.equal(CONTACT_NUDGE_DELAY_MS, 6000);

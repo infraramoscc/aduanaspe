@@ -775,14 +775,18 @@ body {
     linear-gradient(112deg, var(--service-canvas) 0%, #fbfaf6 54%, var(--home-brand-soft) 100%);
 }
 
+.service-journey > .service-technical-hero {
+  background:
+    radial-gradient(circle at 82% 20%, rgba(56, 189, 248, 0.2), transparent 28%),
+    linear-gradient(118deg, #172033 0%, #262356 70%, #0e7490 145%);
+}
+
 .service-journey > .site-hero > div:first-child {
   background: transparent;
 }
 
 .service-journey .section-badge {
-  border-color: rgba(60, 55, 148, 0.18);
-  background: var(--home-brand-soft);
-  color: var(--home-brand);
+  display: none;
 }
 
 .service-journey .gradient-text {
@@ -792,8 +796,88 @@ body {
 }
 
 .service-journey .service-card {
+  border-radius: 1rem;
   border-color: var(--home-border-soft);
-  box-shadow: 0 22px 52px -42px rgba(23, 32, 51, 0.58);
+  box-shadow: none;
+  transform: none;
+}
+
+.service-journey .service-card::before,
+.service-journey .service-card::after {
+  display: none;
+}
+
+.service-journey a.service-card:hover {
+  border-color: rgba(60, 55, 148, 0.35);
+  box-shadow: 0 14px 30px -26px rgba(23, 32, 51, 0.7);
+  transform: translateY(-2px);
+}
+
+.service-journey .trust-point-icon {
+  display: none;
+}
+
+.service-journey .hero-footer-shell {
+  padding-inline: 1.5rem;
+}
+
+.service-journey .hero-footer-shell > * {
+  border: 1px solid var(--home-border-soft);
+  border-radius: 1rem;
+  background: rgba(251, 250, 246, 0.88);
+}
+
+.service-journey section:not(.site-hero) h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.service-operations-panel,
+.service-advisory-panel,
+.service-transport-panel,
+.service-control-panel,
+.service-route-panel,
+.service-risk-panel {
+  display: grid;
+  align-content: center;
+  min-height: 100%;
+  padding: clamp(1.75rem, 4vw, 3rem);
+  background: #172033;
+  color: white;
+}
+
+.service-operations-panel li,
+.service-advisory-panel li,
+.service-transport-panel li {
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  gap: 0.75rem;
+  padding-block: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.service-operations-panel li:first-child,
+.service-advisory-panel li:first-child,
+.service-transport-panel li:first-child {
+  border-top: 0;
+}
+
+.service-operations-panel b,
+.service-advisory-panel b,
+.service-transport-panel b {
+  color: #7dd3fc;
+}
+
+.service-risk-panel p:not(:first-child) {
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  padding-top: 0.75rem;
+  color: #cbd5e1;
+}
+
+.service-risk-panel strong {
+  color: white;
 }
 
 .service-journey [id="servicios-disponibles"] {
@@ -811,6 +895,10 @@ body {
 
   .service-journey > .site-hero h1 {
     font-size: clamp(2.5rem, 12vw, 3.5rem);
+  }
+
+  .service-journey .hero-footer-shell {
+    padding-inline: 1rem;
   }
 }
 

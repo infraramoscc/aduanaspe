@@ -62,7 +62,7 @@ const whyChooseUs = [
         icon: '📍',
         title: 'Monitoreo Constante',
         description: 'Comunicación permanente entre el resguardo, la central y el cliente durante todo el traslado.',
-        highlight: 'Ojos en tu carga 24/7',
+        highlight: 'Comunicación durante el servicio',
     },
     {
         icon: '🔄',
@@ -145,7 +145,7 @@ export default function ResguardoPage() {
                             { icon: '👤', title: 'Resguardo Cabina', description: 'En la unidad' },
                             { icon: '🚗', title: 'Resguardo Vehículo', description: 'Seguimiento' },
                             { icon: '📍', title: 'Monitoreo', description: 'Constante' },
-                            { icon: '🛡️', title: 'Seguridad', description: 'Garantizada' },
+                            { icon: '🛡️', title: 'Custodia coordinada', description: 'Durante el traslado' },
                         ]}
                     />
                 }
@@ -168,15 +168,14 @@ export default function ResguardoPage() {
                 description="El resguardo consiste en la custodia y acompañamiento de tu mercancía durante todo el traslado. Personal de seguridad acompaña el transporte desde el punto de recojo hasta la entrega final, reduciendo riesgos y fortaleciendo la seguridad de la operación logística."
                 imageSide="right"
                 image={
-                    <div className="relative w-full h-full bg-gradient-to-br from-orange-100 to-amber-100 flex items-center justify-center overflow-hidden">
-                        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-orange-300/30 to-transparent"></div>
-                        <div className="relative z-10 flex flex-col items-center">
-                            <span className="text-9xl filter drop-shadow-2xl animate-pulse">🛡️</span>
-                            <div className="mt-6 px-6 py-2 bg-[#3C3794] text-white rounded-lg shadow-xl border border-white/10 flex items-center gap-2">
-                                <span className="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
-                                <span className="font-mono text-sm">SISTEMA ACTIVO</span>
-                            </div>
-                        </div>
+                    <div className="service-operations-panel">
+                        <p className="text-sm font-semibold text-sky-200">Cobertura del traslado</p>
+                        <h3 className="mt-2 text-3xl font-bold leading-tight">Custodia coordinada de origen a destino</h3>
+                        <ul className="mt-7">
+                            <li><b>01</b><span><strong className="block">Recojo</strong><span className="text-sm text-slate-300">Validamos el punto y la unidad.</span></span></li>
+                            <li><b>02</b><span><strong className="block">Acompañamiento</strong><span className="text-sm text-slate-300">El resguardo sigue el recorrido acordado.</span></span></li>
+                            <li><b>03</b><span><strong className="block">Entrega</strong><span className="text-sm text-slate-300">Cerramos la custodia en el destino.</span></span></li>
+                        </ul>
                     </div>
                 }
             >
@@ -203,7 +202,6 @@ export default function ResguardoPage() {
                             return (
                                 <div key={mode.title} className={`service-card ${colorClass} h-full p-8`}>
                                     <div className="text-center mb-6">
-                                        <span className="text-6xl filter drop-shadow-md">{mode.icon}</span>
                                         <h3 className="mt-4 text-2xl font-bold text-slate-900">{mode.title}</h3>
                                         <p className="mt-3 text-slate-600 font-medium">{mode.description}</p>
                                     </div>
@@ -242,7 +240,6 @@ export default function ResguardoPage() {
                             <Link href="/servicios/agencia-de-carga-internacional" className="service-card service-card-compact service-blue group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 1</span>
-                                    <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚢</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Carga</h3>
                                     <p className="text-sm text-slate-600 mt-2">Flete desde origen</p>
                                     <p className="text-xs text-orange-600 font-medium mt-2">+ Resguardo opcional</p>
@@ -252,7 +249,6 @@ export default function ResguardoPage() {
                             <Link href="/servicios/agenciamiento-aduanas" className="service-card service-card-compact service-purple group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 2</span>
-                                    <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">📋</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Aduanas</h3>
                                     <p className="text-sm text-slate-600 mt-2">Despacho aduanero</p>
                                     <p className="text-xs text-orange-600 font-medium mt-2">+ Resguardo opcional</p>
@@ -262,7 +258,6 @@ export default function ResguardoPage() {
                             <Link href="/servicios/transporte-de-carga" className="service-card service-card-compact service-blue group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 3</span>
-                                    <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚚</span>
                                     <h3 className="font-bold text-slate-900">Transporte de Carga</h3>
                                     <p className="text-sm text-slate-600 mt-2">Entrega en tu almacén</p>
                                     <p className="text-xs text-orange-600 font-medium mt-2">+ Resguardo opcional</p>
@@ -281,12 +276,11 @@ export default function ResguardoPage() {
                                 {/* Resguardo Aduanero - Actual */}
                                 <div className="service-card service-orange flex items-center gap-4 p-5 ring-2 ring-orange-200 ring-offset-2 scale-105">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-200 flex items-center justify-center">
-                                        <span className="text-2xl">🛡️</span>
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">
                                             <h4 className="font-bold text-slate-900">Resguardo Aduanero</h4>
-                                            <span className="px-2 py-0.5 bg-orange-600 text-white text-[10px] font-bold rounded-full animate-pulse">ESTÁS AQUÍ</span>
+                                            <span className="px-2 py-0.5 bg-orange-600 text-white text-xs font-bold rounded-full">ESTÁS AQUÍ</span>
                                         </div>
                                         <p className="text-sm text-slate-600 mt-1">Custodia y seguridad para tu mercancía</p>
                                     </div>
@@ -294,7 +288,6 @@ export default function ResguardoPage() {
                                 {/* Consultoría Aduanera */}
                                 <Link href="/servicios/consultoria-aduanera" className="service-card service-card-compact service-cyan group flex items-center gap-4 p-5">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-cyan-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                        <span className="text-2xl">💡</span>
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">
@@ -336,7 +329,6 @@ export default function ResguardoPage() {
                             return (
                                 <div key={item.title} className={`service-card service-${colorClass} h-full p-6`}>
                                     <div className="flex items-start gap-4">
-                                        <span className="text-3xl">{item.icon}</span>
                                         <div>
                                             <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                                             <p className="mt-2 text-slate-600">{item.description}</p>
@@ -374,16 +366,10 @@ export default function ResguardoPage() {
                 description="Si necesitas tanto el transporte como el resguardo, podemos ofrecerte un paquete integrado. Un solo punto de contacto, coordinación simplificada y mejor precio."
                 imageSide="left"
                 image={
-                    <div className="relative w-full h-full bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center overflow-hidden">
-                        <div className="relative z-10 flex items-center gap-4">
-                            <div className="p-6 bg-white rounded-2xl shadow-xl border border-slate-100 transform -rotate-6 z-10">
-                                <span className="text-6xl">🚚</span>
-                            </div>
-                            <div className="p-6 bg-orange-500 rounded-2xl shadow-xl border-4 border-white transform rotate-6 z-20">
-                                <span className="text-6xl">👮</span>
-                            </div>
-                        </div>
-                        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-slate-300 skew-y-3"></div>
+                    <div className="service-route-panel">
+                        <p className="text-sm font-semibold text-sky-200">Servicio combinado</p>
+                        <h3 className="mt-2 text-3xl font-bold leading-tight">Transporte y custodia coordinados</h3>
+                        <p className="mt-4 text-slate-300">Una sola coordinación para definir la unidad, el punto de retiro, la ruta y la modalidad de resguardo.</p>
                     </div>
                 }
             >

@@ -252,7 +252,6 @@ export default function AgenciamientoCargaPage() {
                             return (
                                 <div key={item.title} className={`service-card service-${colorClass} h-full p-6`}>
                                     <div className="flex items-start gap-4">
-                                        <span className="text-3xl">{item.icon}</span>
                                         <div>
                                             <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
                                             <p className="mt-2 text-slate-600">{item.description}</p>
@@ -282,7 +281,6 @@ export default function AgenciamientoCargaPage() {
                             return (
                                 <div key={mode.title} className={`service-card ${colorClass} p-8 text-center`}>
                                     <div className="mb-6">
-                                        <span className="text-6xl">{mode.icon}</span>
                                         <h3 className="mt-4 text-2xl font-bold text-slate-900">{mode.title}</h3>
                                     </div>
                                     <ul className="space-y-3 text-left inline-block">
@@ -394,7 +392,6 @@ export default function AgenciamientoCargaPage() {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         {serviceIncludes.map((item) => (
                             <div key={item.title} className="service-card service-card-compact service-cyan p-4">
-                                <span className="text-2xl">{item.icon}</span>
                                 <h4 className="mt-2 font-semibold text-slate-900">{item.title}</h4>
                                 <p className="mt-1 text-sm text-slate-600">{item.description}</p>
                             </div>
@@ -449,8 +446,7 @@ export default function AgenciamientoCargaPage() {
                             {/* Etapa 1 - Actual */}
                             <div className="service-card service-green p-6 text-center ring-2 ring-green-200 ring-offset-2 scale-105">
                                 <div>
-                                    <span className="inline-block px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full mb-3 animate-pulse">ETAPA 1</span>
-                                    <span className="text-3xl block mb-2">🚢</span>
+                                    <span className="inline-block px-3 py-1 bg-green-600 text-white text-xs font-bold rounded-full mb-3">ETAPA 1</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Carga</h3>
                                     <p className="text-sm text-slate-600 mt-2">Coordinamos el flete desde origen</p>
                                     <p className="text-xs text-green-600 font-medium mt-2">← Estás aquí</p>
@@ -460,7 +456,6 @@ export default function AgenciamientoCargaPage() {
                             <Link href="/servicios/agenciamiento-aduanas" className="service-card service-card-compact service-purple group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 2</span>
-                                    <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">📋</span>
                                     <h3 className="font-bold text-slate-900">Agenciamiento de Aduanas</h3>
                                     <p className="text-sm text-slate-600 mt-2">Despacho aduanero en destino</p>
                                     <p className="text-xs text-[#3C3794] font-medium mt-2">Ver servicio →</p>
@@ -470,7 +465,6 @@ export default function AgenciamientoCargaPage() {
                             <Link href="/servicios/transporte-de-carga" className="service-card service-card-compact service-blue group block p-6">
                                 <div className="text-center">
                                     <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 3</span>
-                                    <span className="text-3xl block mb-2 group-hover:scale-110 transition-transform">🚚</span>
                                     <h3 className="font-bold text-slate-900">Transporte de Carga</h3>
                                     <p className="text-sm text-slate-600 mt-2">Entrega en tu almacén</p>
                                     <p className="text-xs text-blue-600 font-medium mt-2">Ver servicio →</p>
@@ -489,7 +483,6 @@ export default function AgenciamientoCargaPage() {
                                 {/* Consultoría Aduanera */}
                                 <Link href="/servicios/consultoria-aduanera" className="service-card service-card-compact service-cyan group flex items-center gap-4 p-5">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-cyan-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                        <span className="text-2xl">💡</span>
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">
@@ -503,7 +496,6 @@ export default function AgenciamientoCargaPage() {
                                 {/* Resguardo Aduanero */}
                                 <Link href="/servicios/resguardo-aduanero" className="service-card service-card-compact service-orange group flex items-center gap-4 p-5">
                                     <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                        <span className="text-2xl">🛡️</span>
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex items-center gap-2">

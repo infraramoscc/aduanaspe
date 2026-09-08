@@ -158,5 +158,6 @@ test('institutional pages do not interrupt reading or form entry with a timed po
     for (const path of ['/', '/contacto', '/contacto/', '/quienes-somos', '/quienes-somos/']) {
         assert.equal(shouldEnableContactNudge(path), false, path);
     }
-    assert.equal(shouldEnableContactNudge('/servicios/'), true, 'Other groups stay unchanged');
+    assert.equal(shouldEnableContactNudge('/servicios/'), false, 'Service pages keep the offer visible');
+    assert.equal(shouldEnableContactNudge('/blog/'), true, 'Educational pages can keep the contextual nudge');
 });

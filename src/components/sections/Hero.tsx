@@ -193,10 +193,8 @@ function Hero({
             </div>
 
             {footer && (
-                <div className="relative z-10 mt-14">
-                    <div className="service-card service-card-compact service-cyan mx-auto max-w-5xl">
-                        {footer}
-                    </div>
+                <div className="hero-footer-shell relative z-10 mx-auto mt-14 max-w-5xl">
+                    {footer}
                 </div>
             )}
         </section>

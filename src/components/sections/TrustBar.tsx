@@ -17,7 +17,7 @@ interface TrustBarProps {
 const defaultPoints: TrustPoint[] = [
     {
         icon: '01',
-        title: '+15 años de experiencia',
+        title: '+5 años de experiencia',
         description: 'Comercio exterior en Perú',
     },
     {
@@ -62,7 +62,7 @@ function TrustBar({ points = defaultPoints, title, variant = 'default', classNam
                             className="service-card service-card-roomy service-blue"
                         >
                             {point.icon && (
-                                <span className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
+                                <span className="trust-point-icon mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-sm font-bold text-slate-700">
                                     {point.icon}
                                 </span>
                             )}
