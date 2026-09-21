@@ -7,7 +7,10 @@ const read = path => readFileSync(path, 'utf8');
 test('home makes the service offer explicit before educational content', () => {
     const page = read('src/app/(site)/page.tsx');
     const styles = read('src/app/globals.css');
-    assert.match(page, /Servicios de aduanas y carga internacional en Perú/);
+    assert.match(page, /Flete, aduanas y entrega local coordinados para tu operación en Perú/);
+    assert.match(page, /href="#evaluar"/);
+    assert.match(page, /id="confianza"/);
+    assert.match(page, /id="evaluar"/);
     assert.match(page, /href="#servicios"/);
     assert.match(page, /id="servicios"/);
     for (const serviceGroup of ['Aduanas', 'Carga y transporte', 'Consultoría e incidencias']) {
@@ -34,17 +37,21 @@ test('home makes the service offer explicit before educational content', () => {
     assert.doesNotMatch(styles, /home-route-line|home-route-node|@keyframes routeTrace/);
     assert.match(styles, /\.home-control-grid/);
     assert.match(styles, /prefers-reduced-motion: reduce/);
-    assert.ok(page.indexOf('id="servicios"') < page.indexOf('href={ROUTES.blog}'));
+    assert.ok(page.indexOf('id="confianza"') < page.indexOf('id="servicios"'));
+    assert.ok(page.indexOf('id="evaluar"') < page.indexOf('href={ROUTES.blog}'));
 });
-test('home adapts the control-tower composition for narrow touch screens', () => {
+test('home presents a full-bleed logistics image with readable narrow-screen controls', () => {
     const page = read('src/app/(site)/page.tsx');
     const header = read('src/components/layout/Header.tsx');
     const styles = read('src/app/globals.css');
-    assert.match(page, /max-\[380px\]:text-\[2\.5rem\]/);
-    assert.match(page, /aspect-\[5\/4\].*sm:aspect-\[4\/3\]/);
-    assert.match(page, /grid-cols-2.*sm:grid-cols-2.*xl:grid-cols-4/);
-    assert.match(page, /max-\[380px\]:hidden/);
+    assert.match(page, /home-full-hero/);
+    assert.match(page, /home-full-hero-overlay/);
+    assert.match(page, /sizes="100vw"/);
+    assert.match(page, /min-h-\[590px\].*md:min-h-\[650px\].*lg:min-h-\[700px\]/);
+    assert.match(page, /max-\[380px\]:text-\[2\.45rem\]/);
+    assert.match(page, /grid-cols-1.*sm:grid-cols-2.*xl:grid-cols-4/);
     assert.match(header, /min-h-11 min-w-11/);
+    assert.match(styles, /\.home-full-hero-overlay/);
     assert.match(styles, /@media \(pointer: coarse\)/);
     assert.match(styles, /@media \(hover: none\)/);
 });
@@ -100,7 +107,8 @@ test('home restores brand energy through purposeful color regions', () => {
         assert.match(styles, new RegExp(`${token}:`));
     }
     for (const visualRole of [
-        'home-color-aurora',
+        'home-full-hero',
+        'home-full-hero-overlay',
         'home-trust-strip',
         'home-services-field',
         'home-team-field',
@@ -122,7 +130,7 @@ test('home service directory uses the full container for fast service selection'
     assert.match(page, /home-service-links/);
     assert.match(page, /md:grid-cols-\[240px_minmax\(0,1fr\)\]/);
     assert.match(page, /text-xl font-extrabold/);
-    assert.match(page, /min-h-28/);
+    assert.match(page, /min-h-24/);
     assert.doesNotMatch(page, /lg:sticky lg:top-40/);
     assert.match(styles, /\.home-service-directory/);
     assert.match(styles, /\.home-service-link:hover/);

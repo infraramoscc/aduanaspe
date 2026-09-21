@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 
 interface WhatsAppLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'> {
     messageKey?: string;
+    customMessage?: string;
     customNumber?: string;
     serviceSlug?: string;
     route?: string;
@@ -16,6 +17,7 @@ interface WhatsAppLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>
 
 function WhatsAppLink({
     messageKey,
+    customMessage,
     customNumber,
     serviceSlug,
     route,
@@ -30,7 +32,9 @@ function WhatsAppLink({
     const effectiveKey = messageKey ||
         (effectiveServiceSlug ? SERVICE_TO_MESSAGE_KEY[effectiveServiceSlug] : null) ||
         'general';
-    const href = getWhatsAppUrl(effectiveKey, customNumber);
+    const href = customMessage
+        ? getWhatsAppUrl('general', customNumber, customMessage)
+        : getWhatsAppUrl(effectiveKey, customNumber);
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
         trackEvent(GA4_EVENTS.WHATSAPP_CLICKED, {

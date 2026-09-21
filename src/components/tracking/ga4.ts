@@ -28,6 +28,7 @@ export const GA4_EVENTS = {
     // CTA Events
     CLICK_CTA_TO_SERVICIOS: 'click_cta_to_servicios',
     CLICK_CTA_TO_CONTACTO: 'click_cta_to_contacto',
+    CLICK_CTA_TO_PRECOTIZACION: 'click_cta_to_precotizacion',
     CLICK_CTA_TO_COMERCIO: 'click_cta_to_comercio',
     SERVICE_SELECTED: 'service_selected',
 

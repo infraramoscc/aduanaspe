@@ -12,6 +12,7 @@ interface FormBaseProps {
     successMessage?: string;
     errorMessage?: string;
     className?: string;
+    submitLabel?: string;
 }
 
 function FormBase({
@@ -20,6 +21,7 @@ function FormBase({
     successMessage = '¡Mensaje enviado correctamente! Nos pondremos en contacto contigo pronto.',
     errorMessage = 'Hubo un error al enviar el formulario. Por favor, intenta nuevamente.',
     className,
+    submitLabel = 'Enviar solicitud',
 }: FormBaseProps) {
     const [status, setStatus] = useState<FormStatus>('idle');
 
@@ -101,7 +103,7 @@ function FormBase({
                                 Enviando...
                             </span>
                         ) : (
-                            'Enviar solicitud'
+                            submitLabel
                         )}
                     </Button>
                 </form>

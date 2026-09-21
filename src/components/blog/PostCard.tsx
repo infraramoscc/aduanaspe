@@ -6,7 +6,6 @@
 import Link from 'next/link';
 import { cn, formatDate } from '@/lib/utils';
 import type { BlogPostCard } from '@/lib/blog/types';
-import { TopicIcon } from './MdxEnhanced';
 
 interface PostCardProps {
     post: BlogPostCard;
@@ -20,25 +19,15 @@ export function PostCard({ post, featured = false }: PostCardProps) {
         <Link
             href={`/blog/${post.slug}`}
             className={cn(
-                'group flex h-full min-w-0 flex-col transition-[transform,box-shadow,border-color,background-color,color] duration-200',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4',
+                'group flex h-full min-w-0 flex-col rounded-[1.5rem] border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3C3794] focus-visible:ring-offset-4',
                 featured
-                    ? 'service-card service-dark p-5 text-white lg:flex-row lg:gap-6 lg:p-7'
-                    : 'service-card service-blue'
+                    ? 'bg-gradient-to-br from-[#3C3794] via-[#2F2B77] to-[#0E7490] border-transparent p-6 text-white shadow-lg hover:-translate-y-2 hover:shadow-2xl lg:flex-row lg:gap-8 lg:p-8'
+                    : 'border-[var(--home-border-soft)] bg-white p-6 shadow-md hover:-translate-y-2 hover:border-[#3C3794] hover:shadow-2xl sm:p-8'
             )}
-            style={featured ? { background: 'linear-gradient(135deg,#3C3794 0%,#2F2B77 58%,#0E7490 100%)' } : undefined}
         >
             <div className={cn('min-w-0', featured ? 'lg:flex lg:w-[38%] lg:flex-col lg:justify-between' : '')}>
                 <div className="mb-4 flex items-start justify-between gap-4">
                     <div className="flex min-w-0 items-center gap-3">
-                        <div className={cn(
-                            'shrink-0 rounded-2xl border p-1',
-                            featured ? 'border-white/15 bg-white/10' : 'border-slate-200 bg-slate-50'
-                        )}>
-                            <div className="origin-center scale-[0.72]">
-                                <TopicIcon topic={post.topic} />
-                            </div>
-                        </div>
                         <div className="min-w-0">
                             <span className={cn(
                                 'inline-flex rounded-full px-3 py-1 text-xs font-semibold',
@@ -63,27 +52,9 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                         </span>
                     )}
                 </div>
-
-                {previewTags.length > 0 && (
-                    <div className="flex flex-wrap gap-2">
-                        {previewTags.map((tag) => (
-                            <span
-                                key={tag}
-                                className={cn(
-                                    'rounded-full px-2.5 py-1 text-[11px] font-medium',
-                                    featured
-                                        ? 'border border-white/15 bg-white/10 text-slate-200'
-                                        : 'border border-slate-200 bg-white text-slate-600'
-                                )}
-                            >
-                                #{tag}
-                            </span>
-                        ))}
-                    </div>
-                )}
             </div>
 
-            <div className={cn('flex min-w-0 flex-1 flex-col', featured ? 'lg:border-l lg:border-white/10 lg:pl-6' : 'mt-5')}>
+            <div className={cn('flex min-w-0 flex-1 flex-col', featured ? 'lg:border-l lg:border-white/10 lg:pl-6' : 'mt-2')}>
                 <h3 className={cn(
                     'text-xl font-bold leading-tight transition-colors',
                     featured ? 'text-white group-hover:text-slate-100' : 'text-slate-950 group-hover:text-slate-800'
@@ -98,19 +69,37 @@ export function PostCard({ post, featured = false }: PostCardProps) {
                     {post.description}
                 </p>
 
+                {previewTags.length > 0 && (
+                    <div className="mt-4 flex flex-wrap gap-2">
+                        {previewTags.map((tag) => (
+                            <span
+                                key={tag}
+                                className={cn(
+                                    'rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors',
+                                    featured
+                                        ? 'text-slate-400'
+                                        : 'text-slate-500 bg-slate-50 border border-slate-100 hover:border-slate-200'
+                                )}
+                            >
+                                #{tag}
+                            </span>
+                        ))}
+                    </div>
+                )}
+
                 <div className={cn(
-                    'mt-6 flex items-center justify-between border-t pt-4 text-sm',
+                    'mt-auto flex items-center justify-between border-t pt-4 text-sm',
                     featured ? 'border-white/10 text-slate-200' : 'border-slate-200 text-slate-600'
                 )}>
                     <span className="truncate pr-3">
                         {post.author}
                     </span>
                     <span className={cn(
-                        'inline-flex items-center gap-2 font-semibold',
-                        featured ? 'text-white' : 'service-link'
+                        'inline-flex items-center gap-2 font-semibold transition-colors',
+                        featured ? 'text-emerald-300 group-hover:text-emerald-400' : 'text-[#3C3794] group-hover:text-[#2F2B77]'
                     )}>
                         Leer análisis
-                        <span aria-hidden="true">{'->'}</span>
+                        <span className="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">{'->'}</span>
                     </span>
                 </div>
             </div>

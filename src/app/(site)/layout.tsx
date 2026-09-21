@@ -25,7 +25,7 @@ export default function SiteLayout({
                 Saltar al contenido principal
             </a>
             <Header />
-            <div className="pt-[150px] md:pt-[108px]">
+            <div className="pt-16 sm:pt-[108px]">
                 <Breadcrumbs />
                 <main id="main-content" className="min-h-screen">{children}</main>
             </div>

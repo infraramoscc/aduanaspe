@@ -16,15 +16,10 @@ import {
     generateBlogPostJsonLd,
     generateBlogBreadcrumbJsonLd,
 } from '@/lib/blog/seo';
-import { getTopicMapping } from '@/lib/blog/topics';
-import type { BlogTopic } from '@/lib/blog/types';
 import { Container } from '@/components/layout/Container';
 import {
-    ArticleShareActions,
     ArticleToc,
-    InlineLeadForm,
     PostCard,
-    RelatedServices,
     ServiceCTA,
 } from '@/components/blog';
 import { mdxComponents, slugifyHeading } from '@/components/blog/MdxComponents';
@@ -102,7 +97,6 @@ export default async function BlogPostPage({
 
     if (!post) notFound();
 
-    const topicMapping = getTopicMapping(post.topic);
     const relatedPosts = await getRelatedPosts(slug, post.topic);
     const rawContent = post.source === 'mdx' ? getMdxRawContent(slug) : null;
     const articleHeadings = extractHeadings(rawContent);
@@ -110,30 +104,6 @@ export default async function BlogPostPage({
 
     const articleJsonLd = generateBlogPostJsonLd(post);
     const breadcrumbJsonLd = generateBlogBreadcrumbJsonLd(post);
-    const articleUrl = `https://aduanaspe.com/blog/${post.slug}/`;
-    const showInlineLeadForm = !hasInlineServiceCta && Boolean(topicMapping?.showInlineForm || topicMapping?.temperature === 'caliente');
-    const inlineLeadHeadlineByTopic: Partial<Record<BlogTopic, string>> = {
-        importacion: 'Cuentanos que producto quieres importar y te damos asesoria sin costo antes de pagar al proveedor',
-        consultoria: 'Explicanos tu caso y te ayudamos a destrabar la operacion',
-        'clasificacion-arancelaria': 'Envianos tu producto y revisamos la partida arancelaria contigo',
-        fiscalizacion: 'Cuentanos la observacion o incidencia y te ayudamos a evaluar el siguiente paso',
-    };
-    const inlineLeadHeadline = inlineLeadHeadlineByTopic[post.topic];
-    const inlineLeadService = topicMapping?.primaryService ?? 'agenciamiento-aduanas';
-    const editorialSignals = [
-        {
-            label: 'Base de lectura',
-            value: 'Normativa, fuentes y contexto operativo',
-        },
-        {
-            label: 'Enfoque',
-            value: 'Aplicado a decisiones de importación',
-        },
-        {
-            label: 'Actualización',
-            value: post.updatedAt ? formatDate(post.updatedAt) : formatDate(post.date),
-        },
-    ];
 
     return (
         <>
@@ -148,20 +118,7 @@ export default async function BlogPostPage({
 
             <article className="bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.12),transparent_26%),linear-gradient(90deg,rgba(248,250,252,0.96)_0%,rgba(255,255,255,1)_18%,rgba(255,255,255,1)_82%,rgba(248,250,252,0.96)_100%)] py-12 md:py-16">
                 <Container size="xl">
-                    <div className="grid grid-cols-1 gap-10 lg:grid-cols-[200px_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[220px_minmax(0,1fr)] xl:gap-12">
-                        <aside className="hidden min-w-0 lg:block">
-                            <div className="sticky top-32 space-y-5">
-                                <ArticleToc headings={articleHeadings} />
-                                <div className="service-card service-card-compact service-cyan">
-                                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                                        Confianza
-                                    </p>
-                                    <p className="mt-2 text-sm leading-6 text-slate-700">
-                                        Contenido escrito para orientar decisiones. No reemplaza la revisión puntual de tu partida, documentos o permisos.
-                                    </p>
-                                </div>
-                            </div>
-                        </aside>
+                    <div className="mx-auto max-w-4xl">
 
                         <div className="min-w-0 lg:rounded-[36px] lg:bg-white lg:px-10 lg:py-8 lg:shadow-[0_24px_80px_-48px_rgba(15,23,42,0.28)] xl:px-12 xl:py-10">
                             <div className="mb-6">
@@ -213,18 +170,6 @@ export default async function BlogPostPage({
                                     </div>
                                 </div>
 
-                                <div className="mt-5 grid gap-3 md:grid-cols-3">
-                                    {editorialSignals.map((item) => (
-                                        <div key={item.label} className="rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-                                            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
-                                                {item.label}
-                                            </p>
-                                            <p className="mt-1 text-sm font-semibold leading-6 text-slate-800">
-                                                {item.value}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
                             </header>
 
                             <div className="mb-8 max-w-[82ch]">
@@ -269,29 +214,28 @@ export default async function BlogPostPage({
                                 </div>
                             )}
 
-                            <div className="mt-8 max-w-[82ch] border-t border-slate-200 pt-6">
-                                <ArticleShareActions articleUrl={articleUrl} title={post.title} />
-                            </div>
-
-                            {showInlineLeadForm && (
-                                <div className="max-w-[82ch]">
-                                    <InlineLeadForm
-                                        service={inlineLeadService}
-                                        topic={post.topic}
-                                        headline={inlineLeadHeadline}
-                                    />
-                                </div>
-                            )}
-
-                            <div className="mt-12 max-w-[82ch] border-t border-slate-200 pt-8">
-                                <RelatedServices topic={post.topic} />
+                            {/* Mega-Bloque de Captación (Lead Gen VIP) */}
+                            <div className="mt-12 rounded-[2rem] bg-[#1E1B4B] p-8 text-center shadow-2xl md:p-12 border border-[#3C3794] max-w-[82ch]">
+                                <h2 className="text-2xl font-bold text-white md:text-3xl">
+                                    ¿Te abruma la gestión documentaria?
+                                </h2>
+                                <p className="mt-4 text-lg text-slate-300">
+                                    Déjanos tu caso. Nuestros sectoristas se encargarán de evaluar tu operación y realizar los trámites por ti.
+                                </p>
+                                <Link
+                                    href="/contacto"
+                                    className="mt-8 inline-flex items-center justify-center rounded-full bg-emerald-400 px-8 py-4 text-base font-bold text-slate-900 shadow-lg transition-transform hover:-translate-y-1 hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/30"
+                                >
+                                    Cotizar mi operación ahora
+                                </Link>
                             </div>
 
                             {!hasInlineServiceCta && (
-                                <div className="mt-8 max-w-[82ch]">
+                                <div className="mt-10 max-w-[82ch] border-t border-slate-200 pt-6">
                                     <ServiceCTA topic={post.topic} position="footer" />
                                 </div>
                             )}
+
                         </div>
                     </div>
 

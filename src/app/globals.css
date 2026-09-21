@@ -624,6 +624,16 @@ body {
     linear-gradient(112deg, var(--home-canvas) 0%, var(--home-canvas) 52%, var(--home-cyan-soft) 100%);
 }
 
+.home-full-hero {
+  background: var(--home-ink);
+}
+
+.home-full-hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(11, 18, 34, 0.94) 0%, rgba(11, 18, 34, 0.84) 43%, rgba(11, 18, 34, 0.48) 72%, rgba(11, 18, 34, 0.36) 100%),
+    linear-gradient(0deg, rgba(11, 18, 34, 0.4), transparent 42%);
+}
+
 .home-color-aurora {
   position: absolute;
   inset: 0 42% 0 0;

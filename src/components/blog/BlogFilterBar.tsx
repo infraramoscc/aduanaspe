@@ -9,31 +9,17 @@ interface BlogFilterBarProps {
 
 export function BlogFilterBar({ activeCategory, categories, buildHref }: BlogFilterBarProps) {
     return (
-        <section className="service-card service-card-roomy service-cyan">
-            <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-                <div>
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                        Temas editoriales
-                    </p>
-                    <h2 className="mt-2 text-2xl font-bold text-slate-950">
-                        Encuentra la guía según tu etapa
-                    </h2>
-                    <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-600">
-                        Filtra por categoría para pasar de una duda general a una lectura más cercana a tu operación.
-                    </p>
-                </div>
+        <section className="flex flex-col items-center">
+            {activeCategory && (
+                <Link
+                    href={buildHref()}
+                    className="mb-6 inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition-colors hover:border-slate-400 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
+                >
+                    Limpiar filtro actual
+                </Link>
+            )}
 
-                {activeCategory && (
-                    <Link
-                        href={buildHref()}
-                        className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 px-5 py-3 text-sm font-semibold text-slate-900 transition-[border-color,background-color,color] hover:border-slate-400 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
-                    >
-                        Limpiar filtro
-                    </Link>
-                )}
-            </div>
-
-            <div className="mt-5 flex items-center gap-3 overflow-x-auto pb-1">
+            <div className="flex flex-wrap items-center justify-center gap-3">
                 <Link
                     href={buildHref()}
                     className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-semibold transition-[border-color,background-color,color,transform] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4 ${!activeCategory

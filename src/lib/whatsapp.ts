@@ -39,14 +39,14 @@ export const WHATSAPP_MESSAGES: Record<string, string> = {
 // Generar URL de WhatsApp
 // Cuando USE_WA_SUBDOMAIN sea true, usará wa.aduanaspe.com/[key]
 // Mientras tanto, usa wa.me con mensaje prellenado
-export function getWhatsAppUrl(messageKey: string = 'general', customNumber?: string): string {
+export function getWhatsAppUrl(messageKey: string = 'general', customNumber?: string, customMessage?: string): string {
     // Si el subdominio está activo y no hay número personalizado, usar URLs cortas
-    if (USE_WA_SUBDOMAIN && !customNumber) {
+    if (USE_WA_SUBDOMAIN && !customNumber && !customMessage) {
         return `${WA_SUBDOMAIN_URL}/${messageKey}`;
     }
 
     // Usar wa.me con mensaje prellenado
-    const message = WHATSAPP_MESSAGES[messageKey] || WHATSAPP_MESSAGES.general;
+    const message = customMessage || WHATSAPP_MESSAGES[messageKey] || WHATSAPP_MESSAGES.general;
     const encodedMessage = encodeURIComponent(message);
     const targetNumber = customNumber || WHATSAPP_NUMBER;
     return `https://wa.me/${targetNumber}?text=${encodedMessage}`;

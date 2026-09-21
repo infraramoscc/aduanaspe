@@ -59,91 +59,40 @@ export default async function BlogPage({
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
 
-            <section className="relative overflow-hidden border-b border-slate-200 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.14),transparent_28%),linear-gradient(180deg,rgba(255,255,255,0.99),rgba(248,250,252,0.96))] py-14 md:py-18">
-                <Container>
-                    <div className="grid gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.95fr)] lg:items-end">
-                        <div>
-                            <span className="section-badge">Biblioteca AduanasPE</span>
-                            <h1 className="mt-4 max-w-3xl text-balance text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
-                                Guías claras para importar, exportar y decidir con menos riesgo
-                            </h1>
-                            <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
-                                Artículos prácticos sobre documentos, permisos, costos y decisiones operativas. Cada guía está pensada para ayudarte antes de pagar al proveedor, cotizar un servicio o mover tu carga.
-                            </p>
-                            <div className="mt-6 flex flex-wrap gap-3 text-sm font-semibold text-slate-700">
-                                {['Enfoque operativo', 'Fuentes normativas', 'Lectura para importadores'].map((item) => (
-                                    <span key={item} className="rounded-full border border-slate-200 bg-white/85 px-4 py-2 shadow-sm">
-                                        {item}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-
-                        <div className="service-card service-card-roomy service-blue">
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                                Criterio editorial
-                            </p>
-                            <h2 className="mt-3 text-2xl font-bold leading-tight text-slate-950">
-                                Contenido para tomar decisiones, no solo para leer definiciones.
-                            </h2>
-                            <div className="mt-5 grid grid-cols-3 gap-3 lg:grid-cols-1 xl:grid-cols-3">
-                            <div className="rounded-2xl border border-slate-200 bg-white/85 p-3 shadow-sm">
-                                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                                    Archivo
-                                </p>
-                                <p className="mt-2 text-2xl font-bold text-slate-950">
-                                    {total}
-                                </p>
-                                <p className="mt-1 text-sm text-slate-600">
-                                    articulos publicados
-                                </p>
-                            </div>
-                            <div className="rounded-2xl border border-slate-200 bg-white/85 p-3 shadow-sm">
-                                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                                    Temas
-                                </p>
-                                <p className="mt-2 text-2xl font-bold text-slate-950">
-                                    {categories.length}
-                                </p>
-                                <p className="mt-1 text-sm text-slate-600">
-                                    categorias activas
-                                </p>
-                            </div>
-                            <div className="rounded-2xl border border-slate-200 bg-white/85 p-3 shadow-sm">
-                                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
-                                    Selección
-                                </p>
-                                <p className="mt-2 text-2xl font-bold text-slate-950">
-                                    {visibleCount}
-                                </p>
-                                <p className="mt-1 text-sm text-slate-600">
-                                    {activeCategory ? `resultados en ${activeCategory}` : 'resultados visibles'}
-                                </p>
-                            </div>
-                            </div>
+            <BlogSearch
+                posts={posts}
+                activeCategory={activeCategory}
+                heroContent={
+                    <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+                        <span className="section-badge">Biblioteca AduanasPE</span>
+                        <h1 className="mt-6 text-balance text-4xl font-bold tracking-tight text-slate-950 md:text-5xl">
+                            Guías claras para importar, exportar y decidir con menos riesgo
+                        </h1>
+                        <p className="mt-4 text-lg leading-8 text-slate-600">
+                            Artículos prácticos sobre documentos, permisos, costos y decisiones operativas. Cada guía está pensada para ayudarte antes de pagar al proveedor, cotizar un servicio o mover tu carga.
+                        </p>
+                        <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm font-semibold text-slate-700">
+                            {['Enfoque operativo', 'Fuentes normativas', 'Lectura para importadores'].map((item) => (
+                                <span key={item} className="rounded-full border border-slate-200 bg-white/85 px-4 py-2 shadow-sm">
+                                    {item}
+                                </span>
+                            ))}
                         </div>
                     </div>
-                </Container>
-            </section>
-
-            {categories.length > 0 && (
-                <section className="py-8">
+                }
+            >
+                {categories.length > 0 && (
+                    <BlogFilterBar
+                        activeCategory={activeCategory}
+                        categories={categories}
+                        buildHref={buildBlogHref}
+                    />
+                )}
+            </BlogSearch>
+            {posts.length === 0 && (
+                <section className="pb-16">
                     <Container>
-                        <BlogFilterBar
-                            activeCategory={activeCategory}
-                            categories={categories}
-                            buildHref={buildBlogHref}
-                        />
-                    </Container>
-                </section>
-            )}
-
-            <section className="pb-16">
-                <Container>
-                    {posts.length > 0 ? (
-                        <BlogSearch posts={posts} activeCategory={activeCategory} />
-                    ) : (
-                        <div className="service-card service-card-spacious service-orange text-center">
+                        <div className="rounded-[1.5rem] border border-[var(--home-border-soft)] bg-white p-12 text-center shadow-md">
                             <h2 className="text-2xl font-bold text-slate-900">
                                 No encontramos articulos para esta categoria
                             </h2>
@@ -152,15 +101,19 @@ export default async function BlogPage({
                             </p>
                             <Link
                                 href="/blog"
-                                className="mt-6 inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition-[border-color,background-color,color] hover:border-slate-300 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
+                                className="mt-6 inline-flex items-center justify-center rounded-full bg-[#3C3794] px-6 py-3 font-semibold text-white transition-transform hover:-translate-y-0.5 hover:bg-[#2F2B77] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-300 focus-visible:ring-offset-4"
                             >
                                 Ver todos los articulos
                             </Link>
                         </div>
-                    )}
+                    </Container>
+                </section>
+            )}
 
-                    {totalPages > 1 && (
-                        <nav className="mt-12 flex flex-col items-center justify-center gap-4 md:flex-row" aria-label="Paginacion">
+            {totalPages > 1 && (
+                <section className="pb-16">
+                    <Container>
+                        <nav className="flex flex-col items-center justify-center gap-4 md:flex-row" aria-label="Paginacion">
                             {hasPrev && (
                                 <Link
                                     href={buildBlogHref(safePage - 1, activeCategory)}
@@ -183,9 +136,9 @@ export default async function BlogPage({
                                 </Link>
                             )}
                         </nav>
-                    )}
-                </Container>
-            </section>
+                    </Container>
+                </section>
+            )}
         </>
     );
 }

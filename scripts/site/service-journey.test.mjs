@@ -54,15 +54,15 @@ test('home turns coordination and final contact into a confident three-step path
     const styles = read('src/app/globals.css');
 
     assert.match(page, /home-team-steps/);
-    for (const step of ['Revisamos tu caso', 'Coordinamos la operación', 'Te mantenemos al tanto']) {
+    for (const step of ['Revisamos tu caso', 'Definimos el alcance', 'Coordinamos y reportamos']) {
         assert.match(page, new RegExp(step));
     }
     assert.match(page, /home-final-proof/);
-    assert.match(page, /Respuesta en 1 hora/);
-    assert.match(page, /Sin costo/);
-    assert.match(page, /Sin compromiso/);
-    assert.match(page, /Revisar mi operación sin costo/);
-    assert.match(page, /Prefiero que me contacten/);
+    assert.match(page, /Primera respuesta en 1 hora hábil/);
+    assert.match(page, /Evaluación inicial sin costo/);
+    assert.match(page, /Alcance antes de cotizar/);
+    assert.match(page, /Hablar con un especialista/);
+    assert.match(page, /Volver a la evaluación/);
     assert.match(styles, /\.home-team-steps/);
     assert.match(styles, /\.home-final-proof/);
 });

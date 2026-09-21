@@ -3,6 +3,7 @@
  * Merges MDX and Sanity posts into a single API
  */
 
+import { unstable_cache } from 'next/cache';
 import { getAllMdxPosts, getMdxPostBySlug, getMdxSlugs } from './mdx';
 import { getSanityPosts, getSanityPostBySlug, getSanitySlugs } from './sanity';
 import type { BlogPostCard, BlogCategory, BlogTopic } from './types';
@@ -13,7 +14,7 @@ const POSTS_PER_PAGE = 9;
  * Get all posts from both sources
  * -------------------------------------------------- */
 
-export async function getAllPosts(): Promise<BlogPostCard[]> {
+async function _fetchAllPosts(): Promise<BlogPostCard[]> {
     const [mdxPosts, sanityPosts] = await Promise.all([
         getAllMdxPosts(),
         getSanityPosts(),
@@ -36,6 +37,12 @@ export async function getAllPosts(): Promise<BlogPostCard[]> {
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
     );
 }
+
+export const getAllPosts = unstable_cache(
+    _fetchAllPosts,
+    ['blog-posts-all'],
+    { revalidate: 3600, tags: ['blog'] }
+);
 
 /* --------------------------------------------------
  * Get posts with pagination

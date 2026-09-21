@@ -16,10 +16,15 @@ export const precotizacionSchema = z.object({
     empresa: z.string().optional(),
     email: z.string().email('Email inválido'),
     telefono: z.string().optional(),
-    tipo_carga: z.enum(['maritima', 'aerea', 'terrestre', 'courier'], {
+    necesidad: z.enum(['integral', 'flete', 'aduanas', 'incidencia', 'orientacion']).optional(),
+    etapa: z.enum(['planificando', 'proveedor_listo', 'reservada', 'transito', 'arribada', 'incidencia']).optional(),
+    tipo_carga: z.enum(['maritima', 'aerea', 'terrestre', 'courier', 'no_se'], {
         message: 'Selecciona un tipo de carga',
     }),
     origen_destino: z.string().optional(),
+    mercancia: z.string().optional(),
+    peso_volumen: z.string().optional(),
+    fecha_estimada: z.string().optional(),
     descripcion: z.string().optional(),
     servicio: z.string().optional(), // Nombre del servicio desde donde se envía
 });

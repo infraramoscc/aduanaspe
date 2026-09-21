@@ -24,6 +24,7 @@ export const ROUTES = {
         importarJuguetesUtilesEscritorio: '/comercio-exterior/importacion/importar-juguetes-utiles-escritorio',
     },
     contacto: '/contacto',
+    evaluar: '/evaluar',
     blog: '/blog',
     blogPost: (slug: string) => `/blog/${slug}`,
     tools: '/herramientas',
