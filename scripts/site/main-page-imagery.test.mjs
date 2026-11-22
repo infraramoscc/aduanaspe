@@ -364,9 +364,23 @@ test('generic principal pages wire exactly three registered images into shared J
   }
 });
 
-test('home wires its registered hero and middle images into the custom control-tower composition', () => {
+test('home renders its registered images in the hero and coordination section', () => {
   const route = 'src/app/(site)/page.tsx';
   const source = parse(route);
+  const hero = parse('src/components/sections/HeroHome.tsx');
+  assert.equal(jsxOpeningElements(source, 'HeroHome').length, 1, 'home must render one HeroHome');
+
+  const heroBinding = descendants(hero).find((node) =>
+    ts.isVariableDeclaration(node)
+    && isIdentifier(node.name, 'photo')
+    && propertyChain(node.initializer) === 'mainPageImages.home.hero',
+  );
+  assert.ok(heroBinding, 'HeroHome must use the registered home hero image');
+  const heroImages = jsxOpeningElements(hero, 'Image');
+  assert.equal(heroImages.length, 1, 'HeroHome must render exactly one image');
+  assert.equal(propertyChain(jsxExpression(jsxAttribute(heroImages[0], 'src'), 'hero src')), 'photo.src');
+  assert.equal(propertyChain(jsxExpression(jsxAttribute(heroImages[0], 'alt'), 'hero alt')), 'photo.alt');
+
   const homeBinding = descendants(source).find((node) =>
     ts.isVariableDeclaration(node)
     && isIdentifier(node.name, 'homeImages')
@@ -374,13 +388,9 @@ test('home wires its registered hero and middle images into the custom control-t
   );
   assert.ok(homeBinding, `${route} must bind mainPageImages.home once as homeImages`);
 
-  const images = jsxOpeningElements(source, 'Image');
-  assert.equal(images.length, 2, `${route} must render exactly two purposeful next/image elements`);
-  for (const slot of ['hero', 'middle']) {
-    const wired = images.filter((opening) =>
-      propertyChain(jsxExpression(jsxAttribute(opening, 'src'), `home ${slot} src`)) === `homeImages.${slot}.src`,
-    );
-    assert.equal(wired.length, 1, `${route} must wire homeImages.${slot}.src exactly once`);
-  }
+  const middleImages = jsxOpeningElements(source, 'Image').filter((opening) =>
+    propertyChain(jsxExpression(jsxAttribute(opening, 'src'), 'home middle src')) === 'homeImages.middle.src',
+  );
+  assert.equal(middleImages.length, 1, `${route} must wire homeImages.middle.src exactly once`);
   assert.equal(descendants(source).filter((node) => propertyChain(node) === 'homeImages.lower').length, 0, `${route} must not add an unused lower image to the custom composition`);
 });
