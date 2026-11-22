@@ -7,32 +7,32 @@ import { GA4_EVENTS, TrackedLink, WhatsAppLink } from '@/components/tracking';
 import { mainPageImages } from '@/content/mainPageImages';
 import { ROUTES } from '@/lib/routes';
 
-const generalMessage = 'Hola, AduanasPE. Quisiera orientación para mi operación de comercio exterior.\n\nMercancía:\nOrigen y destino:\nEtapa de la operación y en qué necesito ayuda:';
+const generalMessage = 'Quisiera orientación para mi operación de comercio exterior.\n\nMercancía:\nOrigen y destino:\nEtapa de la operación y en qué necesito ayuda:';
 
 const cargoOptions = [
     {
         id: 'fcl',
         label: 'Contenedor FCL',
         detail: 'Contenedor completo de 20 o 40 pies.',
-        message: 'Hola, AduanasPE. Quisiera cotizar un embarque en contenedor completo (FCL).\n\nMercancía:\nOrigen y destino:\nCantidad y tamaño de contenedores (20 o 40 pies):\nFecha estimada de embarque:',
+        message: 'Quisiera cotizar un embarque en contenedor completo (FCL).\n\nMercancía:\nOrigen y destino:\nCantidad y tamaño de contenedores (20 o 40 pies):\nFecha estimada de embarque:',
     },
     {
         id: 'lcl',
         label: 'Carga suelta LCL',
         detail: 'Mercancía consolidada con otros embarques.',
-        message: 'Hola, AduanasPE. Quisiera cotizar un embarque de carga suelta consolidada (LCL).\n\nMercancía:\nOrigen y destino:\nCantidad de bultos, peso y volumen aproximados (kg y m³):\nFecha estimada de embarque:',
+        message: 'Quisiera cotizar un embarque de carga suelta consolidada (LCL).\n\nMercancía:\nOrigen y destino:\nCantidad de bultos, peso y volumen aproximados (kg y m³):\nFecha estimada de embarque:',
     },
     {
         id: 'aereo',
         label: 'Carga aérea',
         detail: 'Para envíos urgentes o de alto valor.',
-        message: 'Hola, AduanasPE. Quisiera cotizar un envío por vía aérea.\n\nMercancía:\nCiudad de origen y destino:\nCantidad de bultos, peso y medidas aproximadas:\nFecha en que necesito recibir la carga:',
+        message: 'Quisiera cotizar un envío por vía aérea.\n\nMercancía:\nCiudad de origen y destino:\nCantidad de bultos, peso y medidas aproximadas:\nFecha en que necesito recibir la carga:',
     },
     {
         id: 'asesoria',
         label: 'Asesoría y permisos',
         detail: 'Orientación sobre requisitos y trámites aduaneros.',
-        message: 'Hola, AduanasPE. Quisiera orientación sobre los requisitos o permisos para mi operación.\n\nProducto y uso previsto:\nOperación (importación o exportación):\nEtapa de la operación:\nTrámite o duda que quiero resolver:',
+        message: 'Quisiera orientación sobre los requisitos o permisos para mi operación.\n\nProducto y uso previsto:\nOperación (importación o exportación):\nEtapa de la operación:\nTrámite o duda que quiero resolver:',
     },
 ] as const;
 
@@ -89,7 +89,7 @@ export function HeroHome() {
                     <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap">
                         <WhatsAppLink
                             messageKey={cargo?.id ?? 'asesoria_gratis'}
-                            customMessage={cargo?.message ?? generalMessage}
+                            customMessageBody={cargo?.message ?? generalMessage}
                             route="home-hero"
                             className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-emerald-300 px-5 py-3 text-sm font-bold text-[#10271e] transition-colors hover:bg-emerald-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-emerald-300"
                         >

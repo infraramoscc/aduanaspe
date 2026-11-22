@@ -20,7 +20,6 @@ export const metadata: Metadata = {
 // Información de contacto
 const contactInfo = {
     whatsapp: '+51 944 785 974',
-    whatsappLink: 'https://wa.me/51944785974',
     location: 'Callao, Perú',
     workMode: 'Atención 100% remota – Clientes de todo el Perú',
 };

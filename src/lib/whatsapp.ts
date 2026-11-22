@@ -11,43 +11,30 @@ export const WHATSAPP_NUMBER = '51944785974';
 export const USE_WA_SUBDOMAIN = false;
 export const WA_SUBDOMAIN_URL = 'https://wa.aduanaspe.com';
 
-// Mensajes prellenados por servicio
-export const WHATSAPP_MESSAGES: Record<string, string> = {
-    // Servicios principales
-    aduanas: 'Hola, tengo una consulta sobre despacho aduanero:',
-
-    carga: 'Hola, quisiera consultar sobre una carga internacional:',
-
-    transporte: 'Hola, tengo una consulta sobre transporte de carga:',
-
-    resguardo: 'Hola, quisiera consultar sobre resguardo para una operación:',
-
-    consultoria: 'Hola, tengo una consulta aduanera:',
-
-    // Mensaje general
-    general: 'Hola, tengo la siguiente consulta:',
-
-    // Mensaje de contacto rápido
-    contacto: 'Hola, quisiera hacer una consulta:',
-
-    asesoria_gratis: 'Hola, quisiera recibir orientación sobre mi caso:',
-
-    // Mensaje para Campañas Ads
-    ads_primera_importacion: 'Hola, quiero consultar sobre mi primera importación:',
+const WHATSAPP_MESSAGE_BODIES: Record<string, string> = {
+    aduanas: 'Tengo una consulta sobre despacho aduanero:',
+    carga: 'Quisiera consultar sobre una carga internacional:',
+    transporte: 'Tengo una consulta sobre transporte de carga:',
+    resguardo: 'Quisiera consultar sobre resguardo para una operación:',
+    consultoria: 'Tengo una consulta aduanera:',
+    general: 'Tengo la siguiente consulta:',
+    contacto: 'Quisiera hacer una consulta:',
+    asesoria_gratis: 'Quisiera recibir orientación sobre mi caso:',
+    ads_primera_importacion: 'Quiero consultar sobre mi primera importación:',
 };
 
 // Generar URL de WhatsApp
 // Cuando USE_WA_SUBDOMAIN sea true, usará wa.aduanaspe.com/[key]
 // Mientras tanto, usa wa.me con mensaje prellenado
-export function getWhatsAppUrl(messageKey: string = 'general', customNumber?: string, customMessage?: string): string {
+export function getWhatsAppUrl(messageKey: string = 'general', customNumber?: string, customMessageBody?: string): string {
     // Si el subdominio está activo y no hay número personalizado, usar URLs cortas
-    if (USE_WA_SUBDOMAIN && !customNumber && !customMessage) {
+    if (USE_WA_SUBDOMAIN && !customNumber && !customMessageBody) {
         return `${WA_SUBDOMAIN_URL}/${messageKey}`;
     }
 
     // Usar wa.me con mensaje prellenado
-    const message = customMessage || WHATSAPP_MESSAGES[messageKey] || WHATSAPP_MESSAGES.general;
-    const encodedMessage = encodeURIComponent(message);
+    const body = customMessageBody || WHATSAPP_MESSAGE_BODIES[messageKey] || WHATSAPP_MESSAGE_BODIES.general;
+    const encodedMessage = encodeURIComponent(`Hola, Jean Ramos. ${body}`);
     const targetNumber = customNumber || WHATSAPP_NUMBER;
     return `https://wa.me/${targetNumber}?text=${encodedMessage}`;
 }

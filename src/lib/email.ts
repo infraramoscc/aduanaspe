@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import type { DiagnosticoData, PrecotizacionData, ContactoData } from './schemas';
+import { getWhatsAppUrl } from './whatsapp';
 
 // Inicializar Resend (usa API key de env o modo mock)
 const resend = process.env.RESEND_API_KEY
@@ -69,7 +70,7 @@ function generateConfirmationHtml(formType: FormType, nombre: string): string {
                     Si tienes alguna consulta urgente, puedes contactarnos por WhatsApp.
                 </p>
                 <div style="margin-top: 30px; text-align: center;">
-                    <a href="https://wa.me/51944785974" style="background: #25D366; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
+                    <a href="${getWhatsAppUrl('contacto')}" style="background: #25D366; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold;">
                         Escribir por WhatsApp
                     </a>
                 </div>
