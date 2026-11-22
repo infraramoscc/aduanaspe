@@ -67,7 +67,7 @@ function FormBase({
     return (
         <Card className={cn('max-w-xl mx-auto', className)}>
             <CardContent className="p-6 md:p-8">
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-5" data-clarity-mask="True">
                     {children}
 
                     {status === 'error' && (

@@ -23,7 +23,7 @@ function TrackedLink({
     ...props
 }: TrackedLinkProps) {
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        trackEvent(eventName, { ...eventParams, href });
+        trackEvent(eventName, { ...eventParams, href: href.split(/[?#]/, 1)[0] });
         onClick?.(e);
     };
 

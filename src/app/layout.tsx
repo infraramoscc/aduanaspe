@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Outfit } from 'next/font/google';
-import { GoogleAnalytics } from '@/components/tracking/GoogleAnalytics';
+import { AnalyticsPreferences } from '@/components/tracking/AnalyticsPreferences';
 import './globals.css';
 
 const outfit = Outfit({
@@ -58,8 +58,8 @@ export default function RootLayout({
     return (
         <html lang="es">
             <body className={`${outfit.variable} antialiased font-sans`}>
-                <GoogleAnalytics />
                 {children}
+                <AnalyticsPreferences />
             </body>
         </html>
     );

@@ -1,20 +1,12 @@
-/**
- * GA4 Event Tracking System
- * Integrated with Google Analytics 4
- */
-
-declare global {
-    interface Window {
-        gtag?: (...args: unknown[]) => void;
-    }
-}
+import { getAnalyticsPreference } from './analyticsConsent';
+import { capturePostHog } from './posthog';
 
 type EventParams = Record<string, string | number | boolean>;
 
 export function trackEvent(name: string, params?: EventParams): void {
-    // Send to GA4 if available
-    if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', name, params);
+    if (getAnalyticsPreference() === 'accepted') {
+        window.gtag?.('event', name, params);
+        capturePostHog(name, params);
     }
 
     // Development logging

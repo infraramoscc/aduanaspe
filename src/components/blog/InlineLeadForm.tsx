@@ -145,7 +145,7 @@ export function InlineLeadForm({
                 </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="mx-auto max-w-xl space-y-4" noValidate>
+            <form onSubmit={handleSubmit} className="mx-auto max-w-xl space-y-4" data-clarity-mask="True" noValidate>
                 <Input
                     ref={nameRef}
                     id="blog-inline-name"
