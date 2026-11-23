@@ -148,7 +148,7 @@ export default async function BlogPostPage({
                                 </h1>
 
                                 <p className="mt-4 max-w-[62ch] text-pretty text-lg leading-8 text-slate-600">
-                                    {post.description}
+                                    {post.intro ?? post.description}
                                 </p>
 
                                 <div className="mt-8 grid gap-5 rounded-[28px] border border-slate-200 bg-slate-50/80 p-5 md:grid-cols-[auto,1fr] md:items-center">
@@ -214,23 +214,24 @@ export default async function BlogPostPage({
                                 </div>
                             )}
 
-                            {/* Mega-Bloque de Captación (Lead Gen VIP) */}
-                            <div className="mt-12 rounded-[2rem] bg-[#1E1B4B] p-8 text-center shadow-2xl md:p-12 border border-[#3C3794] max-w-[82ch]">
-                                <h2 className="text-2xl font-bold text-white md:text-3xl">
-                                    ¿Te abruma la gestión documentaria?
-                                </h2>
-                                <p className="mt-4 text-lg text-slate-300">
-                                    Déjanos tu caso. Nuestros sectoristas se encargarán de evaluar tu operación y realizar los trámites por ti.
-                                </p>
-                                <Link
-                                    href="/contacto"
-                                    className="mt-8 inline-flex items-center justify-center rounded-full bg-emerald-400 px-8 py-4 text-base font-bold text-slate-900 shadow-lg transition-transform hover:-translate-y-1 hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/30"
-                                >
-                                    Cotizar mi operación ahora
-                                </Link>
-                            </div>
+                            {!post.hideDefaultLeadCtas && (
+                                <div className="mt-12 rounded-[2rem] bg-[#1E1B4B] p-8 text-center shadow-2xl md:p-12 border border-[#3C3794] max-w-[82ch]">
+                                    <h2 className="text-2xl font-bold text-white md:text-3xl">
+                                        ¿Te abruma la gestión documentaria?
+                                    </h2>
+                                    <p className="mt-4 text-lg text-slate-300">
+                                        Déjanos tu caso. Nuestros sectoristas se encargarán de evaluar tu operación y realizar los trámites por ti.
+                                    </p>
+                                    <Link
+                                        href="/contacto"
+                                        className="mt-8 inline-flex items-center justify-center rounded-full bg-emerald-400 px-8 py-4 text-base font-bold text-slate-900 shadow-lg transition-transform hover:-translate-y-1 hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/30"
+                                    >
+                                        Cotizar mi operación ahora
+                                    </Link>
+                                </div>
+                            )}
 
-                            {!hasInlineServiceCta && (
+                            {!post.hideDefaultLeadCtas && !hasInlineServiceCta && (
                                 <div className="mt-10 max-w-[82ch] border-t border-slate-200 pt-6">
                                     <ServiceCTA topic={post.topic} position="footer" />
                                 </div>

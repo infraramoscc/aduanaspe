@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Container } from '@/components/layout';
 import { GA4_EVENTS, TrackedLink, WhatsAppLink } from '@/components/tracking';
 import { mainPageImages } from '@/content/mainPageImages';
-import { ROUTES } from '@/lib/routes';
+import { IMPORT_FROM_CHINA_GUIDE, ROUTES } from '@/lib/routes';
 
 const generalMessage = 'Quisiera orientación para mi operación de comercio exterior.\n\nMercancía:\nOrigen y destino:\nEtapa de la operación y en qué necesito ayuda:';
 
@@ -59,6 +59,15 @@ export function HeroHome() {
                     <p className="mt-4 max-w-[49ch] text-base leading-relaxed text-slate-200 sm:mt-5 sm:text-lg">
                         Coordinamos tu flete, despacho aduanero y transporte local. Empieza con una evaluación sin costo y un ejecutivo que te orienta sobre el siguiente paso.
                     </p>
+
+                    <TrackedLink
+                        href={IMPORT_FROM_CHINA_GUIDE.href}
+                        eventName={GA4_EVENTS.NAV_CLICK}
+                        eventParams={{ location: 'home-hero', label: IMPORT_FROM_CHINA_GUIDE.label }}
+                        className="mt-2 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-semibold text-indigo-100 underline decoration-indigo-300 underline-offset-4 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+                    >
+                        Guía para importar de China a Perú <span aria-hidden="true">→</span>
+                    </TrackedLink>
 
                     <fieldset className="mt-6 min-w-0 sm:mt-8">
                         <legend className="text-sm font-semibold text-white">

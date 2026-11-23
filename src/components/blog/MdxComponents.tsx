@@ -7,6 +7,8 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from 'next/link';
 import { isValidElement, type ReactNode } from 'react';
+import { ImportCostSimulator } from '@/components/tools/ImportCostSimulator';
+import { WhatsAppLink } from '@/components/tracking/WhatsAppLink';
 
 function extractText(children: ReactNode): string {
     if (typeof children === 'string' || typeof children === 'number') {
@@ -323,6 +325,7 @@ export {
     * -------------------------------------------------- */
 
 export const mdxComponents = {
+    ImportCostSimulator,
     DocumentImage,
     h1: H1,
     h2: H2,
@@ -347,6 +350,7 @@ export const mdxComponents = {
     // Custom components available in MDX files
     Callout,
     SmartLink,
+    WhatsAppLink,
     // Enhanced visual components
     DataCard,
     StatGrid,

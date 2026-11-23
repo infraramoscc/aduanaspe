@@ -23,6 +23,7 @@ export const GA4_EVENTS = {
     CLICK_CTA_TO_PRECOTIZACION: 'click_cta_to_precotizacion',
     CLICK_CTA_TO_COMERCIO: 'click_cta_to_comercio',
     SERVICE_SELECTED: 'service_selected',
+    IMPORT_COST_CALCULATED: 'import_cost_calculated',
 
     // WhatsApp Events
     CLICK_WHATSAPP_GENERAL: 'click_whatsapp_general',

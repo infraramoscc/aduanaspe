@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import type { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
+import { IMPORT_COST_SIMULATOR_PATH } from '@/content/tools';
 
 const BASE_URL = 'https://aduanaspe.com';
 
@@ -152,6 +153,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             url: `${BASE_URL}/blog/`,
             sourceFile: 'src/app/(site)/blog/page.tsx',
             changeFrequency: 'daily',
+            priority: 0.8,
+        },
+        {
+            url: `${BASE_URL}${IMPORT_COST_SIMULATOR_PATH}`,
+            sourceFile: 'src/components/tools/ImportCostSimulator.tsx',
+            changeFrequency: 'monthly',
             priority: 0.8,
         },
     ];

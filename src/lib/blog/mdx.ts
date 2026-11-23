@@ -43,6 +43,7 @@ export function getMdxPostBySlug(slug: string): BlogPostCard | null {
         source: 'mdx',
         title: frontmatter.title,
         description: frontmatter.description,
+        intro: frontmatter.intro,
         date: frontmatter.date,
         updatedAt: frontmatter.updatedAt,
         author: frontmatter.author ?? 'AduanasPE',
@@ -52,6 +53,7 @@ export function getMdxPostBySlug(slug: string): BlogPostCard | null {
         image: frontmatter.image,
         imageAlt: frontmatter.imageAlt,
         featured: frontmatter.featured ?? false,
+        hideDefaultLeadCtas: frontmatter.hideDefaultLeadCtas === true,
         readingTime: stats.text.replace('read', 'lectura'),
     };
 }

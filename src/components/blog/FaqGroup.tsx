@@ -5,6 +5,7 @@ interface FaqGroupProps {
     faqs?: {
         question: string;
         answer: string;
+        link?: { href: string; label: string };
     }[];
     json?: string;
 }
@@ -45,6 +46,14 @@ export function FaqGroup({ faqs, json }: FaqGroupProps) {
                             </summary>
                             <p className="pt-4 text-sm leading-7 text-slate-600">
                                 {faq.answer}
+                                {faq.link && (
+                                    <>
+                                        {' '}
+                                        <a href={faq.link.href} className="font-semibold text-indigo-800 underline underline-offset-4">
+                                            {faq.link.label}
+                                        </a>
+                                    </>
+                                )}
                             </p>
                         </details>
                     ))}

@@ -1,3 +1,6 @@
+export const IMPORT_COST_SIMULATOR_SLUG = 'simulador-costos-importacion';
+export const IMPORT_COST_SIMULATOR_PATH = `/herramientas/${IMPORT_COST_SIMULATOR_SLUG}/`;
+
 export type ToolCategorySlug = 'costos-tributos' | 'logistica-tarifarios' | 'normativa-cumplimiento';
 
 export interface ToolCategory {
@@ -69,17 +72,17 @@ export const toolPreviews: ToolPreview[] = [
         searchTerms: ['igv', 'ipm', 'ad valorem', 'impuestos', 'tributos', 'liquidacion'],
     },
     {
-        slug: 'simulador-costos-importacion',
-        title: 'Simulador de costos de importacion',
-        summary: 'Integra origen, tributos y gastos locales para proyectar el costo total de una importacion.',
+        slug: IMPORT_COST_SIMULATOR_SLUG,
+        title: 'Simulador de costos de importación',
+        summary: 'Estima el flete y los gastos logísticos para importar desde China a Perú por vía marítima FCL, LCL o aérea. Consulta el desglose con IGV en USD.',
         category: 'costos-tributos',
         tradeFlow: 'Importacion',
         idealFor: 'Importadores que comparan proveedores, volumenes o escenarios de rentabilidad.',
         whenToUse: 'Antes de cotizar formalmente, para aterrizar el costo total por operacion.',
         icon: 'simulation',
-        statusLabel: 'En diseño funcional',
+        statusLabel: 'Disponible',
         featured: true,
-        outputs: ['Costo aterrizado', 'Escenario por tramo', 'Base para pre-cotizacion'],
+        outputs: ['Flete y cargos en origen y destino', 'Gastos afectos y no afectos al IGV', 'Costo logístico total en USD'],
         relatedLabel: 'Ver guia de importacion',
         relatedHref: '/comercio-exterior/importacion',
         searchTerms: ['costo importacion', 'margen', 'simulador', 'gastos locales', 'rentabilidad'],

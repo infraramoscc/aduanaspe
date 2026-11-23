@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { Container } from '@/components/layout';
 import { ToolGlyph } from '@/components/tools';
-import { toolPreviews, getToolBySlug, getToolCategory } from '@/content/tools';
+import { ImportCostSimulator } from '@/components/tools/ImportCostSimulator';
+import { IMPORT_COST_SIMULATOR_PATH, IMPORT_COST_SIMULATOR_SLUG, toolPreviews, getToolBySlug, getToolCategory } from '@/content/tools';
 import { GA4_EVENTS, TrackedLink, WhatsAppLink } from '@/components/tracking';
 import { ROUTES } from '@/lib/routes';
 
@@ -48,6 +49,14 @@ export async function generateMetadata({ params }: ToolPageProps): Promise<Metad
         };
     }
 
+    if (slug === IMPORT_COST_SIMULATOR_SLUG) {
+        return {
+            title: `${tool.title} en Perú | AduanasPE`,
+            description: tool.summary,
+            alternates: { canonical: `https://aduanaspe.com${IMPORT_COST_SIMULATOR_PATH}` },
+        };
+    }
+
     return {
         title: `${tool.title} | Proximamente | AduanasPE`,
         description: `${tool.summary} Ficha de herramienta de AduanasPE actualmente en preparacion.`,
@@ -72,6 +81,36 @@ export default async function HerramientaPreviewPage({ params }: ToolPageProps) 
 
     if (!tool) {
         notFound();
+    }
+
+    if (slug === IMPORT_COST_SIMULATOR_SLUG) {
+        return (
+            <section className="bg-[linear-gradient(180deg,#eeedfb_0%,#f8f6f1_45%)] py-8 md:py-12">
+                <Container size="xl">
+                    <TrackedLink
+                        href={ROUTES.tools}
+                        eventName={GA4_EVENTS.NAV_CLICK}
+                        eventParams={{ location: 'import_cost_simulator_back', label: tool.slug }}
+                        className="text-sm font-semibold text-[#3c3794] underline underline-offset-4"
+                    >
+                        Volver a herramientas
+                    </TrackedLink>
+                    <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-950 md:text-5xl">
+                        {tool.title} en Perú
+                    </h1>
+                    <p className="mt-3 max-w-3xl text-base leading-7 text-slate-700 md:text-lg">{tool.summary}</p>
+                    <ImportCostSimulator />
+                    <TrackedLink
+                        href={tool.relatedHref}
+                        eventName={GA4_EVENTS.NAV_CLICK}
+                        eventParams={{ location: 'import_cost_simulator_related', label: tool.relatedHref }}
+                        className="text-sm font-semibold text-[#3c3794] underline underline-offset-4"
+                    >
+                        Ver guía de importación a Perú
+                    </TrackedLink>
+                </Container>
+            </section>
+        );
     }
 
     const category = getToolCategory(tool.category);

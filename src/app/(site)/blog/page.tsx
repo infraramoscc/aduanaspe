@@ -10,6 +10,8 @@ import { getPaginatedPosts, getCategoriesWithCount } from '@/lib/blog';
 import { generateBlogIndexMetadata, generateBlogIndexJsonLd } from '@/lib/blog/seo';
 import { Container } from '@/components/layout/Container';
 import { BlogFilterBar, BlogSearch } from '@/components/blog';
+import { GA4_EVENTS, TrackedLink } from '@/components/tracking';
+import { IMPORT_FROM_CHINA_GUIDE } from '@/lib/routes';
 
 function getCategoryFromParams(value?: string): BlogCategory | undefined {
     if (!value) return undefined;
@@ -51,6 +53,7 @@ export default async function BlogPage({
 
     const jsonLd = generateBlogIndexJsonLd(safePage, activeCategory);
     const visibleCount = posts.length;
+    const showImportGuide = safePage === 1 && (!activeCategory || activeCategory === 'Importación');
 
     return (
         <>
@@ -71,13 +74,20 @@ export default async function BlogPage({
                         <p className="mt-4 text-lg leading-8 text-slate-600">
                             Artículos prácticos sobre documentos, permisos, costos y decisiones operativas. Cada guía está pensada para ayudarte antes de pagar al proveedor, cotizar un servicio o mover tu carga.
                         </p>
-                        <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm font-semibold text-slate-700">
-                            {['Enfoque operativo', 'Fuentes normativas', 'Lectura para importadores'].map((item) => (
-                                <span key={item} className="rounded-full border border-slate-200 bg-white/85 px-4 py-2 shadow-sm">
-                                    {item}
+                        {showImportGuide && (
+                            <TrackedLink
+                                href={IMPORT_FROM_CHINA_GUIDE.href}
+                                eventName={GA4_EVENTS.NAV_CLICK}
+                                eventParams={{ location: 'blog-hero', label: IMPORT_FROM_CHINA_GUIDE.label }}
+                                className="mt-6 inline-flex w-full max-w-md items-center justify-between gap-4 rounded-2xl border border-indigo-200 bg-white px-5 py-4 text-left shadow-sm transition-colors hover:border-[var(--home-brand)] hover:bg-[var(--home-brand-soft)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--home-brand)]"
+                            >
+                                <span>
+                                    <strong className="block font-bold text-[var(--home-brand)]">{IMPORT_FROM_CHINA_GUIDE.label}</strong>
+                                    <span className="mt-1 block text-sm text-slate-600">{IMPORT_FROM_CHINA_GUIDE.description}</span>
                                 </span>
-                            ))}
-                        </div>
+                                <span aria-hidden="true" className="shrink-0 text-xl text-[var(--home-brand)]">→</span>
+                            </TrackedLink>
+                        )}
                     </div>
                 }
             >

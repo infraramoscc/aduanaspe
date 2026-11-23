@@ -472,7 +472,16 @@ body {
   box-shadow: 0 26px 58px rgba(60, 55, 148, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 
-.service-green:hover {
+.service-card-highlight::before {
+  opacity: 1;
+}
+
+.service-card-highlight:hover {
+  transform: none;
+}
+
+.service-green:hover,
+.service-green.service-card-highlight {
   box-shadow: 0 26px 58px rgba(15, 159, 110, 0.18), 0 10px 24px rgba(15, 23, 42, 0.055);
 }
 

@@ -31,6 +31,12 @@ export const ROUTES = {
     lp: (slug: string) => `/lp/${slug}`,
 } as const;
 
+export const IMPORT_FROM_CHINA_GUIDE = {
+    label: 'Importar de China a Perú',
+    href: `${ROUTES.blogPost('importar-de-china-a-peru')}/`,
+    description: 'Guía de costos, requisitos y simulador de flete.',
+} as const;
+
 export const NAV_ITEMS = [
     { label: 'Inicio', href: ROUTES.home },
     { label: 'Quiénes somos', href: ROUTES.quienesSomos },
@@ -107,13 +113,14 @@ export const HEADER_NAV_GROUPS = [
             {
                 title: 'Importacion',
                 links: [
+                    IMPORT_FROM_CHINA_GUIDE,
                     {
                         label: 'Rutas de importacion',
                         href: ROUTES.comercioExterior.importacion,
                         description: 'Guia principal para elegir modalidad y siguiente paso.',
                     },
                     {
-                        label: 'Importar desde China',
+                        label: 'Asesoría para importar desde China',
                         href: ROUTES.comercioExterior.importarDesdeChina,
                         description: 'Pasos clave antes de comprar a un proveedor chino.',
                     },
@@ -208,10 +215,6 @@ export const HEADER_NAV_GROUPS = [
                 ],
             },
         ],
-        featured: {
-            label: 'Contenido reciente',
-            description: 'Lee articulos sobre permisos, costos, rotulado y documentacion.',
-            href: ROUTES.blog,
-        },
+        featured: IMPORT_FROM_CHINA_GUIDE,
     },
 ] as const;

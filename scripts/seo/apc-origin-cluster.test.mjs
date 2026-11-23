@@ -150,7 +150,7 @@ test('the ServiceCTA detector treats null raw content as no inline CTA', async (
     assert.equal(hasServiceCta(null), false);
 });
 
-test('the blog page suppresses its footer CTA only when the detector finds one', async () => {
+test('the blog page hides its footer CTA for custom lead actions or an inline ServiceCTA', async () => {
     const page = await readFile('src/app/(site)/blog/[slug]/page.tsx', 'utf8');
 
     assert.match(
@@ -163,7 +163,7 @@ test('the blog page suppresses its footer CTA only when the detector finds one',
     );
     assert.match(
         page,
-        /\{!hasInlineServiceCta && \(\s*<div[^>]*>\s*<ServiceCTA topic=\{post\.topic\} position="footer" \/>\s*<\/div>\s*\)\}/,
+        /\{!post\.hideDefaultLeadCtas && !hasInlineServiceCta && \(\s*<div[^>]*>\s*<ServiceCTA topic=\{post\.topic\} position="footer" \/>\s*<\/div>\s*\)\}/,
     );
 });
 

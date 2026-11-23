@@ -35,6 +35,7 @@ export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
 export interface BlogFrontmatter {
     title: string;
     description: string;
+    intro?: string;
     date: string;
     updatedAt?: string;
     author?: string;
@@ -45,6 +46,7 @@ export interface BlogFrontmatter {
     imageAlt?: string;
     featured?: boolean;
     draft?: boolean;
+    hideDefaultLeadCtas?: boolean;
 }
 
 export interface BlogPost {
@@ -52,6 +54,7 @@ export interface BlogPost {
     source: BlogSource;
     title: string;
     description: string;
+    intro?: string;
     date: string;
     updatedAt?: string;
     author: string;
@@ -61,6 +64,7 @@ export interface BlogPost {
     image?: string;
     imageAlt?: string;
     featured: boolean;
+    hideDefaultLeadCtas?: boolean;
     readingTime: string;
     content?: React.ReactElement;
 }
