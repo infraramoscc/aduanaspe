@@ -3,17 +3,20 @@
 import { FormBase } from './FormBase';
 import { Input, Select, Textarea } from '@/components/ui';
 import { trackEvent, GA4_EVENTS } from '@/components/tracking';
+import type { PrecotizacionData } from '@/lib/schemas';
 
 interface PrecotizacionFormProps {
     title?: string;
     serviceName?: string;
     variant?: 'default' | 'home';
+    operationStage?: PrecotizacionData['etapa'];
 }
 
 function PrecotizacionForm({
     title = 'Solicita una Pre-cotización',
     serviceName = 'general',
     variant = 'default',
+    operationStage,
 }: PrecotizacionFormProps) {
     const handleSubmit = async (formData: FormData) => {
         const data = {
@@ -60,6 +63,9 @@ function PrecotizacionForm({
                 submitLabel={variant === 'home' ? 'Enviar datos para evaluación' : 'Enviar solicitud'}
                 successMessage="Recibimos los datos de tu operación. Los revisaremos y te responderemos por correo dentro de las próximas 24 horas hábiles."
             >
+                {variant === 'default' && operationStage && (
+                    <input type="hidden" name="etapa" value={operationStage} />
+                )}
                 {variant === 'home' && (
                     <>
                         <fieldset className="space-y-4">
