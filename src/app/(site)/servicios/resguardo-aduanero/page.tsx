@@ -1,426 +1,82 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
-import { Container } from '@/components/layout';
-import { Button } from '@/components/ui';
-import { WhatsAppLink } from '@/components/tracking';
-import { PrecotizacionForm } from '@/components/forms';
-import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
-import { JsonLd } from '@/components/seo/JsonLd';
+import { ServiceProfile, type ServiceProfileContent } from '@/components/services/ServiceProfile';
 import { ROUTES } from '@/lib/routes';
-import { generateBreadcrumbSchema, generateServiceSchema } from '@/lib/schema';
+
+const description = 'Conoce cómo coordinamos el resguardo de carga en cabina o con vehículo de acompañamiento, junto con el transporte o como servicio independiente.';
 
 export const metadata: Metadata = {
     title: 'Resguardo de Carga | AduanasPE',
-    description: 'Servicio de resguardo para traslados de carga con modalidades en cabina o vehículo y coordinación junto con transporte o de forma independiente.',
-    alternates: {
-        canonical: 'https://aduanaspe.com/servicios/resguardo-aduanero/',
-    },
-    robots: {
-        index: true,
-        follow: true,
-    },
+    description,
+    alternates: { canonical: 'https://aduanaspe.com/servicios/resguardo-aduanero/' },
+    robots: { index: true, follow: true },
 };
 
-// Modalidades de resguardo
-const resguardoModes = [
-    {
-        icon: '👤',
-        title: 'Resguardo Cabina',
-        description: 'Personal de seguridad que acompaña al chofer dentro de la cabina durante todo el trayecto.',
-        features: [
-            'Presencia física junto al conductor',
-            'Supervisión directa de la carga',
-            'Comunicación constante con central',
-            'Ideal para cargas de valor medio',
+const service: ServiceProfileContent = {
+    slug: 'resguardo-aduanero',
+    name: 'Resguardo de carga',
+    description,
+    heading: 'Así coordinamos el resguardo de tu carga',
+    introduction: 'Acordamos el acompañamiento del traslado con tu transportista y el equipo de resguardo. Antes de salir, definimos qué tramo se cubre, quién participa y cómo se reportan las novedades.',
+    image: {
+        src: '/images/despacho/retiro.webp',
+        alt: 'Camión con un contenedor en la salida de un terminal portuario',
+    },
+    scope: [
+        { title: 'Qué coordinamos', description: 'El acompañamiento de la carga durante el tramo acordado, con personal en cabina o un vehículo de acompañamiento, según la operación.' },
+        { title: 'Qué recibes', description: 'La confirmación de la modalidad, los puntos de inicio y cierre del servicio, y las novedades que requieran coordinar con el transportista o con quien recibe.' },
+        { title: 'Qué acordamos aparte', description: 'Puedes integrar el servicio al transporte o usar tu propio transportista. Si tu póliza o el cliente tienen requisitos específicos, los revisamos antes de definir el alcance.' },
+    ],
+    processTitle: 'Cómo preparamos el acompañamiento',
+    process: [
+        { title: 'Entendemos el traslado', description: 'Revisamos la mercancía, el trayecto, el horario previsto y si ya tienes transportista. También preguntamos si hay condiciones de aseguramiento o requisitos de recepción.', update: 'Qué datos faltan y qué modalidades pueden evaluarse para tu operación.' },
+        { title: 'Acordamos el alcance', description: 'Definimos la modalidad y el punto donde empieza y termina el acompañamiento. Confirmamos con el transportista quién coordina los cambios y quién recibe en destino.', update: 'El tramo cubierto, los responsables y las condiciones que deben quedar confirmadas antes del inicio.' },
+        { title: 'Coordinamos durante el trayecto', description: 'Mantenemos comunicación con los responsables de la operación. Si hay un cambio de horario o una incidencia, coordinamos según el alcance acordado.', update: 'La confirmación de inicio y las novedades que afecten el traslado o la recepción.' },
+        { title: 'Confirmamos el cierre', description: 'Verificamos con el transportista y el responsable de recepción que se completó el tramo acordado.', update: 'El cierre del acompañamiento y cualquier asunto operativo pendiente.' },
+    ],
+    options: {
+        id: 'modalidades',
+        label: 'Modalidades',
+        title: 'Cómo elegimos entre cabina y vehículo',
+        items: [
+            { title: 'Acompañamiento en cabina', description: 'El personal de resguardo acompaña al conductor dentro de la unidad. Confirmamos si esta modalidad se ajusta al tramo, al tipo de carga y a las condiciones del transportista.' },
+            { title: 'Vehículo de acompañamiento', description: 'Un vehículo separado acompaña al transporte. Evaluamos esta opción según las características del traslado y los requisitos aplicables a la operación.' },
         ],
-        recommended: 'Recomendado para traslados dentro de Lima',
     },
-    {
-        icon: '🚗',
-        title: 'Resguardo Vehículo',
-        description: 'Vehículo de seguridad que sigue al transporte durante todo el recorrido.',
-        features: [
-            'Seguimiento vehicular constante',
-            'Mayor capacidad de respuesta',
-            'Equipo de seguridad dedicado',
-            'Ideal para cargas de alto valor',
+    example: {
+        title: 'Ejemplo ilustrativo con transportista propio',
+        description: 'El cliente ya tiene contratado el camión y necesita agregar resguardo para el tramo entre el depósito y el almacén.',
+        panelClassName: 'service-route-panel',
+        steps: [
+            { title: 'Validamos el alcance', description: 'Revisamos qué tramo requiere acompañamiento y las condiciones acordadas con el transportista.' },
+            { title: 'Acordamos responsables', description: 'Confirmamos quién coordina el inicio, quién recibe novedades y quién recibe la carga.' },
+            { title: 'Cerramos el servicio', description: 'Comunicamos que el acompañamiento terminó y si queda algún pendiente de coordinación.' },
         ],
-        recommended: 'Recomendado para traslados largos o carga valiosa',
     },
-];
-
-// Por qué elegirnos
-const whyChooseUs = [
-    {
-        icon: '🛡️',
-        title: 'Reducción de Riesgos',
-        description: 'La presencia de resguardo disuade intentos de robo y permite respuesta inmediata ante cualquier incidente.',
-        highlight: 'Seguridad proactiva',
+    experience: {
+        title: 'Experiencia en la coordinación de la carga',
+        description: 'AduanasPE nació de la experiencia en agencias de aduanas y coordina operaciones desde el Callao. En resguardo, esa experiencia ayuda a conectar el retiro, el transportista y la recepción para que el acompañamiento se coordine dentro del traslado.',
+        panel: { title: 'Un punto de contacto durante el servicio', description: 'Tu ejecutivo centraliza las confirmaciones y los cambios que afecten el inicio o el cierre del acompañamiento.' },
+        panelClassName: 'service-operations-panel',
     },
-    {
-        icon: '📍',
-        title: 'Monitoreo Constante',
-        description: 'Comunicación permanente entre el resguardo, la central y el cliente durante todo el traslado.',
-        highlight: 'Comunicación durante el servicio',
+    faqs: [
+        { question: '¿Puedo contratar resguardo con mi propio transportista?', answer: 'Sí. Podemos coordinar el acompañamiento como servicio independiente. Antes de confirmar, acordamos con tu transportista el tramo, la modalidad y los puntos de coordinación.' },
+        { question: '¿Qué modalidad conviene para mi carga?', answer: 'Evaluamos la ruta, el tipo de mercancía, el horario, las características del traslado y los requisitos que hayas recibido. Con esa información podemos explicar qué opción encaja mejor.' },
+        { question: '¿El servicio cubre todo el traslado?', answer: 'Cubre el tramo acordado antes de empezar. Puede coincidir con todo el traslado o limitarse a la parte que requiere acompañamiento.' },
+        { question: '¿Qué pasa si cambia el horario de retiro?', answer: 'Revisamos el cambio con el transportista y el equipo de resguardo. Te confirmamos cómo afecta el inicio del acompañamiento y qué queda por coordinar.' },
+        { question: '¿Cómo se calcula el costo?', answer: 'El costo depende de la modalidad, el tramo, la duración prevista y las características de la carga. Confirmamos el alcance para que puedas identificar qué está incluido.' },
+    ],
+    contact: {
+        title: '¿Tu traslado requiere resguardo?',
+        checklist: ['Punto de recojo, destino y fecha aproximada', 'Tipo de carga y tramo que necesita acompañamiento', 'Si ya tienes transportista o requisitos de tu aseguradora'],
+        label: 'Consultar resguardo por WhatsApp',
+        message: 'Quisiera consultar qué modalidad de resguardo puede ajustarse al traslado de mi carga.',
     },
-    {
-        icon: '🔄',
-        title: 'Flexibilidad',
-        description: 'Puede contratarse junto con nuestro servicio de transporte o de manera independiente si ya tienes transportista.',
-        highlight: 'Se adapta a tu operación',
-    },
-    {
-        icon: '📋',
-        title: 'Cobertura Completa',
-        description: 'Desde el punto de recojo hasta la entrega final en tu almacén.',
-        highlight: 'Protección de puerta a puerta',
-    },
-];
-
-// Cuándo contratar resguardo
-const whenToHire = [
-    { scenario: 'Carga de alto valor', description: 'Electrónicos, maquinaria, productos premium' },
-    { scenario: 'Rutas de riesgo', description: 'Zonas con mayor incidencia de robos' },
-    { scenario: 'Horarios nocturnos', description: 'Traslados fuera del horario laboral' },
-    { scenario: 'Productos sensibles', description: 'Medicamentos, alimentos, etc.' },
-    { scenario: 'Requerimiento del seguro', description: 'Algunas pólizas exigen resguardo' },
-];
-
-// FAQ
-const faqs = [
-    {
-        question: '¿Puedo contratar solo resguardo sin transporte?',
-        answer: 'Sí, el resguardo puede contratarse de manera independiente si ya tienes tu propio transportista o quieres agregar seguridad a una operación existente.',
-    },
-    {
-        question: '¿Cuál modalidad me conviene?',
-        answer: 'Resguardo Cabina es ideal para traslados dentro de Lima con carga de valor medio. Resguardo Vehículo es mejor para trayectos largos, carga de alto valor o cuando se requiere mayor capacidad de respuesta.',
-    },
-    {
-        question: '¿El resguardo va armado?',
-        answer: 'El personal de resguardo cuenta con las autorizaciones y equipamiento correspondientes según la normativa vigente.',
-    },
-    {
-        question: '¿Cómo se cotiza el resguardo?',
-        answer: 'La cotización depende de la modalidad (cabina o vehículo), la ruta, la duración estimada del traslado y el tipo de carga.',
-    },
-    {
-        question: '¿Qué pasa si hay un incidente durante el traslado?',
-        answer: 'El personal de resguardo está capacitado para manejar situaciones de emergencia, mantener comunicación con la central y coordinar con las autoridades si es necesario.',
-    },
-];
+    related: [
+        { href: ROUTES.servicios.transporteDeCarga, label: 'Transporte terrestre' },
+        { href: ROUTES.servicios.agenciamientoAduanas, label: 'Despacho aduanero' },
+    ],
+};
 
 export default function ResguardoPage() {
-    const serviceJsonLd = generateServiceSchema({
-        name: 'Resguardo de Carga',
-        description: 'Servicio de resguardo para traslados de carga con modalidades en cabina o vehiculo y coordinacion junto con transporte o de forma independiente.',
-        url: 'https://aduanaspe.com/servicios/resguardo-aduanero/',
-    });
-    const breadcrumbJsonLd = generateBreadcrumbSchema([
-        { name: 'Inicio', url: 'https://aduanaspe.com/' },
-        { name: 'Servicios', url: 'https://aduanaspe.com/servicios/' },
-        { name: 'Resguardo Aduanero', url: 'https://aduanaspe.com/servicios/resguardo-aduanero/' },
-    ]);
-
-    return (
-        <>
-            <JsonLd json={serviceJsonLd} />
-            <JsonLd json={breadcrumbJsonLd} />
-            <FaqJsonLd faqs={faqs} />
-            {/* Hero */}
-            <Hero
-                badge="✨ Resguardo de Carga"
-                title="Custodia y Seguridad para tu Carga"
-                highlightedWord="Seguridad"
-                subtitle="Custodia y acompañamiento de tu mercancía durante todo el traslado. Seguridad desde el recojo hasta la entrega."
-                size="lg"
-                showStats={false}
-                showFloatingCards={false}
-                centered={true}
-                footer={
-                    <TrustBar
-                        variant="clean"
-                        points={[
-                            { icon: '👤', title: 'Resguardo Cabina', description: 'En la unidad' },
-                            { icon: '🚗', title: 'Resguardo Vehículo', description: 'Seguimiento' },
-                            { icon: '📍', title: 'Monitoreo', description: 'Constante' },
-                            { icon: '🛡️', title: 'Custodia coordinada', description: 'Durante el traslado' },
-                        ]}
-                    />
-                }
-            >
-                <WhatsAppLink route="resguardo-aduanero" serviceName="resguardo-aduanero" variant="button">
-                    Cotizar resguardo
-                </WhatsAppLink>
-                <Link href="#modalidades">
-                    <Button variant="secondary" size="lg">
-                        Ver modalidades
-                    </Button>
-                </Link>
-            </Hero>
-
-            {/* Trust Bar integrated into Hero */}
-
-            {/* Qué es */}
-            <SplitFeature
-                title="¿Qué es el resguardo de carga?"
-                description="El resguardo consiste en la custodia y acompañamiento de tu mercancía durante todo el traslado. Personal de seguridad acompaña el transporte desde el punto de recojo hasta la entrega final, reduciendo riesgos y fortaleciendo la seguridad de la operación logística."
-                imageSide="right"
-                image={
-                    <div className="service-operations-panel">
-                        <p className="text-sm font-semibold text-sky-200">Cobertura del traslado</p>
-                        <h3 className="mt-2 text-3xl font-bold leading-tight">Custodia coordinada de origen a destino</h3>
-                        <ul className="mt-7">
-                            <li><b>01</b><span><strong className="block">Recojo</strong><span className="text-sm text-slate-300">Validamos el punto y la unidad.</span></span></li>
-                            <li><b>02</b><span><strong className="block">Acompañamiento</strong><span className="text-sm text-slate-300">El resguardo sigue el recorrido acordado.</span></span></li>
-                            <li><b>03</b><span><strong className="block">Entrega</strong><span className="text-sm text-slate-300">Cerramos la custodia en el destino.</span></span></li>
-                        </ul>
-                    </div>
-                }
-            >
-                <div className="service-card service-card-compact service-orange p-4">
-                    <p className="text-sm text-orange-800">
-                        <strong>Importante:</strong> El resguardo puede contratarse junto con nuestro servicio de transporte o de manera independiente si ya tienes transportista.
-                    </p>
-                </div>
-            </SplitFeature>
-
-            {/* Modalidades */}
-            <section id="modalidades" className="py-20 bg-slate-50">
-                <Container>
-                    <div className="text-center mb-14">
-                        <span className="section-badge">Modalidades</span>
-                        <h2 className="text-3xl font-bold text-slate-900">Elige tu nivel de <span className="gradient-text">Protección</span></h2>
-                        <p className="mt-4 text-lg text-slate-600">
-                            Dos opciones adaptadas a tus necesidades
-                        </p>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        {resguardoModes.map((mode, index) => {
-                            const colorClass = index === 0 ? 'service-blue' : 'service-orange';
-                            return (
-                                <div key={mode.title} className={`service-card ${colorClass} h-full p-8`}>
-                                    <div className="text-center mb-6">
-                                        <h3 className="mt-4 text-2xl font-bold text-slate-900">{mode.title}</h3>
-                                        <p className="mt-3 text-slate-600 font-medium">{mode.description}</p>
-                                    </div>
-                                    <ul className="space-y-4 mb-6">
-                                        {mode.features.map((feature) => (
-                                            <li key={feature} className="flex items-start gap-3 text-slate-600">
-                                                <span className="text-[#3C3794] flex-shrink-0 mt-1">✓</span>
-                                                <span>{feature}</span>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                    <div className="mt-auto p-4 bg-white/50 rounded-xl border border-white/60">
-                                        <p className="text-sm text-slate-800 text-center font-semibold">💡 {mode.recommended}</p>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </Container>
-            </section>
-
-            {/* Contexto: Dónde encaja el Resguardo */}
-            <section className="py-20 bg-white">
-                <Container>
-                    <div className="text-center mb-14">
-                        <span className="section-badge">Integración</span>
-                        <h2 className="text-3xl font-bold text-slate-900">Servicio opcional para cualquier <span className="gradient-text">etapa</span></h2>
-                        <p className="mt-4 text-lg text-slate-600">
-                            El resguardo puede contratarse en cualquier momento del proceso
-                        </p>
-                    </div>
-                    <div className="max-w-4xl mx-auto">
-                        {/* Etapas principales */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {/* Etapa 1 */}
-                            <Link href="/servicios/agencia-de-carga-internacional" className="service-card service-card-compact service-blue group block p-6">
-                                <div className="text-center">
-                                    <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 1</span>
-                                    <h3 className="font-bold text-slate-900">Agenciamiento de Carga</h3>
-                                    <p className="text-sm text-slate-600 mt-2">Flete desde origen</p>
-                                    <p className="text-xs text-orange-600 font-medium mt-2">+ Resguardo opcional</p>
-                                </div>
-                            </Link>
-                            {/* Etapa 2 */}
-                            <Link href="/servicios/agenciamiento-aduanas" className="service-card service-card-compact service-purple group block p-6">
-                                <div className="text-center">
-                                    <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 2</span>
-                                    <h3 className="font-bold text-slate-900">Agenciamiento de Aduanas</h3>
-                                    <p className="text-sm text-slate-600 mt-2">Despacho aduanero</p>
-                                    <p className="text-xs text-orange-600 font-medium mt-2">+ Resguardo opcional</p>
-                                </div>
-                            </Link>
-                            {/* Etapa 3 */}
-                            <Link href="/servicios/transporte-de-carga" className="service-card service-card-compact service-blue group block p-6">
-                                <div className="text-center">
-                                    <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 3</span>
-                                    <h3 className="font-bold text-slate-900">Transporte de Carga</h3>
-                                    <p className="text-sm text-slate-600 mt-2">Entrega en tu almacén</p>
-                                    <p className="text-xs text-orange-600 font-medium mt-2">+ Resguardo opcional</p>
-                                </div>
-                            </Link>
-                        </div>
-
-                        {/* Servicios Opcionales */}
-                        <div className="mt-10">
-                            <div className="text-center mb-6">
-                                <span className="inline-block px-4 py-2 bg-amber-100 text-amber-800 text-sm font-semibold rounded-full">
-                                    ⚡ Servicios Opcionales - Contrátalos en cualquier etapa
-                                </span>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {/* Resguardo Aduanero - Actual */}
-                                <div className="service-card service-orange flex items-center gap-4 p-5 ring-2 ring-orange-200 ring-offset-2 scale-105">
-                                    <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-200 flex items-center justify-center">
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex items-center gap-2">
-                                            <h4 className="font-bold text-slate-900">Resguardo Aduanero</h4>
-                                            <span className="px-2 py-0.5 bg-orange-600 text-white text-xs font-bold rounded-full">ESTÁS AQUÍ</span>
-                                        </div>
-                                        <p className="text-sm text-slate-600 mt-1">Custodia y seguridad para tu mercancía</p>
-                                    </div>
-                                </div>
-                                {/* Consultoría Aduanera */}
-                                <Link href="/servicios/consultoria-aduanera" className="service-card service-card-compact service-cyan group flex items-center gap-4 p-5">
-                                    <div className="flex-shrink-0 w-14 h-14 rounded-full bg-cyan-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex items-center gap-2">
-                                            <h4 className="font-bold text-slate-900">Consultoría Aduanera</h4>
-                                            <span className="px-2 py-0.5 bg-cyan-500 text-white text-[10px] font-bold rounded-full">OPCIONAL</span>
-                                        </div>
-                                        <p className="text-sm text-slate-600 mt-1">Asesoría experta para optimizar tus operaciones</p>
-                                        <p className="text-xs text-cyan-600 font-medium mt-1 group-hover:underline">Ver más →</p>
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
-
-                        {/* Servicio Integral */}
-                        <div className="mt-8 p-8 rounded-xl bg-[linear-gradient(135deg,#3C3794_0%,#2F2B77_100%)] text-white text-center shadow-xl">
-                            <h3 className="text-xl font-bold">¿Prefieres un servicio integral?</h3>
-                            <p className="mt-2 text-slate-300">Contratamos las 3 etapas + resguardo + consultoría por ti. Un solo punto de contacto, una sola factura.</p>
-                            <div className="mt-6">
-                                <WhatsAppLink route="servicio-integral" serviceName="servicio-integral" variant="button">
-                                    Cotizar servicio integral
-                                </WhatsAppLink>
-                            </div>
-                        </div>
-                    </div>
-                </Container>
-            </section>
-
-            {/* Por qué elegirnos */}
-            <section className="py-20 bg-slate-50">
-                <Container>
-                    <div className="text-center mb-14">
-                        <span className="section-badge">Beneficios</span>
-                        <h2 className="text-3xl font-bold text-slate-900">¿Por qué contratar <span className="gradient-text">resguardo</span>?</h2>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                        {whyChooseUs.map((item, index) => {
-                            const colors = ['orange', 'green', 'blue', 'pink'];
-                            const colorClass = colors[index % colors.length];
-                            return (
-                                <div key={item.title} className={`service-card service-${colorClass} h-full p-6`}>
-                                    <div className="flex items-start gap-4">
-                                        <div>
-                                            <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
-                                            <p className="mt-2 text-slate-600">{item.description}</p>
-                                            <p className="mt-3 text-sm italic text-slate-500 border-l-2 border-orange-300 pl-2">{item.highlight}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </Container>
-            </section>
-
-            {/* Cuándo contratar */}
-            <section className="py-20 bg-white">
-                <Container>
-                    <div className="text-center mb-14">
-                        <span className="section-badge">Recomendación</span>
-                        <h2 className="text-3xl font-bold text-slate-900">¿Cuándo necesitas <span className="gradient-text">resguardo</span>?</h2>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
-                        {whenToHire.map((item) => (
-                            <div key={item.scenario} className="service-card service-card-compact service-orange p-4 cursor-default">
-                                <h4 className="font-semibold text-slate-900 text-lg border-b border-slate-200 pb-2 mb-2">{item.scenario}</h4>
-                                <p className="text-sm text-slate-600">{item.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                </Container>
-            </section>
-
-            {/* Relación con Transporte */}
-            <SplitFeature
-                title="Resguardo + Transporte"
-                description="Si necesitas tanto el transporte como el resguardo, podemos ofrecerte un paquete integrado. Un solo punto de contacto, coordinación simplificada y mejor precio."
-                imageSide="left"
-                image={
-                    <div className="service-route-panel">
-                        <p className="text-sm font-semibold text-sky-200">Servicio combinado</p>
-                        <h3 className="mt-2 text-3xl font-bold leading-tight">Transporte y custodia coordinados</h3>
-                        <p className="mt-4 text-slate-300">Una sola coordinación para definir la unidad, el punto de retiro, la ruta y la modalidad de resguardo.</p>
-                    </div>
-                }
-            >
-                <Link href="/servicios/transporte-de-carga">
-                    <Button>Ver servicio de Transporte</Button>
-                </Link>
-            </SplitFeature>
-
-            {/* FAQ */}
-            <section className="py-20 bg-slate-50">
-                <Container>
-                    <div className="text-center mb-14">
-                        <span className="section-badge">Ayuda</span>
-                        <h2 className="text-3xl font-bold text-slate-900">Preguntas <span className="gradient-text">Frecuentes</span></h2>
-                    </div>
-                    <div className="max-w-3xl mx-auto space-y-6">
-                        {faqs.map((faq) => (
-                            <div key={faq.question} className="service-card service-card-compact service-blue p-6">
-                                <h4 className="font-semibold text-slate-900 text-lg">{faq.question}</h4>
-                                <p className="mt-2 text-slate-600">{faq.answer}</p>
-                            </div>
-                        ))}
-                    </div>
-                </Container>
-            </section>
-
-            {/* Formulario */}
-            <Container>
-                <div id="cotizacion" className="py-16">
-                    <PrecotizacionForm
-                        title="Cotiza tu resguardo"
-                        serviceName="resguardo-aduanero"
-                    />
-                </div>
-            </Container>
-
-            {/* CTA Final */}
-            <CTASection
-                title="¿Necesitas proteger tu carga?"
-                highlightedWord="proteger"
-                subtitle="Escríbenos y te cotizamos el resguardo según tu operación."
-            >
-                <WhatsAppLink route="resguardo-aduanero-cta" serviceName="resguardo-aduanero" variant="button">
-                    Cotizar por WhatsApp
-                </WhatsAppLink>
-                <Link href={ROUTES.contacto}>
-                    <Button size="lg" variant="secondary">
-                        Otras formas de contacto
-                    </Button>
-                </Link>
-            </CTASection>
-        </>
-    );
+    return <ServiceProfile service={service} />;
 }

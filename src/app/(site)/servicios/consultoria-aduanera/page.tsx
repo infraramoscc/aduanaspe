@@ -1,464 +1,89 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { RecommendedReading } from '@/components/blog';
-import { Hero, SplitFeature, CTASection, TrustBar } from '@/components/sections';
-import { Container } from '@/components/layout';
-import { Button } from '@/components/ui';
-import { WhatsAppLink } from '@/components/tracking';
-import { PrecotizacionForm } from '@/components/forms';
-import { FaqJsonLd } from '@/components/seo/FaqJsonLd';
-import { JsonLd } from '@/components/seo/JsonLd';
+import { ServiceProfile, type ServiceProfileContent } from '@/components/services/ServiceProfile';
 import { ROUTES } from '@/lib/routes';
-import { generateBreadcrumbSchema, generateServiceSchema } from '@/lib/schema';
+import { mainPageImages } from '@/content/mainPageImages';
+
+const description = 'Conoce cómo revisamos una decisión aduanera, qué información necesitamos y qué recibe tu equipo para decidir cómo avanzar.';
 
 export const metadata: Metadata = {
     title: 'Consultoría Aduanera | AduanasPE',
-    description: 'Asesoría aduanera para clasificación arancelaria, TLC, regímenes y decisiones operativas que ayuden a reducir riesgos y optimizar costos.',
-    alternates: {
-        canonical: 'https://aduanaspe.com/servicios/consultoria-aduanera/',
-    },
-    robots: {
-        index: true,
-        follow: true,
-    },
+    description,
+    alternates: { canonical: 'https://aduanaspe.com/servicios/consultoria-aduanera/' },
+    robots: { index: true, follow: true },
 };
 
-// Servicios de consultoría
-const consultingServices = [
-    {
-        icon: '🔍',
-        title: 'Clasificación Arancelaria',
-        description: 'Determinación correcta de partidas arancelarias para optimizar aranceles y evitar sanciones.',
+const service: ServiceProfileContent = {
+    slug: 'consultoria-aduanera',
+    name: 'Consultoría aduanera',
+    description,
+    heading: 'Así analizamos tu caso antes de que decidas',
+    introduction: 'Empezamos por entender qué necesitas resolver. Si hace falta una revisión técnica, acordamos qué documentación vamos a analizar y qué recibirás para tomar una decisión.',
+    image: mainPageImages.trade.middle,
+    scope: [
+        { title: 'Qué revisamos', description: 'Una decisión concreta sobre clasificación, requisitos, origen preferencial, régimen aduanero, costos o una observación en una operación en curso.' },
+        { title: 'Qué recibes', description: 'Una explicación de lo que muestran los documentos, qué falta verificar y qué opciones evaluamos. El formato y el nivel de detalle se acuerdan al definir el encargo.' },
+        { title: 'Qué acordamos aparte', description: 'La orientación inicial es sin costo y ayuda a delimitar la consulta. El análisis especializado, la capacitación, la ejecución del despacho o el apoyo con una incidencia se acuerdan según el caso.' },
+    ],
+    processTitle: 'De la pregunta al siguiente paso',
+    process: [
+        { title: 'Precisamos la decisión', description: 'Ubicamos el problema y la etapa de la operación. Si existe una notificación, pedimos su fecha y la información que ya tienes disponible para entender el contexto.', update: 'Si basta una orientación inicial o conviene delimitar un análisis técnico.' },
+        { title: 'Reunimos los antecedentes', description: 'Según la consulta, revisamos documentos comerciales, fichas técnicas, documentos de transporte o antecedentes de la operación.', update: 'Qué documentos podemos usar y qué dato faltante podría cambiar la evaluación.' },
+        { title: 'Evaluamos las opciones', description: 'Contrastamos lo que dicen los documentos con los criterios que correspondan al caso y revisamos las implicaciones de cada alternativa.', update: 'Qué opciones tienen sustento, qué debe confirmarse y qué decisiones dependen de esa información.' },
+        { title: 'Explicamos cómo avanzar', description: 'Presentamos la conclusión en el formato acordado y aclaramos qué corresponde preparar, confirmar o ejecutar antes de dar el siguiente paso.', update: 'Qué puedes decidir con lo revisado y qué tareas requieren otro alcance o responsable.' },
+    ],
+    options: {
+        id: 'servicios',
+        label: 'Temas de consulta',
+        title: 'Qué decisiones podemos revisar contigo',
+        items: [
+            { title: 'Partida arancelaria y requisitos', description: 'Revisamos la composición, la función y la documentación del producto para evaluar su clasificación y los requisitos que corresponda comprobar.' },
+            { title: 'Acuerdos comerciales y origen', description: 'Revisamos el origen, el acuerdo relevante y los documentos que respaldan una eventual preferencia antes de contar con ese beneficio.' },
+            { title: 'Regímenes y costos', description: 'Comparamos las alternativas del caso según el destino de la mercancía, los documentos disponibles y los costos que se puedan estimar.' },
+            { title: 'Operaciones pasadas y contingencias', description: 'Revisamos documentación de operaciones previas, observaciones de valor y notificaciones. También podemos definir una capacitación para que tu equipo reconozca estos pendientes.' },
+        ],
     },
-    {
-        icon: '🌍',
-        title: 'Tratados de Libre Comercio',
-        description: 'Aprovecha los TLC vigentes de Perú para reducir o eliminar aranceles en tus operaciones.',
+    example: {
+        title: 'Ejemplo ilustrativo antes de confirmar una compra',
+        description: 'Un proveedor ofrece dos versiones de un producto con usos distintos. El importador necesita saber si cambiar de versión puede afectar los requisitos o el costo de la operación.',
+        panelClassName: 'service-risk-panel',
+        steps: [
+            { title: 'Pedimos la información técnica', description: 'Comparamos fichas, composición y función de cada versión.' },
+            { title: 'Identificamos qué cambia', description: 'Evaluamos las posibles diferencias de clasificación y qué requisitos deben verificarse.' },
+            { title: 'Dejamos claros los pendientes', description: 'Explicamos qué dato pedir al proveedor antes de confirmar la compra.' },
+        ],
     },
-    {
-        icon: '📊',
-        title: 'Optimización de Costos',
-        description: 'Análisis de tu operación para identificar oportunidades de ahorro en aranceles y tributos.',
+    experience: {
+        title: 'Experiencia aduanera aplicada a tu caso',
+        description: 'AduanasPE nació de la experiencia de dos hermanos en agencias de aduanas. Ese trabajo nos enseñó a relacionar una pregunta técnica con los documentos que importadores y exportadores tienen que preparar en la práctica.',
+        panel: { title: 'La recomendación parte de tus documentos', description: 'Contrastamos la descripción de la mercancía con el sustento disponible y te explicamos qué puede concluirse con esos antecedentes y qué sigue abierto.' },
+        panelClassName: 'service-advisory-panel',
     },
-    {
-        icon: '📋',
-        title: 'Regímenes Aduaneros',
-        description: 'Asesoría en el régimen más conveniente: definitivo, temporal, suspensivo, etc.',
+    faqs: [
+        { question: '¿Cuándo basta la orientación inicial?', answer: 'Cuando la duda se puede aclarar con el contexto básico, la orientación inicial ayuda a identificar el siguiente paso. Si hay que estudiar documentos, comparar escenarios o revisar una incidencia, definimos el alcance de la consultoría antes de empezar.' },
+        { question: '¿Qué diferencia hay entre consultoría y despacho aduanero?', answer: 'La consultoría analiza una decisión o contingencia. El agenciamiento de aduanas ejecuta el despacho según el alcance contratado. Podemos indicar en qué punto conviene coordinar ambos servicios.' },
+        { question: '¿Qué documentos debo preparar?', answer: 'Depende de la consulta. Puedes empezar con la descripción de tu pregunta, la ficha del producto y los documentos comerciales disponibles. Si hay un requerimiento, indica la fecha de notificación y qué te han solicitado.' },
+        { question: '¿Revisan operaciones anteriores o capacitan a equipos?', answer: 'Sí. Podemos definir una revisión de antecedentes de operaciones anteriores o una capacitación según los temas que tu equipo necesite trabajar.' },
+        { question: '¿Cómo se define el costo y lo que recibiré?', answer: 'Revisamos la pregunta, el número y el tipo de documentos, la profundidad del análisis y el formato que necesitas. Con esos datos presentamos el alcance antes de iniciar.' },
+    ],
+    contact: {
+        title: '¿Qué decisión aduanera necesitas aclarar?',
+        checklist: ['La pregunta que necesitas resolver y la etapa de tu operación', 'Tipo de mercancía y documentos que ya tienes', 'Si hay una notificación, su fecha y el tema que señala'],
+        label: 'Pedir orientación inicial por WhatsApp',
+        message: 'Quisiera una orientación inicial sobre una decisión aduanera.',
+        messageKey: 'asesoria_gratis',
     },
-    {
-        icon: '⚠️',
-        title: 'Prevención de Sanciones',
-        description: 'Revisión de procedimientos para evitar multas, comiso y otras penalidades.',
-    },
-    {
-        icon: '📚',
-        title: 'Capacitación',
-        description: 'Formación a tu equipo en normativa aduanera y mejores prácticas.',
-    },
-    {
-        icon: '🧾',
-        title: 'Ajuste de Valor Aduanero',
-        description: 'Revisión de duda razonable, sustento del valor declarado y observaciones de SUNAT.',
-    },
-    {
-        icon: '⚖️',
-        title: 'Multas y Notificaciones SUNAT',
-        description: 'Revisión de requerimientos, fiscalización, descargos y contingencias aduaneras notificadas.',
-    },
-];
-
-// Por qué elegirnos
-const whyChooseUs = [
-    {
-        icon: '🎓',
-        title: 'Experiencia aduanera',
-        description: 'Análisis aplicado a normativa aduanera, documentación y clasificación arancelaria.',
-        highlight: 'Expertos a tu servicio',
-    },
-    {
-        icon: '💡',
-        title: 'Enfoque Práctico',
-        description: 'No solo te decimos qué hacer, te acompañamos en la implementación.',
-        highlight: 'Soluciones reales',
-    },
-    {
-        icon: '📈',
-        title: 'Resultados Medibles',
-        description: 'Cuantificamos el ahorro y los beneficios de cada recomendación.',
-        highlight: 'Impacto explicado antes de decidir',
-    },
-    {
-        icon: '🤝',
-        title: 'Relación de Largo Plazo',
-        description: 'Nos convertimos en tu aliado estratégico, no solo un proveedor puntual.',
-        highlight: 'Socios estratégicos',
-    },
-];
-
-// Para quién es
-const targetAudience = [
-    { icon: '🏢', title: 'Empresas que inician en comercio exterior', description: 'Te guiamos desde cero' },
-    { icon: '📦', title: 'Importadores con operaciones recurrentes', description: 'Optimizamos tus costos' },
-    { icon: '🌎', title: 'Exportadores que buscan nuevos mercados', description: 'Aprovechamos los TLC' },
-    { icon: '⚙️', title: 'Empresas con problemas aduaneros', description: 'Solucionamos contingencias' },
-];
-
-// Problemas que resuelve
-const problemsSolved = [
-    'No saber qué partida arancelaria usar',
-    'Pagar más aranceles de los necesarios',
-    'Desconocer los beneficios de los TLC',
-    'Tener contingencias aduaneras sin resolver',
-    'Recibir multas y sanciones de SUNAT',
-    'Tener una notificación o requerimiento aduanero sin respuesta clara',
-    'No saber qué régimen aduanero usar',
-    'Tener una observación o ajuste de valor sin expediente ordenado',
-];
-
-// FAQ
-const faqs = [
-    {
-        question: '¿Cuándo necesito una consultoría pagada?',
-        answer: 'La consultoría pagada aplica cuando tu caso requiere análisis técnico, revisión documentaria profunda, estrategia tributaria o acompañamiento especializado. Si tu caso puede resolverse con asesoría sin costo, te orientamos directamente.',
-    },
-    {
-        question: '¿Cuánto cuesta la consultoría?',
-        answer: 'El costo depende del alcance del proyecto. Ofrecemos desde consultas puntuales hasta proyectos de optimización integral. Te presentamos una propuesta después de entender tu situación.',
-    },
-    {
-        question: '¿Pueden revisar mis operaciones anteriores?',
-        answer: 'Sí, realizamos auditorías de operaciones pasadas para identificar oportunidades de ahorro o corregir errores antes de que SUNAT los detecte.',
-    },
-    {
-        question: '¿Trabajan con empresas pequeñas?',
-        answer: 'Sí, atendemos empresas de todos los tamaños. Muchas veces las empresas pequeñas son las que más se benefician de una buena asesoría, ya que no cuentan con un área especializada.',
-    },
-    {
-        question: '¿Pueden capacitar a mi equipo?',
-        answer: 'Sí, ofrecemos capacitaciones personalizadas en normativa aduanera, clasificación arancelaria, tratados de libre comercio y otros temas relevantes para tu operación.',
-    },
-    {
-        question: '¿Qué diferencia hay entre consultoría y agenciamiento?',
-        answer: 'El agenciamiento se encarga de ejecutar el despacho aduanero. La consultoría te asesora estratégicamente sobre cómo optimizar tus operaciones y evitar problemas.',
-    },
-];
+    related: [
+        { href: ROUTES.servicios.agenciamientoAduanas, label: 'Despacho aduanero' },
+        { href: ROUTES.servicios.ajusteValorAduanero, label: 'Ajuste de valor' },
+        { href: ROUTES.servicios.multasAduanerasSunat, label: 'Notificaciones y multas' },
+    ],
+    reading: [
+        'notificacion-sunat-aduanas-que-hacer',
+        'descargo-multa-aduanera-sunat',
+        'como-saber-si-tu-producto-necesita-permisos-para-importar-en-peru',
+    ],
+};
 
 export default function ConsultoriaAduaneraPage() {
-    const serviceJsonLd = generateServiceSchema({
-        name: 'Consultoria Aduanera',
-        description: 'Asesoria aduanera para clasificacion arancelaria, TLC, regimenes y decisiones operativas que ayuden a reducir riesgos y optimizar costos.',
-        url: 'https://aduanaspe.com/servicios/consultoria-aduanera/',
-    });
-    const breadcrumbJsonLd = generateBreadcrumbSchema([
-        { name: 'Inicio', url: 'https://aduanaspe.com/' },
-        { name: 'Servicios', url: 'https://aduanaspe.com/servicios/' },
-        { name: 'Consultoria Aduanera', url: 'https://aduanaspe.com/servicios/consultoria-aduanera/' },
-    ]);
-
-    return (
-        <>
-            <JsonLd json={serviceJsonLd} />
-            <JsonLd json={breadcrumbJsonLd} />
-            <FaqJsonLd faqs={faqs} />
-            {/* Hero */}
-            <Hero
-                badge="✨ Consultoría Aduanera"
-                title="Asesoría Experta en Comercio Exterior"
-                highlightedWord="Experta"
-                subtitle="Empieza con asesoría sin costo. Si tu caso es complejo o requiere análisis técnico, entonces te proponemos una consultoría pagada a medida."
-                size="lg"
-                showStats={false}
-                showFloatingCards={false}
-                centered={true}
-                footer={
-                    <TrustBar
-                        variant="clean"
-                        points={[
-                            { icon: '🎓', title: 'Atención especializada', description: 'Aplicada a tu caso' },
-                            { icon: '📊', title: 'Optimización', description: 'De costos' },
-                            { icon: '💬', title: 'Asesoría', description: 'Sin costo' },
-                            { icon: '⚡', title: 'Respuesta en 1 hora', description: 'En horario de atención' },
-                        ]}
-                    />
-                }
-            >
-                <WhatsAppLink route="consultoria-aduanera" messageKey="asesoria_gratis" variant="button">
-                    Resolver mis dudas primero
-                </WhatsAppLink>
-                <Link href="#servicios">
-                    <Button variant="secondary" size="lg">
-                        Ver servicios
-                    </Button>
-                </Link>
-            </Hero>
-
-            {/* Trust Bar integrated into Hero */}
-
-            {/* Qué es */}
-            <SplitFeature
-                title="¿Qué hacemos por ti?"
-                description="Te brindamos asesoría estratégica para que tus operaciones de comercio exterior sean más eficientes, económicas y sin riesgos. Analizamos tu situación actual, identificamos oportunidades y te acompañamos en la implementación."
-                imageSide="right"
-                image={
-                    <div className="service-advisory-panel">
-                        <p className="text-sm font-semibold text-sky-200">Análisis aplicado a tu caso</p>
-                        <h3 className="mt-2 text-3xl font-bold leading-tight">Decisiones aduaneras con sustento</h3>
-                        <ul className="mt-7">
-                            <li><b>01</b><span><strong className="block">Clasificación</strong><span className="text-sm text-slate-300">Revisamos la mercancía y su contexto.</span></span></li>
-                            <li><b>02</b><span><strong className="block">Requisitos</strong><span className="text-sm text-slate-300">Identificamos permisos y condiciones aplicables.</span></span></li>
-                            <li><b>03</b><span><strong className="block">Plan de acción</strong><span className="text-sm text-slate-300">Te explicamos opciones y siguientes pasos.</span></span></li>
-                        </ul>
-                    </div>
-                }
-            >
-                <div className="service-card service-card-compact service-blue p-4">
-                    <p className="text-sm text-blue-800">
-                        <strong>Nuestro valor:</strong> Conocimiento profundo de la normativa aduanera peruana, tratados internacionales y mejores prácticas del sector.
-                    </p>
-                </div>
-            </SplitFeature>
-
-            {/* Servicios de Consultoría */}
-            <section id="servicios" className="py-20 bg-slate-50">
-                <Container>
-                    <div className="text-center mb-14">
-                        <span className="section-badge">Soluciones</span>
-                        <h2 className="text-3xl font-bold text-slate-900">Servicios de <span className="gradient-text">Consultoría</span></h2>
-                        <p className="mt-4 text-lg text-slate-600">
-                            Soluciones especializadas para cada necesidad
-                        </p>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {consultingServices.map((service, index) => {
-                            const colorClass = ['service-blue', 'service-cyan', 'service-purple', 'service-pink', 'service-orange', 'service-green'][index % 6];
-                            return (
-                                <div key={service.title} className={`service-card ${colorClass} h-full p-6`}>
-                                    <h3 className="mt-4 text-xl font-bold text-slate-900">{service.title}</h3>
-                                    <p className="mt-2 text-slate-600 leading-relaxed">{service.description}</p>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </Container>
-            </section>
-
-            {/* Contexto: Dónde encaja la Consultoría */}
-            <section className="py-20 bg-white">
-                <Container>
-                    <div className="text-center mb-14">
-                        <span className="section-badge">Integración</span>
-                        <h2 className="text-3xl font-bold text-slate-900">Servicio transversal a tu <span className="gradient-text">operación</span></h2>
-                        <p className="mt-4 text-lg text-slate-600">
-                            La consultoría aduanera complementa cualquier servicio o puede contratarse de manera independiente
-                        </p>
-                    </div>
-                    <div className="max-w-4xl mx-auto">
-                        {/* Etapas principales */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {/* Etapa 1 */}
-                            <Link href="/servicios/agencia-de-carga-internacional" className="service-card service-card-compact service-blue group block p-6">
-                                <div className="text-center">
-                                    <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 1</span>
-                                    <h3 className="font-bold text-slate-900">Agenciamiento de Carga</h3>
-                                    <p className="text-sm text-slate-600 mt-2">Flete desde origen</p>
-                                    <p className="text-xs text-cyan-600 font-medium mt-2">+ Consultoría opcional</p>
-                                </div>
-                            </Link>
-                            {/* Etapa 2 */}
-                            <Link href="/servicios/agenciamiento-aduanas" className="service-card service-card-compact service-purple group block p-6">
-                                <div className="text-center">
-                                    <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 2</span>
-                                    <h3 className="font-bold text-slate-900">Agenciamiento de Aduanas</h3>
-                                    <p className="text-sm text-slate-600 mt-2">Despacho aduanero</p>
-                                    <p className="text-xs text-cyan-600 font-medium mt-2">+ Consultoría opcional</p>
-                                </div>
-                            </Link>
-                            {/* Etapa 3 */}
-                            <Link href="/servicios/transporte-de-carga" className="service-card service-card-compact service-blue group block p-6">
-                                <div className="text-center">
-                                    <span className="inline-block px-3 py-1 bg-slate-400 text-white text-xs font-bold rounded-full mb-3">ETAPA 3</span>
-                                    <h3 className="font-bold text-slate-900">Transporte de Carga</h3>
-                                    <p className="text-sm text-slate-600 mt-2">Entrega en tu almacén</p>
-                                    <p className="text-xs text-cyan-600 font-medium mt-2">+ Consultoría opcional</p>
-                                </div>
-                            </Link>
-                        </div>
-
-                        {/* Servicios Opcionales */}
-                        <div className="mt-10">
-                            <div className="text-center mb-6">
-                                <span className="inline-block px-4 py-2 bg-amber-100 text-amber-800 text-sm font-semibold rounded-full">
-                                    ⚡ Servicios Opcionales - Contrátalos en cualquier etapa
-                                </span>
-                            </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                {/* Consultoría Aduanera - Actual */}
-                                <div className="service-card service-cyan flex items-center gap-4 p-5 ring-2 ring-cyan-200 ring-offset-2 scale-105">
-                                    <div className="flex-shrink-0 w-14 h-14 rounded-full bg-cyan-200 flex items-center justify-center">
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex items-center gap-2">
-                                            <h4 className="font-bold text-slate-900">Consultoría Aduanera</h4>
-                                            <span className="px-2 py-0.5 bg-cyan-600 text-white text-xs font-bold rounded-full">ESTÁS AQUÍ</span>
-                                        </div>
-                                        <p className="text-sm text-slate-600 mt-1">Asesoría experta para optimizar tus operaciones</p>
-                                    </div>
-                                </div>
-                                {/* Resguardo Aduanero */}
-                                <Link href="/servicios/resguardo-aduanero" className="service-card service-card-compact service-orange group flex items-center gap-4 p-5">
-                                    <div className="flex-shrink-0 w-14 h-14 rounded-full bg-orange-100 flex items-center justify-center group-hover:scale-110 transition-transform">
-                                    </div>
-                                    <div className="flex-1">
-                                        <div className="flex items-center gap-2">
-                                            <h4 className="font-bold text-slate-900">Resguardo Aduanero</h4>
-                                            <span className="px-2 py-0.5 bg-orange-500 text-white text-[10px] font-bold rounded-full">OPCIONAL</span>
-                                        </div>
-                                        <p className="text-sm text-slate-600 mt-1">Custodia y seguridad para tu mercancía</p>
-                                        <p className="text-xs text-orange-600 font-medium mt-1 group-hover:underline">Ver más →</p>
-                                    </div>
-                                </Link>
-                            </div>
-                        </div>
-
-                        {/* Servicio Integral */}
-                        <div className="mt-8 p-8 rounded-xl bg-gradient-to-r from-slate-800 to-blue-800 text-white text-center shadow-xl">
-                            <h3 className="text-xl font-bold">¿Prefieres un servicio integral?</h3>
-                            <p className="mt-2 text-slate-300">Contratamos las 3 etapas + consultoría + resguardo por ti. Un solo punto de contacto, una sola factura.</p>
-                            <div className="mt-6">
-                                <WhatsAppLink route="servicio-integral" serviceName="servicio-integral" variant="button">
-                                    Cotizar servicio integral
-                                </WhatsAppLink>
-                            </div>
-                        </div>
-                    </div>
-                </Container>
-            </section>
-
-            {/* Por qué elegirnos */}
-            <section className="py-20 bg-slate-50">
-                <Container>
-                    <div className="text-center mb-14">
-                        <span className="section-badge">Experiencia</span>
-                        <h2 className="text-3xl font-bold text-slate-900">¿Por qué <span className="gradient-text">elegirnos</span>?</h2>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                        {whyChooseUs.map((item, index) => {
-                            const colors = ['blue', 'cyan', 'green', 'purple'];
-                            const colorClass = colors[index % colors.length];
-                            return (
-                                <div key={item.title} className={`service-card service-${colorClass} h-full p-6`}>
-                                    <div className="flex items-start gap-4">
-                                        <div>
-                                            <h3 className="text-xl font-semibold text-slate-900">{item.title}</h3>
-                                            <p className="mt-2 text-slate-600">{item.description}</p>
-                                            <p className="mt-3 text-sm italic text-slate-500 border-l-2 border-blue-300 pl-2">{item.highlight}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                </Container>
-            </section>
-
-            {/* Para quién es */}
-            <section className="py-20 bg-white">
-                <Container>
-                    <div className="text-center mb-14">
-                        <span className="section-badge">Perfil</span>
-                        <h2 className="text-3xl font-bold text-slate-900">¿Para quién es este <span className="gradient-text">servicio</span>?</h2>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-                        {targetAudience.map((item) => (
-                            <div key={item.title} className="service-card service-card-compact service-cyan p-6 text-center">
-                                <h3 className="font-bold text-slate-900 leading-tight">{item.title}</h3>
-                                <p className="mt-2 text-sm text-slate-600">{item.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                </Container>
-            </section>
-
-            {/* Problemas que resuelve */}
-            <SplitFeature
-                title="¿Qué problemas resuelve?"
-                description="La consultoría aduanera te ayuda a evitar errores costosos y aprovechar oportunidades de ahorro."
-                imageSide="right"
-                image={
-                    <div className="service-risk-panel">
-                        <p className="text-sm font-semibold text-sky-200">Antes de ejecutar</p>
-                        <h3 className="mt-2 text-3xl font-bold leading-tight">Ordenamos la decisión técnica</h3>
-                        <div className="mt-7 grid gap-3">
-                            <p><strong>Riesgo:</strong> qué puede observarse o encarecerse.</p>
-                            <p><strong>Sustento:</strong> qué documento o criterio hace falta.</p>
-                            <p><strong>Acción:</strong> qué conviene resolver primero.</p>
-                        </div>
-                    </div>
-                }
-            >
-                <ul className="space-y-3">
-                    {problemsSolved.map((problem) => (
-                        <li key={problem} className="flex items-start gap-3 text-slate-600">
-                            <span className="text-cyan-600 mt-1">✓</span>
-                            <span>{problem}</span>
-                        </li>
-                    ))}
-                </ul>
-            </SplitFeature>
-
-            {/* FAQ */}
-            <section className="py-20 bg-slate-50">
-                <Container>
-                    <div className="text-center mb-14">
-                        <span className="section-badge">Ayuda</span>
-                        <h2 className="text-3xl font-bold text-slate-900">Preguntas <span className="gradient-text">Frecuentes</span></h2>
-                    </div>
-                    <div className="max-w-3xl mx-auto space-y-6">
-                        {faqs.map((faq) => (
-                            <div key={faq.question} className="service-card service-card-compact service-blue p-6">
-                                <h4 className="font-semibold text-slate-900 text-lg">{faq.question}</h4>
-                                <p className="mt-2 text-slate-600">{faq.answer}</p>
-                            </div>
-                        ))}
-                    </div>
-                </Container>
-            </section>
-
-            {/* Formulario */}
-            <Container>
-                <div id="cotizacion" className="py-16">
-                    <PrecotizacionForm
-                        title="Solicita asesoría sin costo"
-                        serviceName="consultoria-aduanera"
-                    />
-                </div>
-            </Container>
-
-            <RecommendedReading
-                title="Guias que suelen activar una revision tecnica previa"
-                subtitle="Si tu duda esta en viabilidad, requisitos o sobrecostos, estos contenidos te dan el contexto antes de una consultoria."
-                slugs={[
-                    'notificacion-sunat-aduanas-que-hacer',
-                    'descargo-multa-aduanera-sunat',
-                    'como-saber-si-tu-producto-necesita-permisos-para-importar-en-peru',
-                ]}
-            />
-
-            {/* CTA Final */}
-            <CTASection
-                title="¿Quieres optimizar tu operación?"
-                highlightedWord="optimizar"
-                subtitle="Escríbenos y cuéntanos tu situación. Primero resolvemos tus dudas sin costo y, si el caso lo exige, pasamos a una consultoría especializada."
-            >
-                <WhatsAppLink route="consultoria-aduanera-cta" messageKey="asesoria_gratis" variant="button">
-                    Resolver mis dudas primero
-                </WhatsAppLink>
-                <Link href={ROUTES.contacto}>
-                    <Button size="lg" variant="secondary">
-                        Otras formas de contacto
-                    </Button>
-                </Link>
-            </CTASection>
-        </>
-    );
+    return <ServiceProfile service={service} />;
 }
